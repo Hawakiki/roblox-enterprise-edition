@@ -28,6 +28,7 @@ rojo serve default.project.json        # sync src/ into Roblox Studio
 2. **Never rewrite history.** No amend, rebase, hard reset or force push. A mistake gets a corrective change request (EE-POL-0004 §8).
 3. **Every change starts with a change request,** on its own `feature/CR-NNNN-<slug>` branch.
    File it as `Submitted`, unless the Approver of record has already approved it in words (EE-POL-0004 §4).
+   A `Submitted` request waits: only an `Approved` one is implemented.
 4. **Read `git status` before every commit,** and stage only what you meant to (CR-0002).
 5. **Never read `.env`, and never push.**
 6. **When unsure, run checkpatch.** Every error ends with the document that mandates it.
@@ -108,6 +109,9 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Translating a branch name, rule code or field value | Code identifiers stay as they are, in backticks | EE-POL-0002 §6 |
 | Using a class instance where its contract type is expected | Both solvers reject it. Constructors return the contract, and `_implements` declares it | EE-STD-0006 §6 |
 | A doc comment inside a table constructor | Moonwave drops it without a word. Assign each documented value in a statement of its own | EE-STD-0001 §6, CR-0008 |
-| Running `tools/check` in an agent worktree | `../.luau/globalTypes.d.luau` points into `.claude/worktrees/`, so the Roblox definitions are downloaded or missing. Copy the shared file to `./globalTypes.d.luau`, which git ignores | CR-0008 |
+| Running `tools/check` in an agent worktree | `../.luau/globalTypes.d.luau` pointed into `.claude/worktrees/`, so the Roblox definitions were downloaded or missing. `tools/check` now asks git for the main checkout | CR-0008, CR-0009 |
+| Implementing a `Submitted` request | CR-0008 was implemented before it was approved. Wait for approval in words | EE-POL-0004 §4, CR-0009 |
+| Downloading a tool the toolchain lacks | The sandbox refused to run it. Tools come from `rokit.toml`, and rokit installs a new one only once a person trusts it | CR-0009 |
+| Deleting a path built from a variable | `rm -rf "$X/lib"` deletes `/lib` when `X` is empty, as Steam's installer once did with `$STEAMROOT`. Work in a new folder and delete nothing | CR-0009 |
 
 When you step on a new one, add it here with its record (EE-POL-0006 §6).
