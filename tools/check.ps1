@@ -31,10 +31,13 @@ try {
 	# Lune type definitions, which scripts/.luaurc points luau-lsp at / scripts/.luaurc 가 가리키는 Lune 타입 정의
 	lune setup | Out-Null
 
-	# Roblox type definitions: shared by the workspace, then local, downloaded if neither exists
-	# Roblox 타입 정의: 워크스페이스 공용(../.luau) → 프로젝트 로컬 순으로 찾고, 없으면 받는다
+	# Roblox type definitions: shared by the workspace that holds the main checkout, then local, downloaded if
+	# neither exists. git finds the main checkout, from an agent worktree too (CR-0009).
+	# Roblox 타입 정의: 주 작업 폴더가 있는 워크스페이스 공용(../.luau) → 프로젝트 로컬 순으로 찾고, 없으면 받는다.
+	# 주 작업 폴더는 git 이 찾으므로 에이전트 작업 사본에서도 찾는다(CR-0009).
+	$main = Split-Path -Parent (git rev-parse --path-format=absolute --git-common-dir)
 	$defs = $null
-	foreach ($candidate in '../.luau/globalTypes.d.luau', './globalTypes.d.luau') {
+	foreach ($candidate in (Join-Path $main '../.luau/globalTypes.d.luau'), './globalTypes.d.luau') {
 		if (Test-Path -LiteralPath $candidate) { $defs = $candidate; break }
 	}
 	if (-not $defs) {
