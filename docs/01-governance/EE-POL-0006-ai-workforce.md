@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0006
 title: AI Workforce Policy
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Internal
 owner: Human Resources
 parent: EE-CHR-0001@1.0
@@ -90,10 +90,11 @@ Annex A lists the rules mandated by this policy.
 | Version | Date | Change | Author |
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Human Resources |
+| 1.0.0 | 2026-10-30 | Approved. | Human Resources |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Human Resources | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

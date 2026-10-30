@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0008
 title: 외부 데이터 및 AI 학습 정책
-translation-of: 0.9.0
+translation-of: 1.0.0
 ---
 
 # 외부 데이터 및 AI 학습 정책
@@ -51,10 +51,11 @@ translation-of: 0.9.0
 | 버전 | 일자 | 변경 내용 | 작성 |
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | 검토 회부 | 법무팀 |
+| 1.0.0 | 2026-10-30 | 승인 | 법무팀 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
 | 기안 | 법무팀 | 상신 | 2026-10-30 |
-| 결재 | Hawakiki | 대기 | — |
+| 결재 | Hawakiki | 승인 | 2026-10-30 |

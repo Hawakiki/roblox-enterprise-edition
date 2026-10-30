@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0008
 title: External Data and AI Training Policy
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Internal
 owner: Legal Department
 parent: EE-CHR-0001@1.0
@@ -53,10 +53,11 @@ The rest of the policy is a recommendation, and §4 a lament.
 | Version | Date | Change | Author |
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Legal Department |
+| 1.0.0 | 2026-10-30 | Approved. | Legal Department |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Legal Department | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

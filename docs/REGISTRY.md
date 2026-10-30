@@ -35,9 +35,9 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [EE-POL-0003](01-governance/EE-POL-0003-delegation-of-authority.md) | Delegation of Authority | 0.1.0 | Draft | Internal | Board of Directors | EE-CHR-0001@1.0 |
 | [EE-POL-0004](01-governance/EE-POL-0004-change-management.md) | Change Management Policy | 1.0.0 | Approved | Internal | Change Advisory Board | EE-CHR-0001@1.0 |
 | [EE-POL-0005](01-governance/EE-POL-0005-information-classification.md) | Information Classification Policy | 0.1.0 | Draft | Internal | Information Security Office | EE-CHR-0001@1.0 |
-| [EE-POL-0006](01-governance/EE-POL-0006-ai-workforce.md) | AI Workforce Policy | 0.9.0 | In Review | Internal | Human Resources | EE-CHR-0001@1.0 |
+| [EE-POL-0006](01-governance/EE-POL-0006-ai-workforce.md) | AI Workforce Policy | 1.0.0 | Approved | Internal | Human Resources | EE-CHR-0001@1.0 |
 | [EE-POL-0007](01-governance/EE-POL-0007-deprecation.md) | Deprecation Policy | 0.1.0 | Draft | Internal | Release Engineering | EE-CHR-0001@1.0 |
-| [EE-POL-0008](01-governance/EE-POL-0008-external-data-and-ai-training.md) | External Data and AI Training Policy | 0.9.0 | In Review | Internal | Legal Department | EE-CHR-0001@1.0 |
+| [EE-POL-0008](01-governance/EE-POL-0008-external-data-and-ai-training.md) | External Data and AI Training Policy | 1.0.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
 
 ## Standards
 
