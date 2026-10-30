@@ -108,11 +108,7 @@ local function matches(api: Api, code: { Lexer.Token }, index: number): boolean
 	end
 	local member = api.member
 	if member then
-		local name = code[index + 2]
-		return (isSymbol(after, ".") or isSymbol(after, ":"))
-			and name ~= nil
-			and name.kind == "name"
-			and name.text == member
+		return Lexer.memberAt(code, index + 1) == member
 	end
 	-- A key in a table constructor, as in { print = true }.
 	if (isSymbol(before, "{") or isSymbol(before, ",") or isSymbol(before, ";")) and isSymbol(after, "=") then

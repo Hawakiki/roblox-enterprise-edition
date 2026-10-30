@@ -88,27 +88,58 @@ local function checkNumbers(path: string, code: { Lexer.Token }, report: Report.
 	end
 end
 
+-- Whether the = at index assigns a type, as in type Colour = Color3 or export type Colour<T> = Color3.
+local function assignsType(code: { Lexer.Token }, index: number): boolean
+	local cursor = index - 1
+	if isSymbol(code[cursor], ">") then
+		local depth = 0
+		while cursor > 1 do
+			if isSymbol(code[cursor], ">") then
+				depth += 1
+			elseif isSymbol(code[cursor], "<") then
+				depth -= 1
+				if depth == 0 then
+					break
+				end
+			end
+			cursor -= 1
+		end
+		cursor -= 1
+	end
+	local name, keyword = code[cursor], code[cursor - 1]
+	return name ~= nil and name.kind == "name" and keyword ~= nil and keyword.text == "type"
+end
+
+-- Whether the global at index is taken as a value of its own, as in local C = Color3 or return Color3.
+local function isAliased(code: { Lexer.Token }, index: number): boolean
+	local before = code[index - 1]
+	if isSymbol(before, "=") then
+		return not assignsType(code, index - 1)
+	end
+	return before ~= nil and before.kind == "name" and before.text == "return"
+end
+
 local function checkColors(path: string, code: { Lexer.Token }, report: Report.Report)
 	for index, token in code do
 		if token.kind ~= "name" or not table.find(COLOR_GLOBALS, token.text) then
 			continue
 		end
-		local before, after, member = code[index - 1], code[index + 1], code[index + 2]
+		local before = code[index - 1]
 		if isSymbol(before, ".") or isSymbol(before, ":") then
 			continue
 		end
-		if (isSymbol(after, ".") or isSymbol(after, ":")) and member and member.kind == "name" then
+		local member = Lexer.memberAt(code, index + 1)
+		local problem = if member
+			then string.format("%s.%s makes a colour", token.text, member)
+			elseif isAliased(code, index) then string.format("an alias of %s makes colours", token.text)
+			else nil
+		if problem then
 			Report.add(
 				report,
 				"COLOR_OUTSIDE_PALETTE",
 				path,
 				token.line,
-				string.format(
-					"%s.%s makes a colour outside the corporate colour palette, %s",
-					token.text,
-					member.text,
-					PALETTE
-				)
+				string.format("%s outside the corporate colour palette, %s", problem, PALETTE)
 			)
 		end
 	end
