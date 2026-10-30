@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0007
 title: Establish the Application Framework
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -55,9 +55,14 @@ The Company would return to having rules and no product, which it has shown it c
 |---|---|---|---|
 | Requester | Architecture Review Board | Submitted | 2026-10-30 |
 | Approver | Hawakiki | Approved before filing | 2026-10-30 |
+| Implementer | Architecture Review Board | Implemented | 2026-10-30 |
 
 ## 7. Implementation Record
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `fd90604` | Filed this change request. |
+| `6541b71` | Added the Rojo project, the kernel and the first hosted service, and type-checked `src/` under both solvers. |
+| `cda2d41` | Added `LAYER_VIOLATION` and `MODULE_NAME_SUFFIX`, and submitted EE-STD-0006 and EE-STD-0002 for review. |
+| `a13b3e7` | Recorded the governance freeze and the place of code in `AGENTS.md`. |
+| `cc29818` | Approved EE-STD-0006 and EE-STD-0002 at 1.0.0. |

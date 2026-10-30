@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0007
 title: 애플리케이션 프레임워크 수립
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 애플리케이션 프레임워크 수립
@@ -54,9 +54,14 @@ translation-of: 1.0.0
 |---|---|---|---|
 | 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-30 |
 | 결재 | Hawakiki | 제출 전 승인 | 2026-10-30 |
+| 시행 | 아키텍처 검토 위원회 | 시행 완료 | 2026-10-30 |
 
 ## 7. 시행 기록
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `fd90604` | 본 변경 요청 등록 |
+| `6541b71` | Rojo 프로젝트, 커널, 첫 호스팅 서비스 추가 및 두 솔버로 `src/` 타입 검사 |
+| `cda2d41` | `LAYER_VIOLATION`, `MODULE_NAME_SUFFIX` 추가, EE-STD-0006, EE-STD-0002 검토 회부 |
+| `a13b3e7` | `AGENTS.md` 에 거버넌스 동결과 코드의 위치 기록 |
+| `cc29818` | EE-STD-0006, EE-STD-0002 1.0.0 승인 |
