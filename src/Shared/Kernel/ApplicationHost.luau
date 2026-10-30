@@ -12,7 +12,6 @@
 
 local ErrorLevelConstants = require(script.Parent.ErrorLevelConstants)
 local IHostedService = require(script.Parent.IHostedService)
-local SequenceConstants = require(script.Parent.SequenceConstants)
 local ServiceProvider = require(script.Parent.ServiceProvider)
 local ServiceToken = require(script.Parent.ServiceToken)
 
@@ -98,7 +97,7 @@ function ApplicationHost.Stop(self: ApplicationHost)
 		return
 	end
 	self._state = "Stopped"
-	for index = #self._started, SequenceConstants.FIRST_INDEX, SequenceConstants.REVERSE_STEP do
+	for index = #self._started, 1, -1 do
 		self._started[index]:StopAsync()
 	end
 	table.clear(self._started)

@@ -12,7 +12,6 @@
 ]=]
 
 local ErrorLevelConstants = require(script.Parent.ErrorLevelConstants)
-local SequenceConstants = require(script.Parent.SequenceConstants)
 
 type ScopeState = {
 	_resources: { any },
@@ -109,7 +108,7 @@ function ResourceScope.Dispose(self: ResourceScope)
 	end
 	self._disposed = true
 	local failures = {}
-	for index = #self._resources, SequenceConstants.FIRST_INDEX, SequenceConstants.REVERSE_STEP do
+	for index = #self._resources, 1, -1 do
 		local resource = self._resources[index]
 		local ok, problem = pcall(function(): any
 			release(resource)
@@ -120,7 +119,7 @@ function ResourceScope.Dispose(self: ResourceScope)
 		end
 	end
 	table.clear(self._resources)
-	if #failures > SequenceConstants.EMPTY_LENGTH then
+	if #failures > 0 then
 		error("resources failed to release: " .. table.concat(failures, "; "), ErrorLevelConstants.CALLER)
 	end
 end

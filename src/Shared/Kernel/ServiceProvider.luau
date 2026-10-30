@@ -12,7 +12,6 @@
 ]=]
 
 local ErrorLevelConstants = require(script.Parent.ErrorLevelConstants)
-local SequenceConstants = require(script.Parent.SequenceConstants)
 local ServiceToken = require(script.Parent.ServiceToken)
 
 --[=[
@@ -124,7 +123,7 @@ function ServiceProvider.Dispose(self: ServiceProvider)
 		return
 	end
 	self._disposed = true
-	for index = #self._creationOrder, SequenceConstants.FIRST_INDEX, SequenceConstants.REVERSE_STEP do
+	for index = #self._creationOrder, 1, -1 do
 		local service: any = self._creationOrder[index]
 		if type(service) == "table" and type(service.Dispose) == "function" then
 			(service :: any):Dispose()
