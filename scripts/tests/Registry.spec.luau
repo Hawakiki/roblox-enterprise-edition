@@ -7,6 +7,7 @@ local Documents = require("../lib/Documents")
 local Fixtures = require("./Fixtures")
 local Registry = require("../lib/Registry")
 local Report = require("../lib/Report")
+local Schema = require("../lib/Schema")
 local Snapshot = require("../lib/Snapshot")
 
 local cases: { Assert.Case } = {}
@@ -71,6 +72,16 @@ case("a missing or edited registry is reported", function()
 	Registry.check(Snapshot.new(files), index(files), report)
 	Assert.codes(report, { "REGISTRY_OUT_OF_DATE" })
 	Assert.equal(#report.violations, 2, "violations")
+end)
+
+case("every status of every kind has a Korean label", function()
+	for _, kind in Schema.kinds do
+		for _, status in kind.statuses do
+			if Registry.STATUS_KO[status] == nil then
+				error(string.format("status '%s' of %s has no Korean label", status, kind.code), 0)
+			end
+		end
+	end
 end)
 
 return { name = "Registry", cases = cases } :: Assert.Suite
