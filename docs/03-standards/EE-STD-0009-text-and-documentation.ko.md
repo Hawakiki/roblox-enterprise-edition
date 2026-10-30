@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0009
 title: 텍스트 파일 및 문서 작성 표준
-translation-of: 1.0.0
+translation-of: 1.0.1
 ---
 
 # 텍스트 파일 및 문서 작성 표준
@@ -58,10 +58,11 @@ translation-of: 1.0.0
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | 검토 회부 | 문서통제실 |
 | 1.0.0 | 2026-10-30 | 승인 | 문서통제실 |
+| 1.0.1 | 2026-10-30 | EE-POL-0001 1.1 기준 재검토, 인용 갱신 | 문서통제실 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
 | 기안 | 문서통제실 | 상신 | 2026-10-30 |
-| 결재 | Hawakiki | 승인 | 2026-10-30 |
+| 결재 | Hawakiki | 대기 | — |

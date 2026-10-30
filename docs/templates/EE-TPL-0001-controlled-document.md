@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-TPL-0001
 title: Controlled Document Template
-version: 1.0.0
-status: Approved
+version: 1.0.1
+status: In Review
 classification: Internal
 owner: Document Control Office
-parent: EE-POL-0001@1.0
+parent: EE-POL-0001@1.1
 ---
 
 # Controlled Document Template
@@ -82,10 +82,11 @@ parent: <Parent identifier>@<MAJOR.MINOR>
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Document Control Office |
 | 1.0.0 | 2026-10-30 | Approved. | Document Control Office |
+| 1.0.1 | 2026-10-30 | Reviewed against EE-POL-0001 1.1; citation updated. | Document Control Office |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Document Control Office | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Approved | 2026-10-30 |
+| Approver | Hawakiki | Pending | — |

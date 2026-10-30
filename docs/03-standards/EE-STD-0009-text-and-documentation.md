@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0009
 title: Text File and Documentation Standard
-version: 1.0.0
-status: Approved
+version: 1.0.1
+status: In Review
 classification: Internal
 owner: Document Control Office
-parent: EE-POL-0001@1.0
+parent: EE-POL-0001@1.1
 ---
 
 # Text File and Documentation Standard
@@ -60,10 +60,11 @@ This standard keeps every text file readable on every platform, and every docume
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Document Control Office |
 | 1.0.0 | 2026-10-30 | Approved. | Document Control Office |
+| 1.0.1 | 2026-10-30 | Reviewed against EE-POL-0001 1.1; citation updated. | Document Control Office |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Document Control Office | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Approved | 2026-10-30 |
+| Approver | Hawakiki | Pending | — |

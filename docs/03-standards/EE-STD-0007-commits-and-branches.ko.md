@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0007
 title: 커밋 및 브랜치 표준
-translation-of: 1.0.0
+translation-of: 1.0.1
 ---
 
 # 커밋 및 브랜치 표준
@@ -144,10 +144,11 @@ Change-Request: CR-0001
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | 검토 회부 | 규정 준수 엔지니어링 |
 | 1.0.0 | 2026-10-30 | 승인 | 규정 준수 엔지니어링 |
+| 1.0.1 | 2026-10-30 | EE-POL-0004 1.1 기준 재검토, 인용 갱신 | 규정 준수 엔지니어링 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
 | 기안 | 규정 준수 엔지니어링 | 상신 | 2026-10-30 |
-| 결재 | Hawakiki | 승인 | 2026-10-30 |
+| 결재 | Hawakiki | 대기 | — |
