@@ -91,6 +91,20 @@ local RULES: { Rule } = {
 		summary = "A module is an interface named I..., or its name ends with an approved suffix.",
 	},
 
+	-- Prohibited directives and APIs / 금지 지시문과 API
+	{
+		code = "PROHIBITED_DIRECTIVE",
+		severity = "ERROR",
+		standard = "EE-STD-0003",
+		summary = "--!strict is the only directive a Luau file declares, and no function carries an attribute.",
+	},
+	{
+		code = "PROHIBITED_API",
+		severity = "ERROR",
+		standard = "EE-STD-0003",
+		summary = "The Roblox code uses a prohibited API only where the Prohibited API Registry allows it.",
+	},
+
 	-- Doc comments of the Roblox code / 로블록스 코드의 문서 주석
 	{
 		code = "MISSING_MODULE_DOC",

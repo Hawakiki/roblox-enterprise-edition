@@ -16,6 +16,7 @@ local suites: { Assert.Suite } = {
 	require("./Headers.spec"),
 	require("./Architecture.spec"),
 	require("./Lexer.spec"),
+	require("./ProhibitedApis.spec"),
 	require("./DocComments.spec"),
 	require("./Documents.spec"),
 	require("./Coverage.spec"),
