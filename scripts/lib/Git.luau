@@ -56,11 +56,13 @@ function Git.authorIdent(root: string): string?
 	return string.match(out, "^(.-<[^>]*>)")
 end
 
--- nil on a detached HEAD.
+-- The name of the branch HEAD points to, or nil on a detached HEAD, which symbolic-ref reports by its exit
+-- status. The full ref is read and its prefix removed here, because --short writes heads/<name> whenever
+-- a tag shares the name of the branch (CR-0009).
 function Git.currentBranch(root: string): string?
-	local ok, out = run(root, { "symbolic-ref", "--short", "-q", "HEAD" })
-	local branch = Text.trim(out)
-	if not ok or branch == "" then
+	local ok, out = run(root, { "symbolic-ref", "-q", "HEAD" })
+	local branch = string.match(Text.trim(out), "^refs/heads/(.+)$")
+	if not ok or branch == nil then
 		return nil
 	end
 	return branch
