@@ -17,8 +17,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 정책 | 4 |
 | 표준 | 9 |
 | 양식 | 7 |
-| 변경 요청 | 4 |
-| **합계** | **25** |
+| 변경 요청 | 5 |
+| **합계** | **26** |
 
 ## 헌장
 
@@ -69,3 +69,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0002](records/change-requests/CR-0002-stray-luaurc.ko.md) | 루트에 잘못 들어간 .luaurc 제거 | 1.1.0 | 시행 | 사내 한정 | Compliance Engineering |
 | [CR-0003](records/change-requests/CR-0003-document-governance.ko.md) | 헌장, 문서 체계 정책 및 양식 제정 | 1.1.0 | 시행 | 사내 한정 | Document Control Office |
 | [CR-0004](records/change-requests/CR-0004-engineering-standards.ko.md) | 변경 관리 정책 및 엔지니어링 표준 제정 | 1.1.0 | 시행 | 사내 한정 | Compliance Engineering |
+| [CR-0005](records/change-requests/CR-0005-ai-onboarding.ko.md) | AI 인력 온보딩 | 1.0.0 | 승인 | 사내 한정 | Human Resources |
