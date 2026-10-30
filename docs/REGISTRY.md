@@ -17,8 +17,8 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Policies | 8 |
 | Standards | 9 |
 | Templates | 7 |
-| Change Requests | 5 |
-| **Total** | **30** |
+| Change Requests | 6 |
+| **Total** | **31** |
 
 ## Charter
 
@@ -74,3 +74,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0003](records/change-requests/CR-0003-document-governance.md) | Establish the Charter, the Document Governance Policies and the Templates | 1.1.0 | Implemented | Internal | Document Control Office |
 | [CR-0004](records/change-requests/CR-0004-engineering-standards.md) | Establish the Change Management Policy and the Engineering Standards | 1.1.0 | Implemented | Internal | Compliance Engineering |
 | [CR-0005](records/change-requests/CR-0005-ai-onboarding.md) | Onboard the AI Workforce | 1.1.0 | Implemented | Internal | Human Resources |
+| [CR-0006](records/change-requests/CR-0006-drill-findings.md) | Correct the Findings of the First Onboarding Drill | 1.0.0 | Approved | Internal | Document Control Office |
