@@ -91,6 +91,60 @@ local RULES: { Rule } = {
 		summary = "A module is an interface named I..., or its name ends with an approved suffix.",
 	},
 
+	-- Prohibited directives and APIs / 금지 지시문과 API
+	{
+		code = "PROHIBITED_DIRECTIVE",
+		severity = "ERROR",
+		standard = "EE-STD-0003",
+		summary = "--!strict is the only directive a Luau file declares, and no function carries an attribute.",
+	},
+	{
+		code = "PROHIBITED_API",
+		severity = "ERROR",
+		standard = "EE-STD-0003",
+		summary = "The Roblox code uses a prohibited API only where the Prohibited API Registry allows it.",
+	},
+
+	-- Numbers and colours / 숫자와 색
+	{
+		code = "NUMERIC_LITERAL",
+		severity = "ERROR",
+		standard = "EE-STD-0005",
+		summary = "A numeric literal other than -1, 0, 1 and 2 appears only in a module whose name ends with Constants.",
+	},
+	{
+		code = "COLOR_OUTSIDE_PALETTE",
+		severity = "ERROR",
+		standard = "EE-STD-0005",
+		summary = "Every colour under src/ comes from the corporate colour palette.",
+	},
+
+	-- Doc comments of the Roblox code / 로블록스 코드의 문서 주석
+	{
+		code = "MISSING_MODULE_DOC",
+		severity = "ERROR",
+		standard = "EE-STD-0001",
+		summary = "Every module under src/ opens with a Moonwave doc comment with @class; a contract adds @interface.",
+	},
+	{
+		code = "MISSING_FUNCTION_DOC",
+		severity = "ERROR",
+		standard = "EE-STD-0001",
+		summary = "Every public function under src/ carries a Moonwave doc comment directly above it.",
+	},
+	{
+		code = "INCOMPLETE_DOC_COMMENT",
+		severity = "ERROR",
+		standard = "EE-STD-0001",
+		summary = "A function doc comment carries @within, a @param for each parameter, and @return if it returns.",
+	},
+	{
+		code = "DOC_COMMENT_LANGUAGE",
+		severity = "ERROR",
+		standard = "EE-STD-0001",
+		summary = "Classes and interfaces are described in English and Korean; other doc comments in English.",
+	},
+
 	-- Document control / 문서 통제
 	{
 		code = "MISSING_FRONTMATTER",

@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0002
 title: Naming Convention
-version: 1.0.0
+version: 1.0.1
 status: Approved
 classification: Internal
 owner: Architecture Review Board
-parent: EE-STD-0001@1.0
+parent: EE-STD-0001@1.1
 ---
 
 # Naming Convention
@@ -88,6 +88,7 @@ This section is not enforced, and is therefore a recommendation (EE-CHR-0001, Ar
 | 0.1.0 | 2026-10-30 | Number reserved. | Architecture Review Board |
 | 0.9.0 | 2026-10-30 | Drafted with the application framework (CR-0007). | Architecture Review Board |
 | 1.0.0 | 2026-10-30 | Approved. | Architecture Review Board |
+| 1.0.1 | 2026-10-30 | Reviewed against EE-STD-0001 1.1; citation updated. | Architecture Review Board |
 
 ## Approval
 

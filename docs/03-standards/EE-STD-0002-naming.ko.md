@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0002
 title: 명명 규칙
-translation-of: 1.0.0
+translation-of: 1.0.1
 ---
 
 # 명명 규칙
@@ -86,6 +86,7 @@ translation-of: 1.0.0
 | 0.1.0 | 2026-10-30 | 번호 확보 | 아키텍처 검토 위원회 |
 | 0.9.0 | 2026-10-30 | 애플리케이션 프레임워크와 함께 작성(CR-0007) | 아키텍처 검토 위원회 |
 | 1.0.0 | 2026-10-30 | 승인 | 아키텍처 검토 위원회 |
+| 1.0.1 | 2026-10-30 | EE-STD-0001 1.1 기준 재검토, 인용 갱신 | 아키텍처 검토 위원회 |
 
 ## 결재
 

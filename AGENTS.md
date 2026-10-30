@@ -44,7 +44,7 @@ rojo serve default.project.json        # sync src/ into Roblox Studio
 | File a change request | EE-TPL-0002 |
 | Write a new controlled document | EE-TPL-0001 |
 | Write Luau | EE-STD-0001 |
-| Write Roblox code under `src/` | EE-STD-0006, EE-STD-0002 |
+| Write Roblox code under `src/` | EE-STD-0006, EE-STD-0002, EE-STD-0003, EE-STD-0005, EE-STD-0001 §6 |
 | Add any file | EE-STD-0004, EE-STD-0009 |
 | Add a checkpatch rule | EE-POL-0001 §14 |
 | Approve something | Nothing. You do not approve (EE-POL-0006 §4). |
@@ -107,5 +107,7 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Working on the branch an agent worktree starts on | `BRANCH_NAME_FORMAT`. Create `feature/CR-NNNN-<slug>` first | CR-0006 |
 | Translating a branch name, rule code or field value | Code identifiers stay as they are, in backticks | EE-POL-0002 §6 |
 | Using a class instance where its contract type is expected | Both solvers reject it. Constructors return the contract, and `_implements` declares it | EE-STD-0006 §6 |
+| A doc comment inside a table constructor | Moonwave drops it without a word. Assign each documented value in a statement of its own | EE-STD-0001 §6, CR-0008 |
+| Running `tools/check` in an agent worktree | `../.luau/globalTypes.d.luau` points into `.claude/worktrees/`, so the Roblox definitions are downloaded or missing. Copy the shared file to `./globalTypes.d.luau`, which git ignores | CR-0008 |
 
 When you step on a new one, add it here with its record (EE-POL-0006 §6).

@@ -17,8 +17,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 정책 | 8 |
 | 표준 | 9 |
 | 양식 | 7 |
-| 변경 요청 | 7 |
-| **합계** | **32** |
+| 변경 요청 | 8 |
+| **합계** | **33** |
 
 ## 헌장
 
@@ -43,12 +43,12 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 
 | ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 | 상위 문서 |
 |---|---|---|---|---|---|---|
-| [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.ko.md) | Luau 코딩 표준 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board | EE-CHR-0001@1.0 |
-| [EE-STD-0002](03-standards/EE-STD-0002-naming.ko.md) | 명명 규칙 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.0 |
-| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.ko.md) | 금지 API 목록 | 0.1.0 | 초안 | 사내 한정 | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.ko.md) | Luau 코딩 표준 | 1.1.0 | 승인 | 사내 한정 | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0002](03-standards/EE-STD-0002-naming.ko.md) | 명명 규칙 | 1.0.1 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.ko.md) | 금지 API 목록 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0004](03-standards/EE-STD-0004-file-headers.ko.md) | 파일 헤더 표준 | 1.0.0 | 승인 | 사내 한정 | Legal Department | EE-CHR-0001@1.0 |
-| [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.ko.md) | 숫자 리터럴 표준 | 0.1.0 | 초안 | 사내 한정 | Architecture Review Board | EE-CHR-0001@1.0 |
-| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.ko.md) | 아키텍처 계층 표준 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.0 |
+| [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.ko.md) | 숫자 리터럴 표준 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.ko.md) | 아키텍처 계층 표준 | 1.0.1 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.ko.md) | 커밋 및 브랜치 표준 | 1.0.1 | 승인 | 사내 한정 | Compliance Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0008](03-standards/EE-STD-0008-versioning.ko.md) | 엔터프라이즈 버전 표기 표준 | 0.1.0 | 초안 | 사내 한정 | Release Engineering | EE-CHR-0001@1.0 |
 | [EE-STD-0009](03-standards/EE-STD-0009-text-and-documentation.ko.md) | 텍스트 파일 및 문서 작성 표준 | 1.0.1 | 승인 | 사내 한정 | Document Control Office | EE-POL-0001@1.1 |
@@ -76,3 +76,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0005](records/change-requests/CR-0005-ai-onboarding.ko.md) | AI 인력 온보딩 | 1.2.0 | 시행 | 사내 한정 | Human Resources |
 | [CR-0006](records/change-requests/CR-0006-drill-findings.ko.md) | 첫 신입 투입 훈련 지적 사항 정정 | 1.1.0 | 시행 | 사내 한정 | Document Control Office |
 | [CR-0007](records/change-requests/CR-0007-application-framework.ko.md) | 애플리케이션 프레임워크 수립 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
+| [CR-0008](records/change-requests/CR-0008-law-of-the-code.ko.md) | 로블록스 코드의 규율 확립 | 1.3.0 | 시행 | 사내 한정 | Architecture Review Board |

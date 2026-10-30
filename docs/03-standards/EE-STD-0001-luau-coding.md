@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0001
 title: Luau Coding Standard
-version: 1.0.0
+version: 1.1.0
 status: Approved
 classification: Internal
 owner: Architecture Review Board
@@ -18,13 +18,16 @@ This standard sets the rules that every Luau file in the repository follows, wha
 
 ## 2. Scope
 
-1. This standard applies to every `.luau` file: the tooling under `scripts/` and, once it exists, the Roblox code of the template.
-2. The Roblox code is further governed by the standards reserved for naming (EE-STD-0002), prohibited APIs (EE-STD-0003), numeric literals (EE-STD-0005) and architecture layers (EE-STD-0006), once they are drafted.
+1. This standard applies to every `.luau` file: the tooling under `scripts/` and the Roblox code under `src/`.
+2. The Roblox code is further governed by the Naming Convention (EE-STD-0002), the Prohibited API Registry (EE-STD-0003), the Numeric Literal Standard (EE-STD-0005) and the Layered Architecture Standard (EE-STD-0006).
+3. The directives of every Luau file, the tooling included, are governed by the Prohibited API Registry (EE-STD-0003).
 
 ## 3. Strict Mode
 
 1. Every Luau file declares `--!strict` among its leading comment lines, before any code or block comment (`MISSING_STRICT_MODE`).
 2. A `.luaurc` file may set strict mode as well, but Roblox Studio does not read it; the hot comment is the only setting that holds everywhere.
+3. `--!strict` is the only directive that a Luau file declares.
+   A file that declares another directive beside it is reported under EE-STD-0003, whichever of the two comes first.
 
 ## 4. Type Checking
 
@@ -42,6 +45,23 @@ This standard sets the rules that every Luau file in the repository follows, wha
 
 1. Every module opens, below its file header (EE-STD-0004), with a block comment that states its purpose in English and then in Korean.
 2. Every other comment is written in English, and explains why rather than what.
+3. In the Roblox code under `src/`, the comments that document the code are Moonwave doc comments: block comments that open with `--[=[` on a line of their own and close with `]=]`.
+   A comment of any other form documents nothing.
+   The tooling under `scripts/` keeps the block comment of §6.1 and needs no doc comments.
+4. The block comment of §6.1 is a doc comment that carries `@class` with the name of the module (`MISSING_MODULE_DOC`).
+   A composition root has no module name, and gives its class a name of its own, such as `ServerCompositionRoot`.
+5. A contract module also documents its contract with `@interface` and `@within`, both naming the module, and lists the members of the contract as fields (`MISSING_MODULE_DOC`).
+   Moonwave places every interface within a class, so a contract module carries both a class and an interface.
+6. Every public function carries a doc comment directly above it, with no code between them (`MISSING_FUNCTION_DOC`).
+   A public function is a function declared on the table that its module returns, as in `function ApplicationHost.Start(self)` or `ApplicationHost.Start = function(self)`, whose name does not start with an underscore.
+7. The doc comment of a public function carries `@within` with the class of its module, `@param` for every parameter other than `self`, and `@return` when the function declares a return type other than `()`.
+   It documents no parameter that the function does not have (`INCOMPLETE_DOC_COMMENT`).
+8. The description of a class or an interface is written in English and then in Korean.
+   Every other doc comment, that of a function included, is written in English only (`DOC_COMMENT_LANGUAGE`).
+9. Moonwave reads only the doc comments that lead a statement, and silently drops one inside a table constructor.
+   A value worth documenting is therefore assigned in a statement of its own.
+   A method carries `@method`, a property `@prop` and a type `@type`; these tags are not enforced, and are therefore recommendations (EE-CHR-0001, Article 4).
+10. The doc comments are written for Moonwave, but `tools/check` does not generate the documentation site, which needs Node.js.
 
 ## 7. Requires
 
@@ -68,6 +88,10 @@ Tooling is exempt from the naming standard.
 | Rule | Severity | Section |
 |---|---|---|
 | `MISSING_STRICT_MODE` | Error | §3 |
+| `MISSING_MODULE_DOC` | Error | §6 |
+| `MISSING_FUNCTION_DOC` | Error | §6 |
+| `INCOMPLETE_DOC_COMMENT` | Error | §6 |
+| `DOC_COMMENT_LANGUAGE` | Error | §6 |
 | `TOOLCHAIN_VERSION_MISMATCH` | Error | §8 |
 
 ## Revision History
@@ -76,6 +100,7 @@ Tooling is exempt from the naming standard.
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Architecture Review Board |
 | 1.0.0 | 2026-10-30 | Approved. | Architecture Review Board |
+| 1.1.0 | 2026-10-30 | Moonwave doc comments for the Roblox code; `--!strict` as the only directive (CR-0008). | Architecture Review Board |
 
 ## Approval
 

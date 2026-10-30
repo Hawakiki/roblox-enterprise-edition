@@ -1,10 +1,13 @@
 -- SPDX-License-Identifier: MIT
 -- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 --!strict
---[[
+--[=[
+	@class RobloxOutputLoggerAdapter
+
 	Implements ILogger on the Roblox output window.
+
 	ILogger 를 Roblox 출력 창으로 구현한다.
-]]
+]=]
 
 local ILogger = require(script.Parent.Parent.Kernel.ILogger)
 
@@ -17,7 +20,14 @@ RobloxOutputLoggerAdapter.__index = RobloxOutputLoggerAdapter
 
 export type RobloxOutputLoggerAdapter = typeof(setmetatable({} :: AdapterState, RobloxOutputLoggerAdapter))
 
--- Constructors return the contract, not the implementation.
+--[=[
+	Creates a logger that writes to the output window. Like every constructor, it returns the contract,
+	not the implementation.
+
+	@within RobloxOutputLoggerAdapter
+	@param category string -- The category that prefixes every message, such as the side the logger runs on.
+	@return ILogger -- The logger, as the contract it implements.
+]=]
 function RobloxOutputLoggerAdapter.new(category: string): ILogger.ILogger
 	local state: AdapterState = {
 		_category = category,
@@ -25,11 +35,27 @@ function RobloxOutputLoggerAdapter.new(category: string): ILogger.ILogger
 	return setmetatable(state, RobloxOutputLoggerAdapter) :: any
 end
 
+--[=[
+	Writes a message that informs, with print.
+
+	@within RobloxOutputLoggerAdapter
+	@method Information
+	@param message string -- The message.
+]=]
 function RobloxOutputLoggerAdapter.Information(self: RobloxOutputLoggerAdapter, message: string)
+	-- A sanctioned exception to the Prohibited API Registry: this adapter is where the output window is reached.
 	print(string.format("[EnterpriseEdition][%s] %s", self._category, message))
 end
 
+--[=[
+	Writes a message that warns, with warn.
+
+	@within RobloxOutputLoggerAdapter
+	@method Warning
+	@param message string -- The message.
+]=]
 function RobloxOutputLoggerAdapter.Warning(self: RobloxOutputLoggerAdapter, message: string)
+	-- A sanctioned exception to the Prohibited API Registry: this adapter is where the output window is reached.
 	warn(string.format("[EnterpriseEdition][%s] %s", self._category, message))
 end
 

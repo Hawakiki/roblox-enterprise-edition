@@ -76,11 +76,27 @@ local function moduleName(path: string): string
 	return file or path
 end
 
+-- A contract module is named I followed by the name of its contract (EE-STD-0002 §3).
+local function isContractName(name: string): boolean
+	return string.find(name, "^I%u") ~= nil
+end
+
+-- Shared with the other checks of the Roblox code.
+Architecture.isCompositionRoot = isCompositionRoot
+Architecture.isContractName = isContractName
+Architecture.layerOf = layerOf
+Architecture.moduleName = moduleName
+
+-- Every Luau file under src/, composition roots included.
+function Architecture.isRobloxCode(path: string): boolean
+	return string.sub(path, 1, 4) == "src/" and string.sub(path, -5) == ".luau"
+end
+
 local function isApprovedName(name: string): boolean
 	if string.find(name, "^%u%w*$") == nil then
 		return false
 	end
-	if string.find(name, "^I%u") then
+	if isContractName(name) then
 		return true
 	end
 	for _, suffix in SUFFIXES do
@@ -124,7 +140,7 @@ end
 
 function Architecture.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 	for _, path in Snapshot.paths(snapshot) do
-		if string.sub(path, 1, 4) ~= "src/" or string.sub(path, -5) ~= ".luau" or isCompositionRoot(path) then
+		if not Architecture.isRobloxCode(path) or isCompositionRoot(path) then
 			continue
 		end
 
