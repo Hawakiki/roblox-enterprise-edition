@@ -17,8 +17,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 정책 | 8 |
 | 표준 | 9 |
 | 양식 | 7 |
-| 변경 요청 | 6 |
-| **합계** | **31** |
+| 변경 요청 | 7 |
+| **합계** | **32** |
 
 ## 헌장
 
@@ -75,3 +75,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0004](records/change-requests/CR-0004-engineering-standards.ko.md) | 변경 관리 정책 및 엔지니어링 표준 제정 | 1.2.0 | 시행 | 사내 한정 | Compliance Engineering |
 | [CR-0005](records/change-requests/CR-0005-ai-onboarding.ko.md) | AI 인력 온보딩 | 1.2.0 | 시행 | 사내 한정 | Human Resources |
 | [CR-0006](records/change-requests/CR-0006-drill-findings.ko.md) | 첫 신입 투입 훈련 지적 사항 정정 | 1.1.0 | 시행 | 사내 한정 | Document Control Office |
+| [CR-0007](records/change-requests/CR-0007-application-framework.ko.md) | 애플리케이션 프레임워크 수립 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board |
