@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0004
 title: 파일 헤더 표준
-translation-of: 0.9.0
+translation-of: 1.0.0
 ---
 
 # 파일 헤더 표준
@@ -63,10 +63,11 @@ Luau 모듈은 파일 헤더 아래에 두 언어로 쓴 머리 주석을 둔다
 | 버전 | 일자 | 변경 내용 | 작성 |
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | 검토 회부 | 법무팀 |
+| 1.0.0 | 2026-10-30 | 승인 | 법무팀 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
 | 기안 | 법무팀 | 상신 | 2026-10-30 |
-| 결재 | Hawakiki | 대기 | — |
+| 결재 | Hawakiki | 승인 | 2026-10-30 |

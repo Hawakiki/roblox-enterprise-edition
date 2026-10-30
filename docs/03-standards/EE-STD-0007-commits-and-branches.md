@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0007
 title: Commit and Branch Standard
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Internal
 owner: Compliance Engineering
-parent: EE-POL-0004@0.9
+parent: EE-POL-0004@1.0
 ---
 
 # Commit and Branch Standard
@@ -145,10 +145,11 @@ Change-Request: CR-0001
 | Version | Date | Change | Author |
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Compliance Engineering |
+| 1.0.0 | 2026-10-30 | Approved. | Compliance Engineering |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Compliance Engineering | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |
