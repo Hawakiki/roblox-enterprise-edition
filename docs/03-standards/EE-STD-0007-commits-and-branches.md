@@ -4,7 +4,7 @@
 id: EE-STD-0007
 title: Commit and Branch Standard
 version: 1.0.1
-status: In Review
+status: Approved
 classification: Internal
 owner: Compliance Engineering
 parent: EE-POL-0004@1.1
@@ -153,4 +153,4 @@ Change-Request: CR-0001
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Compliance Engineering | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

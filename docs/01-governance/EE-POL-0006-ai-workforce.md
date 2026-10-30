@@ -4,7 +4,7 @@
 id: EE-POL-0006
 title: AI Workforce Policy
 version: 1.1.0
-status: In Review
+status: Approved
 classification: Internal
 owner: Human Resources
 parent: EE-CHR-0001@1.0
@@ -99,4 +99,4 @@ Annex A lists the rules mandated by this policy.
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Human Resources | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

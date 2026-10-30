@@ -4,7 +4,7 @@
 id: EE-POL-0004
 title: Change Management Policy
 version: 1.1.0
-status: In Review
+status: Approved
 classification: Internal
 owner: Change Advisory Board
 parent: EE-CHR-0001@1.0
@@ -109,4 +109,4 @@ It mandates no checkpatch rule of its own.
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Change Advisory Board | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

@@ -4,7 +4,7 @@
 id: EE-STD-0009
 title: Text File and Documentation Standard
 version: 1.0.1
-status: In Review
+status: Approved
 classification: Internal
 owner: Document Control Office
 parent: EE-POL-0001@1.1
@@ -67,4 +67,4 @@ This standard keeps every text file readable on every platform, and every docume
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Document Control Office | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

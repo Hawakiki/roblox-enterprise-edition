@@ -4,7 +4,7 @@
 id: EE-TPL-0002
 title: Change Request Template
 version: 1.1.0
-status: In Review
+status: Approved
 classification: Internal
 owner: Document Control Office
 parent: EE-POL-0001@1.1
@@ -90,4 +90,4 @@ owner: <Requesting unit>
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Document Control Office | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

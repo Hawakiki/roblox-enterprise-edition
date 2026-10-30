@@ -4,7 +4,7 @@
 id: EE-POL-0001
 title: Document Governance Policy
 version: 1.1.0
-status: In Review
+status: Approved
 classification: Internal
 owner: Document Control Office
 parent: EE-CHR-0001@1.0
@@ -243,4 +243,4 @@ checkpatch enforces this policy.
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Document Control Office | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |
