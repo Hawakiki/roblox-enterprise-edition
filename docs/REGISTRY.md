@@ -20,4 +20,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 
 | ID | Title | Version | Status | Classification | Owner |
 |---|---|---|---|---|---|
-| [CR-0001](records/change-requests/CR-0001-compliance-tooling.md) | Establish the Change Request Process and Compliance Tooling | 1.0.0 | Approved | Internal | Compliance Engineering |
+| [CR-0001](records/change-requests/CR-0001-compliance-tooling.md) | Establish the Change Request Process and Compliance Tooling | 1.1.0 | Implemented | Internal | Compliance Engineering |

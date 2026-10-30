@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0001
 title: Establish the Change Request Process and Compliance Tooling
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Compliance Engineering
 ---
@@ -50,3 +50,13 @@ Note that the revert itself requires a change request, and the process for filin
 |---|---|---|---|
 | Requester | Compliance Engineering | Submitted | 2026-10-30 |
 | Change Advisory Board | Not yet established | Approved retroactively | 2026-10-30 |
+| Approver | Hawakiki | Approved | 2026-10-30 |
+| Implementer | Compliance Engineering | Implemented | 2026-10-30 |
+
+## 7. Implementation Record
+
+| Commit | Change |
+|---|---|
+| `224081d` | Filed this change request. |
+| `dfe02c9` | Added checkpatch, the commit-msg hook and the check entry points. |
+| `ef823ed` | Added the generated document registry. |

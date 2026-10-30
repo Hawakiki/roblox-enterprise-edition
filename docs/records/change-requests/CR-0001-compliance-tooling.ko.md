@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0001
 title: 변경 요청 제도 및 규정 준수 도구 도입
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 변경 요청 제도 및 규정 준수 도구 도입
@@ -49,3 +49,13 @@ EnterpriseEdition 에는 변경을 승인하는 절차가 없다.
 |---|---|---|---|
 | 기안 | 규정 준수 엔지니어링 | 상신 | 2026-10-30 |
 | 변경 자문 위원회 | 미구성 | 소급 승인 | 2026-10-30 |
+| 결재 | Hawakiki | 승인 | 2026-10-30 |
+| 시행 | 규정 준수 엔지니어링 | 시행 완료 | 2026-10-30 |
+
+## 7. 시행 기록
+
+| 커밋 | 변경 |
+|---|---|
+| `224081d` | 본 변경 요청 등록 |
+| `dfe02c9` | checkpatch, commit-msg 훅, 검사 진입점 추가 |
+| `ef823ed` | 자동 생성 문서 대장 추가 |
