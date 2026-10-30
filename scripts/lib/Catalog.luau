@@ -105,6 +105,20 @@ local RULES: { Rule } = {
 		summary = "The Roblox code uses a prohibited API only where the Prohibited API Registry allows it.",
 	},
 
+	-- Numbers and colours / 숫자와 색
+	{
+		code = "NUMERIC_LITERAL",
+		severity = "ERROR",
+		standard = "EE-STD-0005",
+		summary = "A numeric literal other than -1, 0, 1 and 2 appears only in a module whose name ends with Constants.",
+	},
+	{
+		code = "COLOR_OUTSIDE_PALETTE",
+		severity = "ERROR",
+		standard = "EE-STD-0005",
+		summary = "Every colour under src/ comes from the corporate colour palette.",
+	},
+
 	-- Doc comments of the Roblox code / 로블록스 코드의 문서 주석
 	{
 		code = "MISSING_MODULE_DOC",

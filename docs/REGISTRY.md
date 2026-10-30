@@ -47,7 +47,7 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 1.0.1 | In Review | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 0.9.0 | In Review | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.0.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
-| [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 0.1.0 | Draft | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 0.9.0 | In Review | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.0.1 | In Review | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.md) | Commit and Branch Standard | 1.0.1 | Approved | Internal | Compliance Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0008](03-standards/EE-STD-0008-versioning.md) | Enterprise Versioning Standard | 0.1.0 | Draft | Internal | Release Engineering | EE-CHR-0001@1.0 |
