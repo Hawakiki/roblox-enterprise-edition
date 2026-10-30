@@ -1,0 +1,83 @@
+---
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
+id: EE-STD-0001
+title: Luau 코딩 표준
+translation-of: 1.0.0
+---
+
+# Luau 코딩 표준
+
+> 본 문서는 EE-STD-0001 영문 정본의 번역본이다. 내용이 상충하는 경우 영문 정본이 우선한다.
+
+## 1. 목적
+
+본 표준은 저장소의 모든 Luau 파일이 하는 일과 관계없이 지켜야 할 규칙을 정한다.
+
+## 2. 적용 범위
+
+1. 본 표준은 `scripts/` 아래의 도구와, 생긴 뒤에는 템플릿의 로블록스 코드를 포함한 모든 `.luau` 파일에 적용한다.
+2. 로블록스 코드에는 작성되는 대로 명명(EE-STD-0002), 금지 API(EE-STD-0003), 숫자 리터럴(EE-STD-0005), 아키텍처 계층(EE-STD-0006)에 관한 표준이 추가로 적용된다.
+
+## 3. Strict 모드
+
+1. 모든 Luau 파일은 코드나 블록 주석보다 앞선 첫 주석 줄들 사이에 `--!strict` 를 선언한다(`MISSING_STRICT_MODE`).
+2. `.luaurc` 파일로도 strict 모드를 설정할 수 있으나 Roblox Studio 는 이를 읽지 아니한다. 어디서나 유효한 설정은 이 선언 주석뿐이다.
+
+## 4. 타입 검사
+
+1. 모든 Luau 파일은 옛 타입 솔버와 새 타입 솔버 모두에서, 즉 `LuauSolverV2` 를 끈 상태와 켠 상태 모두에서 오류 없이 타입 검사를 통과해야 한다.
+   Roblox Studio 는 새 솔버를 쓰지만, 옛 솔버는 새 솔버가 놓치는 것을 여전히 잡아낸다.
+2. `scripts/` 아래의 도구는 standard 플랫폼과 Lune 타입 정의로, 로블록스 코드는 Roblox 플랫폼과 sourcemap 으로 검사한다.
+3. `tools/check` 가 두 솔버를 모두 돌린다.
+
+## 5. 서식
+
+1. 모든 Luau 파일은 `stylua.toml` 설정에 따라 StyLua 로 서식을 맞춘다. 탭, 120칸, 큰따옴표, 모든 호출에 괄호를 쓴다.
+2. `tools/check` 는 서식을 검사하고, `tools/check --fix` 는 서식을 적용한다.
+
+## 6. 주석
+
+1. 모든 모듈은 파일 헤더(EE-STD-0004) 아래에, 목적을 영어로 쓰고 이어서 한국어로 쓴 블록 주석으로 시작한다.
+2. 그 밖의 주석은 영어로 쓰며, 무엇을 하는지보다 왜 하는지를 설명한다.
+
+## 7. Require
+
+1. 모듈은 타입 검사기가 따라갈 수 있도록 정적 경로로 require 한다.
+2. 도구는 `require("./lib/Report")` 처럼 상대 경로로 모듈을 require 한다.
+3. 로블록스 코드는 `require(ReplicatedStorage.EnterpriseEdition.Shared.Types)` 처럼 서비스에서 시작하는 인스턴스 경로로 모듈을 require 한다.
+   `WaitForChild` 를 거쳐 require 하지 아니한다. 그러면 타입 검사기가 모듈을 볼 수 없다.
+
+## 8. 툴체인
+
+1. 도구 버전은 `rokit.toml` 에 고정한다.
+2. 도구 버전을 적은 설정은 `rokit.toml` 과 일치해야 한다(`TOOLCHAIN_VERSION_MISMATCH`).
+   현재는 `scripts/.luaurc` 의 Lune 타입 정의 별칭이 이에 해당한다.
+3. `lune setup` 은 실행한 폴더에 `.luaurc` 를 만든다. 루트에 만든 것은 무시한다(CR-0002).
+
+## 9. 도구
+
+`scripts/` 아래의 도구는 리눅스 커널의 전통을 따른다.
+실행 스크립트는 `checkpatch`, `gen_registry` 처럼 하는 일을 snake case 로, 모듈은 Pascal case 로 이름 짓는다.
+도구는 명명 표준의 적용을 면제한다.
+
+## 부속서 A. 본 표준에 따라 강제되는 규칙
+
+| 규칙 | 심각도 | 조항 |
+|---|---|---|
+| `MISSING_STRICT_MODE` | 오류 | §3 |
+| `TOOLCHAIN_VERSION_MISMATCH` | 오류 | §8 |
+
+## 개정 이력
+
+| 버전 | 일자 | 변경 내용 | 작성 |
+|---|---|---|---|
+| 0.9.0 | 2026-10-30 | 검토 회부 | 아키텍처 검토 위원회 |
+| 1.0.0 | 2026-10-30 | 승인 | 아키텍처 검토 위원회 |
+
+## 결재
+
+| 구분 | 이름 | 결정 | 일자 |
+|---|---|---|---|
+| 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-30 |
+| 결재 | Hawakiki | 승인 | 2026-10-30 |

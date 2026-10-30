@@ -25,6 +25,7 @@ local Registry = require("./lib/Registry")
 local Report = require("./lib/Report")
 local Snapshot = require("./lib/Snapshot")
 local Toolchain = require("./lib/Toolchain")
+local Headers = require("./lib/Headers")
 
 local USAGE = [[
 usage: lune run scripts/checkpatch [option]
@@ -59,6 +60,7 @@ local function checkRepository(): never
 	local report = Report.new()
 	Hygiene.check(snapshot, report)
 	Toolchain.check(snapshot, report)
+	Headers.check(snapshot, report)
 	local index = Documents.check(snapshot, report)
 	Coverage.check(index, report)
 	Registry.check(snapshot, index, report)
