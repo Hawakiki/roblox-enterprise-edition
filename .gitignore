@@ -9,6 +9,10 @@
 sourcemap.json
 globalTypes.d.luau
 
+# Written by lune setup into the folder it runs in; scripts/.luaurc is the real one (CR-0002)
+# lune setup 이 실행한 폴더에 만드는 파일. 실제 설정은 scripts/.luaurc (CR-0002)
+/.luaurc
+
 # Secrets / 비밀 정보
 .env
 
