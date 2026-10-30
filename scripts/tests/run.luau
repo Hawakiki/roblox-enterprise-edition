@@ -16,6 +16,7 @@ local suites: { Assert.Suite } = {
 	require("./Headers.spec"),
 	require("./Documents.spec"),
 	require("./Coverage.spec"),
+	require("./Forms.spec"),
 	require("./Onboarding.spec"),
 	require("./Registry.spec"),
 	require("./CommitMessage.spec"),
