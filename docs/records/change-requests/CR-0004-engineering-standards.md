@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0004
 title: Establish the Change Management Policy and the Engineering Standards
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Compliance Engineering
 ---
@@ -50,3 +50,13 @@ They will be drafted together with the template skeleton, so that the rules and 
 |---|---|---|---|
 | Requester | Compliance Engineering | Submitted | 2026-10-30 |
 | Approver | Hawakiki | Approved | 2026-10-30 |
+| Implementer | Compliance Engineering | Implemented | 2026-10-30 |
+
+## 6. Implementation Record
+
+| Commit | Change |
+|---|---|
+| `7468e29` | Filed this change request. |
+| `03379b1` | Added `MISSING_STRICT_MODE` and `MISSING_SPDX_HEADER`, and gave five configuration files their SPDX header. |
+| `390edbf` | Submitted EE-POL-0004, EE-STD-0001, EE-STD-0004, EE-STD-0007 and EE-STD-0009 for review, and reserved EE-POL-0003, EE-STD-0002, EE-STD-0003, EE-STD-0005, EE-STD-0006 and EE-STD-0008. |
+| `589d908` | Approved the five documents at 1.0.0. |
