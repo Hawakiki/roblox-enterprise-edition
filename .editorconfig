@@ -1,0 +1,21 @@
+# https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{luau,lua}]
+indent_style = tab
+indent_size = 4
+
+[*.{json,toml,yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Windows PowerShell 5.1 reads BOM-less files as ANSI and garbles non-ASCII text.
+# Windows PowerShell 5.1 은 BOM 없는 파일을 ANSI 로 읽어 한글이 깨진다.
+[*.ps1]
+charset = utf-8-bom

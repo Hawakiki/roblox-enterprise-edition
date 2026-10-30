@@ -1,0 +1,13 @@
+# Line endings: LF everywhere, overriding core.autocrlf.
+# 개행: 전부 LF. 시스템의 core.autocrlf 설정을 덮어쓴다.
+* text=auto eol=lf
+
+# Binary / 바이너리
+*.png binary
+*.jpg binary
+*.rbxm binary
+*.rbxl binary
+
+# Count documentation in GitHub's language bar. The documentation is the product.
+# GitHub 언어 통계에 문서를 포함한다. 문서가 곧 제품이다.
+*.md linguist-detectable linguist-documentation=false

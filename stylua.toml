@@ -1,0 +1,15 @@
+# Every option is spelled out, defaults included, so that no one has to remember them.
+# 기본값까지 전부 명시한다. 아무도 기본값을 기억할 필요가 없도록.
+syntax = "Luau"
+column_width = 120
+line_endings = "Unix"
+indent_type = "Tabs"
+indent_width = 4
+quote_style = "AutoPreferDouble"
+call_parentheses = "Always"
+collapse_simple_statement = "Never"
+space_after_function_names = "Never"
+block_newline_gaps = "Never"
+
+[sort_requires]
+enabled = false
