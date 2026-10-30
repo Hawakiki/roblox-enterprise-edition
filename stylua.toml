@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
+#
 # Every option is spelled out, defaults included, so that no one has to remember them.
 # 기본값까지 전부 명시한다. 아무도 기본값을 기억할 필요가 없도록.
 syntax = "Luau"

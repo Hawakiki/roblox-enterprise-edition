@@ -77,6 +77,9 @@ end
 
 local Hygiene = {}
 
+Hygiene.extension = extension
+Hygiene.isBinary = isBinary
+
 function Hygiene.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 	for _, path in Snapshot.paths(snapshot) do
 		local content = snapshot.files[path]

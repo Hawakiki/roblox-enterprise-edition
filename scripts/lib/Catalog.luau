@@ -63,6 +63,20 @@ local RULES: { Rule } = {
 		summary = "Tool versions referenced by configuration must match rokit.toml.",
 	},
 
+	-- File headers / 파일 헤더
+	{
+		code = "MISSING_STRICT_MODE",
+		severity = "ERROR",
+		standard = "EE-STD-0001",
+		summary = "Every Luau file declares --!strict before any code.",
+	},
+	{
+		code = "MISSING_SPDX_HEADER",
+		severity = "ERROR",
+		standard = "EE-STD-0004",
+		summary = "Every file that can carry a comment opens with an MIT SPDX header.",
+	},
+
 	-- Document control / 문서 통제
 	{
 		code = "MISSING_FRONTMATTER",
