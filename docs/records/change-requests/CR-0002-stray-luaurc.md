@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0002
 title: Remove the Stray Root .luaurc
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Compliance Engineering
 ---
@@ -50,3 +50,11 @@ The root copy is checked by nothing, and once Roblox code is added it would appl
 |---|---|---|---|
 | Requester | Compliance Engineering | Submitted | 2026-10-30 |
 | Approver | Hawakiki | Approved | 2026-10-30 |
+| Implementer | Compliance Engineering | Implemented | 2026-10-30 |
+
+## 7. Implementation Record
+
+| Commit | Change |
+|---|---|
+| `983adee` | Filed this change request. |
+| `d681c4b` | Deleted the root `.luaurc` and added it to `.gitignore`. |
