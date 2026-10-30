@@ -1,11 +1,15 @@
 -- SPDX-License-Identifier: MIT
 -- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 --!strict
---[[
-	The composition root of the client. The client host is never stopped: the client ends with the session.
-	클라이언트의 조립 지점. 클라이언트 호스트는 멈추지 않는다. 클라이언트는 세션과 함께 끝난다.
-]]
+--[=[
+	@class ClientCompositionRoot
 
+	The composition root of the client. The client host is never stopped: the client ends with the session.
+
+	클라이언트의 조립 지점. 클라이언트 호스트는 멈추지 않는다. 클라이언트는 세션과 함께 끝난다.
+]=]
+
+-- Composition roots are the only modules that reach a service directly: a static require path starts from one.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local ApplicationHost = require(ReplicatedStorage.EnterpriseEdition.Kernel.ApplicationHost)

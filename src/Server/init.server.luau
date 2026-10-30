@@ -1,13 +1,17 @@
 -- SPDX-License-Identifier: MIT
 -- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 --!strict
---[[
+--[=[
+	@class ServerCompositionRoot
+
 	The composition root of the server: registers every service, builds the provider and runs the host.
 	The only place on the server that knows which implementation stands behind which contract.
+
 	서버의 조립 지점. 모든 서비스를 등록하고, 제공자를 만들고, 호스트를 실행한다.
 	서버에서 어느 계약 뒤에 어느 구현이 있는지 아는 유일한 곳이다.
-]]
+]=]
 
+-- Composition roots are the only modules that reach a service directly: a static require path starts from one.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local ApplicationHost = require(ReplicatedStorage.EnterpriseEdition.Kernel.ApplicationHost)

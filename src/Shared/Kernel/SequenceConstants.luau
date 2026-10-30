@@ -11,30 +11,30 @@
 	Luau 는 1부터 센다. 회사는 이를 문서로 밝힌다.
 ]=]
 
-local SequenceConstants = table.freeze({
-	--[=[
-		@prop FIRST_INDEX number
-		@within SequenceConstants
-		@readonly
-		The index of the first element of a sequence.
-	]=]
-	FIRST_INDEX = 1,
+local SequenceConstants = {}
 
-	--[=[
-		@prop REVERSE_STEP number
-		@within SequenceConstants
-		@readonly
-		The step of a numeric for loop that walks a sequence from its last element to its first.
-	]=]
-	REVERSE_STEP = -1,
+--[=[
+	@prop FIRST_INDEX number
+	@within SequenceConstants
+	@readonly
+	The index of the first element of a sequence.
+]=]
+SequenceConstants.FIRST_INDEX = 1
 
-	--[=[
-		@prop EMPTY_LENGTH number
-		@within SequenceConstants
-		@readonly
-		The length of a sequence that holds no elements.
-	]=]
-	EMPTY_LENGTH = 0,
-})
+--[=[
+	@prop REVERSE_STEP number
+	@within SequenceConstants
+	@readonly
+	The step of a numeric for loop that walks a sequence from its last element to its first.
+]=]
+SequenceConstants.REVERSE_STEP = -1
 
-return SequenceConstants
+--[=[
+	@prop EMPTY_LENGTH number
+	@within SequenceConstants
+	@readonly
+	The length of a sequence that holds no elements.
+]=]
+SequenceConstants.EMPTY_LENGTH = 0
+
+return table.freeze(SequenceConstants)

@@ -11,30 +11,30 @@
 	그만한 무게의 결정에는 이름이 있어야 한다.
 ]=]
 
-local ErrorLevelConstants = table.freeze({
-	--[=[
-		@prop WITHOUT_POSITION number
-		@within ErrorLevelConstants
-		@readonly
-		Adds no position to the message. Used to raise a caught error again exactly as it was caught.
-	]=]
-	WITHOUT_POSITION = 0,
+local ErrorLevelConstants = {}
 
-	--[=[
-		@prop CALLER number
-		@within ErrorLevelConstants
-		@readonly
-		Blames the caller of the function that raises the error.
-	]=]
-	CALLER = 2,
+--[=[
+	@prop WITHOUT_POSITION number
+	@within ErrorLevelConstants
+	@readonly
+	Adds no position to the message. Used to raise a caught error again exactly as it was caught.
+]=]
+ErrorLevelConstants.WITHOUT_POSITION = 0
 
-	--[=[
-		@prop CALLER_OF_CALLER number
-		@within ErrorLevelConstants
-		@readonly
-		Blames the caller of the caller. Used by a private helper that raises on behalf of a public function.
-	]=]
-	CALLER_OF_CALLER = 3,
-})
+--[=[
+	@prop CALLER number
+	@within ErrorLevelConstants
+	@readonly
+	Blames the caller of the function that raises the error.
+]=]
+ErrorLevelConstants.CALLER = 2
 
-return ErrorLevelConstants
+--[=[
+	@prop CALLER_OF_CALLER number
+	@within ErrorLevelConstants
+	@readonly
+	Blames the caller of the caller. Used by a private helper that raises on behalf of a public function.
+]=]
+ErrorLevelConstants.CALLER_OF_CALLER = 3
+
+return table.freeze(ErrorLevelConstants)
