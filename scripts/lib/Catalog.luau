@@ -205,6 +205,26 @@ local RULES: { Rule } = {
 		summary = "Every rule must be cited, in both languages, by the document that mandates it.",
 	},
 
+	-- Entrance files / 입구 파일
+	{
+		code = "DANGLING_ENTRY_REFERENCE",
+		severity = "ERROR",
+		standard = "EE-POL-0006",
+		summary = "Entrance files at the repository root cite only documents that exist.",
+	},
+	{
+		code = "MISSING_AGENTS_IMPORT",
+		severity = "ERROR",
+		standard = "EE-POL-0006",
+		summary = "CLAUDE.md imports AGENTS.md with a line of its own, outside code.",
+	},
+	{
+		code = "ONBOARDING_TOO_LONG",
+		severity = "WARNING",
+		standard = "EE-POL-0006",
+		summary = "AGENTS.md and CLAUDE.md together stay within 200 lines.",
+	},
+
 	-- Translation / 번역
 	{
 		code = "MISSING_TRANSLATION",

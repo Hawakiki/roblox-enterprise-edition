@@ -14,11 +14,11 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 구분 | 문서 수 |
 |---|---:|
 | 헌장 | 1 |
-| 정책 | 4 |
+| 정책 | 8 |
 | 표준 | 9 |
 | 양식 | 7 |
-| 변경 요청 | 4 |
-| **합계** | **25** |
+| 변경 요청 | 5 |
+| **합계** | **30** |
 
 ## 헌장
 
@@ -34,6 +34,10 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [EE-POL-0002](01-governance/EE-POL-0002-bilingual-documentation.ko.md) | 이중 언어 정책 | 1.0.0 | 승인 | 사내 한정 | Document Control Office | EE-POL-0001@1.0 |
 | [EE-POL-0003](01-governance/EE-POL-0003-delegation-of-authority.ko.md) | 전결 규정 | 0.1.0 | 초안 | 사내 한정 | Board of Directors | EE-CHR-0001@1.0 |
 | [EE-POL-0004](01-governance/EE-POL-0004-change-management.ko.md) | 변경 관리 정책 | 1.0.0 | 승인 | 사내 한정 | Change Advisory Board | EE-CHR-0001@1.0 |
+| [EE-POL-0005](01-governance/EE-POL-0005-information-classification.ko.md) | 정보 보안 등급 분류 정책 | 0.1.0 | 초안 | 사내 한정 | Information Security Office | EE-CHR-0001@1.0 |
+| [EE-POL-0006](01-governance/EE-POL-0006-ai-workforce.ko.md) | AI 인력 운용 정책 | 1.0.0 | 승인 | 사내 한정 | Human Resources | EE-CHR-0001@1.0 |
+| [EE-POL-0007](01-governance/EE-POL-0007-deprecation.ko.md) | 지원 종료 정책 | 0.1.0 | 초안 | 사내 한정 | Release Engineering | EE-CHR-0001@1.0 |
+| [EE-POL-0008](01-governance/EE-POL-0008-external-data-and-ai-training.ko.md) | 외부 데이터 및 AI 학습 정책 | 1.0.0 | 승인 | 사내 한정 | Legal Department | EE-CHR-0001@1.0 |
 
 ## 표준
 
@@ -69,3 +73,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0002](records/change-requests/CR-0002-stray-luaurc.ko.md) | 루트에 잘못 들어간 .luaurc 제거 | 1.1.0 | 시행 | 사내 한정 | Compliance Engineering |
 | [CR-0003](records/change-requests/CR-0003-document-governance.ko.md) | 헌장, 문서 체계 정책 및 양식 제정 | 1.1.0 | 시행 | 사내 한정 | Document Control Office |
 | [CR-0004](records/change-requests/CR-0004-engineering-standards.ko.md) | 변경 관리 정책 및 엔지니어링 표준 제정 | 1.1.0 | 시행 | 사내 한정 | Compliance Engineering |
+| [CR-0005](records/change-requests/CR-0005-ai-onboarding.ko.md) | AI 인력 온보딩 | 1.1.0 | 시행 | 사내 한정 | Human Resources |
