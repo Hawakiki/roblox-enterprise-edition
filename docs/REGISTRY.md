@@ -14,10 +14,11 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Category | Documents |
 |---|---:|
 | Charter | 1 |
-| Policies | 2 |
+| Policies | 4 |
+| Standards | 9 |
 | Templates | 7 |
 | Change Requests | 4 |
-| **Total** | **14** |
+| **Total** | **25** |
 
 ## Charter
 
@@ -31,6 +32,22 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 |---|---|---|---|---|---|---|
 | [EE-POL-0001](01-governance/EE-POL-0001-document-governance.md) | Document Governance Policy | 1.0.0 | Approved | Internal | Document Control Office | EE-CHR-0001@1.0 |
 | [EE-POL-0002](01-governance/EE-POL-0002-bilingual-documentation.md) | Bilingual Documentation Policy | 1.0.0 | Approved | Internal | Document Control Office | EE-POL-0001@1.0 |
+| [EE-POL-0003](01-governance/EE-POL-0003-delegation-of-authority.md) | Delegation of Authority | 0.1.0 | Draft | Internal | Board of Directors | EE-CHR-0001@1.0 |
+| [EE-POL-0004](01-governance/EE-POL-0004-change-management.md) | Change Management Policy | 0.9.0 | In Review | Internal | Change Advisory Board | EE-CHR-0001@1.0 |
+
+## Standards
+
+| ID | Title | Version | Status | Classification | Owner | Parent |
+|---|---|---|---|---|---|---|
+| [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.md) | Luau Coding Standard | 0.9.0 | In Review | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 0.1.0 | Draft | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 0.1.0 | Draft | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 0.9.0 | In Review | Internal | Legal Department | EE-CHR-0001@1.0 |
+| [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 0.1.0 | Draft | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 0.1.0 | Draft | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.md) | Commit and Branch Standard | 0.9.0 | In Review | Internal | Compliance Engineering | EE-POL-0004@0.9 |
+| [EE-STD-0008](03-standards/EE-STD-0008-versioning.md) | Enterprise Versioning Standard | 0.1.0 | Draft | Internal | Release Engineering | EE-CHR-0001@1.0 |
+| [EE-STD-0009](03-standards/EE-STD-0009-text-and-documentation.md) | Text File and Documentation Standard | 0.9.0 | In Review | Internal | Document Control Office | EE-POL-0001@1.0 |
 
 ## Templates
 
