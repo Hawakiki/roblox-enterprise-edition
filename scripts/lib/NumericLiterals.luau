@@ -11,7 +11,24 @@
 local Architecture = require("./Architecture")
 local Lexer = require("./Lexer")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Snapshot = require("./Snapshot")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	NUMERIC_LITERAL = Rule.new(
+		"NUMERIC_LITERAL",
+		"ERROR",
+		"EE-STD-0005",
+		"A numeric literal other than -1, 0, 1 and 2 appears only in a module whose name ends with Constants."
+	),
+	COLOR_OUTSIDE_PALETTE = Rule.new(
+		"COLOR_OUTSIDE_PALETTE",
+		"ERROR",
+		"EE-STD-0005",
+		"Every colour under src/ comes from the corporate colour palette."
+	),
+}
 
 local SUFFIX = "Constants"
 local PALETTE = "src/Shared/Kernel/CorporatePaletteConstants.luau"
@@ -75,7 +92,7 @@ local function checkNumbers(path: string, code: { Lexer.Token }, report: Report.
 		if not exempt then
 			Report.add(
 				report,
-				"NUMERIC_LITERAL",
+				RULES.NUMERIC_LITERAL,
 				path,
 				token.line,
 				string.format(
@@ -136,7 +153,7 @@ local function checkColors(path: string, code: { Lexer.Token }, report: Report.R
 		if problem then
 			Report.add(
 				report,
-				"COLOR_OUTSIDE_PALETTE",
+				RULES.COLOR_OUTSIDE_PALETTE,
 				path,
 				token.line,
 				string.format("%s outside the corporate colour palette, %s", problem, PALETTE)
@@ -146,6 +163,8 @@ local function checkColors(path: string, code: { Lexer.Token }, report: Report.R
 end
 
 local NumericLiterals = {}
+
+NumericLiterals.RULES = RULES
 
 NumericLiterals.PALETTE = PALETTE
 

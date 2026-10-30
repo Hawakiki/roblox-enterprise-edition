@@ -10,9 +10,20 @@
 
 local Documents = require("./Documents")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Schema = require("./Schema")
 local Semver = require("./Semver")
 local Snapshot = require("./Snapshot")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	REGISTRY_OUT_OF_DATE = Rule.new(
+		"REGISTRY_OUT_OF_DATE",
+		"ERROR",
+		"EE-POL-0001",
+		"The document registry must match the output of scripts/gen_registry.luau."
+	),
+}
 
 type Language = {
 	title: string,
@@ -217,6 +228,8 @@ end
 
 local Registry = {}
 
+Registry.RULES = RULES
+
 -- Korean labels for every status of every kind. EE-POL-0002 lists the same terms.
 Registry.STATUS_KO = STATUS_KO
 
@@ -232,7 +245,7 @@ function Registry.check(snapshot: Snapshot.Snapshot, index: Documents.Index, rep
 		if actual == nil then
 			Report.add(
 				report,
-				"REGISTRY_OUT_OF_DATE",
+				RULES.REGISTRY_OUT_OF_DATE,
 				path,
 				nil,
 				"the registry is missing; run lune run scripts/gen_registry"
@@ -240,7 +253,7 @@ function Registry.check(snapshot: Snapshot.Snapshot, index: Documents.Index, rep
 		elseif actual ~= expected then
 			Report.add(
 				report,
-				"REGISTRY_OUT_OF_DATE",
+				RULES.REGISTRY_OUT_OF_DATE,
 				path,
 				nil,
 				"the registry does not match the documents; run lune run scripts/gen_registry"

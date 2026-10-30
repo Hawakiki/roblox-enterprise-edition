@@ -9,8 +9,25 @@
 
 local Hygiene = require("./Hygiene")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Snapshot = require("./Snapshot")
 local Text = require("./Text")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	MISSING_STRICT_MODE = Rule.new(
+		"MISSING_STRICT_MODE",
+		"ERROR",
+		"EE-STD-0001",
+		"Every Luau file declares --!strict before any code."
+	),
+	MISSING_SPDX_HEADER = Rule.new(
+		"MISSING_SPDX_HEADER",
+		"ERROR",
+		"EE-STD-0004",
+		"Every file that can carry a comment opens with an MIT SPDX header."
+	),
+}
 
 -- The header must appear within this many lines, to leave room for a shebang or frontmatter delimiter.
 local HEADER_WINDOW = 10
@@ -33,7 +50,7 @@ local function checkSpdx(path: string, lines: { string }, report: Report.Report)
 	if not (license and copyright) then
 		Report.add(
 			report,
-			"MISSING_SPDX_HEADER",
+			RULES.MISSING_SPDX_HEADER,
 			path,
 			1,
 			string.format(
@@ -56,10 +73,12 @@ local function checkStrictMode(path: string, lines: { string }, report: Report.R
 			break
 		end
 	end
-	Report.add(report, "MISSING_STRICT_MODE", path, 1, "declare --!strict among the leading comment lines")
+	Report.add(report, RULES.MISSING_STRICT_MODE, path, 1, "declare --!strict among the leading comment lines")
 end
 
 local Headers = {}
+
+Headers.RULES = RULES
 
 function Headers.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 	for _, path in Snapshot.paths(snapshot) do

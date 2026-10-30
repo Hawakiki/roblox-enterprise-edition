@@ -9,8 +9,25 @@
 
 local Lexer = require("./Lexer")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Snapshot = require("./Snapshot")
 local Text = require("./Text")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	LAYER_VIOLATION = Rule.new(
+		"LAYER_VIOLATION",
+		"ERROR",
+		"EE-STD-0006",
+		"Every module belongs to a layer and requires only the layers it may depend on."
+	),
+	MODULE_NAME_SUFFIX = Rule.new(
+		"MODULE_NAME_SUFFIX",
+		"ERROR",
+		"EE-STD-0002",
+		"A module is an interface named I..., or its name ends with an approved suffix."
+	),
+}
 
 local LAYERS = { "Kernel", "Domain", "Application", "Infrastructure", "Presentation" }
 
@@ -52,6 +69,8 @@ local SUFFIXES = {
 }
 
 local Architecture = {}
+
+Architecture.RULES = RULES
 
 Architecture.LAYERS = LAYERS
 Architecture.SUFFIXES = SUFFIXES
@@ -140,7 +159,7 @@ local function checkRequires(path: string, layer: string, content: string, repor
 			if named and not Text.contains(ALLOWED[layer], named) then
 				Report.add(
 					report,
-					"LAYER_VIOLATION",
+					RULES.LAYER_VIOLATION,
 					path,
 					token.line,
 					string.format("the %s layer may not require the %s layer", layer, named)
@@ -162,7 +181,7 @@ function Architecture.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 		else
 			Report.add(
 				report,
-				"LAYER_VIOLATION",
+				RULES.LAYER_VIOLATION,
 				path,
 				nil,
 				string.format("every module belongs to a layer: src/<side>/<%s>/", table.concat(LAYERS, "|"))
@@ -173,7 +192,7 @@ function Architecture.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 		if not isApprovedName(name) then
 			Report.add(
 				report,
-				"MODULE_NAME_SUFFIX",
+				RULES.MODULE_NAME_SUFFIX,
 				path,
 				nil,
 				string.format("'%s' is neither an interface (I...) nor a name ending in an approved suffix", name)

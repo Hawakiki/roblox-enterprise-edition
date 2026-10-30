@@ -72,7 +72,7 @@ local function checkRepository(): never
 	NumericLiterals.check(snapshot, report)
 	DocComments.check(snapshot, report)
 	local index = Documents.check(snapshot, report)
-	Coverage.check(index, report)
+	Coverage.check(index, Catalog.rules, report)
 	Forms.check(index, report)
 	Onboarding.check(snapshot, index, report)
 	Registry.check(snapshot, index, report)

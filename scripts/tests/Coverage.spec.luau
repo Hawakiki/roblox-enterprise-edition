@@ -42,7 +42,7 @@ end
 
 local function check(files: { [string]: string }): Report.Report
 	local report = Report.new()
-	Coverage.check(Documents.check(Snapshot.new(files), Report.new()), report)
+	Coverage.check(Documents.check(Snapshot.new(files), Report.new()), Catalog.rules, report)
 	return report
 end
 

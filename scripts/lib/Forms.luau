@@ -10,6 +10,17 @@
 
 local Documents = require("./Documents")
 local Report = require("./Report")
+local Rule = require("./Rule")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	TEMPLATE_SECTION_MISSING = Rule.new(
+		"TEMPLATE_SECTION_MISSING",
+		"ERROR",
+		"EE-POL-0001",
+		"A record contains every section of the form for its kind."
+	),
+}
 
 local function sectionName(heading: string): string
 	return (string.gsub(heading, "^%d+%.%s+", ""))
@@ -57,7 +68,7 @@ local function checkAgainst(path: string, body: { string }, required: { string }
 		if not present[name] then
 			Report.add(
 				report,
-				"TEMPLATE_SECTION_MISSING",
+				RULES.TEMPLATE_SECTION_MISSING,
 				path,
 				nil,
 				string.format("the form in %s requires a section named '%s'", form, name)
@@ -67,6 +78,8 @@ local function checkAgainst(path: string, body: { string }, required: { string }
 end
 
 local Forms = {}
+
+Forms.RULES = RULES
 
 function Forms.check(index: Documents.Index, report: Report.Report)
 	for _, document in index.documents do

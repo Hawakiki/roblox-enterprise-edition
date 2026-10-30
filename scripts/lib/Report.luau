@@ -6,11 +6,12 @@
 	위반 사항을 모아 리눅스 커널 checkpatch.pl 형식으로 출력한다.
 ]]
 
-local Catalog = require("./Catalog")
+local Rule = require("./Rule")
 
 export type Violation = {
 	code: string,
-	severity: Catalog.Severity,
+	severity: Rule.Severity,
+	standard: string,
 	path: string?,
 	line: number?,
 	message: string,
@@ -27,18 +28,18 @@ function Report.new(): Report
 	return { violations = {}, checked = 0 }
 end
 
-function Report.add(report: Report, code: string, path: string?, line: number?, message: string)
-	local rule = Catalog.get(code)
+function Report.add(report: Report, rule: Rule.Rule, path: string?, line: number?, message: string)
 	table.insert(report.violations, {
-		code = code,
+		code = rule.code,
 		severity = rule.severity,
+		standard = rule.standard,
 		path = path,
 		line = line,
 		message = message,
 	})
 end
 
-function Report.count(report: Report, severity: Catalog.Severity): number
+function Report.count(report: Report, severity: Rule.Severity): number
 	local count = 0
 	for _, violation in report.violations do
 		if violation.severity == severity then
@@ -95,7 +96,7 @@ function Report.format(violation: Violation): string
 		violation.code,
 		location,
 		violation.message,
-		Catalog.get(violation.code).standard
+		violation.standard
 	)
 end
 

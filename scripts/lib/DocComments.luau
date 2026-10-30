@@ -11,8 +11,37 @@
 local Architecture = require("./Architecture")
 local Lexer = require("./Lexer")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Snapshot = require("./Snapshot")
 local Text = require("./Text")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	MISSING_MODULE_DOC = Rule.new(
+		"MISSING_MODULE_DOC",
+		"ERROR",
+		"EE-STD-0001",
+		"Every module under src/ opens with a Moonwave doc comment with @class; a contract adds @interface."
+	),
+	MISSING_FUNCTION_DOC = Rule.new(
+		"MISSING_FUNCTION_DOC",
+		"ERROR",
+		"EE-STD-0001",
+		"Every public function under src/ carries a Moonwave doc comment directly above it."
+	),
+	INCOMPLETE_DOC_COMMENT = Rule.new(
+		"INCOMPLETE_DOC_COMMENT",
+		"ERROR",
+		"EE-STD-0001",
+		"A function doc comment carries @within, a @param for each parameter, and @return if it returns."
+	),
+	DOC_COMMENT_LANGUAGE = Rule.new(
+		"DOC_COMMENT_LANGUAGE",
+		"ERROR",
+		"EE-STD-0001",
+		"Classes and interfaces are described in English and Korean; other doc comments in English."
+	),
+}
 
 -- Moonwave reads block comments of level one, --[=[ ... ]=], and no other.
 local DOC_LEVEL = 1
@@ -224,7 +253,7 @@ local function checkFunction(
 	if doc == nil then
 		Report.add(
 			report,
-			"MISSING_FUNCTION_DOC",
+			RULES.MISSING_FUNCTION_DOC,
 			path,
 			fn.line,
 			string.format("public function %s has no Moonwave doc comment (--[=[ ... ]=]) directly above it", fn.name)
@@ -260,7 +289,7 @@ local function checkFunction(
 	if #problems > 0 then
 		Report.add(
 			report,
-			"INCOMPLETE_DOC_COMMENT",
+			RULES.INCOMPLETE_DOC_COMMENT,
 			path,
 			doc.line,
 			string.format("the doc comment of %s needs: %s", fn.name, table.concat(problems, ", "))
@@ -291,7 +320,7 @@ local function checkFile(path: string, content: string, report: Report.Report)
 	if moduleDoc == nil or declared == nil then
 		Report.add(
 			report,
-			"MISSING_MODULE_DOC",
+			RULES.MISSING_MODULE_DOC,
 			path,
 			1,
 			"the module opens, before any code, with a Moonwave doc comment (--[=[ ... ]=]) that carries @class"
@@ -301,7 +330,7 @@ local function checkFile(path: string, content: string, report: Report.Report)
 	elseif declared ~= name then
 		Report.add(
 			report,
-			"MISSING_MODULE_DOC",
+			RULES.MISSING_MODULE_DOC,
 			path,
 			moduleDoc.line,
 			string.format("the module doc comment names @class %s, but the module is %s", declared, name)
@@ -326,7 +355,7 @@ local function checkFile(path: string, content: string, report: Report.Report)
 		if not found then
 			Report.add(
 				report,
-				"MISSING_MODULE_DOC",
+				RULES.MISSING_MODULE_DOC,
 				path,
 				nil,
 				string.format("a contract module documents its contract with @interface %s and @within %s", name, name)
@@ -339,14 +368,20 @@ local function checkFile(path: string, content: string, report: Report.Report)
 			if not isBilingual(doc) then
 				Report.add(
 					report,
-					"DOC_COMMENT_LANGUAGE",
+					RULES.DOC_COMMENT_LANGUAGE,
 					path,
 					doc.line,
 					"a class or interface is described in English and then in Korean"
 				)
 			end
 		elseif hasHangul(doc) then
-			Report.add(report, "DOC_COMMENT_LANGUAGE", path, doc.line, "this doc comment is written in English only")
+			Report.add(
+				report,
+				RULES.DOC_COMMENT_LANGUAGE,
+				path,
+				doc.line,
+				"this doc comment is written in English only"
+			)
 		end
 	end
 
@@ -359,6 +394,8 @@ local function checkFile(path: string, content: string, report: Report.Report)
 end
 
 local DocComments = {}
+
+DocComments.RULES = RULES
 
 function DocComments.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 	for _, path in Snapshot.paths(snapshot) do

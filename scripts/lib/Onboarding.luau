@@ -10,8 +10,31 @@
 
 local Documents = require("./Documents")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Snapshot = require("./Snapshot")
 local Text = require("./Text")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	DANGLING_ENTRY_REFERENCE = Rule.new(
+		"DANGLING_ENTRY_REFERENCE",
+		"ERROR",
+		"EE-POL-0006",
+		"Entrance files at the repository root cite only documents that exist."
+	),
+	MISSING_AGENTS_IMPORT = Rule.new(
+		"MISSING_AGENTS_IMPORT",
+		"ERROR",
+		"EE-POL-0006",
+		"CLAUDE.md imports AGENTS.md with a line of its own, outside code."
+	),
+	ONBOARDING_TOO_LONG = Rule.new(
+		"ONBOARDING_TOO_LONG",
+		"WARNING",
+		"EE-POL-0006",
+		"AGENTS.md and CLAUDE.md together stay within 200 lines."
+	),
+}
 
 local AGENTS = "AGENTS.md"
 local CLAUDE = "CLAUDE.md"
@@ -37,7 +60,13 @@ local function checkReferences(path: string, content: string, index: Documents.I
 		for _, token in Documents.referencesIn(line) do
 			if index.byId[token] == nil and not reported[token] then
 				reported[token] = true
-				Report.add(report, "DANGLING_ENTRY_REFERENCE", path, number, string.format("%s does not exist", token))
+				Report.add(
+					report,
+					RULES.DANGLING_ENTRY_REFERENCE,
+					path,
+					number,
+					string.format("%s does not exist", token)
+				)
 			end
 		end
 	end
@@ -58,6 +87,8 @@ end
 
 local Onboarding = {}
 
+Onboarding.RULES = RULES
+
 function Onboarding.check(snapshot: Snapshot.Snapshot, index: Documents.Index, report: Report.Report)
 	for _, path in Snapshot.paths(snapshot) do
 		if isEntranceFile(path) then
@@ -69,7 +100,7 @@ function Onboarding.check(snapshot: Snapshot.Snapshot, index: Documents.Index, r
 	if claude and not importsAgents(claude) then
 		Report.add(
 			report,
-			"MISSING_AGENTS_IMPORT",
+			RULES.MISSING_AGENTS_IMPORT,
 			CLAUDE,
 			nil,
 			"import the shared entrance with a line that contains only @AGENTS.md, outside code"
@@ -86,7 +117,7 @@ function Onboarding.check(snapshot: Snapshot.Snapshot, index: Documents.Index, r
 	if total > LINE_BUDGET then
 		Report.add(
 			report,
-			"ONBOARDING_TOO_LONG",
+			RULES.ONBOARDING_TOO_LONG,
 			AGENTS,
 			nil,
 			string.format(
