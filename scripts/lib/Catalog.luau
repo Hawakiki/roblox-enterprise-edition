@@ -142,7 +142,7 @@ local RULES: { Rule } = {
 		code = "VERSION_STATUS_MISMATCH",
 		severity = "ERROR",
 		standard = "EE-POL-0001",
-		summary = "Draft documents are versioned 0.x.y; approved documents 1.0.0 or later.",
+		summary = "Drafts are versioned 0.x.y; approved, superseded and deprecated documents 1.0.0 or later.",
 	},
 	{
 		code = "MISSING_PARENT",
