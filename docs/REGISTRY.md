@@ -50,4 +50,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 |---|---|---|---|---|---|
 | [CR-0001](records/change-requests/CR-0001-compliance-tooling.md) | Establish the Change Request Process and Compliance Tooling | 1.1.0 | Implemented | Internal | Compliance Engineering |
 | [CR-0002](records/change-requests/CR-0002-stray-luaurc.md) | Remove the Stray Root .luaurc | 1.1.0 | Implemented | Internal | Compliance Engineering |
-| [CR-0003](records/change-requests/CR-0003-document-governance.md) | Establish the Charter, the Document Governance Policies and the Templates | 1.0.0 | Approved | Internal | Document Control Office |
+| [CR-0003](records/change-requests/CR-0003-document-governance.md) | Establish the Charter, the Document Governance Policies and the Templates | 1.1.0 | Implemented | Internal | Document Control Office |

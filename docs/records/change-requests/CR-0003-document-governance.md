@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0003
 title: Establish the Charter, the Document Governance Policies and the Templates
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Document Control Office
 ---
@@ -51,3 +51,14 @@ The Charter and the Bilingual Documentation Policy were brought forward, because
 |---|---|---|---|
 | Requester | Document Control Office | Submitted | 2026-10-30 |
 | Approver | Hawakiki | Approved | 2026-10-30 |
+| Implementer | Document Control Office | Implemented | 2026-10-30 |
+
+## 6. Implementation Record
+
+| Commit | Change |
+|---|---|
+| `8f8097e` | Filed this change request. |
+| `d464a3c` | Registered approval requests, statements of circumstances and meeting minutes as record kinds. |
+| `241c88b` | Added `UNDOCUMENTED_RULE`. |
+| `f75a19c` | Submitted EE-CHR-0001, EE-POL-0001, EE-POL-0002 and EE-TPL-0001 to EE-TPL-0007 for review. |
+| `b9fc0f7` | Approved all ten documents at 1.0.0. |
