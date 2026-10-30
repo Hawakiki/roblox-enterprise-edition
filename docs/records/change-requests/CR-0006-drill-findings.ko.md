@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0006
 title: 첫 신입 투입 훈련 지적 사항 정정
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 첫 신입 투입 훈련 지적 사항 정정
@@ -64,9 +64,16 @@ translation-of: 1.0.0
 |---|---|---|---|
 | 기안 | 문서통제실 | 상신 | 2026-10-30 |
 | 결재 | Hawakiki | 제출 전 승인 | 2026-10-30 |
+| 시행 | 문서통제실 | 시행 완료 | 2026-10-30 |
 
 ## 7. 시행 기록
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `b765978` | 본 변경 요청 등록 |
+| `88c7ee0` | 승인된 문서의 개정본을 새 버전으로 검토할 수 있게 함 |
+| `af9353f` | CR-0002 부터 CR-0005 까지 빠진 원복 계획 추가 |
+| `adc5994` | 개정 문서 13종 검토 회부 |
+| `d986d66` | `TEMPLATE_SECTION_MISSING` 추가 |
+| `41727ef` | `AGENTS.md`, `CLAUDE.md` 정정 및 에이전트 작업 사본 무시 |
+| `7991580` | 개정 문서 13종 승인 |

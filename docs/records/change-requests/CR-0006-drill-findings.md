@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0006
 title: Correct the Findings of the First Onboarding Drill
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Document Control Office
 ---
@@ -65,9 +65,16 @@ Approved documents would again be impossible to revise, including the documents 
 |---|---|---|---|
 | Requester | Document Control Office | Submitted | 2026-10-30 |
 | Approver | Hawakiki | Approved before filing | 2026-10-30 |
+| Implementer | Document Control Office | Implemented | 2026-10-30 |
 
 ## 7. Implementation Record
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `b765978` | Filed this change request. |
+| `88c7ee0` | Let revisions of approved documents be reviewed at their new version. |
+| `af9353f` | Added the rollback plans that CR-0002 to CR-0005 lacked. |
+| `adc5994` | Submitted the thirteen revised documents for review. |
+| `d986d66` | Added `TEMPLATE_SECTION_MISSING`. |
+| `41727ef` | Corrected `AGENTS.md` and `CLAUDE.md`, and ignored the agent worktrees. |
+| `7991580` | Approved the thirteen revisions. |
