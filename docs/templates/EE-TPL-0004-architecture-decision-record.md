@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-TPL-0004
 title: Architecture Decision Record Template
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Internal
 owner: Document Control Office
-parent: EE-POL-0001@0.9
+parent: EE-POL-0001@1.0
 ---
 
 # Architecture Decision Record Template
@@ -71,10 +71,11 @@ owner: Architecture Review Board
 | Version | Date | Change | Author |
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Document Control Office |
+| 1.0.0 | 2026-10-30 | Approved. | Document Control Office |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Document Control Office | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

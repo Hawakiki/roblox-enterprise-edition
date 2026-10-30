@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-CHR-0001
 title: EnterpriseEdition 헌장
-translation-of: 0.9.0
+translation-of: 1.0.0
 ---
 
 # EnterpriseEdition 헌장
@@ -64,10 +64,11 @@ translation-of: 0.9.0
 | 버전 | 일자 | 변경 내용 | 작성 |
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | 검토 회부 | 이사회 |
+| 1.0.0 | 2026-10-30 | 승인 | 이사회 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
 | 기안 | 문서통제실 | 상신 | 2026-10-30 |
-| 결재 | Hawakiki | 대기 | — |
+| 결재 | Hawakiki | 승인 | 2026-10-30 |

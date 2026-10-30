@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-CHR-0001
 title: Charter of EnterpriseEdition
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Public
 owner: Board of Directors
 ---
@@ -65,10 +65,11 @@ This Charter is amended only through a change request approved by the Board of D
 | Version | Date | Change | Author |
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Board of Directors |
+| 1.0.0 | 2026-10-30 | Approved. | Board of Directors |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Document Control Office | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

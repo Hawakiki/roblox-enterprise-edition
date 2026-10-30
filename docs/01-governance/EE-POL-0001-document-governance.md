@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0001
 title: Document Governance Policy
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Internal
 owner: Document Control Office
-parent: EE-CHR-0001@0.9
+parent: EE-CHR-0001@1.0
 ---
 
 # Document Governance Policy
@@ -231,10 +231,11 @@ checkpatch enforces this policy.
 | Version | Date | Change | Author |
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Document Control Office |
+| 1.0.0 | 2026-10-30 | Approved. | Document Control Office |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Document Control Office | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |
