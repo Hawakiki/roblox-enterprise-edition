@@ -4,7 +4,7 @@
 id: EE-STD-0001
 title: Luau Coding Standard
 version: 1.1.0
-status: In Review
+status: Approved
 classification: Internal
 owner: Architecture Review Board
 parent: EE-CHR-0001@1.0
@@ -107,4 +107,4 @@ Tooling is exempt from the naming standard.
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Architecture Review Board | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

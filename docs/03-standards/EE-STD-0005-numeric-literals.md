@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0005
 title: Numeric Literal Standard
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Internal
 owner: Architecture Review Board
 parent: EE-STD-0001@1.1
@@ -70,10 +70,11 @@ Annex A lists the rules mandated by this standard.
 |---|---|---|---|
 | 0.1.0 | 2026-10-30 | Number reserved. | Architecture Review Board |
 | 0.9.0 | 2026-10-30 | Drafted with the law of the Roblox code, as relaxed during its drafting (CR-0008). | Architecture Review Board |
+| 1.0.0 | 2026-10-30 | Approved. | Architecture Review Board |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Architecture Review Board | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |

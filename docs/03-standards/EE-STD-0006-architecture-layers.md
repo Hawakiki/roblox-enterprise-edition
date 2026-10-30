@@ -4,7 +4,7 @@
 id: EE-STD-0006
 title: Layered Architecture Standard
 version: 1.0.1
-status: In Review
+status: Approved
 classification: Internal
 owner: Architecture Review Board
 parent: EE-STD-0001@1.1
@@ -91,4 +91,4 @@ This standard applies to every module under `src/`.
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Architecture Review Board | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |
