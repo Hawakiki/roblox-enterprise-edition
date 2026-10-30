@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0008
 title: Lay Down the Law of the Roblox Code
-version: 1.2.0
+version: 1.3.0
 status: Implemented
 classification: Internal
 owner: Architecture Review Board
@@ -40,6 +40,7 @@ While the work was in progress, on the same day, the Approver of record relaxed 
 The reserved numbers were each to be drafted through a change request of their own.
 The Approver of record assigned the three parts as one request, because together they are one coherent change: the law of one body of code (EE-POL-0004 §4).
 The request itself was not approved in words, and is therefore filed as `Submitted` (EE-POL-0004 §4).
+The Approver of record approved the request after its implementation, on 2026-10-30.
 
 ## 3. Scope
 
@@ -74,7 +75,7 @@ The code would again be free to print, to write any number in any colour, and to
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Requester | Architecture Review Board | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-30 |
 | Implementer | Architecture Review Board | Implemented | 2026-10-30 |
 
 ## 7. Implementation Record
@@ -90,3 +91,5 @@ The code would again be free to print, to write any number in any colour, and to
 | `f7119f4` | Removed the Constants module that the relaxed decision made unnecessary. |
 | `d340152` | Wrote EE-STD-0005, added the corporate colour palette, `NUMERIC_LITERAL` and `COLOR_OUTSIDE_PALETTE`. |
 | `86ab17e` | Routed work on `src/` to the new standards in `AGENTS.md`, and added two mines. |
+| `41a1c0f` | Marked this request as implemented. |
+| `79000da` | Approved EE-STD-0003 and EE-STD-0005 at 1.0.0, EE-STD-0001 at 1.1.0, and EE-STD-0002 and EE-STD-0006 at 1.0.1. |
