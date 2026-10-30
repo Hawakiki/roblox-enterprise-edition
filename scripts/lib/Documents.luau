@@ -543,6 +543,9 @@ end
 
 local Documents = {}
 
+-- The identifiers of registered kinds that a line of prose mentions.
+Documents.referencesIn = referencesIn
+
 function Documents.check(snapshot: Snapshot.Snapshot, report: Report.Report): Index
 	local index: Index = { documents = {}, byId = {} }
 	local englishPaths: { [string]: boolean } = {}
