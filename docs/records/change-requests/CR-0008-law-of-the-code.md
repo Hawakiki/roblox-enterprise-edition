@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0008
 title: Lay Down the Law of the Roblox Code
-version: 1.1.0
-status: Submitted
+version: 1.2.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -67,7 +67,7 @@ The request itself was not approved in words, and is therefore filed as `Submitt
 ## 5. Rollback Plan
 
 Revert the merge commit of this change.
-The code would again be free to print, to count from one without saying so, and to keep its purpose to itself.
+The code would again be free to print, to write any number in any colour, and to keep its purpose to itself.
 
 ## 6. Approval
 
@@ -75,9 +75,18 @@ The code would again be free to print, to count from one without saying so, and 
 |---|---|---|---|
 | Requester | Architecture Review Board | Submitted | 2026-10-30 |
 | Approver | Hawakiki | Pending | — |
+| Implementer | Architecture Review Board | Implemented | 2026-10-30 |
 
 ## 7. Implementation Record
 
 | Commit | Change |
 |---|---|
-| <Filled in when the request is implemented.> | |
+| `0cca85c` | Filed this change request. |
+| `152069a` | Named every number of the Kernel in two Constants modules, as first decided. |
+| `9b0db07` | Documented every module under `src/` in Moonwave doc comments. |
+| `124ccb1` | Revised EE-STD-0001 to 1.1.0 and added the lexer and the four doc comment rules; submitted EE-STD-0002 and EE-STD-0006 for review at 1.0.1. |
+| `e9e92ea` | Wrote EE-STD-0003 and added `PROHIBITED_DIRECTIVE` and `PROHIBITED_API`. |
+| `7a3666b` | Recorded the relaxed decision on numbers and the provision on colours. |
+| `f7119f4` | Removed the Constants module that the relaxed decision made unnecessary. |
+| `d340152` | Wrote EE-STD-0005, added the corporate colour palette, `NUMERIC_LITERAL` and `COLOR_OUTSIDE_PALETTE`. |
+| `86ab17e` | Routed work on `src/` to the new standards in `AGENTS.md`, and added two mines. |
