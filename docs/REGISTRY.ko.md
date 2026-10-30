@@ -70,8 +70,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 |
 |---|---|---|---|---|---|
 | [CR-0001](records/change-requests/CR-0001-compliance-tooling.ko.md) | 변경 요청 제도 및 규정 준수 도구 도입 | 1.1.0 | 시행 | 사내 한정 | Compliance Engineering |
-| [CR-0002](records/change-requests/CR-0002-stray-luaurc.ko.md) | 루트에 잘못 들어간 .luaurc 제거 | 1.1.0 | 시행 | 사내 한정 | Compliance Engineering |
-| [CR-0003](records/change-requests/CR-0003-document-governance.ko.md) | 헌장, 문서 체계 정책 및 양식 제정 | 1.1.0 | 시행 | 사내 한정 | Document Control Office |
-| [CR-0004](records/change-requests/CR-0004-engineering-standards.ko.md) | 변경 관리 정책 및 엔지니어링 표준 제정 | 1.1.0 | 시행 | 사내 한정 | Compliance Engineering |
-| [CR-0005](records/change-requests/CR-0005-ai-onboarding.ko.md) | AI 인력 온보딩 | 1.1.0 | 시행 | 사내 한정 | Human Resources |
+| [CR-0002](records/change-requests/CR-0002-stray-luaurc.ko.md) | 루트에 잘못 들어간 .luaurc 제거 | 1.2.0 | 시행 | 사내 한정 | Compliance Engineering |
+| [CR-0003](records/change-requests/CR-0003-document-governance.ko.md) | 헌장, 문서 체계 정책 및 양식 제정 | 1.2.0 | 시행 | 사내 한정 | Document Control Office |
+| [CR-0004](records/change-requests/CR-0004-engineering-standards.ko.md) | 변경 관리 정책 및 엔지니어링 표준 제정 | 1.2.0 | 시행 | 사내 한정 | Compliance Engineering |
+| [CR-0005](records/change-requests/CR-0005-ai-onboarding.ko.md) | AI 인력 온보딩 | 1.2.0 | 시행 | 사내 한정 | Human Resources |
 | [CR-0006](records/change-requests/CR-0006-drill-findings.ko.md) | 첫 신입 투입 훈련 지적 사항 정정 | 1.0.0 | 승인 | 사내 한정 | Document Control Office |

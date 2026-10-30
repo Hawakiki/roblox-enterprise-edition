@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0003
 title: 헌장, 문서 체계 정책 및 양식 제정
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 헌장, 문서 체계 정책 및 양식 제정
@@ -61,3 +61,8 @@ CR-0001 은 문서 규칙을 강제하는 장치를 만들었다.
 | `241c88b` | `UNDOCUMENTED_RULE` 추가 |
 | `f75a19c` | EE-CHR-0001, EE-POL-0001, EE-POL-0002, EE-TPL-0001~EE-TPL-0007 검토 회부 |
 | `b9fc0f7` | 문서 10종 1.0.0 승인 |
+
+## 원복 계획
+
+CR-0006 에 의해 소급 추가되었다. 본 요청은 양식이 요구하는 절 없이 제출되었다.
+머지 커밋 `ec6dd66` 을 되돌린다. 회사는 다시 아무 문서의 근거 없이 규칙을 강제하게 된다.
