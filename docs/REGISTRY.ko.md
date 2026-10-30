@@ -13,11 +13,12 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 
 | 구분 | 문서 수 |
 |---|---:|
-| 변경 요청 | 1 |
-| **합계** | **1** |
+| 변경 요청 | 2 |
+| **합계** | **2** |
 
 ## 변경 요청
 
 | ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 |
 |---|---|---|---|---|---|
 | [CR-0001](records/change-requests/CR-0001-compliance-tooling.ko.md) | 변경 요청 제도 및 규정 준수 도구 도입 | 1.1.0 | 시행 | 사내 한정 | Compliance Engineering |
+| [CR-0002](records/change-requests/CR-0002-stray-luaurc.ko.md) | 루트에 잘못 들어간 .luaurc 제거 | 1.1.0 | 시행 | 사내 한정 | Compliance Engineering |
