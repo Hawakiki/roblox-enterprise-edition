@@ -13,8 +13,36 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 
 | 구분 | 문서 수 |
 |---|---:|
+| 헌장 | 1 |
+| 정책 | 2 |
+| 양식 | 7 |
 | 변경 요청 | 3 |
-| **합계** | **3** |
+| **합계** | **13** |
+
+## 헌장
+
+| ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 | 상위 문서 |
+|---|---|---|---|---|---|---|
+| [EE-CHR-0001](00-charter/EE-CHR-0001-charter.ko.md) | EnterpriseEdition 헌장 | 0.9.0 | 검토 중 | 공개 | Board of Directors | — |
+
+## 정책
+
+| ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 | 상위 문서 |
+|---|---|---|---|---|---|---|
+| [EE-POL-0001](01-governance/EE-POL-0001-document-governance.ko.md) | 문서 체계 정책 | 0.9.0 | 검토 중 | 사내 한정 | Document Control Office | EE-CHR-0001@0.9 |
+| [EE-POL-0002](01-governance/EE-POL-0002-bilingual-documentation.ko.md) | 이중 언어 정책 | 0.9.0 | 검토 중 | 사내 한정 | Document Control Office | EE-POL-0001@0.9 |
+
+## 양식
+
+| ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 | 상위 문서 |
+|---|---|---|---|---|---|---|
+| [EE-TPL-0001](templates/EE-TPL-0001-controlled-document.ko.md) | 통제 문서 양식 | 0.9.0 | 검토 중 | 사내 한정 | Document Control Office | EE-POL-0001@0.9 |
+| [EE-TPL-0002](templates/EE-TPL-0002-change-request.ko.md) | 변경 요청서 양식 | 0.9.0 | 검토 중 | 사내 한정 | Document Control Office | EE-POL-0001@0.9 |
+| [EE-TPL-0003](templates/EE-TPL-0003-request-for-comments.ko.md) | 의견 요청서 양식 | 0.9.0 | 검토 중 | 사내 한정 | Document Control Office | EE-POL-0001@0.9 |
+| [EE-TPL-0004](templates/EE-TPL-0004-architecture-decision-record.ko.md) | 아키텍처 결정 기록 양식 | 0.9.0 | 검토 중 | 사내 한정 | Document Control Office | EE-POL-0001@0.9 |
+| [EE-TPL-0005](templates/EE-TPL-0005-approval-request.ko.md) | 품의서 양식 | 0.9.0 | 검토 중 | 사내 한정 | Document Control Office | EE-POL-0001@0.9 |
+| [EE-TPL-0006](templates/EE-TPL-0006-statement-of-circumstances.ko.md) | 경위서 양식 | 0.9.0 | 검토 중 | 사내 한정 | Document Control Office | EE-POL-0001@0.9 |
+| [EE-TPL-0007](templates/EE-TPL-0007-meeting-minutes.ko.md) | 회의록 양식 | 0.9.0 | 검토 중 | 사내 한정 | Document Control Office | EE-POL-0001@0.9 |
 
 ## 변경 요청
 
