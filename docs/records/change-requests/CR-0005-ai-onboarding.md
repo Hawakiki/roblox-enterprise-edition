@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0005
 title: Onboard the AI Workforce
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Human Resources
@@ -65,3 +65,8 @@ Change requests are numbered in sequence (EE-POL-0001 §5), so it is the fifth, 
 | `405e01c` | Submitted EE-POL-0006 and EE-POL-0008 for review, and reserved EE-POL-0005 and EE-POL-0007. |
 | `3cadfc7` | Added `AGENTS.md`, `CLAUDE.md`, `.claude/settings.json` and `.codex/config.toml`. |
 | `1aebfef` | Approved EE-POL-0006 and EE-POL-0008 at 1.0.0. |
+
+## Rollback Plan
+
+Added retroactively by CR-0006, because this request was filed without the section that its form requires.
+Revert merge commit `3a8c39b`. Agents would again start without an entrance, and merges would happen without a person to confirm them.

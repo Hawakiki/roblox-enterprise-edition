@@ -230,9 +230,9 @@ local function readDocument(path: string, content: string, report: Report.Report
 		classification = nil
 	end
 
-	if kind.controlled and version and status then
-		local draft = status == "Draft" or status == "In Review"
-		if draft and version.major ~= 0 then
+	-- In Review takes any version: 0.x.y for a first issue, the new version for a revision of an approved document.
+	if kind.controlled and version and status and status ~= "In Review" then
+		if status == "Draft" and version.major ~= 0 then
 			Report.add(
 				report,
 				"VERSION_STATUS_MISMATCH",
@@ -240,7 +240,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 				lineOf("version"),
 				string.format("%s documents must be versioned 0.x.y, not %s", status, Semver.format(version))
 			)
-		elseif not draft and version.major == 0 then
+		elseif status ~= "Draft" and version.major == 0 then
 			Report.add(
 				report,
 				"VERSION_STATUS_MISMATCH",

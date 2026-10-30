@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0001
 title: Document Governance Policy
-version: 1.0.0
+version: 1.1.0
 status: Approved
 classification: Internal
 owner: Document Control Office
@@ -53,14 +53,14 @@ Where this policy and `scripts/lib/Schema.luau` disagree, both are wrong, and a 
 
 2. Records sit outside the hierarchy. Each kind of record has its own lifecycle (§10).
 
-| Kind | Code | Identifier | Folder |
-|---|---|---|---|
-| Request for comments | `RFC` | `RFC-NNNN` | `docs/rfc/` |
-| Architecture decision record | `ADR` | `ADR-NNNN` | `docs/adr/` |
-| Change request | `CR` | `CR-NNNN` | `docs/records/change-requests/` |
-| Approval request | `APR` | `APR-NNNN` | `docs/records/approval-requests/` |
-| Statement of circumstances | `STM` | `STM-NNNN` | `docs/records/statements/` |
-| Meeting minutes | `MIN` | `MIN-NNNN` | `docs/records/minutes/` |
+| Kind | Code | Identifier | Folder | Form |
+|---|---|---|---|---|
+| Request for comments | `RFC` | `RFC-NNNN` | `docs/rfc/` | EE-TPL-0003 |
+| Architecture decision record | `ADR` | `ADR-NNNN` | `docs/adr/` | EE-TPL-0004 |
+| Change request | `CR` | `CR-NNNN` | `docs/records/change-requests/` | EE-TPL-0002 |
+| Approval request | `APR` | `APR-NNNN` | `docs/records/approval-requests/` | EE-TPL-0005 |
+| Statement of circumstances | `STM` | `STM-NNNN` | `docs/records/statements/` | EE-TPL-0006 |
+| Meeting minutes | `MIN` | `MIN-NNNN` | `docs/records/minutes/` | EE-TPL-0007 |
 
 3. A document whose identifier belongs to no kind in these tables is rejected (`UNKNOWN_DOCUMENT_TYPE`).
 4. A document lives in the folder of its kind (`MISPLACED_DOCUMENT`).
@@ -120,7 +120,9 @@ parent: EE-POL-NNNN@1.0
 
 1. The body opens with a level-one heading that repeats the title exactly (`TITLE_HEADING_MISMATCH`).
 2. A controlled document closes with a Revision History and an Approval section, as laid out in EE-TPL-0001.
-3. A document is written one sentence per line, so that every change to a sentence is a change to one line.
+3. A record contains every section of the form for its kind (§4), under the same names (`TEMPLATE_SECTION_MISSING`).
+   Its sections may be numbered differently, and it may add sections of its own.
+4. A document is written one sentence per line, so that every change to a sentence is a change to one line.
 
 ## 9. Versions
 
@@ -129,8 +131,9 @@ parent: EE-POL-NNNN@1.0
 3. MINOR is incremented for a change in meaning that keeps every existing obligation: a new provision, or a clarification that changes how a provision is read.
 4. MAJOR is incremented for a change that removes or alters an existing obligation.
 5. Every change to a document increments its version.
-6. A controlled document in `Draft` or `In Review` is versioned `0.x.y`.
-   A controlled document in any other status is versioned `1.0.0` or later (`VERSION_STATUS_MISMATCH`).
+6. A controlled document in `Draft` is versioned `0.x.y`.
+   In `In Review`, a first issue is versioned `0.x.y`, and a revision of an approved document carries its new version.
+   In any other status, a controlled document is versioned `1.0.0` or later (`VERSION_STATUS_MISMATCH`).
 
 ## 10. Status and Lifecycle
 
@@ -139,7 +142,7 @@ parent: EE-POL-NNNN@1.0
 | Status | Meaning |
 |---|---|
 | `Draft` | Being written. |
-| `In Review` | Submitted for approval. |
+| `In Review` | Submitted for approval, as a first issue or as a revision. |
 | `Approved` | In effect. |
 | `Superseded` | Replaced by a newer document, which names it. |
 | `Deprecated` | Withdrawn without replacement. |
@@ -215,6 +218,7 @@ checkpatch enforces this policy.
 | `UNKNOWN_FIELD` | Error | §7 |
 | `INVALID_FIELD_VALUE` | Error | §7, §10 |
 | `TITLE_HEADING_MISMATCH` | Error | §8 |
+| `TEMPLATE_SECTION_MISSING` | Error | §8 |
 | `VERSION_STATUS_MISMATCH` | Error | §9 |
 | `MISSING_PARENT` | Error | §11 |
 | `UNEXPECTED_PARENT` | Error | §11 |
@@ -232,6 +236,7 @@ checkpatch enforces this policy.
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Document Control Office |
 | 1.0.0 | 2026-10-30 | Approved. | Document Control Office |
+| 1.1.0 | 2026-10-30 | Revisions are reviewed at their new version; records follow their forms. | Document Control Office |
 
 ## Approval
 

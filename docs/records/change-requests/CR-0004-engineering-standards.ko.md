@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0004
 title: 변경 관리 정책 및 엔지니어링 표준 제정
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 변경 관리 정책 및 엔지니어링 표준 제정
@@ -59,3 +59,8 @@ checkpatch 는 근거 문서가 존재하지 않는 규칙 27개를 강제하고
 | `03379b1` | `MISSING_STRICT_MODE`, `MISSING_SPDX_HEADER` 추가 및 설정 파일 5개에 SPDX 헤더 추가 |
 | `390edbf` | EE-POL-0004, EE-STD-0001, EE-STD-0004, EE-STD-0007, EE-STD-0009 검토 회부, EE-POL-0003, EE-STD-0002, EE-STD-0003, EE-STD-0005, EE-STD-0006, EE-STD-0008 번호 확보 |
 | `589d908` | 문서 5종 1.0.0 승인 |
+
+## 원복 계획
+
+CR-0006 에 의해 소급 추가되었다. 본 요청은 양식이 요구하는 절 없이 제출되었다.
+머지 커밋 `3312a8f` 를 되돌린다. 규칙 27개가 다시 근거 문서를 잃고, 설정 파일 5개가 SPDX 헤더를 잃는다.

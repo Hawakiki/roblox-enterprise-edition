@@ -139,10 +139,16 @@ local RULES: { Rule } = {
 		summary = "The first heading must repeat the frontmatter title.",
 	},
 	{
+		code = "TEMPLATE_SECTION_MISSING",
+		severity = "ERROR",
+		standard = "EE-POL-0001",
+		summary = "A record contains every section of the form for its kind.",
+	},
+	{
 		code = "VERSION_STATUS_MISMATCH",
 		severity = "ERROR",
 		standard = "EE-POL-0001",
-		summary = "Draft documents are versioned 0.x.y; approved documents 1.0.0 or later.",
+		summary = "Drafts are versioned 0.x.y; approved, superseded and deprecated documents 1.0.0 or later.",
 	},
 	{
 		code = "MISSING_PARENT",

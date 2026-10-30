@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-TPL-0002
 title: 변경 요청서 양식
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 변경 요청서 양식
@@ -15,8 +15,8 @@ translation-of: 1.0.0
 1. 작업을 시작하기 전에 변경 요청을 제출한다. 번호는 문서 대장에서 다음 번호를 쓴다.
 2. 영문판 양식을 `docs/records/change-requests/CR-<NNNN>-<slug>.md` 로, 아래 국문 양식을 같은 경로의 `.ko.md` 로 복사한다.
 3. `develop` 에서 딴 `feature/CR-<NNNN>-<slug>` 브랜치에서, 요청서만 단독으로 커밋한다. 커밋은 `Change-Request: CR-<NNNN>` 으로 자기 자신을 인용한다.
-4. 요청서는 `Submitted` 로 시작한다.
-   기록상 결재권자가 결재란에 결정을 기록하고 `Approved` 로 바꾸면 승인된다.
+4. 요청서는 `Submitted` 로 시작하되, 기록상 결재권자가 제출 전에 말로 승인한 경우에는 `Approved` 로 시작한다(EE-POL-0004 §4).
+   제출된 요청서는 기록상 결재권자가 결재란에 결정을 기록하고 `Approved` 로 바꾸면 승인된다.
    아직 승인되지 않은 요청서를 인용하는 커밋에는 경고가 표시된다.
 5. 브랜치를 머지하기 전에 시행 기록에 시행 커밋을 적고, `Implemented` 로 바꾸고, MINOR 를 올린다.
 6. 더 이상 커밋을 받지 않는 요청서는 `Closed`, 받아들여지지 않은 요청서는 `Rejected` 이다. 둘 다 커밋을 받지 아니한다.
@@ -80,6 +80,7 @@ translation-of: 1.0.0
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | 검토 회부 | 문서통제실 |
 | 1.0.0 | 2026-10-30 | 승인 | 문서통제실 |
+| 1.1.0 | 2026-10-30 | 시작 상태를 EE-POL-0004 §4 에 맞춤, EE-POL-0001 1.1 인용 | 문서통제실 |
 
 ## 결재
 

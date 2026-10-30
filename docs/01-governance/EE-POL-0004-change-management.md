@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0004
 title: Change Management Policy
-version: 1.0.0
+version: 1.1.0
 status: Approved
 classification: Internal
 owner: Change Advisory Board
@@ -47,6 +47,9 @@ It gives effect to the third core value of the Charter: every change has a reque
 
 4. Approval is given by a person, the Approver of record.
    No agent approves a change request, a document or a merge on its own, whether or not it is able to.
+5. A request is filed in the name of the unit that owns what it changes, even when a person asked for it.
+6. A request is filed as `Submitted`, or as `Approved` when the Approver of record approved it in words before it was filed.
+   In either case, the Approval section records the decision and its date.
 
 ## 5. Branching Model
 
@@ -76,6 +79,7 @@ It gives effect to the third core value of the Charter: every change has a reque
 2. The Approver of record reviews the result and approves the merge.
 3. The merge commit carries an `Approved-by` trailer that names the Approver of record.
 4. Controlled documents changed by the request are approved in the same review, and move from `In Review` to `Approved` before the merge (EE-POL-0001 §10).
+5. For a revision of an approved document, the Approval section records the approval of the new version, and the Revision History keeps the earlier ones.
 
 ## 8. Corrective Changes
 
@@ -98,6 +102,7 @@ It mandates no checkpatch rule of its own.
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Change Advisory Board |
 | 1.0.0 | 2026-10-30 | Approved. | Change Advisory Board |
+| 1.1.0 | 2026-10-30 | Requests approved before filing, the filing unit, and the approval of revisions. | Change Advisory Board |
 
 ## Approval
 

@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-TPL-0006
 title: Statement of Circumstances Template
-version: 1.0.0
+version: 1.0.1
 status: Approved
 classification: Internal
 owner: Document Control Office
-parent: EE-POL-0001@1.0
+parent: EE-POL-0001@1.1
 ---
 
 # Statement of Circumstances Template
@@ -83,6 +83,7 @@ I declare that the above is true, and I undertake that it will not happen again.
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Document Control Office |
 | 1.0.0 | 2026-10-30 | Approved. | Document Control Office |
+| 1.0.1 | 2026-10-30 | Reviewed against EE-POL-0001 1.1; citation updated. | Document Control Office |
 
 ## Approval
 

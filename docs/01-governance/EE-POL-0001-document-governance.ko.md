@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0001
 title: 문서 체계 정책
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 문서 체계 정책
@@ -51,14 +51,14 @@ translation-of: 1.0.0
 
 2. 기록은 위계 밖에 있다. 기록의 종류마다 고유한 생애 주기를 갖는다(§10).
 
-| 종류 | 코드 | 식별자 | 폴더 |
-|---|---|---|---|
-| 의견 요청서 | `RFC` | `RFC-NNNN` | `docs/rfc/` |
-| 아키텍처 결정 기록 | `ADR` | `ADR-NNNN` | `docs/adr/` |
-| 변경 요청 | `CR` | `CR-NNNN` | `docs/records/change-requests/` |
-| 품의서 | `APR` | `APR-NNNN` | `docs/records/approval-requests/` |
-| 경위서 | `STM` | `STM-NNNN` | `docs/records/statements/` |
-| 회의록 | `MIN` | `MIN-NNNN` | `docs/records/minutes/` |
+| 종류 | 코드 | 식별자 | 폴더 | 양식 |
+|---|---|---|---|---|
+| 의견 요청서 | `RFC` | `RFC-NNNN` | `docs/rfc/` | EE-TPL-0003 |
+| 아키텍처 결정 기록 | `ADR` | `ADR-NNNN` | `docs/adr/` | EE-TPL-0004 |
+| 변경 요청 | `CR` | `CR-NNNN` | `docs/records/change-requests/` | EE-TPL-0002 |
+| 품의서 | `APR` | `APR-NNNN` | `docs/records/approval-requests/` | EE-TPL-0005 |
+| 경위서 | `STM` | `STM-NNNN` | `docs/records/statements/` | EE-TPL-0006 |
+| 회의록 | `MIN` | `MIN-NNNN` | `docs/records/minutes/` | EE-TPL-0007 |
 
 3. 식별자가 위 표의 어느 종류에도 속하지 않는 문서는 거부한다(`UNKNOWN_DOCUMENT_TYPE`).
 4. 문서는 해당 종류의 폴더에 둔다(`MISPLACED_DOCUMENT`).
@@ -118,7 +118,9 @@ parent: EE-POL-NNNN@1.0
 
 1. 본문은 제목을 그대로 되풀이한 1단계 제목으로 시작한다(`TITLE_HEADING_MISMATCH`).
 2. 통제 문서는 EE-TPL-0001 에 정한 대로 개정 이력과 결재 절로 끝난다.
-3. 문서는 한 줄에 한 문장씩 쓴다. 그래야 문장 하나의 변경이 줄 하나의 변경이 된다.
+3. 기록은 해당 종류의 양식(§4)에 있는 절을 모두 같은 이름으로 갖춘다(`TEMPLATE_SECTION_MISSING`).
+   절 번호는 달라도 되며, 자체 절을 더할 수 있다.
+4. 문서는 한 줄에 한 문장씩 쓴다. 그래야 문장 하나의 변경이 줄 하나의 변경이 된다.
 
 ## 9. 버전
 
@@ -127,7 +129,8 @@ parent: EE-POL-NNNN@1.0
 3. 기존 의무를 모두 유지하면서 의미가 바뀌는 변경(조항 신설, 해석을 바꾸는 명확화)은 MINOR 를 올린다.
 4. 기존 의무를 없애거나 바꾸는 변경은 MAJOR 를 올린다.
 5. 문서를 변경할 때마다 버전을 올린다.
-6. `Draft` 또는 `In Review` 상태의 통제 문서는 `0.x.y` 버전을 쓴다.
+6. `Draft` 상태의 통제 문서는 `0.x.y` 버전을 쓴다.
+   `In Review` 상태에서 최초 제정본은 `0.x.y` 를 쓰고, 승인된 문서의 개정본은 새 버전을 쓴다.
    그 밖의 상태인 통제 문서는 `1.0.0` 이상을 쓴다(`VERSION_STATUS_MISMATCH`).
 
 ## 10. 상태와 생애 주기
@@ -137,7 +140,7 @@ parent: EE-POL-NNNN@1.0
 | 상태 | 의미 |
 |---|---|
 | `Draft` | 작성 중 |
-| `In Review` | 결재 상신됨 |
+| `In Review` | 최초 제정 또는 개정으로 결재 상신됨 |
 | `Approved` | 시행 중 |
 | `Superseded` | 이를 명시한 새 문서로 대체됨 |
 | `Deprecated` | 대체 없이 폐지됨 |
@@ -213,6 +216,7 @@ parent: EE-POL-NNNN@1.0
 | `UNKNOWN_FIELD` | 오류 | §7 |
 | `INVALID_FIELD_VALUE` | 오류 | §7, §10 |
 | `TITLE_HEADING_MISMATCH` | 오류 | §8 |
+| `TEMPLATE_SECTION_MISSING` | 오류 | §8 |
 | `VERSION_STATUS_MISMATCH` | 오류 | §9 |
 | `MISSING_PARENT` | 오류 | §11 |
 | `UNEXPECTED_PARENT` | 오류 | §11 |
@@ -230,6 +234,7 @@ parent: EE-POL-NNNN@1.0
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | 검토 회부 | 문서통제실 |
 | 1.0.0 | 2026-10-30 | 승인 | 문서통제실 |
+| 1.1.0 | 2026-10-30 | 개정본은 새 버전으로 검토, 기록은 양식을 따름 | 문서통제실 |
 
 ## 결재
 

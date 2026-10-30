@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0005
 title: AI 인력 온보딩
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # AI 인력 온보딩
@@ -64,3 +64,8 @@ translation-of: 1.1.0
 | `405e01c` | EE-POL-0006, EE-POL-0008 검토 회부, EE-POL-0005, EE-POL-0007 번호 확보 |
 | `3cadfc7` | `AGENTS.md`, `CLAUDE.md`, `.claude/settings.json`, `.codex/config.toml` 추가 |
 | `1aebfef` | EE-POL-0006, EE-POL-0008 1.0.0 승인 |
+
+## 원복 계획
+
+CR-0006 에 의해 소급 추가되었다. 본 요청은 양식이 요구하는 절 없이 제출되었다.
+머지 커밋 `3a8c39b` 를 되돌린다. 에이전트는 다시 입구 없이 일을 시작하고, 머지는 확인할 사람 없이 이루어진다.

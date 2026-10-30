@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0002
 title: 루트에 잘못 들어간 .luaurc 제거
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 루트에 잘못 들어간 .luaurc 제거
@@ -57,3 +57,8 @@ CR-0001 시행 중 저장소 루트에서 실행되었고, 그 결과물이 검�
 |---|---|
 | `983adee` | 본 변경 요청 등록 |
 | `d681c4b` | 루트 `.luaurc` 삭제 및 `.gitignore` 추가 |
+
+## 원복 계획
+
+CR-0006 에 의해 소급 추가되었다. 본 요청은 양식이 요구하는 절 없이 제출되었다.
+머지 커밋 `c90a1bc` 를 되돌린다. 저장소에 잘못 들어간 `.luaurc` 가 돌아오며, 본 요청의 사유도 함께 돌아온다.

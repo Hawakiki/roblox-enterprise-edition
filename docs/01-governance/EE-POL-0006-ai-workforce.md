@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0006
 title: AI Workforce Policy
-version: 1.0.0
+version: 1.1.0
 status: Approved
 classification: Internal
 owner: Human Resources
@@ -37,8 +37,9 @@ This policy applies to every AI agent that works in the repository, whatever its
 3. An agent may draft, implement, test, propose and file change requests.
 4. An agent never approves anything: no change request, no document and no merge (EE-POL-0004 §4).
    It records an approval only when the Approver of record has given it, in words, in the same session.
-5. An agent never signs off.
-   The person on whose behalf it works signs off and answers for the commit (EE-STD-0007 §6); the agent is named in a `Co-Authored-By` trailer.
+5. An agent never signs off in its own name.
+   It writes a `Signed-off-by` trailer only for the person on whose behalf it works, in that person's git identity and with their authority; that person answers for the commit (EE-STD-0007 §6).
+   The agent is named in a `Co-Authored-By` trailer.
 
 ## 5. Vendor Neutrality
 
@@ -91,6 +92,7 @@ Annex A lists the rules mandated by this policy.
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Human Resources |
 | 1.0.0 | 2026-10-30 | Approved. | Human Resources |
+| 1.1.0 | 2026-10-30 | An agent writes a sign-off only for the person it works for. | Human Resources |
 
 ## Approval
 

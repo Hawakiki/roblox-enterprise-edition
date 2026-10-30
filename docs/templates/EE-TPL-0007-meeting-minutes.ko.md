@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-TPL-0007
 title: 회의록 양식
-translation-of: 1.0.0
+translation-of: 1.0.1
 ---
 
 # 회의록 양식
@@ -85,6 +85,7 @@ translation-of: 1.0.0
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | 검토 회부 | 문서통제실 |
 | 1.0.0 | 2026-10-30 | 승인 | 문서통제실 |
+| 1.0.1 | 2026-10-30 | EE-POL-0001 1.1 기준 재검토, 인용 갱신 | 문서통제실 |
 
 ## 결재
 

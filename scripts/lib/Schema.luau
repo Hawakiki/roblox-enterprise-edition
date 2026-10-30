@@ -17,6 +17,8 @@ export type Kind = {
 	statuses: { string },
 	label: string,
 	labelKo: string,
+	-- The template whose form a record of this kind follows section by section. Controlled documents vary.
+	form: string?,
 }
 
 local CONTROLLED_STATUSES = { "Draft", "In Review", "Approved", "Superseded", "Deprecated" }
@@ -30,10 +32,18 @@ local function controlled(code: string, folder: string, level: number, label: st
 		statuses = CONTROLLED_STATUSES,
 		label = label,
 		labelKo = labelKo,
+		form = nil,
 	}
 end
 
-local function record(code: string, folder: string, statuses: { string }, label: string, labelKo: string): Kind
+local function record(
+	code: string,
+	folder: string,
+	statuses: { string },
+	label: string,
+	labelKo: string,
+	form: string
+): Kind
 	return {
 		code = code,
 		controlled = false,
@@ -42,6 +52,7 @@ local function record(code: string, folder: string, statuses: { string }, label:
 		statuses = statuses,
 		label = label,
 		labelKo = labelKo,
+		form = form,
 	}
 end
 
@@ -60,37 +71,42 @@ local KINDS: { Kind } = {
 		"docs/rfc",
 		{ "Draft", "Discussion", "Accepted", "Rejected", "Withdrawn" },
 		"Requests for Comments",
-		"의견 요청서"
+		"의견 요청서",
+		"EE-TPL-0003"
 	),
 	record(
 		"ADR",
 		"docs/adr",
 		{ "Proposed", "Accepted", "Superseded", "Deprecated" },
 		"Architecture Decision Records",
-		"아키텍처 결정 기록"
+		"아키텍처 결정 기록",
+		"EE-TPL-0004"
 	),
 	record(
 		"CR",
 		"docs/records/change-requests",
 		{ "Draft", "Submitted", "Approved", "Rejected", "Implemented", "Closed" },
 		"Change Requests",
-		"변경 요청"
+		"변경 요청",
+		"EE-TPL-0002"
 	),
 	record(
 		"APR",
 		"docs/records/approval-requests",
 		{ "Draft", "Submitted", "Approved", "Rejected", "Withdrawn" },
 		"Approval Requests",
-		"품의서"
+		"품의서",
+		"EE-TPL-0005"
 	),
 	record(
 		"STM",
 		"docs/records/statements",
 		{ "Draft", "Submitted", "Accepted", "Returned" },
 		"Statements of Circumstances",
-		"경위서"
+		"경위서",
+		"EE-TPL-0006"
 	),
-	record("MIN", "docs/records/minutes", { "Draft", "Approved" }, "Meeting Minutes", "회의록"),
+	record("MIN", "docs/records/minutes", { "Draft", "Approved" }, "Meeting Minutes", "회의록", "EE-TPL-0007"),
 }
 
 local Schema = {}

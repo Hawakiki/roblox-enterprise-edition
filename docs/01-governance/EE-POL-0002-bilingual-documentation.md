@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0002
 title: Bilingual Documentation Policy
-version: 1.0.0
+version: 1.1.0
 status: Approved
 classification: Internal
 owner: Document Control Office
-parent: EE-POL-0001@1.0
+parent: EE-POL-0001@1.1
 ---
 
 # Bilingual Documentation Policy
@@ -55,6 +55,9 @@ This policy applies to every document within the scope of EE-POL-0001.
 
 Translations use the following terms.
 The registry uses the same terms for statuses and classifications.
+Names of organizational units are proper nouns, and may be transliterated, as in 릴리스 엔지니어링.
+Code identifiers, such as branch names, rule codes, field values and file names, are never translated in prose; they are written as they are, in backticks.
+The Korean labels of statuses and classifications below are what the registry displays.
 
 | English | Korean |
 |---|---|
@@ -124,6 +127,7 @@ checkpatch enforces this policy. Annex A lists the rules mandated by this policy
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Document Control Office |
 | 1.0.0 | 2026-10-30 | Approved. | Document Control Office |
+| 1.1.0 | 2026-10-30 | Unit names may be transliterated; code identifiers are not translated. Cites EE-POL-0001 1.1. | Document Control Office |
 
 ## Approval
 
