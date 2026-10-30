@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0005
 title: Onboard the AI Workforce
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Human Resources
 ---
@@ -54,3 +54,14 @@ Change requests are numbered in sequence (EE-POL-0001 §5), so it is the fifth, 
 |---|---|---|---|
 | Requester | Human Resources | Submitted | 2026-10-30 |
 | Approver | Hawakiki | Approved | 2026-10-30 |
+| Implementer | Human Resources | Implemented | 2026-10-30 |
+
+## 6. Implementation Record
+
+| Commit | Change |
+|---|---|
+| `d009a3d` | Filed this change request. |
+| `00ad282` | Added `DANGLING_ENTRY_REFERENCE`, `MISSING_AGENTS_IMPORT` and `ONBOARDING_TOO_LONG`. |
+| `405e01c` | Submitted EE-POL-0006 and EE-POL-0008 for review, and reserved EE-POL-0005 and EE-POL-0007. |
+| `3cadfc7` | Added `AGENTS.md`, `CLAUDE.md`, `.claude/settings.json` and `.codex/config.toml`. |
+| `1aebfef` | Approved EE-POL-0006 and EE-POL-0008 at 1.0.0. |

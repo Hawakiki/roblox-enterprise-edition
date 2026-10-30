@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0005
 title: AI 인력 온보딩
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # AI 인력 온보딩
@@ -53,3 +53,14 @@ translation-of: 1.0.0
 |---|---|---|---|
 | 기안 | 인사팀 | 상신 | 2026-10-30 |
 | 결재 | Hawakiki | 승인 | 2026-10-30 |
+| 시행 | 인사팀 | 시행 완료 | 2026-10-30 |
+
+## 6. 시행 기록
+
+| 커밋 | 변경 |
+|---|---|
+| `d009a3d` | 본 변경 요청 등록 |
+| `00ad282` | `DANGLING_ENTRY_REFERENCE`, `MISSING_AGENTS_IMPORT`, `ONBOARDING_TOO_LONG` 추가 |
+| `405e01c` | EE-POL-0006, EE-POL-0008 검토 회부, EE-POL-0005, EE-POL-0007 번호 확보 |
+| `3cadfc7` | `AGENTS.md`, `CLAUDE.md`, `.claude/settings.json`, `.codex/config.toml` 추가 |
+| `1aebfef` | EE-POL-0006, EE-POL-0008 1.0.0 승인 |
