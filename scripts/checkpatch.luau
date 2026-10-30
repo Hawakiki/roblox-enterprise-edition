@@ -5,7 +5,7 @@
 	checkpatch: the compliance gate of EnterpriseEdition, after the Linux kernel's scripts/checkpatch.pl.
 	checkpatch: EnterpriseEdition 의 규정 준수 관문. 리눅스 커널의 scripts/checkpatch.pl 을 따른다.
 
-	lune run scripts/checkpatch                       repository: hygiene, toolchain, documents
+	lune run scripts/checkpatch                       repository: hygiene, toolchain, documents, registry
 	lune run scripts/checkpatch --commit-msg <file>   one commit message (.githooks/commit-msg)
 	lune run scripts/checkpatch --commits <range>     every commit in a range (CI)
 	lune run scripts/checkpatch --list-rules          the rule catalog
@@ -20,6 +20,7 @@ local CommitMessage = require("./lib/CommitMessage")
 local Documents = require("./lib/Documents")
 local Git = require("./lib/Git")
 local Hygiene = require("./lib/Hygiene")
+local Registry = require("./lib/Registry")
 local Report = require("./lib/Report")
 local Snapshot = require("./lib/Snapshot")
 local Toolchain = require("./lib/Toolchain")
@@ -27,7 +28,7 @@ local Toolchain = require("./lib/Toolchain")
 local USAGE = [[
 usage: lune run scripts/checkpatch [option]
 
-  (no option)            check the repository: file hygiene, toolchain, documents
+  (no option)            check the repository: file hygiene, toolchain, documents, registry
   --commit-msg <file>    check one commit message file (used by .githooks/commit-msg)
   --commits <range>      check every commit message in a revision range, e.g. develop..HEAD
   --list-rules           print the rule catalog
@@ -57,7 +58,7 @@ local function checkRepository(): never
 	local report = Report.new()
 	Hygiene.check(snapshot, report)
 	Toolchain.check(snapshot, report)
-	Documents.check(snapshot, report)
+	Registry.check(snapshot, Documents.check(snapshot, report), report)
 	return finish(report, "files")
 end
 

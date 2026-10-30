@@ -4,7 +4,7 @@
 # Every check in one place. The PowerShell version of tools/check.sh.
 # 모든 검사를 한곳에서. tools/check.sh 의 PowerShell 판.
 #   tools/check.ps1          # check / 검사
-#   tools/check.ps1 -Fix     # also format with stylua / stylua 포맷까지
+#   tools/check.ps1 -Fix     # also format and regenerate the registry / 포맷과 문서 대장 재생성까지
 # Runs on Windows PowerShell 5.1 and PowerShell 7. Saved as UTF-8 with BOM so that 5.1 reads the Korean text.
 # Windows PowerShell 5.1 과 PowerShell 7 둘 다 된다. 5.1 이 한글을 읽도록 UTF-8 BOM 으로 저장한다.
 param([switch]$Fix)
@@ -17,6 +17,7 @@ try {
 
 	if ($Fix) {
 		stylua scripts
+		lune run scripts/gen_registry
 	} else {
 		stylua --check scripts
 		if ($LASTEXITCODE -ne 0) { $status = 1 }

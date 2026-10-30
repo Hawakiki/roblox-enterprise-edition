@@ -178,6 +178,12 @@ local RULES: { Rule } = {
 		standard = "EE-POL-0001",
 		summary = "Only Markdown documents belong under docs/.",
 	},
+	{
+		code = "REGISTRY_OUT_OF_DATE",
+		severity = "ERROR",
+		standard = "EE-POL-0001",
+		summary = "The document registry must match the output of scripts/gen_registry.luau.",
+	},
 
 	-- Translation / 번역
 	{

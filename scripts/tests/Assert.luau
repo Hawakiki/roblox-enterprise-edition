@@ -43,6 +43,12 @@ function Assert.codes(report: Report.Report, expected: { string })
 	)
 end
 
+function Assert.contains(haystack: string, needle: string, what: string)
+	if string.find(haystack, needle, 1, true) == nil then
+		error(string.format("%s: expected to find\n      %s\n    in\n%s", what, needle, haystack), 0)
+	end
+end
+
 function Assert.equal(actual: any, expected: any, what: string)
 	if actual ~= expected then
 		error(string.format("%s: expected %s, got %s", what, tostring(expected), tostring(actual)), 0)
