@@ -13,4 +13,4 @@ Everything above is shared with every agent. This section only covers operating 
 - The PowerShell tool refuses `git rm` on some dot files, taking them for system paths. Run `git rm` through the Bash tool.
 - `.claude/settings.json` denies push, history rewrites and `.env`, and asks before every merge.
   The prompt on `git merge` is the Approver of record approving. Never route around it.
-- Run `/context` to confirm that this file and `AGENTS.md` loaded.
+- In a main session, run `/context` to confirm that this file and `AGENTS.md` loaded. Subagents cannot run it; they read `AGENTS.md` directly.

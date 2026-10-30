@@ -25,7 +25,8 @@ tools/check.sh                         # or tools/check.ps1; it must end with 0 
 
 1. **A person approves.** Never set anything to `Approved`, never write `Approved-by` and never merge, unless the Approver of record has said so in this session (EE-POL-0006 §4).
 2. **Never rewrite history.** No amend, rebase, hard reset or force push. A mistake gets a corrective change request (EE-POL-0004 §8).
-3. **Every change starts with a change request,** on its own `feature/CR-NNNN-<slug>` branch (EE-POL-0004).
+3. **Every change starts with a change request,** on its own `feature/CR-NNNN-<slug>` branch.
+   File it as `Submitted`, unless the Approver of record has already approved it in words (EE-POL-0004 §4).
 4. **Read `git status` before every commit,** and stage only what you meant to (CR-0002).
 5. **Never read `.env`, and never push.**
 6. **When unsure, run checkpatch.** Every error ends with the document that mandates it.
@@ -51,10 +52,11 @@ Every rule, with the document that mandates it: `lune run scripts/checkpatch --l
 ### Changing a document
 
 1. Change the English version and its Korean translation in the same commit.
-2. Increment the version: PATCH for wording, MINOR for meaning, MAJOR for obligations.
+2. Increment the version: PATCH for wording, MINOR for a new provision or a change in meaning, MAJOR for removing or altering an obligation (EE-POL-0001 §9).
    Set `translation-of` to the new version only after you have reviewed the translation.
-3. Run `lune run scripts/gen_registry`.
-4. A new MAJOR.MINOR makes every child report `STALE_PARENT`. Review each child, then update its citation.
+3. A revision of an approved document goes `In Review` at its new version, and becomes `Approved` only when the Approver of record approves it (EE-POL-0004 §7).
+4. Run `lune run scripts/gen_registry`.
+5. A new MAJOR.MINOR makes every child report `STALE_PARENT`. Review each child, then update its citation.
 
 ### Committing
 
@@ -73,6 +75,8 @@ Signed-off-by: <the person you work for> <their email>
 Change-Request: CR-NNNN
 Co-Authored-By: <your name> <your email>
 ```
+
+You write `Signed-off-by` only for the person you work for, in their git identity and with their authority, never as yourself (EE-POL-0006 §4).
 
 ### Finishing a change request
 
@@ -94,5 +98,9 @@ Co-Authored-By: <your name> <your email>
 | A Korean commit subject | `COMMIT_SUBJECT_NOT_ENGLISH`. Korean goes in `[KO]` | EE-STD-0007 §4 |
 | Adding a rule without documenting it | `UNDOCUMENTED_RULE`. Cite it in both versions of its document | EE-POL-0001 §14 |
 | A PowerShell script with Korean text and no BOM | `MISSING_UTF8_BOM` | EE-STD-0009 §3 |
+| Revising an approved document | Impossible until CR-0006. Now it goes `In Review` at its new version | EE-POL-0001 §9, CR-0006 |
+| Filing a record without a section of its form | `TEMPLATE_SECTION_MISSING` | EE-POL-0001 §8, CR-0006 |
+| Working on the branch an agent worktree starts on | `BRANCH_NAME_FORMAT`. Create `feature/CR-NNNN-<slug>` first | CR-0006 |
+| Translating a branch name, rule code or field value | Code identifiers stay as they are, in backticks | EE-POL-0002 §6 |
 
 When you step on a new one, add it here with its record (EE-POL-0006 §6).
