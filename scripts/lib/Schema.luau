@@ -76,6 +76,21 @@ local KINDS: { Kind } = {
 		"Change Requests",
 		"변경 요청"
 	),
+	record(
+		"APR",
+		"docs/records/approval-requests",
+		{ "Draft", "Submitted", "Approved", "Rejected", "Withdrawn" },
+		"Approval Requests",
+		"품의서"
+	),
+	record(
+		"STM",
+		"docs/records/statements",
+		{ "Draft", "Submitted", "Accepted", "Returned" },
+		"Statements of Circumstances",
+		"경위서"
+	),
+	record("MIN", "docs/records/minutes", { "Draft", "Approved" }, "Meeting Minutes", "회의록"),
 }
 
 local Schema = {}

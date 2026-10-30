@@ -296,4 +296,26 @@ case("identifiers of unregistered kinds are not references", function()
 	Assert.codes(check(files), {})
 end)
 
+-- Record kinds / 기록 종류
+
+case("approval requests, statements and minutes are records", function()
+	local files = Fixtures.repository()
+	local statement = "docs/records/statements/STM-0001-late-report.md"
+	Fixtures.add(files, "docs/records/approval-requests/APR-0001-meeting-room.md", "APR-0001", "Meeting Room")
+	Fixtures.add(files, statement, "STM-0001", "Late Report")
+	Fixtures.replace(files, statement, "status: Approved", "status: Accepted")
+	Fixtures.add(files, "docs/records/minutes/MIN-0001-kickoff.md", "MIN-0001", "Kickoff")
+	local index = Documents.check(Snapshot.new(files), Report.new())
+	Assert.codes(check(files), {})
+	Assert.equal(index.byId["STM-0001"].kind.controlled, false, "statement is a record")
+end)
+
+case("each record kind keeps its own statuses", function()
+	local files = Fixtures.repository()
+	local minutes = "docs/records/minutes/MIN-0001-kickoff.md"
+	Fixtures.add(files, minutes, "MIN-0001", "Kickoff")
+	Fixtures.replace(files, minutes, "status: Approved", "status: Implemented")
+	Assert.codes(check(files), { "INVALID_FIELD_VALUE" })
+end)
+
 return { name = "Documents", cases = cases } :: Assert.Suite

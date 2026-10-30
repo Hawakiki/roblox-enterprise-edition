@@ -17,6 +17,7 @@ local stdio = require("@lune/stdio")
 
 local Catalog = require("./lib/Catalog")
 local CommitMessage = require("./lib/CommitMessage")
+local Coverage = require("./lib/Coverage")
 local Documents = require("./lib/Documents")
 local Git = require("./lib/Git")
 local Hygiene = require("./lib/Hygiene")
@@ -58,7 +59,9 @@ local function checkRepository(): never
 	local report = Report.new()
 	Hygiene.check(snapshot, report)
 	Toolchain.check(snapshot, report)
-	Registry.check(snapshot, Documents.check(snapshot, report), report)
+	local index = Documents.check(snapshot, report)
+	Coverage.check(index, report)
+	Registry.check(snapshot, index, report)
 	return finish(report, "files")
 end
 

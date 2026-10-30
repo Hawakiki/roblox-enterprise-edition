@@ -184,6 +184,12 @@ local RULES: { Rule } = {
 		standard = "EE-POL-0001",
 		summary = "The document registry must match the output of scripts/gen_registry.luau.",
 	},
+	{
+		code = "UNDOCUMENTED_RULE",
+		severity = "ERROR",
+		standard = "EE-POL-0001",
+		summary = "Every rule must be cited, in both languages, by the document that mandates it.",
+	},
 
 	-- Translation / 번역
 	{

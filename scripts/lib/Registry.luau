@@ -56,6 +56,7 @@ local STATUS_KO: { [string]: string } = {
 	["In Review"] = "검토 중",
 	["Proposed"] = "제안",
 	["Rejected"] = "반려",
+	["Returned"] = "재작성 요청",
 	["Submitted"] = "상신",
 	["Superseded"] = "대체됨",
 	["Withdrawn"] = "철회",
@@ -215,6 +216,9 @@ local function render(index: Documents.Index, language: Language): string
 end
 
 local Registry = {}
+
+-- Korean labels for every status of every kind. EE-POL-0002 lists the same terms.
+Registry.STATUS_KO = STATUS_KO
 
 -- Returns the English and the Korean registry.
 function Registry.render(index: Documents.Index): (string, string)
