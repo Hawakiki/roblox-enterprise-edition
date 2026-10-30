@@ -91,6 +91,32 @@ local RULES: { Rule } = {
 		summary = "A module is an interface named I..., or its name ends with an approved suffix.",
 	},
 
+	-- Doc comments of the Roblox code / 로블록스 코드의 문서 주석
+	{
+		code = "MISSING_MODULE_DOC",
+		severity = "ERROR",
+		standard = "EE-STD-0001",
+		summary = "Every module under src/ opens with a Moonwave doc comment with @class; a contract adds @interface.",
+	},
+	{
+		code = "MISSING_FUNCTION_DOC",
+		severity = "ERROR",
+		standard = "EE-STD-0001",
+		summary = "Every public function under src/ carries a Moonwave doc comment directly above it.",
+	},
+	{
+		code = "INCOMPLETE_DOC_COMMENT",
+		severity = "ERROR",
+		standard = "EE-STD-0001",
+		summary = "A function doc comment carries @within, a @param for each parameter, and @return if it returns.",
+	},
+	{
+		code = "DOC_COMMENT_LANGUAGE",
+		severity = "ERROR",
+		standard = "EE-STD-0001",
+		summary = "Classes and interfaces are described in English and Korean; other doc comments in English.",
+	},
+
 	-- Document control / 문서 통제
 	{
 		code = "MISSING_FRONTMATTER",
