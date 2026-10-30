@@ -77,6 +77,20 @@ local RULES: { Rule } = {
 		summary = "Every file that can carry a comment opens with an MIT SPDX header.",
 	},
 
+	-- Architecture of the Roblox code / 로블록스 코드의 구조
+	{
+		code = "LAYER_VIOLATION",
+		severity = "ERROR",
+		standard = "EE-STD-0006",
+		summary = "Every module belongs to a layer and requires only the layers it may depend on.",
+	},
+	{
+		code = "MODULE_NAME_SUFFIX",
+		severity = "ERROR",
+		standard = "EE-STD-0002",
+		summary = "A module is an interface named I..., or its name ends with an approved suffix.",
+	},
+
 	-- Document control / 문서 통제
 	{
 		code = "MISSING_FRONTMATTER",

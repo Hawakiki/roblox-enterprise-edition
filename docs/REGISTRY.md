@@ -17,8 +17,8 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Policies | 8 |
 | Standards | 9 |
 | Templates | 7 |
-| Change Requests | 6 |
-| **Total** | **31** |
+| Change Requests | 7 |
+| **Total** | **32** |
 
 ## Charter
 
@@ -44,11 +44,11 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | ID | Title | Version | Status | Classification | Owner | Parent |
 |---|---|---|---|---|---|---|
 | [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.md) | Luau Coding Standard | 1.0.0 | Approved | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
-| [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 0.1.0 | Draft | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.0 |
 | [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 0.1.0 | Draft | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
 | [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.0.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
 | [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 0.1.0 | Draft | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
-| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 0.1.0 | Draft | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.0 |
 | [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.md) | Commit and Branch Standard | 1.0.1 | Approved | Internal | Compliance Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0008](03-standards/EE-STD-0008-versioning.md) | Enterprise Versioning Standard | 0.1.0 | Draft | Internal | Release Engineering | EE-CHR-0001@1.0 |
 | [EE-STD-0009](03-standards/EE-STD-0009-text-and-documentation.md) | Text File and Documentation Standard | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
@@ -75,3 +75,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0004](records/change-requests/CR-0004-engineering-standards.md) | Establish the Change Management Policy and the Engineering Standards | 1.2.0 | Implemented | Internal | Compliance Engineering |
 | [CR-0005](records/change-requests/CR-0005-ai-onboarding.md) | Onboard the AI Workforce | 1.2.0 | Implemented | Internal | Human Resources |
 | [CR-0006](records/change-requests/CR-0006-drill-findings.md) | Correct the Findings of the First Onboarding Drill | 1.1.0 | Implemented | Internal | Document Control Office |
+| [CR-0007](records/change-requests/CR-0007-application-framework.md) | Establish the Application Framework | 1.1.0 | Implemented | Internal | Architecture Review Board |

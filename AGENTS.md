@@ -19,6 +19,7 @@ rokit install                          # pinned toolchain: rojo, stylua, luau-ls
 lune setup                             # Lune type definitions for luau-lsp
 git config core.hooksPath .githooks    # the commit-msg hook, once per clone
 tools/check.sh                         # or tools/check.ps1; it must end with 0 errors
+rojo serve default.project.json        # sync src/ into Roblox Studio
 ```
 
 ## 2. Absolute Rules
@@ -30,6 +31,8 @@ tools/check.sh                         # or tools/check.ps1; it must end with 0 
 4. **Read `git status` before every commit,** and stage only what you meant to (CR-0002).
 5. **Never read `.env`, and never push.**
 6. **When unsure, run checkpatch.** Every error ends with the document that mandates it.
+7. **The governance is frozen.** Add or remove no policy, standard, procedure, form, record kind or document rule; numbers already reserved may still be written.
+   The work happens in `src/` (CR-0007).
 
 ## 3. Where to Look
 
@@ -41,6 +44,7 @@ tools/check.sh                         # or tools/check.ps1; it must end with 0 
 | File a change request | EE-TPL-0002 |
 | Write a new controlled document | EE-TPL-0001 |
 | Write Luau | EE-STD-0001 |
+| Write Roblox code under `src/` | EE-STD-0006, EE-STD-0002 |
 | Add any file | EE-STD-0004, EE-STD-0009 |
 | Add a checkpatch rule | EE-POL-0001 §14 |
 | Approve something | Nothing. You do not approve (EE-POL-0006 §4). |
@@ -102,5 +106,6 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Filing a record without a section of its form | `TEMPLATE_SECTION_MISSING` | EE-POL-0001 §8, CR-0006 |
 | Working on the branch an agent worktree starts on | `BRANCH_NAME_FORMAT`. Create `feature/CR-NNNN-<slug>` first | CR-0006 |
 | Translating a branch name, rule code or field value | Code identifiers stay as they are, in backticks | EE-POL-0002 §6 |
+| Using a class instance where its contract type is expected | Both solvers reject it. Constructors return the contract, and `_implements` declares it | EE-STD-0006 §6 |
 
 When you step on a new one, add it here with its record (EE-POL-0006 §6).
