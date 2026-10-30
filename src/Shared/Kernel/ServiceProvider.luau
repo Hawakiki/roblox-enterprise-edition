@@ -8,6 +8,8 @@
 	순환 의존성을 거부하고, 싱글턴은 생성의 역순으로 해제한다.
 ]]
 
+local ErrorLevelConstants = require(script.Parent.ErrorLevelConstants)
+local SequenceConstants = require(script.Parent.SequenceConstants)
 local ServiceToken = require(script.Parent.ServiceToken)
 
 export type Lifetime = "Singleton" | "Transient"
@@ -44,24 +46,27 @@ end
 
 function ServiceProvider.GetRequiredService<T>(self: ServiceProvider, token: ServiceToken.ServiceToken<T>): T
 	if self._disposed then
-		error("a disposed service provider cannot resolve services", 2)
+		error("a disposed service provider cannot resolve services", ErrorLevelConstants.CALLER)
 	end
 	local descriptor = self._descriptors[token.name]
 	if descriptor == nil then
-		error(string.format("no service is registered for %s", token.name), 2)
+		error(string.format("no service is registered for %s", token.name), ErrorLevelConstants.CALLER)
 	end
 	if descriptor.lifetime == "Singleton" and self._singletons[token.name] ~= nil then
 		return self._singletons[token.name]
 	end
 	if table.find(self._resolving, token.name) then
-		error(string.format("circular dependency: %s -> %s", table.concat(self._resolving, " -> "), token.name), 2)
+		error(
+			string.format("circular dependency: %s -> %s", table.concat(self._resolving, " -> "), token.name),
+			ErrorLevelConstants.CALLER
+		)
 	end
 
 	table.insert(self._resolving, token.name)
 	local ok, service = pcall(descriptor.factory, self)
 	table.remove(self._resolving)
 	if not ok then
-		error(service, 0)
+		error(service, ErrorLevelConstants.WITHOUT_POSITION)
 	end
 
 	if descriptor.lifetime == "Singleton" then
@@ -77,7 +82,7 @@ function ServiceProvider.Dispose(self: ServiceProvider)
 		return
 	end
 	self._disposed = true
-	for index = #self._creationOrder, 1, -1 do
+	for index = #self._creationOrder, SequenceConstants.FIRST_INDEX, SequenceConstants.REVERSE_STEP do
 		local service: any = self._creationOrder[index]
 		if type(service) == "table" and type(service.Dispose) == "function" then
 			(service :: any):Dispose()

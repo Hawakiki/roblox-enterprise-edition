@@ -8,6 +8,7 @@
 	제공자를 만든 뒤에는 더 이상 아무것도 받지 아니한다.
 ]]
 
+local ErrorLevelConstants = require(script.Parent.ErrorLevelConstants)
 local ServiceProvider = require(script.Parent.ServiceProvider)
 local ServiceToken = require(script.Parent.ServiceToken)
 
@@ -36,10 +37,13 @@ local function register(
 	factory: (provider: any) -> any
 )
 	if self._built then
-		error("the service provider has been built; the collection accepts no more services", 3)
+		error(
+			"the service provider has been built; the collection accepts no more services",
+			ErrorLevelConstants.CALLER_OF_CALLER
+		)
 	end
 	if self._descriptors[token.name] ~= nil then
-		error(string.format("%s is already registered", token.name), 3)
+		error(string.format("%s is already registered", token.name), ErrorLevelConstants.CALLER_OF_CALLER)
 	end
 	self._descriptors[token.name] = {
 		token = token,

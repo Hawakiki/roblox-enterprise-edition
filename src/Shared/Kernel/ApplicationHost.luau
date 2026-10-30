@@ -7,7 +7,9 @@
 	애플리케이션 호스트는 호스팅 서비스를 주어진 순서대로 시작하고 역순으로 멈추며, 마지막에 서비스 제공자를 해제한다.
 ]]
 
+local ErrorLevelConstants = require(script.Parent.ErrorLevelConstants)
 local IHostedService = require(script.Parent.IHostedService)
+local SequenceConstants = require(script.Parent.SequenceConstants)
 local ServiceProvider = require(script.Parent.ServiceProvider)
 local ServiceToken = require(script.Parent.ServiceToken)
 
@@ -44,7 +46,7 @@ end
 
 function ApplicationHost.Start(self: ApplicationHost)
 	if self._state ~= "Created" then
-		error(string.format("a host that is %s cannot start", self._state), 2)
+		error(string.format("a host that is %s cannot start", self._state), ErrorLevelConstants.CALLER)
 	end
 	self._state = "Running"
 	for _, token in self._hostedServices do
@@ -59,7 +61,7 @@ function ApplicationHost.Stop(self: ApplicationHost)
 		return
 	end
 	self._state = "Stopped"
-	for index = #self._started, 1, -1 do
+	for index = #self._started, SequenceConstants.FIRST_INDEX, SequenceConstants.REVERSE_STEP do
 		self._started[index]:StopAsync()
 	end
 	table.clear(self._started)

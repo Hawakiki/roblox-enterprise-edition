@@ -8,6 +8,9 @@
 	기능이 만드는 모든 연결, 인스턴스, 스레드, 해제 가능한 객체는 정확히 하나의 범위에 속한다.
 ]]
 
+local ErrorLevelConstants = require(script.Parent.ErrorLevelConstants)
+local SequenceConstants = require(script.Parent.SequenceConstants)
+
 type ScopeState = {
 	_resources: { any },
 	_disposed: boolean,
@@ -53,10 +56,13 @@ end
 -- Takes ownership of a resource and returns it, so that acquisition and adoption read as one expression.
 function ResourceScope.Adopt<T>(self: ResourceScope, resource: T): T
 	if self._disposed then
-		error("a disposed resource scope cannot adopt a resource", 2)
+		error("a disposed resource scope cannot adopt a resource", ErrorLevelConstants.CALLER)
 	end
 	if not isReleasable(resource) then
-		error(string.format("a resource scope cannot release a value of type %s", typeof(resource)), 2)
+		error(
+			string.format("a resource scope cannot release a value of type %s", typeof(resource)),
+			ErrorLevelConstants.CALLER
+		)
 	end
 	table.insert(self._resources, resource)
 	return resource
@@ -73,7 +79,7 @@ function ResourceScope.Dispose(self: ResourceScope)
 	end
 	self._disposed = true
 	local failures = {}
-	for index = #self._resources, 1, -1 do
+	for index = #self._resources, SequenceConstants.FIRST_INDEX, SequenceConstants.REVERSE_STEP do
 		local resource = self._resources[index]
 		local ok, problem = pcall(function(): any
 			release(resource)
@@ -84,8 +90,8 @@ function ResourceScope.Dispose(self: ResourceScope)
 		end
 	end
 	table.clear(self._resources)
-	if #failures > 0 then
-		error("resources failed to release: " .. table.concat(failures, "; "), 2)
+	if #failures > SequenceConstants.EMPTY_LENGTH then
+		error("resources failed to release: " .. table.concat(failures, "; "), ErrorLevelConstants.CALLER)
 	end
 end
 
@@ -96,7 +102,7 @@ function ResourceScope.Using<T, R>(resource: T, body: (T) -> R): R
 	local ok, result = pcall(body, resource)
 	scope:Dispose()
 	if not ok then
-		error(result, 0)
+		error(result, ErrorLevelConstants.WITHOUT_POSITION)
 	end
 	return result
 end
