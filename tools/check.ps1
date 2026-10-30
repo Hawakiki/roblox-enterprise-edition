@@ -10,30 +10,50 @@
 param([switch]$Fix)
 
 $status = 0
+
+# Runs both solvers over one target / 대상 하나에 두 솔버를 돌린다
+function Invoke-Analysis([string]$Label, [string[]]$Arguments) {
+	foreach ($solver in 'false', 'true') {
+		# stderr lines captured with 2>&1 are ErrorRecords on 5.1 / 5.1 에서 2>&1 로 받은 stderr 줄은 ErrorRecord 라 문자열로 바꾼다
+		$out = @(& luau-lsp analyze "--flag:LuauSolverV2=$solver" @Arguments 2>&1 |
+				ForEach-Object { "$_" } | Where-Object { $_ -notmatch '^\[' })
+		$count = @($out | Where-Object { $_ -cmatch 'Error' }).Count
+		Write-Output "$Label solverV2=${solver}: $count errors"
+		if ($count -ne 0) {
+			$out | Select-Object -First 60
+			$script:status = 1
+		}
+	}
+}
+
 Push-Location (Split-Path -Parent $PSScriptRoot)
 try {
 	# Lune type definitions, which scripts/.luaurc points luau-lsp at / scripts/.luaurc 가 가리키는 Lune 타입 정의
 	lune setup | Out-Null
 
+	# Roblox type definitions: shared by the workspace, then local, downloaded if neither exists
+	# Roblox 타입 정의: 워크스페이스 공용(../.luau) → 프로젝트 로컬 순으로 찾고, 없으면 받는다
+	$defs = $null
+	foreach ($candidate in '../.luau/globalTypes.d.luau', './globalTypes.d.luau') {
+		if (Test-Path -LiteralPath $candidate) { $defs = $candidate; break }
+	}
+	if (-not $defs) {
+		$defs = './globalTypes.d.luau'
+		Invoke-WebRequest -UseBasicParsing -OutFile $defs 'https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/main/scripts/globalTypes.d.luau'
+	}
+
 	if ($Fix) {
-		stylua scripts
+		stylua scripts src
 		lune run scripts/gen_registry
 	} else {
-		stylua --check scripts
+		stylua --check scripts src
 		if ($LASTEXITCODE -ne 0) { $status = 1 }
 	}
 
-	foreach ($solver in 'false', 'true') {
-		# stderr lines captured with 2>&1 are ErrorRecords on 5.1 / 5.1 에서 2>&1 로 받은 stderr 줄은 ErrorRecord 라 문자열로 바꾼다
-		$out = @(& luau-lsp analyze --platform=standard "--flag:LuauSolverV2=$solver" scripts 2>&1 |
-				ForEach-Object { "$_" } | Where-Object { $_ -notmatch '^\[' })
-		$count = @($out | Where-Object { $_ -cmatch 'Error' }).Count
-		Write-Output "solverV2=${solver}: $count errors"
-		if ($count -ne 0) {
-			$out | Select-Object -First 60
-			$status = 1
-		}
-	}
+	rojo sourcemap default.project.json --include-non-scripts -o sourcemap.json | Out-Null
+
+	Invoke-Analysis 'scripts' @('--platform=standard', 'scripts')
+	Invoke-Analysis 'src' @('--platform=roblox', '--sourcemap=sourcemap.json', "--definitions=$defs", 'src')
 
 	lune run scripts/tests/run
 	if ($LASTEXITCODE -ne 0) { $status = 1 }

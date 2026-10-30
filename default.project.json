@@ -1,0 +1,37 @@
+{
+  "name": "EnterpriseEdition",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "EnterpriseEdition": {
+        "$path": "src/Shared"
+      }
+    },
+    "ServerScriptService": {
+      "EnterpriseEdition": {
+        "$path": "src/Server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "EnterpriseEdition": {
+          "$path": "src/Client"
+        }
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true
+      },
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [512, 20, 512],
+          "Position": [0, -10, 0],
+          "Color": [0.38, 0.37, 0.39]
+        }
+      }
+    }
+  }
+}
