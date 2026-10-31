@@ -118,6 +118,7 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Expecting an agent worktree to start from your branch | It starts from `main`. The first code review found the release tools missing there, and had to read them from the release branch | CR-0018 |
 | Translating a branch name, rule code or field value | Code identifiers stay as they are, in backticks | EE-POL-0002 §6 |
 | Using a class instance where its contract type is expected | The old solver rejects it, and the new one accepts it. Constructors return the contract through `:: any`, and `_implements` declares it | EE-STD-0006 §6, ADR-0001 |
+| Keeping deliberately invalid Luau in the repository | EE-STD-0001 §4.1 holds every `.luau` file to both solvers, and excluding a folder from `tools/check` only switches the standard off there. Keep such code in strings, and write it under the ignored `build/` when the test runs | EE-STD-0001 §4, CR-0020 |
 | A doc comment inside a table constructor | Moonwave drops it without a word. Assign each documented value in a statement of its own | EE-STD-0001 §6, CR-0008 |
 | Running `tools/check` in an agent worktree | `../.luau/globalTypes.d.luau` pointed into `.claude/worktrees/`, so the Roblox definitions were downloaded or missing. `tools/check` now asks git for the main checkout | CR-0008, CR-0009 |
 | Implementing a `Submitted` request | CR-0008 was implemented before it was approved. Wait for approval in words | EE-POL-0004 §4, CR-0009 |
