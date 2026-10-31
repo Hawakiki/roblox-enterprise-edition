@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
+
 # Build output / 빌드 결과물
 /build/
 /*.rbxl
@@ -9,11 +12,18 @@
 sourcemap.json
 globalTypes.d.luau
 
+# Written by lune setup into the folder it runs in; scripts/.luaurc is the real one (CR-0002)
+# lune setup 이 실행한 폴더에 만드는 파일. 실제 설정은 scripts/.luaurc (CR-0002)
+/.luaurc
+
 # Secrets / 비밀 정보
 .env
 
 # Personal agent settings / 개인용 에이전트 설정
 .claude/settings.local.json
+
+# Worktrees of agents that Claude Code starts (CR-0006) / Claude Code 가 띄운 에이전트의 작업 사본
+/.claude/worktrees/
 
 # OS
 .DS_Store

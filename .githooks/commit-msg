@@ -1,0 +1,8 @@
+#!/bin/sh
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
+#
+# Rejects commit messages that violate EE-STD-0007. Enable once per clone:
+# EE-STD-0007 을 어긴 커밋 메시지를 거부한다. 클론마다 한 번 연결한다:
+#   git config core.hooksPath .githooks
+exec lune run scripts/checkpatch --commit-msg "$1"

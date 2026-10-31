@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
+#
+# Codex reads AGENTS.md on its own. This file only applies the guardrails of EE-POL-0006 §7,
+# and Codex reads it only after the project is trusted.
+# Codex 는 AGENTS.md 를 스스로 읽는다. 이 파일은 EE-POL-0006 §7 의 안전장치만 적용하며,
+# Codex 는 프로젝트를 신뢰한 뒤에만 이 파일을 읽는다.
+
+# Writes stay inside the repository. / 쓰기는 저장소 안으로 한정한다.
+sandbox_mode = "workspace-write"
+
+# The agent asks before it leaves the sandbox. / 샌드박스를 벗어나기 전에 묻는다.
+approval_policy = "on-request"
+
+# The network stays closed, so nothing is pushed. / 네트워크를 닫아 push 를 막는다.
+[sandbox_workspace_write]
+network_access = false
