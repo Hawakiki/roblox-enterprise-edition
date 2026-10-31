@@ -178,7 +178,7 @@ local function mountComponent(
 	node.scope = scope
 	node.component = component
 	node.rendered = mountNode(self, renderComponent(node), parent, key)
-	component:DidMount()
+	component:DidMount(element.props)
 	return node
 end
 

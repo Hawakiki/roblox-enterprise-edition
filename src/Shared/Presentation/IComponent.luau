@@ -44,7 +44,7 @@ export type Element = {
 	@interface IComponent
 	@within IComponent
 	.Render (self: any, props: Props) -> Element -- Describes what the component shows for its properties.
-	.DidMount (self: any) -> () -- Runs once what the component rendered is in the place.
+	.DidMount (self: any, props: Props) -> () -- Runs once what the component rendered is in the place, with the properties it rendered from.
 	.WillUnmount (self: any) -> () -- Runs before the component leaves the place; its scope is disposed after.
 
 	The members that every component implements. A component keeps its state in its own fields, and asks its
@@ -55,7 +55,7 @@ export type Element = {
 ]=]
 export type IComponent = {
 	Render: (self: any, props: Props) -> Element,
-	DidMount: (self: any) -> (),
+	DidMount: (self: any, props: Props) -> (),
 	WillUnmount: (self: any) -> (),
 }
 
