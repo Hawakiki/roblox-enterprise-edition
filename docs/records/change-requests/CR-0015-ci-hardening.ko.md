@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0015
 title: 지속적 통합 강화
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 지속적 통합 강화
@@ -69,9 +69,13 @@ CI 는 다시 검사할 수 없었던 것을 통과시키게 된다.
 |---|---|---|---|
 | 기안 | 릴리스 엔지니어링 | 상신 | 2026-10-31 |
 | 결재 | Hawakiki | 제출 전 승인 | 2026-10-31 |
+| 시행 | 릴리스 엔지니어링 | 시행 완료 | 2026-10-31 |
 
 ## 7. 시행 기록
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `2174d2c` | 본 변경 요청 등록 |
+| `4056b43` | `tools/check` 가 실행할 수 없는 모든 검사를 실패시키고, `tools/check.ps1` 이 오류 처리 방식을 스스로 정하게 함 |
+| `5a87bd1` | 워크플로를 고정 이미지 위의 Linux 작업과 Windows 작업으로 나누고, 툴체인을 캐시하고, Dependabot 을 추가하고, ruleset 두 개를 파일로 보관함 |
+| `3bbfdf5` | 두 README 와 `CONTRIBUTING.md` 에 강화된 CI 를 설명하고, `AGENTS.md` 에 지뢰 세 가지를 기록함 |
