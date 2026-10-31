@@ -25,8 +25,11 @@ for candidate in "$MAIN/../.luau/globalTypes.d.luau" ./globalTypes.d.luau; do
 	if [ -f "$candidate" ]; then DEFS="$candidate"; break; fi
 done
 if [ -z "$DEFS" ]; then
+	# Those of the luau-lsp release that rokit.toml pins, so that a fresh checkout analyses as every other (CR-0013)
+	# rokit.toml 이 고정한 luau-lsp 릴리스의 것을 받아, 새로 받은 사본도 다른 사본과 똑같이 분석한다(CR-0013)
+	LUAU_LSP=$(sed -n 's/^luau-lsp = ".*@\(.*\)"$/\1/p' rokit.toml)
 	DEFS=./globalTypes.d.luau
-	curl -sSL -o "$DEFS" https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/main/scripts/globalTypes.d.luau
+	curl -sSfL -o "$DEFS" "https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/$LUAU_LSP/scripts/globalTypes.d.luau"
 fi
 
 if [ "${1:-}" = "--fix" ]; then
