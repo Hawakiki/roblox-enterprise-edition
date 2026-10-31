@@ -49,7 +49,8 @@ rojo serve default.project.json        # sync src/ into Roblox Studio
 | Write Roblox code under `src/` | EE-STD-0006, EE-STD-0002, EE-STD-0003, EE-STD-0005, EE-STD-0001 §6 |
 | Add any file | EE-STD-0004, EE-STD-0009 |
 | Add a checkpatch rule | EE-POL-0001 §14 |
-| Approve something | Nothing. You do not approve (EE-POL-0006 §4). |
+| Prepare a release | EE-STD-0008 |
+| Approve something | Nothing. You do not approve, not even a deployment waiting in `production` (EE-POL-0006 §4). |
 
 Every rule, with the document that mandates it: `lune run scripts/checkpatch --list-rules`.
 
@@ -90,6 +91,13 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 2. Report to the Approver of record, and wait.
 3. Only after approval in words: merge into `develop` with `--no-ff` and an `Approved-by` trailer that names the Approver.
 
+### Preparing a release
+
+1. File a change request for the release, and prepare it on `release/<version>` (EE-STD-0008 §5).
+2. Read the summaries of the change requests it releases. They become its notes, word for word (EE-STD-0008 §5).
+3. Only after approval in words: merge into `main` and `develop`, and tag the merge on `main`.
+4. A person pushes the tag, and a person approves the deployment. Run `lune run scripts/release_gate` and tell them when the calendar allows it.
+
 ## 5. Mines Your Predecessors Stepped On
 
 | Mine | What happened | Record |
@@ -124,5 +132,8 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | A commit subject without a scope | `COMMIT_SUBJECT_FORMAT`. `ci:` needs one, as in `ci(workflow):` | EE-STD-0007 §4 |
 | Leaving `rojo serve` connected while the tree changes | Rojo can sync a second copy of a folder such as `EnterpriseEdition`. Stop the server when you are done, and reconnect after large changes | CR-0011 |
 | Committing without reading the checkpatch result | The commit-msg hook checks only the message, so a dangling reference was committed. Run checkpatch before every commit | CR-0011 |
+| Releasing before the standard its reservation promised | 1.0.0 shipped before EE-STD-0008 was written, on a Saturday in Seoul that was still Friday in parts of the Pacific. Run `scripts/release_gate` first | EE-STD-0008 §7, CR-0016 |
+| Writing to `io` in a Lune script | Lune has no `io`, and the script failed only when it ran. Write with `stdio.write` from `@lune/stdio` | CR-0016 |
+| Expecting the type checker to know that `process.exit` does not return | Both solvers still read the value as optional after the exit. `return` after it | CR-0016 |
 
 When you step on a new one, add it here with its record (EE-POL-0006 §6).
