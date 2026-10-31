@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0023
 title: 계약 메서드마다 래퍼로 선언
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 계약 메서드마다 래퍼로 선언
@@ -68,4 +68,12 @@ checkpatch 규칙 두 개가 이 형태를 지키고, 생성자 밖에 있는 `a
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `a6fffe0` | 본 변경 요청 등록 |
+| `68406ca` | `_implements` 테이블 열다섯 개의 메서드 서른한 개를 래퍼로 감싸고, 생성자 밖의 캐스트 네 개를 캐스트 없이 다시 씀 |
+| `6fdb7cd` | `IMPLEMENTS_NOT_WRAPPED` 와 `CAST_THROUGH_ANY` 를 가진 `scripts/lib/Contracts.luau` 를 테스트와 함께 추가하고, EE-STD-0006 을 1.1.0 으로 `In Review` 개정함 |
+| `eb0286e` | ADR-0002 를 제안하고, CR-0020 의 적합도 테스트가 이를 따르게 하며, `AGENTS.md` 가 이를 가리키게 하고 지뢰를 하나 더함 |
+
+규칙을 커밋하기 전에, `InMemoryCoinWalletRepository` 의 메서드 하나를 잘못된 타입의 반환과 남는 매개변수, 두 가지로 어긋나게 하였다. 두 솔버 모두 래퍼에서 둘 다 보고하였는데, ADR-0001 아래에서 새 솔버는 아무것도 보고하지 않았었다. 그 뒤 변경을 되돌렸다.
+검사는 블록을 세어 래퍼 본문을 건너뛰며, 식으로 쓰인 `if` 는 블록을 열지 않는다. 모든 `if` 를 세면 테스트가 실패함을 확인하였다.
+이제 적합도 테스트는 래퍼 뒤의 어긋남 세 가지에 대해 각 솔버에서 오류 세 건을 찾는다. ADR-0002 가 밝힌 사실이다.
+로블록스 Studio 는 자체 타입 정의로 스크립트를 검사한다. Studio 편집기가 luau-lsp 처럼 `string` 타입의 클래스 이름을 받는 `Instance.new` 를 받아들이는지는, 두 번째 요청에서 Studio 를 확인하는 사람에게 맡긴다.

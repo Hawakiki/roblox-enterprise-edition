@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0023
 title: Declare Each Contract Method Through a Wrapper
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -69,4 +69,12 @@ Revert the merge commit of this change. The bare entries of `_implements` and th
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `a6fffe0` | Filed this change request. |
+| `68406ca` | Wrapped the thirty-one methods of the fifteen tables named `_implements`, and wrote the four casts outside a constructor without one. |
+| `6fdb7cd` | Added `scripts/lib/Contracts.luau` with `IMPLEMENTS_NOT_WRAPPED` and `CAST_THROUGH_ANY`, with tests, and revised EE-STD-0006 to 1.1.0, `In Review`. |
+| `eb0286e` | Proposed ADR-0002, turned the fitness test of CR-0020 to it, and pointed `AGENTS.md` at it, with a new mine. |
+
+Before the rules were committed, a method of `InMemoryCoinWalletRepository` was made to drift in two ways, a return of the wrong type and a parameter too many: both solvers reported both at the wrapper, where the new solver had reported nothing under ADR-0001. The change was then undone.
+The check skips the body of a wrapper by counting blocks, and an `if` that starts an expression opens none. A test proves that counting every `if` fails it.
+The fitness test now finds three errors under each solver for three drifts behind wrappers, the fact that ADR-0002 states.
+Roblox Studio checks scripts against type definitions of its own. Whether its editor accepts `Instance.new` with a class name typed as `string`, as luau-lsp does, is left to the person who checks Studio in the second request.
