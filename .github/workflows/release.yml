@@ -1,0 +1,109 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
+#
+# Deploys a release (EE-STD-0008 §6, CR-0016). A tag v* is held against the calendar, every check is run, the
+# place is built and the notes are generated; the release is published on GitHub once the Approver of record
+# approves the deployment in the environment production, and the calendar has been consulted once more.
+# 릴리스를 배포한다(EE-STD-0008 §6, CR-0016). v* 태그를 달력에 대조하고, 모든 검사를 돌리고, 플레이스를 빌드하고,
+# 릴리스 노트를 만든다. 기록상 결재권자가 production 환경에서 배포를 승인하고 달력을 한 번 더 확인하면 GitHub 에
+# 릴리스를 게시한다.
+
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  calendar:
+    name: Calendar
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install the pinned toolchain
+        uses: CompeyDev/setup-rokit@1d9390883f7ebce19d48f5b8d006e11d387c92ab # v0.2.1
+        with:
+          version: v1.2.0
+          cache: true
+
+      - name: Refuse a deployment during a change freeze
+        run: lune run scripts/release_gate
+
+  build:
+    name: Check, build and write the notes
+    needs: calendar
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out the whole history
+        # The notes need the previous release tag and every commit since it / 릴리스 노트에는 이전 태그와 그 뒤의 모든 커밋이 필요하다
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Install the pinned toolchain
+        uses: CompeyDev/setup-rokit@1d9390883f7ebce19d48f5b8d006e11d387c92ab # v0.2.1
+        with:
+          version: v1.2.0
+          cache: true
+
+      - name: Run every check
+        run: tools/check.sh
+
+      - name: Build the place
+        run: rojo build default.project.json -o "EnterpriseEdition-${GITHUB_REF_NAME}.rbxl"
+
+      - name: Generate the notes
+        run: lune run scripts/release_notes "${GITHUB_REF_NAME}" > notes.md
+
+      - name: Keep what is to be published
+        # Built once and published as built / 한 번 빌드하고, 빌드한 그대로 게시한다
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release
+          path: |
+            EnterpriseEdition-*.rbxl
+            notes.md
+          if-no-files-found: error
+
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-24.04
+    # The deployment waits here for the review of the Approver of record (EE-STD-0008 §6, EE-POL-0004 §7).
+    # 배포는 여기서 기록상 결재권자의 검토를 기다린다(EE-STD-0008 §6, EE-POL-0004 §7).
+    environment: production
+    permissions:
+      contents: write
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install the pinned toolchain
+        uses: CompeyDev/setup-rokit@1d9390883f7ebce19d48f5b8d006e11d387c92ab # v0.2.1
+        with:
+          version: v1.2.0
+          cache: true
+
+      - name: Consult the calendar again
+        # An approval may come later than the first look at the calendar / 승인은 달력을 처음 본 뒤에 올 수 있다
+        run: lune run scripts/release_gate
+
+      - name: Fetch what was built
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release
+
+      - name: Publish the release on GitHub
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "${GITHUB_REF_NAME}" EnterpriseEdition-*.rbxl
+          --repo "${GITHUB_REPOSITORY}"
+          --title "EnterpriseEdition ${GITHUB_REF_NAME}"
+          --notes-file notes.md
+          --verify-tag

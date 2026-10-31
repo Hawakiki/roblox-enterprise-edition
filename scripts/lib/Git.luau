@@ -73,6 +73,15 @@ function Git.isMerging(root: string): boolean
 	return ok
 end
 
+-- The release tag before a tag, or nil for the first release (EE-STD-0008 §5).
+function Git.previousReleaseTag(root: string, tag: string): string?
+	local ok, out = run(root, { "describe", "--tags", "--abbrev=0", "--match", "v*", tag .. "^" })
+	if not ok then
+		return nil
+	end
+	return Text.trim(out)
+end
+
 -- Oldest first. nil when the range cannot be resolved.
 function Git.commits(root: string, range: string): { Commit }?
 	local ok, out = run(root, { "log", "--reverse", "--format=%H%x1f%an <%ae>%x1f%P%x1f%B%x1e", range })

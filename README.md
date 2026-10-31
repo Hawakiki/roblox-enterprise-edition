@@ -73,6 +73,17 @@ Connect the Rojo plugin in Studio, and press Play.
 
 Stop the server when you are done: a connection left open while the tree changes can sync a second copy of a folder.
 
+### Releasing
+
+```sh
+lune run scripts/release_gate          # is a change freeze in force?
+lune run scripts/release_notes v1.0.0  # the notes of a release, generated from its change requests
+```
+
+A release is prepared on `release/<version>` and tagged `v<version>` on `main` (EE-STD-0008).
+Pushing the tag runs the release workflow, which checks, builds the place and writes the notes, then waits for the approval of the Approver of record in the environment `production` before it publishes.
+No release is deployed while it is Friday anywhere on Earth, nor while it is 19 January 2038 anywhere on Earth.
+
 ### Changing anything
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md). Agents start at [AGENTS.md](AGENTS.md).

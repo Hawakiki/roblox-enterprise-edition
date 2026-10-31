@@ -73,6 +73,17 @@ Studio 에서 Rojo 플러그인으로 연결하고 Play 를 누른다.
 
 다 쓰면 서버를 끈다. 트리가 바뀌는 동안 연결을 열어 두면 폴더의 두 번째 사본이 동기화될 수 있다.
 
+### 릴리스
+
+```sh
+lune run scripts/release_gate          # 지금 변경 동결 중인가?
+lune run scripts/release_notes v1.0.0  # 변경 요청에서 만든 릴리스 노트
+```
+
+릴리스는 `release/<version>` 에서 준비하고 `main` 에 `v<version>` 태그를 단다(EE-STD-0008).
+태그를 push 하면 릴리스 워크플로가 검사하고 플레이스를 빌드하고 릴리스 노트를 만든 다음, `production` 환경에서 기록상 결재권자의 승인을 기다렸다가 게시한다.
+지구 어딘가가 금요일이거나 2038년 1월 19일인 동안은 어떤 릴리스도 배포하지 않는다.
+
 ### 무언가를 바꾸려면
 
 [CONTRIBUTING.md](CONTRIBUTING.md) 를 읽는다. 에이전트는 [AGENTS.md](AGENTS.md) 에서 시작한다.

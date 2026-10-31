@@ -17,8 +17,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 정책 | 8 |
 | 표준 | 9 |
 | 양식 | 7 |
-| 변경 요청 | 15 |
-| **합계** | **40** |
+| 변경 요청 | 16 |
+| **합계** | **41** |
 
 ## 헌장
 
@@ -50,7 +50,7 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.ko.md) | 숫자 리터럴 표준 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.ko.md) | 아키텍처 계층 표준 | 1.0.1 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.ko.md) | 커밋 및 브랜치 표준 | 1.0.1 | 승인 | 사내 한정 | Compliance Engineering | EE-POL-0004@1.1 |
-| [EE-STD-0008](03-standards/EE-STD-0008-versioning.ko.md) | 엔터프라이즈 버전 표기 표준 | 0.1.0 | 초안 | 사내 한정 | Release Engineering | EE-CHR-0001@1.0 |
+| [EE-STD-0008](03-standards/EE-STD-0008-versioning.ko.md) | 엔터프라이즈 버전 표기 표준 | 1.0.0 | 승인 | 사내 한정 | Release Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0009](03-standards/EE-STD-0009-text-and-documentation.ko.md) | 텍스트 파일 및 문서 작성 표준 | 1.0.1 | 승인 | 사내 한정 | Document Control Office | EE-POL-0001@1.1 |
 
 ## 양식
@@ -84,3 +84,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0013](records/change-requests/CR-0013-publication.ko.md) | 회사 공개 준비 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0014](records/change-requests/CR-0014-release-1-0-0.ko.md) | EnterpriseEdition 1.0.0 릴리스 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0015](records/change-requests/CR-0015-ci-hardening.ko.md) | 지속적 통합 강화 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |
+| [CR-0016](records/change-requests/CR-0016-release-engineering.ko.md) | 릴리스의 번호, 관문, 게시 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |

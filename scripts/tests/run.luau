@@ -26,6 +26,8 @@ local suites: { Assert.Suite } = {
 	require("./Onboarding.spec"),
 	require("./Registry.spec"),
 	require("./CommitMessage.spec"),
+	require("./ReleaseCalendar.spec"),
+	require("./ReleaseNotes.spec"),
 }
 
 local passed, failed = 0, 0
