@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0022
 title: Prohibit the Global Random Number Generator
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Architecture Review Board
@@ -61,3 +61,8 @@ Revert the merge commit of this change. `math.random` becomes allowed again.
 
 The tests were written first, and failed until the rows were added.
 The message of `bdf46cb` carries a warning, `COMMIT_BODY_LINE_TOO_LONG`: a line of its Korean body is 73 columns, one over the limit, because each Korean syllable counts as two. The commit stands as it was made (EE-POL-0004 §8).
+
+| Commit | Change |
+|---|---|
+| `5dd48b9` | Marked this request as implemented. |
+| — | Added the warning of `bdf46cb` to the mines of `AGENTS.md`, as EE-POL-0006 §6 requires of a new one. |
