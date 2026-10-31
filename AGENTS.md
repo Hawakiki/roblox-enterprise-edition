@@ -115,6 +115,7 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Revising an approved document | Impossible until CR-0006. Now it goes `In Review` at its new version | EE-POL-0001 §9, CR-0006 |
 | Filing a record without a section of its form | `TEMPLATE_SECTION_MISSING` | EE-POL-0001 §8, CR-0006 |
 | Working on the branch an agent worktree starts on | `BRANCH_NAME_FORMAT`. Create `feature/CR-NNNN-<slug>` first | CR-0006 |
+| Expecting an agent worktree to start from your branch | It starts from `main`. The first code review found the release tools missing there, and had to read them from the release branch | CR-0018 |
 | Translating a branch name, rule code or field value | Code identifiers stay as they are, in backticks | EE-POL-0002 §6 |
 | Using a class instance where its contract type is expected | Both solvers reject it. Constructors return the contract, and `_implements` declares it | EE-STD-0006 §6 |
 | A doc comment inside a table constructor | Moonwave drops it without a word. Assign each documented value in a statement of its own | EE-STD-0001 §6, CR-0008 |
