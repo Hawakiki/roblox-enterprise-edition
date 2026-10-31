@@ -12,6 +12,8 @@
 ]=]
 
 -- Composition roots are the only modules that reach a service directly: a static require path starts from one.
+local DataStoreService = game:GetService("DataStoreService")
+local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -25,6 +27,9 @@ local CoinConstants = require(ReplicatedStorage.EnterpriseEdition.Domain.CoinCon
 local CoinOverflowPolicy = require(ReplicatedStorage.EnterpriseEdition.Domain.CoinOverflowPolicy)
 local CoinSessionService = require(ReplicatedStorage.EnterpriseEdition.Application.CoinSessionService)
 local CoinWalletRegistry = require(ReplicatedStorage.EnterpriseEdition.Application.CoinWalletRegistry)
+local DataStoreCoinWalletRepository =
+	require(ReplicatedStorage.EnterpriseEdition.Infrastructure.DataStoreCoinWalletRepository)
+local DataStoreConstants = require(ReplicatedStorage.EnterpriseEdition.Infrastructure.DataStoreConstants)
 local InMemoryCoinWalletRepository =
 	require(ReplicatedStorage.EnterpriseEdition.Infrastructure.InMemoryCoinWalletRepository)
 local LeaderstatsCoinProjection = require(ReplicatedStorage.EnterpriseEdition.Infrastructure.LeaderstatsCoinProjection)
@@ -58,8 +63,30 @@ end)
 services:AddSingleton(ServiceTokenRegistry.AcknowledgementThrottlePolicy, function()
 	return AcknowledgementThrottlePolicy.new(CoinConstants.MINIMUM_ACKNOWLEDGEMENT_INTERVAL_SECONDS)
 end)
+-- Wallets live in a DataStore (CR-0012), except in a place that has never been published, which cannot reach one.
 services:AddSingleton(ServiceTokenRegistry.CoinWalletRepository, function(provider)
-	return InMemoryCoinWalletRepository.new(provider:GetRequiredService(ServiceTokenRegistry.CoinOverflowPolicy))
+	local overflowPolicy = provider:GetRequiredService(ServiceTokenRegistry.CoinOverflowPolicy)
+	if game.PlaceId == 0 then
+		provider:GetRequiredService(ServiceTokenRegistry.Logger):Warning(
+			"This place has never been published: compliance coins are kept in memory, and lost when the server stops."
+		)
+		return InMemoryCoinWalletRepository.new(overflowPolicy)
+	end
+	return DataStoreCoinWalletRepository.new({
+		dataStore = DataStoreService:GetDataStore(DataStoreConstants.DATASTORE_NAME),
+		overflowPolicy = overflowPolicy,
+		-- A server in Studio has no JobId, so it names itself.
+		sessionId = if game.JobId ~= "" then game.JobId else HttpService:GenerateGUID(false),
+		clock = function(): number
+			return os.time()
+		end,
+		sleep = function(seconds: number)
+			task.wait(seconds)
+		end,
+		requestBudget = function(): number
+			return DataStoreService:GetRequestBudgetForRequestType(Enum.DataStoreRequestType.UpdateAsync)
+		end,
+	})
 end)
 services:AddSingleton(ServiceTokenRegistry.CoinWalletRegistry, function()
 	return CoinWalletRegistry.new()

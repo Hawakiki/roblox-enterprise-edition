@@ -13,6 +13,7 @@
 	@interface IPlayerSessionSource
 	@within IPlayerSessionSource
 	.Subscribe (self: any, onJoined: (Player) -> (), onLeaving: (Player) -> ()) -> () -> () -- Reports every session, those already under way included, and returns the function that stops reporting.
+	.Kick (self: any, userId: number, message: string) -> () -- Ends the session of a player, if they are present, telling them why.
 
 	The members that every source of player sessions implements. A subscriber hears of a player who is already
 	present as if they had just joined.
@@ -21,6 +22,7 @@
 ]=]
 export type IPlayerSessionSource = {
 	Subscribe: (self: any, onJoined: (player: Player) -> (), onLeaving: (player: Player) -> ()) -> () -> (),
+	Kick: (self: any, userId: number, message: string) -> (),
 }
 
 return {}

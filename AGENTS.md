@@ -117,6 +117,8 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Passing on a loop variable whose type holds a generic method | The old solver finds a type unequal to itself. Index the table instead of iterating its values | CR-0010 |
 | Comparing a class instance with `nil` | The old solver refuses `~= nil` on a metatable type. Test for truth instead | CR-0011 |
 | Connecting a `(Player) -> ()` handler to `PlayerRemoving` | The new solver knows it also passes the reason for leaving. Wrap the handler | CR-0011 |
+| Passing `os.time` where a `() -> number` is expected | The new solver counts its optional argument. Wrap it in a function | CR-0012 |
+| Reading the fields of a value checked with `type(x) == "table"` | The new solver calls them `unknown`. Read them into annotated locals | CR-0012 |
 | Leaving `rojo serve` connected while the tree changes | Rojo can sync a second copy of a folder such as `EnterpriseEdition`. Stop the server when you are done, and reconnect after large changes | CR-0011 |
 | Committing without reading the checkpatch result | The commit-msg hook checks only the message, so a dangling reference was committed. Run checkpatch before every commit | CR-0011 |
 
