@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0015
 title: Harden the Continuous Integration
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Release Engineering
@@ -80,3 +80,7 @@ The CI would again pass whatever it could not check.
 | `4056b43` | Made `tools/check` fail every check that cannot run, and `tools/check.ps1` set its own error preference. |
 | `5a87bd1` | Split the workflow into a Linux job and a Windows job on pinned images, cached the toolchain, added Dependabot, and kept the two rulesets as files. |
 | `3bbfdf5` | Described the hardened CI in both READMEs and in `CONTRIBUTING.md`, and recorded three mines in `AGENTS.md`. |
+| `424bc81` | Marked this request as implemented. |
+
+On approval of the merge, on 2026-10-31, the two rulesets were applied to the repository on GitHub with `gh api`, as rulesets 26259515 (`main` and `develop`) and 26259516 (the release tags).
+GitHub then reported `deletion` and `non_fast_forward` as the rules of both branches.

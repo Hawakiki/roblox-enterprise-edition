@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0015
 title: 지속적 통합 강화
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 지속적 통합 강화
@@ -79,3 +79,7 @@ CI 는 다시 검사할 수 없었던 것을 통과시키게 된다.
 | `4056b43` | `tools/check` 가 실행할 수 없는 모든 검사를 실패시키고, `tools/check.ps1` 이 오류 처리 방식을 스스로 정하게 함 |
 | `5a87bd1` | 워크플로를 고정 이미지 위의 Linux 작업과 Windows 작업으로 나누고, 툴체인을 캐시하고, Dependabot 을 추가하고, ruleset 두 개를 파일로 보관함 |
 | `3bbfdf5` | 두 README 와 `CONTRIBUTING.md` 에 강화된 CI 를 설명하고, `AGENTS.md` 에 지뢰 세 가지를 기록함 |
+| `424bc81` | 본 요청을 시행 완료로 표시 |
+
+2026-10-31 에 머지가 승인되어, ruleset 두 개를 `gh api` 로 GitHub 의 저장소에 적용하였다. ruleset 26259515(`main` 과 `develop`)와 26259516(릴리스 태그)이다.
+이후 GitHub 은 두 브랜치의 규칙으로 `deletion` 과 `non_fast_forward` 를 보고하였다.
