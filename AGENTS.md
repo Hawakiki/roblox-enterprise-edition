@@ -15,7 +15,8 @@ Trust the registry, not the memory (EE-CHR-0001, Article 3).
 ## 1. First Five Minutes
 
 ```sh
-rokit install                          # pinned toolchain: rojo, stylua, luau-lsp, lune
+rokit install                          # pinned toolchain: rojo, stylua, luau-lsp, lune, moonwave-extractor
+                                       # a person first runs `rokit trust evaera/moonwave`, once per machine
 lune setup                             # Lune type definitions for luau-lsp
 git config core.hooksPath .githooks    # the commit-msg hook, once per clone
 tools/check.sh                         # or tools/check.ps1; it must end with 0 errors

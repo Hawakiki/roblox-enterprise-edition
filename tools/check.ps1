@@ -58,6 +58,11 @@ try {
 	Invoke-Analysis 'scripts' @('--platform=standard', 'scripts')
 	Invoke-Analysis 'src' @('--platform=roblox', '--sourcemap=sourcemap.json', "--definitions=$defs", 'src')
 
+	# Moonwave reads every doc comment under src/ as the documentation site would; the JSON is not kept (CR-0009)
+	# Moonwave 가 문서 사이트처럼 src/ 아래의 모든 문서 주석을 읽는다. 추출한 JSON 은 버린다(CR-0009)
+	moonwave-extractor extract src > $null
+	if ($LASTEXITCODE -eq 0) { Write-Output 'moonwave: doc comments read' } else { $status = 1 }
+
 	lune run scripts/tests/run
 	if ($LASTEXITCODE -ne 0) { $status = 1 }
 	lune run scripts/checkpatch
