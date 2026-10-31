@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0017
 title: Release EnterpriseEdition 1.1.0
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Release Engineering
@@ -76,3 +76,12 @@ There, `release/1.1.0` was merged into `main` and the merge commit tagged `v1.1.
 `tools/check.sh` passed, with the Roblox definitions downloaded afresh, and `rojo build` built the place.
 The notes of 1.1.0 listed CR-0015, CR-0016 and CR-0017, and those of 1.0.0 listed CR-0001 to CR-0014.
 The calendar refused a deployment, for it was Friday somewhere on Earth until 2026-10-31T12:00:00Z.
+
+| Commit | Change |
+|---|---|
+| `f5c8818` | Marked this request as implemented. |
+| `e5331cb` | Recorded the approval of EE-STD-0008 1.1.0. |
+
+On approval of the merge, the calendar admitted a deployment at 2026-10-31T12:03:13Z.
+The notes of 1.0.0, fourteen change requests from CR-0001 to CR-0014, and the place built from the tag `v1.0.0`, 52175 bytes, were published as the GitHub release of `v1.0.0` at 2026-10-31T12:03:37Z, by `gh release create`, which made it the latest release.
+It is the first deployment the calendar admitted, and it came before 1.1.0, as this request required.

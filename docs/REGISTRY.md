@@ -85,4 +85,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0014](records/change-requests/CR-0014-release-1-0-0.md) | Release EnterpriseEdition 1.0.0 | 1.2.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0015](records/change-requests/CR-0015-ci-hardening.md) | Harden the Continuous Integration | 1.2.0 | Implemented | Internal | Release Engineering |
 | [CR-0016](records/change-requests/CR-0016-release-engineering.md) | Number, Gate and Publish Releases | 1.2.0 | Implemented | Internal | Release Engineering |
-| [CR-0017](records/change-requests/CR-0017-release-1-1-0.md) | Release EnterpriseEdition 1.1.0 | 1.1.0 | Implemented | Internal | Release Engineering |
+| [CR-0017](records/change-requests/CR-0017-release-1-1-0.md) | Release EnterpriseEdition 1.1.0 | 1.2.0 | Implemented | Internal | Release Engineering |
