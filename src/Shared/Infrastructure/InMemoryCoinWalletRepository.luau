@@ -60,17 +60,19 @@ function InMemoryCoinWalletRepository.Load(
 end
 
 --[=[
-	Remembers the balance of a wallet.
+	Remembers the balance of a wallet. No other server can take a wallet from memory, so it is never lost.
 
 	@within InMemoryCoinWalletRepository
 	@method Save
 	@param wallet CoinWalletEntity -- The wallet.
+	@return boolean -- Always true.
 ]=]
 function InMemoryCoinWalletRepository.Save(
 	self: InMemoryCoinWalletRepository,
 	wallet: CoinWalletEntity.CoinWalletEntity
-)
+): boolean
 	self._balances[wallet:GetUserId()] = wallet:GetBalance()
+	return true
 end
 
 --[=[

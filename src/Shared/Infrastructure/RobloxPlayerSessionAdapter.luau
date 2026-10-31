@@ -66,9 +66,25 @@ function RobloxPlayerSessionAdapter.Subscribe(
 	end
 end
 
+--[=[
+	Disconnects a player who is present, showing them a message.
+
+	@within RobloxPlayerSessionAdapter
+	@method Kick
+	@param userId number -- The player.
+	@param message string -- Why their session ends.
+]=]
+function RobloxPlayerSessionAdapter.Kick(self: RobloxPlayerSessionAdapter, userId: number, message: string)
+	local player = self._players:GetPlayerByUserId(userId)
+	if player then
+		player:Kick(message)
+	end
+end
+
 -- Declares the contract this class implements; the type checker holds every method to it.
 local _implements: IPlayerSessionSource.IPlayerSessionSource = {
 	Subscribe = RobloxPlayerSessionAdapter.Subscribe,
+	Kick = RobloxPlayerSessionAdapter.Kick,
 }
 
 return RobloxPlayerSessionAdapter
