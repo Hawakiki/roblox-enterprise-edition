@@ -56,7 +56,7 @@ EE-CHR-0001 EnterpriseEdition 헌장
 │  ├─ EE-STD-0002 명명 규칙
 │  ├─ EE-STD-0003 금지 API 목록
 │  ├─ EE-STD-0005 숫자 리터럴 표준
-│  └─ EE-STD-0006 아키텍처 계층 표준 (검토 중)
+│  └─ EE-STD-0006 아키텍처 계층 표준
 └─ EE-STD-0004 파일 헤더 표준
 ```
 
@@ -96,7 +96,7 @@ EE-CHR-0001 EnterpriseEdition 헌장
 | [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.ko.md) | 금지 API 목록 | 1.1.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0004](03-standards/EE-STD-0004-file-headers.ko.md) | 파일 헤더 표준 | 1.1.0 | 승인 | 사내 한정 | Legal Department | EE-CHR-0001@1.0 |
 | [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.ko.md) | 숫자 리터럴 표준 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.ko.md) | 아키텍처 계층 표준 | 1.1.0 | 검토 중 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.ko.md) | 아키텍처 계층 표준 | 1.1.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.ko.md) | 커밋 및 브랜치 표준 | 1.0.1 | 승인 | 사내 한정 | Compliance Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0008](03-standards/EE-STD-0008-versioning.ko.md) | 엔터프라이즈 버전 표기 표준 | 1.1.0 | 승인 | 사내 한정 | Release Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0009](03-standards/EE-STD-0009-text-and-documentation.ko.md) | 텍스트 파일 및 문서 작성 표준 | 1.0.1 | 승인 | 사내 한정 | Document Control Office | EE-POL-0001@1.1 |
@@ -117,8 +117,8 @@ EE-CHR-0001 EnterpriseEdition 헌장
 
 | ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 |
 |---|---|---|---|---|---|
-| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.ko.md) | 생성자는 any 캐스트로 자기 계약을 반환한다 | 1.1.0 | 채택 | 사내 한정 | Architecture Review Board |
-| [ADR-0002](adr/ADR-0002-declare-each-method-through-a-wrapper.ko.md) | 계약의 각 메서드를 래퍼로 선언한다 | 1.0.0 | 제안 | 사내 한정 | Architecture Review Board |
+| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.ko.md) | 생성자는 any 캐스트로 자기 계약을 반환한다 | 1.2.0 | 대체됨 | 사내 한정 | Architecture Review Board |
+| [ADR-0002](adr/ADR-0002-declare-each-method-through-a-wrapper.ko.md) | 계약의 각 메서드를 래퍼로 선언한다 | 1.1.0 | 채택 | 사내 한정 | Architecture Review Board |
 
 ## 변경 요청
 

@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: ADR-0001
 title: Constructors Return Their Contract, Cast Through Any
-version: 1.1.0
-status: Accepted
+version: 1.2.0
+status: Superseded
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -54,4 +54,4 @@ We will check with both type solvers, because only the old one holds the methods
 | Relation | Record |
 |---|---|
 | Supersedes | none |
-| Superseded by | none |
+| Superseded by | ADR-0002 |

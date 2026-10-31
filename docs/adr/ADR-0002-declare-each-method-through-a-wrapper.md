@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: ADR-0002
 title: Declare Each Method of a Contract Through a Wrapper
-version: 1.0.0
-status: Proposed
+version: 1.1.0
+status: Accepted
 classification: Internal
 owner: Architecture Review Board
 ---

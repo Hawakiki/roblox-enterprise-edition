@@ -102,7 +102,7 @@
 <rect class="card" x="504" y="1156" width="238" height="48" rx="6"/>
 <text class="first" x="514" y="1176">EE-STD-0005</text>
 <text x="514" y="1192">숫자 리터럴 표준</text>
-<rect class="card bold" x="504" y="1216" width="238" height="48" rx="6"/>
+<rect class="card" x="504" y="1216" width="238" height="48" rx="6"/>
 <text class="first" x="514" y="1236">EE-STD-0006</text>
 <text x="514" y="1252">아키텍처 계층 표준</text>
 <rect class="card" x="241" y="1276" width="223" height="48" rx="6"/>

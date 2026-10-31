@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: ADR-0002
 title: 계약의 각 메서드를 래퍼로 선언한다
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 계약의 각 메서드를 래퍼로 선언한다
