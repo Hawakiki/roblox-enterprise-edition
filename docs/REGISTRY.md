@@ -77,4 +77,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0006](records/change-requests/CR-0006-drill-findings.md) | Correct the Findings of the First Onboarding Drill | 1.1.0 | Implemented | Internal | Document Control Office |
 | [CR-0007](records/change-requests/CR-0007-application-framework.md) | Establish the Application Framework | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0008](records/change-requests/CR-0008-law-of-the-code.md) | Lay Down the Law of the Roblox Code | 1.3.0 | Implemented | Internal | Architecture Review Board |
-| [CR-0009](records/change-requests/CR-0009-first-assignment-findings.md) | Correct the Findings of the First Assignment | 1.0.0 | Approved | Internal | Architecture Review Board |
+| [CR-0009](records/change-requests/CR-0009-first-assignment-findings.md) | Correct the Findings of the First Assignment | 1.1.0 | Implemented | Internal | Architecture Review Board |

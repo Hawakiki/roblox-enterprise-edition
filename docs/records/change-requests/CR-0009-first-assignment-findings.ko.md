@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0009
 title: 첫 실전 배치 지적 사항 정정
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 첫 실전 배치 지적 사항 정정
@@ -64,9 +64,16 @@ CR-0008 은 신입이 처음으로 시행한 변경 요청이다.
 |---|---|---|---|
 | 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-30 |
 | 결재 | Hawakiki | 제출 전 승인 | 2026-10-30 |
+| 시행 | 아키텍처 검토 위원회 | 시행 완료 | 2026-10-31 |
 
 ## 7. 시행 기록
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `6ff669a` | 본 변경 요청 등록 |
+| `a0a989b` | `LAYER_VIOLATION` 이 어휘 분석기로 require 를 읽고, `PROHIBITED_API` 와 `COLOR_OUTSIDE_PALETTE` 가 대괄호로 이름을 댄 멤버와 색 전역의 별칭을 읽게 함 |
+| `0b18704` | 현재 브랜치를 전체 ref 로 읽음 |
+| `b5f1923` | 어느 작업 사본에서든 주 작업 폴더 옆에서 공용 Roblox 타입 정의를 찾음 |
+| `39781f1` | 모든 규칙을 그 검사 옆에 선언하고, 보고되지 않는 규칙과 모든 부속서 A 가 밝힌 심각도에 대한 테스트 추가 |
+| `4cfbd9f` | `AGENTS.md` 에서 `Submitted` 요청이 기다리게 하고, 지뢰 세 가지를 기록함. 그중 하나는 본 요청 중에 밟은 것 |
+| `2a5d27e` | `moonwave-extractor` 를 고정하고 `src/` 아래 모든 문서 주석을 이 도구로 읽음 |

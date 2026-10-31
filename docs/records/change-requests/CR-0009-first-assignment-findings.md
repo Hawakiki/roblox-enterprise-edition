@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0009
 title: Correct the Findings of the First Assignment
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -65,9 +65,16 @@ The next new hire would step on the same mines, which are recorded in `AGENTS.md
 |---|---|---|---|
 | Requester | Architecture Review Board | Submitted | 2026-10-30 |
 | Approver | Hawakiki | Approved before filing | 2026-10-30 |
+| Implementer | Architecture Review Board | Implemented | 2026-10-31 |
 
 ## 7. Implementation Record
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `6ff669a` | Filed this change request. |
+| `a0a989b` | Read requires through the lexer in `LAYER_VIOLATION`, and members named in brackets and aliases of colour globals in `PROHIBITED_API` and `COLOR_OUTSIDE_PALETTE`. |
+| `0b18704` | Read the current branch by its full ref. |
+| `b5f1923` | Found the shared Roblox definitions beside the main checkout, from any worktree. |
+| `39781f1` | Declared every rule beside its check, and added tests for rules that are never reported and for the severities stated in every Annex A. |
+| `4cfbd9f` | Made a `Submitted` request wait in `AGENTS.md`, and recorded three mines, one of them stepped on during this request. |
+| `2a5d27e` | Pinned `moonwave-extractor` and read every doc comment under `src/` with it. |
