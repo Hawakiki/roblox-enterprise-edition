@@ -144,4 +144,4 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | [CR-0019](records/change-requests/CR-0019-contract-decision-record.md) | Record the Contract Pattern as the First Architecture Decision | 1.2.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0020](records/change-requests/CR-0020-adr-0001-fitness-test.md) | Test the Facts That ADR-0001 Rests On | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0021](records/change-requests/CR-0021-company-map.md) | Draw the Map of the Company | 1.2.0 | Implemented | Internal | Document Control Office |
-| [CR-0022](records/change-requests/CR-0022-random-numbers.md) | Prohibit the Global Random Number Generator | 1.2.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0022](records/change-requests/CR-0022-random-numbers.md) | Prohibit the Global Random Number Generator | 1.3.0 | Implemented | Internal | Architecture Review Board |

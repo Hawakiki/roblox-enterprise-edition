@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0022
 title: Prohibit the Global Random Number Generator
-version: 1.2.0
+version: 1.3.0
 status: Implemented
 classification: Internal
 owner: Architecture Review Board
@@ -65,4 +65,5 @@ The message of `bdf46cb` carries a warning, `COMMIT_BODY_LINE_TOO_LONG`: a line 
 | Commit | Change |
 |---|---|
 | `5dd48b9` | Marked this request as implemented. |
-| — | Added the warning of `bdf46cb` to the mines of `AGENTS.md`, as EE-POL-0006 §6 requires of a new one. |
+| `57ed013` | Added the warning of `bdf46cb` to the mines of `AGENTS.md`, as EE-POL-0006 §6 requires of a new one. |
+| `284d3af` | Recorded the approval of EE-STD-0003 at 1.1.0. |

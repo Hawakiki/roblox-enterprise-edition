@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0022
 title: 전역 난수 생성기 금지
-translation-of: 1.2.0
+translation-of: 1.3.0
 ---
 
 # 전역 난수 생성기 금지
@@ -64,4 +64,5 @@ EE-STD-0003 §5.4 는 그 표가 표준의 개정으로 늘어난다고 정한�
 | 커밋 | 변경 |
 |---|---|
 | `5dd48b9` | 본 요청을 시행 완료로 표시 |
-| — | EE-POL-0006 §6 이 새 지뢰에 요구하는 대로, `bdf46cb` 의 경고를 `AGENTS.md` 의 지뢰 목록에 추가 |
+| `57ed013` | EE-POL-0006 §6 이 새 지뢰에 요구하는 대로, `bdf46cb` 의 경고를 `AGENTS.md` 의 지뢰 목록에 추가 |
+| `284d3af` | EE-STD-0003 의 승인을 1.1.0 으로 기록 |
