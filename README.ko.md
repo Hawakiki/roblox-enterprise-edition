@@ -57,7 +57,8 @@ tools/check.sh                         # Windows 에서는 tools/check.ps1. --fi
 
 반드시 0 errors 로 끝나야 한다.
 StyLua, 도구와 로블록스 코드에 대한 두 Luau 타입 솔버, 문서 주석에 대한 Moonwave 추출기, checkpatch 의 테스트, checkpatch 를 차례로 돌린다.
-지속적 통합은 모든 push 와 pull request 에서 같은 스크립트를 돌리며, commit-msg 훅처럼 모든 커밋 메시지를 검사한다.
+지속적 통합은 모든 push 와 pull request 에서 이를 Linux 에서는 Bash 로, Windows 에서는 PowerShell 7 과 5.1 로 돌리며, commit-msg 훅처럼 모든 커밋 메시지를 검사한다.
+도구가 없거나 그 밖의 이유로 실행할 수 없는 검사는 실패한다.
 
 ### 실행
 
@@ -71,6 +72,17 @@ Studio 에서 Rojo 플러그인으로 연결하고 Play 를 누른다.
 - Studio 의 API 서비스 접근을 허용한 게시된 플레이스는 준법 코인을 DataStore 에 둔다.
 
 다 쓰면 서버를 끈다. 트리가 바뀌는 동안 연결을 열어 두면 폴더의 두 번째 사본이 동기화될 수 있다.
+
+### 릴리스
+
+```sh
+lune run scripts/release_gate          # 지금 변경 동결 중인가?
+lune run scripts/release_notes v1.0.0  # 변경 요청에서 만든 릴리스 노트
+```
+
+릴리스는 `release/<version>` 에서 준비하고 `main` 에 `v<version>` 태그를 단다(EE-STD-0008).
+태그를 push 하면 릴리스 워크플로가 검사하고 플레이스를 빌드하고 릴리스 노트를 만든 다음, `production` 환경에서 기록상 결재권자의 승인을 기다렸다가 게시한다.
+지구 어딘가가 금요일이거나 2038년 1월 19일인 동안은 어떤 릴리스도 배포하지 않는다.
 
 ### 무언가를 바꾸려면
 

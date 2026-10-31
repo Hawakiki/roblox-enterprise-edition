@@ -57,7 +57,8 @@ tools/check.sh                         # or tools/check.ps1 on Windows; add --fi
 
 It must end with 0 errors.
 In order, it runs StyLua, both Luau type solvers over the tooling and over the Roblox code, the Moonwave extractor over the doc comments, the tests of checkpatch, and checkpatch.
-The continuous integration runs the same script on every push and pull request, and checks every commit message as the commit-msg hook does.
+The continuous integration runs it on every push and pull request, on Linux with Bash and on Windows under PowerShell 7 and 5.1, and checks every commit message as the commit-msg hook does.
+A check that cannot run, for want of a tool or otherwise, fails.
 
 ### Running
 
@@ -71,6 +72,17 @@ Connect the Rojo plugin in Studio, and press Play.
 - A published place with Studio access to API services keeps them in a DataStore.
 
 Stop the server when you are done: a connection left open while the tree changes can sync a second copy of a folder.
+
+### Releasing
+
+```sh
+lune run scripts/release_gate          # is a change freeze in force?
+lune run scripts/release_notes v1.0.0  # the notes of a release, generated from its change requests
+```
+
+A release is prepared on `release/<version>` and tagged `v<version>` on `main` (EE-STD-0008).
+Pushing the tag runs the release workflow, which checks, builds the place and writes the notes, then waits for the approval of the Approver of record in the environment `production` before it publishes.
+No release is deployed while it is Friday anywhere on Earth, nor while it is 19 January 2038 anywhere on Earth.
 
 ### Changing anything
 
