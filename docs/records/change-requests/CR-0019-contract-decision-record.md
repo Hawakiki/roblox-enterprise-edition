@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0019
 title: Record the Contract Pattern as the First Architecture Decision
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -56,4 +56,8 @@ Revert the merge commit of this change. The decision stays in force, unrecorded,
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `4f44c92` | Filed this change request. |
+| `28290d2` | Filed ADR-0001 as `Proposed`, corrected the mine on class instances in `AGENTS.md`, and listed the record among the documents to read before writing Roblox code. |
+
+The request was filed before the record, as a request is filed on its own, and therefore names the record by its folder rather than by an identifier that did not yet exist.
+A merge with each of the other two branches due to reach `develop` on the same evening, simulated with `git merge-tree`, conflicts only in the generated registry.

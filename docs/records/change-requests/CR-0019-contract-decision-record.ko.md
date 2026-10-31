@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0019
 title: 계약 패턴을 첫 아키텍처 결정으로 기록
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 계약 패턴을 첫 아키텍처 결정으로 기록
@@ -55,4 +55,8 @@ translation-of: 1.0.0
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `4f44c92` | 본 변경 요청 등록 |
+| `28290d2` | ADR-0001 을 `Proposed` 로 등록하고, `AGENTS.md` 의 클래스 인스턴스 지뢰를 정정하며, 로블록스 코드를 쓰기 전에 읽을 문서에 이 기록을 추가함 |
+
+요청은 따로 등록하는 것이므로 기록보다 먼저 등록되었고, 그래서 아직 없던 식별자 대신 폴더로 기록을 가리킨다.
+같은 날 저녁 `develop` 에 들어올 나머지 두 브랜치 각각과의 머지를 `git merge-tree` 로 흉내 내니, 충돌은 자동 생성되는 문서 대장뿐이었다.
