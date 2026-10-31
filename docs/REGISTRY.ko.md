@@ -17,8 +17,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 정책 | 8 |
 | 표준 | 9 |
 | 양식 | 7 |
-| 변경 요청 | 16 |
-| **합계** | **41** |
+| 변경 요청 | 17 |
+| **합계** | **42** |
 
 ## 헌장
 
@@ -85,3 +85,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0014](records/change-requests/CR-0014-release-1-0-0.ko.md) | EnterpriseEdition 1.0.0 릴리스 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0015](records/change-requests/CR-0015-ci-hardening.ko.md) | 지속적 통합 강화 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |
 | [CR-0016](records/change-requests/CR-0016-release-engineering.ko.md) | 릴리스의 번호, 관문, 게시 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |
+| [CR-0019](records/change-requests/CR-0019-contract-decision-record.ko.md) | 계약 패턴을 첫 아키텍처 결정으로 기록 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board |

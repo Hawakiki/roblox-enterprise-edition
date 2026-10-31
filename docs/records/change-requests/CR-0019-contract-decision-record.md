@@ -1,0 +1,59 @@
+---
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
+id: CR-0019
+title: Record the Contract Pattern as the First Architecture Decision
+version: 1.0.0
+status: Approved
+classification: Internal
+owner: Architecture Review Board
+---
+
+# Record the Contract Pattern as the First Architecture Decision
+
+## 1. Summary
+
+The Company has kept a form for architecture decision records since its founding, and has never filed one.
+This change request files the first, which records why every constructor returns its contract through a cast to `any`, and what that costs, as checked again before it was written.
+The check disproved the reason one mine in `AGENTS.md` gave, and the mine is corrected.
+
+## 2. Background
+
+Of the seven forms the Company keeps, only the change request has ever been used.
+The decision to return contracts through `any` was made with the application framework in CR-0007. EE-STD-0006 §6 states it as a rule, and its reasons survive only in that record and in one line of `AGENTS.md`.
+
+That line says that both type solvers reject a class instance where its contract is expected.
+Before the record was written, a fixture outside the repository was checked with luau-lsp 1.69.0. The old solver rejects such an instance, and the new one accepts it.
+A second fixture drifted three methods from their contract in three ways. The old solver reported three errors, and the new one none.
+
+## 3. Scope
+
+- `docs/adr/`: the first architecture decision record and its Korean version, filed as `Proposed`, to become `Accepted` when the Approver of record approves the merge.
+- `AGENTS.md`: the corrected mine, and the record among the documents to read before writing Roblox code.
+
+No controlled document is changed.
+
+## 4. Impact Assessment
+
+| Area | Impact |
+|---|---|
+| Architecture | Nothing changes. A decision already in force is written down. |
+| Records | The first architecture decision record, under a form unused until now. |
+| Documentation volume | One record in two languages, and two lines of `AGENTS.md`. |
+
+## 5. Rollback Plan
+
+Revert the merge commit of this change. The decision stays in force, unrecorded, as before.
+
+## 6. Approval
+
+| Role | Name | Decision | Date |
+|---|---|---|---|
+| Requester | Architecture Review Board | Submitted | 2026-10-31 |
+| Approver | Hawakiki | Approved before filing | 2026-10-31 |
+
+## 7. Implementation Record
+
+| Commit | Change |
+|---|---|
+| — | To be filled in when the request is implemented. |
