@@ -3,7 +3,9 @@
 
 # EnterpriseEdition
 
-<!-- The introduction is written by the Approver of record. -->
+English | [한국어](README.ko.md)
+
+<!-- The introduction is written by the Approver of record, in README.ko.md, and translated here. -->
 
 ## Development
 
