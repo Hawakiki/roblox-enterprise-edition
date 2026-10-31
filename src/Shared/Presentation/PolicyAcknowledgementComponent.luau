@@ -4,22 +4,39 @@
 --[=[
 	@class PolicyAcknowledgementComponent
 
-	The first user interface of the Company: a panel on which a player acknowledges the policies of the Company
-	and sees how often they have done so. Acknowledging changes nothing else.
+	The first user interface of the Company: a panel on which a player acknowledges the policies of the Company,
+	and sees the compliance coins the server has rewarded them with (CR-0011). The panel only asks; the server
+	decides.
 
-	회사의 첫 사용자 인터페이스. 플레이어가 회사의 정책을 확인했음을 표시하고 그 횟수를 보는 패널이다.
-	확인해도 다른 것은 아무것도 바뀌지 않는다.
+	회사의 첫 사용자 인터페이스. 플레이어가 회사의 정책을 확인했음을 표시하고, 서버가 보상한 준법 코인을 보는
+	패널이다(CR-0011). 패널은 요청만 하고, 결정은 서버가 한다.
 ]=]
 
 local ComponentScope = require(script.Parent.ComponentScope)
 local CorporatePaletteConstants = require(script.Parent.Parent.Kernel.CorporatePaletteConstants)
 local ElementFactory = require(script.Parent.ElementFactory)
+local IAcknowledgementGateway = require(script.Parent.Parent.Application.IAcknowledgementGateway)
+local ICoinBalanceSource = require(script.Parent.Parent.Application.ICoinBalanceSource)
 local IComponent = require(script.Parent.IComponent)
 local InterfaceLayoutConstants = require(script.Parent.InterfaceLayoutConstants)
 
+--[=[
+	@interface PolicyAcknowledgementProps
+	@within PolicyAcknowledgementComponent
+	.CoinBalance ICoinBalanceSource -- The balance of the local player.
+	.AcknowledgementGateway IAcknowledgementGateway -- Where an acknowledgement is sent.
+
+	The properties of the panel.
+
+	패널의 속성.
+]=]
+type PolicyAcknowledgementProps = {
+	CoinBalance: ICoinBalanceSource.ICoinBalanceSource,
+	AcknowledgementGateway: IAcknowledgementGateway.IAcknowledgementGateway,
+}
+
 type ComponentState = {
 	_scope: ComponentScope.ComponentScope,
-	_acknowledgements: number,
 }
 
 local PolicyAcknowledgementComponent = {}
@@ -35,8 +52,7 @@ local function corner(radius: UDim): IComponent.Element
 end
 
 --[=[
-	Creates the panel, with no acknowledgement on record. Like every constructor, it returns the contract,
-	not the implementation.
+	Creates the panel. Like every constructor, it returns the contract, not the implementation.
 
 	@within PolicyAcknowledgementComponent
 	@param scope ComponentScope -- The scope the component owns, through which it asks to be rendered again.
@@ -45,30 +61,24 @@ end
 function PolicyAcknowledgementComponent.new(scope: ComponentScope.ComponentScope): IComponent.IComponent
 	local state: ComponentState = {
 		_scope = scope,
-		_acknowledgements = 0,
 	}
 	return setmetatable(state, PolicyAcknowledgementComponent) :: any
 end
 
--- Puts one more acknowledgement on record, and asks to be rendered again.
-function PolicyAcknowledgementComponent._Acknowledge(self: PolicyAcknowledgementComponent)
-	self._acknowledgements += 1
-	self._scope:Invalidate()
-end
-
 --[=[
-	Describes the panel: a heading, the number of acknowledgements on record, and the button that adds one.
+	Describes the panel: a heading, the coins of the player, and the button that acknowledges the policies.
 
 	@within PolicyAcknowledgementComponent
 	@method Render
-	@param props Props -- The panel takes no properties.
+	@param props Props -- A PolicyAcknowledgementProps.
 	@return Element -- The panel.
 ]=]
 function PolicyAcknowledgementComponent.Render(
 	self: PolicyAcknowledgementComponent,
 	props: IComponent.Props
 ): IComponent.Element
-	local count = self._acknowledgements
+	local panel: PolicyAcknowledgementProps = props :: any
+	local coins = panel.CoinBalance:Get()
 	return ElementFactory.CreateElement("Frame", {
 		AnchorPoint = InterfaceLayoutConstants.PANEL_ANCHOR_POINT,
 		Position = InterfaceLayoutConstants.PANEL_POSITION,
@@ -105,7 +115,7 @@ function PolicyAcknowledgementComponent.Render(
 			Font = Enum.Font.Gotham,
 			TextSize = InterfaceLayoutConstants.STATUS_TEXT_SIZE_PIXELS,
 			TextColor3 = CorporatePaletteConstants.CORPORATE_SILVER,
-			Text = string.format("Acknowledgements on record: %d\n확인 기록: %d건", count, count),
+			Text = string.format("Compliance coins: %d\n준법 코인: %d개", coins, coins),
 		}),
 		Acknowledge = ElementFactory.CreateElement("TextButton", {
 			LayoutOrder = InterfaceLayoutConstants.BUTTON_ORDER,
@@ -117,7 +127,7 @@ function PolicyAcknowledgementComponent.Render(
 			TextColor3 = CorporatePaletteConstants.CORPORATE_WHITE,
 			Text = "I have read and agree\n읽었으며 동의합니다",
 			OnActivated = function()
-				self:_Acknowledge()
+				panel.AcknowledgementGateway:Send()
 			end,
 		}, {
 			Corner = corner(InterfaceLayoutConstants.BUTTON_CORNER_RADIUS),
@@ -126,15 +136,22 @@ function PolicyAcknowledgementComponent.Render(
 end
 
 --[=[
-	Does nothing: the panel needs nothing once it is shown.
+	Follows the balance of the player, and renders the panel again whenever it changes. The subscription belongs
+	to the scope of the panel, so it ends when the panel unmounts.
 
 	@within PolicyAcknowledgementComponent
 	@method DidMount
+	@param props Props -- A PolicyAcknowledgementProps.
 ]=]
-function PolicyAcknowledgementComponent.DidMount(self: PolicyAcknowledgementComponent) end
+function PolicyAcknowledgementComponent.DidMount(self: PolicyAcknowledgementComponent, props: IComponent.Props)
+	local panel: PolicyAcknowledgementProps = props :: any
+	self._scope:Adopt(panel.CoinBalance:Subscribe(function()
+		self._scope:Invalidate()
+	end))
+end
 
 --[=[
-	Does nothing: the panel acquired nothing that its scope does not already release.
+	Does nothing: the scope of the panel already releases everything it acquired.
 
 	@within PolicyAcknowledgementComponent
 	@method WillUnmount

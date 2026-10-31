@@ -114,5 +114,10 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Implementing a `Submitted` request | CR-0008 was implemented before it was approved. Wait for approval in words | EE-POL-0004 §4, CR-0009 |
 | Downloading a tool the toolchain lacks | The sandbox refused to run it. Tools come from `rokit.toml`, and rokit installs a new one only once a person trusts it | CR-0009 |
 | Deleting a path built from a variable | `rm -rf "$X/lib"` deletes `/lib` when `X` is empty, as Steam's installer once did with `$STEAMROOT`. Work in a new folder and delete nothing | CR-0009 |
+| Passing on a loop variable whose type holds a generic method | The old solver finds a type unequal to itself. Index the table instead of iterating its values | CR-0010 |
+| Comparing a class instance with `nil` | The old solver refuses `~= nil` on a metatable type. Test for truth instead | CR-0011 |
+| Connecting a `(Player) -> ()` handler to `PlayerRemoving` | The new solver knows it also passes the reason for leaving. Wrap the handler | CR-0011 |
+| Leaving `rojo serve` connected while the tree changes | Rojo can sync a second copy of a folder such as `EnterpriseEdition`. Stop the server when you are done, and reconnect after large changes | CR-0011 |
+| Committing without reading the checkpatch result | The commit-msg hook checks only the message, so a dangling reference was committed. Run checkpatch before every commit | CR-0011 |
 
 When you step on a new one, add it here with its record (EE-POL-0006 §6).

@@ -10,6 +10,8 @@
 ]=]
 
 local ElementFactory = require(script.Parent.ElementFactory)
+local IAcknowledgementGateway = require(script.Parent.Parent.Application.IAcknowledgementGateway)
+local ICoinBalanceSource = require(script.Parent.Parent.Application.ICoinBalanceSource)
 local IComponent = require(script.Parent.IComponent)
 local IHostedService = require(script.Parent.Parent.Kernel.IHostedService)
 local PolicyAcknowledgementComponent = require(script.Parent.PolicyAcknowledgementComponent)
@@ -21,6 +23,8 @@ local ROOT_NAME = "EnterpriseEdition"
 type ServiceState = {
 	_orchestrator: ReconciliationOrchestrator.ReconciliationOrchestrator,
 	_parent: Instance,
+	_coinBalance: ICoinBalanceSource.ICoinBalanceSource,
+	_acknowledgementGateway: IAcknowledgementGateway.IAcknowledgementGateway,
 	_tree: ReconciliationOrchestrator.MountedTree?,
 }
 
@@ -30,12 +34,15 @@ InterfaceMountService.__index = InterfaceMountService
 export type InterfaceMountService = typeof(setmetatable({} :: ServiceState, InterfaceMountService))
 
 -- The whole interface of the client.
-local function interface(): IComponent.Element
+local function interface(self: InterfaceMountService): IComponent.Element
 	return ElementFactory.CreateElement("ScreenGui", {
 		ResetOnSpawn = false,
 		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
 	}, {
-		PolicyAcknowledgement = ElementFactory.CreateComponent(PolicyAcknowledgementComponent),
+		PolicyAcknowledgement = ElementFactory.CreateComponent(PolicyAcknowledgementComponent, {
+			CoinBalance = self._coinBalance,
+			AcknowledgementGateway = self._acknowledgementGateway,
+		}),
 	})
 end
 
@@ -45,15 +52,21 @@ end
 	@within InterfaceMountService
 	@param orchestrator ReconciliationOrchestrator -- Mounts and unmounts the interface.
 	@param parent Instance -- Where the interface is shown: the PlayerGui of the local player.
+	@param coinBalance ICoinBalanceSource -- The balance of the local player, which the panel shows.
+	@param acknowledgementGateway IAcknowledgementGateway -- Where the panel sends an acknowledgement.
 	@return IHostedService -- The service, as the contract it implements.
 ]=]
 function InterfaceMountService.new(
 	orchestrator: ReconciliationOrchestrator.ReconciliationOrchestrator,
-	parent: Instance
+	parent: Instance,
+	coinBalance: ICoinBalanceSource.ICoinBalanceSource,
+	acknowledgementGateway: IAcknowledgementGateway.IAcknowledgementGateway
 ): IHostedService.IHostedService
 	local state: ServiceState = {
 		_orchestrator = orchestrator,
 		_parent = parent,
+		_coinBalance = coinBalance,
+		_acknowledgementGateway = acknowledgementGateway,
 		_tree = nil,
 	}
 	return setmetatable(state, InterfaceMountService) :: any
@@ -66,7 +79,7 @@ end
 	@method StartAsync
 ]=]
 function InterfaceMountService.StartAsync(self: InterfaceMountService)
-	self._tree = self._orchestrator:Mount(interface(), self._parent, ROOT_NAME)
+	self._tree = self._orchestrator:Mount(interface(self), self._parent, ROOT_NAME)
 end
 
 --[=[
