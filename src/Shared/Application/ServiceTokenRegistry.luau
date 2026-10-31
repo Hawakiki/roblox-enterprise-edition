@@ -10,6 +10,7 @@
 ]=]
 
 local IHostedService = require(script.Parent.Parent.Kernel.IHostedService)
+local IInstanceFactory = require(script.Parent.IInstanceFactory)
 local ILogger = require(script.Parent.Parent.Kernel.ILogger)
 local ServiceToken = require(script.Parent.Parent.Kernel.ServiceToken)
 
@@ -29,5 +30,13 @@ ServiceTokenRegistry.Logger = ServiceToken.new("ILogger") :: ServiceToken.Servic
 ]=]
 ServiceTokenRegistry.StartupAnnouncement =
 	ServiceToken.new("StartupAnnouncementService") :: ServiceToken.ServiceToken<IHostedService.IHostedService>
+
+--[=[
+	@prop InstanceFactory ServiceToken<IInstanceFactory>
+	@within ServiceTokenRegistry
+	The token of the factory through which anything but Infrastructure obtains an instance.
+]=]
+ServiceTokenRegistry.InstanceFactory =
+	ServiceToken.new("IInstanceFactory") :: ServiceToken.ServiceToken<IInstanceFactory.IInstanceFactory>
 
 return ServiceTokenRegistry
