@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0012
 title: Keep Compliance Coins in a DataStore under a Session Lock
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -62,9 +62,13 @@ Wallets saved in the DataStore stay there, unread, and coins again last only as 
 |---|---|---|---|
 | Requester | Architecture Review Board | Submitted | 2026-10-31 |
 | Approver | Hawakiki | Approved before filing | 2026-10-31 |
+| Implementer | Architecture Review Board | Implemented | 2026-10-31 |
 
 ## 7. Implementation Record
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `1352ca2` | Filed this change request. |
+| `f9b2fc5` | Made `Save` report a lost wallet, let a session source disconnect a player, and taught `CoinSessionService` to autosave, disconnect and wait on stop. |
+| `48ccb8d` | Added `DataStoreCoinWalletRepository` and `DataStoreConstants`, and chose between the DataStore and memory in the server composition root. |
+| `f35e135` | Recorded two mines of the new type solver in `AGENTS.md`. |

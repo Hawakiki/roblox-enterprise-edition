@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0012
 title: 세션 락 아래 DataStore 에 준법 코인 보관
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 세션 락 아래 DataStore 에 준법 코인 보관
@@ -61,9 +61,13 @@ DataStore 에 저장된 지갑은 읽히지 않은 채 남고, 코인은 다시 
 |---|---|---|---|
 | 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-31 |
 | 결재 | Hawakiki | 제출 전 승인 | 2026-10-31 |
+| 시행 | 아키텍처 검토 위원회 | 시행 완료 | 2026-10-31 |
 
 ## 7. 시행 기록
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `1352ca2` | 본 변경 요청 등록 |
+| `f9b2fc5` | `Save` 가 잃은 지갑을 알리고, 세션 출처가 플레이어의 연결을 끊을 수 있게 하며, `CoinSessionService` 가 자동 저장하고 연결을 끊고 멈출 때 기다리게 함 |
+| `48ccb8d` | `DataStoreCoinWalletRepository` 와 `DataStoreConstants` 추가, 서버 조립 지점에서 DataStore 와 메모리 중 하나를 고름 |
+| `f35e135` | `AGENTS.md` 에 새 타입 솔버의 지뢰 두 가지 기록 |
