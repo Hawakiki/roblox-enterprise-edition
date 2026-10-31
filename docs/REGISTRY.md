@@ -17,8 +17,8 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Policies | 8 |
 | Standards | 9 |
 | Templates | 7 |
-| Change Requests | 11 |
-| **Total** | **36** |
+| Change Requests | 12 |
+| **Total** | **37** |
 
 ## Charter
 
@@ -80,3 +80,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0009](records/change-requests/CR-0009-first-assignment-findings.md) | Correct the Findings of the First Assignment | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0010](records/change-requests/CR-0010-presentation-framework.md) | Build the Presentation Framework | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0011](records/change-requests/CR-0011-compliance-coins.md) | Reward Policy Acknowledgement with Compliance Coins | 1.1.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0012](records/change-requests/CR-0012-datastore-wallets.md) | Keep Compliance Coins in a DataStore under a Session Lock | 1.0.0 | Approved | Internal | Architecture Review Board |
