@@ -143,4 +143,4 @@ EE-CHR-0001 EnterpriseEdition 헌장
 | [CR-0018](records/change-requests/CR-0018-code-review-findings.ko.md) | 첫 코드 리뷰 지적 사항 정정 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0019](records/change-requests/CR-0019-contract-decision-record.ko.md) | 계약 패턴을 첫 아키텍처 결정으로 기록 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0020](records/change-requests/CR-0020-adr-0001-fitness-test.ko.md) | ADR-0001 이 기대는 사실을 검사 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
-| [CR-0021](records/change-requests/CR-0021-company-map.ko.md) | 회사 지도 그리기 | 1.1.0 | 시행 | 사내 한정 | Document Control Office |
+| [CR-0021](records/change-requests/CR-0021-company-map.ko.md) | 회사 지도 그리기 | 1.2.0 | 시행 | 사내 한정 | Document Control Office |

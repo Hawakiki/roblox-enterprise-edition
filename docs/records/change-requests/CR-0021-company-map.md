@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0021
 title: Draw the Map of the Company
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Document Control Office
@@ -73,3 +73,8 @@ Revert the merge commit of this change. The units go back to being names in `own
 
 The first plan put the chart in an annex of EE-POL-0003, on the belief that a document of its own would add a kind of document. EE-POL-0001 §4 had registered the organization kind from the start, so the chart became EE-ORG-0001, and EE-POL-0003 was written beside it, as its reservation said.
 Each diagram was rendered by a browser before it was committed, in English and in Korean, to check the layout and the width of wide characters.
+
+| Commit | Change |
+|---|---|
+| `8cb8756` | Marked this request as implemented. |
+| `d21dc5d` | Recorded the approval of EE-ORG-0001 and EE-POL-0003 at 1.0.0, and of EE-STD-0004 at 1.1.0. |

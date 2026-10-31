@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0021
 title: 회사 지도 그리기
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 회사 지도 그리기
@@ -72,3 +72,8 @@ Mermaid 도식은 Markdown 을 보여 주는 쪽이 그리며, 모든 렌더러�
 
 처음 계획은 별도 문서를 두면 문서 종류를 추가하는 셈이라고 여겨 조직도를 EE-POL-0003 의 부속서에 넣으려 하였다. EE-POL-0001 §4 가 처음부터 조직 문서 종류를 등록해 두었으므로 조직도는 EE-ORG-0001 이 되었고, EE-POL-0003 은 예약 문서가 말한 대로 그 옆에 작성되었다.
 각 도식은 커밋하기 전에 영문과 한국어 모두 브라우저로 렌더링하여, 배치와 넓은 문자의 폭을 확인하였다.
+
+| 커밋 | 변경 |
+|---|---|
+| `8cb8756` | 본 요청을 시행 완료로 표시 |
+| `d21dc5d` | EE-ORG-0001 과 EE-POL-0003 의 승인을 1.0.0 으로, EE-STD-0004 의 승인을 1.1.0 으로 기록 |
