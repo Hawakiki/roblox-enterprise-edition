@@ -1,0 +1,111 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!-- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors -->
+<!-- GENERATED FILE. DO NOT EDIT. Regenerate with: lune run scripts/gen_registry -->
+<svg xmlns="http://www.w3.org/2000/svg" width="930" height="1340" viewBox="0 0 930 1340" role="img">
+<title>Lineage of the controlled documents</title>
+<style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Noto Sans Mono CJK KR','Malgun Gothic',monospace;font-size:12px;fill:#1f2328}.first{font-weight:bold}.card{fill:#ffffff;stroke:#57606a;stroke-width:1}.dashed{stroke-dasharray:5 4}.bold{stroke-width:2.5}.edge{fill:none;stroke:#8c959f;stroke-width:1.2}</style>
+<rect width="930" height="1340" fill="#ffffff"/>
+<path class="edge" d="M246 790H266V280H286"/>
+<path class="edge" d="M246 790H266V580H286"/>
+<path class="edge" d="M246 790H266V670H286"/>
+<path class="edge" d="M246 790H266V760H286"/>
+<path class="edge" d="M246 790H266V820H286"/>
+<path class="edge" d="M246 790H266V880H286"/>
+<path class="edge" d="M246 790H266V940H286"/>
+<path class="edge" d="M246 790H266V1000H286"/>
+<path class="edge" d="M246 790H266V1150H286"/>
+<path class="edge" d="M246 790H266V1300H286"/>
+<path class="edge" d="M576 280H596V40H616"/>
+<path class="edge" d="M576 280H596V100H616"/>
+<path class="edge" d="M576 280H596V160H616"/>
+<path class="edge" d="M576 280H596V220H616"/>
+<path class="edge" d="M576 280H596V280H616"/>
+<path class="edge" d="M576 280H596V340H616"/>
+<path class="edge" d="M576 280H596V400H616"/>
+<path class="edge" d="M576 280H596V460H616"/>
+<path class="edge" d="M576 280H596V520H616"/>
+<path class="edge" d="M576 670H596V640H616"/>
+<path class="edge" d="M576 670H596V700H616"/>
+<path class="edge" d="M576 1150H596V1060H616"/>
+<path class="edge" d="M576 1150H596V1120H616"/>
+<path class="edge" d="M576 1150H596V1180H616"/>
+<path class="edge" d="M576 1150H596V1240H616"/>
+<rect class="card" x="16" y="766" width="230" height="48" rx="6"/>
+<text class="first" x="26" y="786">EE-CHR-0001</text>
+<text x="26" y="802">Charter of EnterpriseEdition</text>
+<rect class="card" x="286" y="256" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="276">EE-POL-0001</text>
+<text x="296" y="292">Document Governance Policy</text>
+<rect class="card" x="616" y="16" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="36">EE-POL-0002</text>
+<text x="626" y="52">Bilingual Documentation Policy</text>
+<rect class="card" x="616" y="76" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="96">EE-STD-0009</text>
+<text x="626" y="112">Text File and Documentation Standard</text>
+<rect class="card" x="616" y="136" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="156">EE-TPL-0001</text>
+<text x="626" y="172">Controlled Document Template</text>
+<rect class="card" x="616" y="196" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="216">EE-TPL-0002</text>
+<text x="626" y="232">Change Request Template</text>
+<rect class="card" x="616" y="256" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="276">EE-TPL-0003</text>
+<text x="626" y="292">Request for Comments Template</text>
+<rect class="card" x="616" y="316" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="336">EE-TPL-0004</text>
+<text x="626" y="352">Architecture Decision Record Template</text>
+<rect class="card" x="616" y="376" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="396">EE-TPL-0005</text>
+<text x="626" y="412">Approval Request Template</text>
+<rect class="card" x="616" y="436" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="456">EE-TPL-0006</text>
+<text x="626" y="472">Statement of Circumstances Template</text>
+<rect class="card" x="616" y="496" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="516">EE-TPL-0007</text>
+<text x="626" y="532">Meeting Minutes Template</text>
+<rect class="card" x="286" y="556" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="576">EE-POL-0003</text>
+<text x="296" y="592">Delegation of Authority</text>
+<rect class="card" x="286" y="646" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="666">EE-POL-0004</text>
+<text x="296" y="682">Change Management Policy</text>
+<rect class="card" x="616" y="616" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="636">EE-STD-0007</text>
+<text x="626" y="652">Commit and Branch Standard</text>
+<rect class="card" x="616" y="676" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="696">EE-STD-0008</text>
+<text x="626" y="712">Enterprise Versioning Standard</text>
+<rect class="card dashed" x="286" y="736" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="756">EE-POL-0005</text>
+<text x="296" y="772">Information Classification Policy</text>
+<rect class="card" x="286" y="796" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="816">EE-POL-0006</text>
+<text x="296" y="832">AI Workforce Policy</text>
+<rect class="card dashed" x="286" y="856" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="876">EE-POL-0007</text>
+<text x="296" y="892">Deprecation Policy</text>
+<rect class="card" x="286" y="916" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="936">EE-POL-0008</text>
+<text x="296" y="952">External Data and AI Training Policy</text>
+<rect class="card" x="286" y="976" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="996">EE-ORG-0001</text>
+<text x="296" y="1012">Organization Chart</text>
+<rect class="card" x="286" y="1126" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="1146">EE-STD-0001</text>
+<text x="296" y="1162">Luau Coding Standard</text>
+<rect class="card" x="616" y="1036" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="1056">EE-STD-0002</text>
+<text x="626" y="1072">Naming Convention</text>
+<rect class="card" x="616" y="1096" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="1116">EE-STD-0003</text>
+<text x="626" y="1132">Prohibited API Registry</text>
+<rect class="card" x="616" y="1156" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="1176">EE-STD-0005</text>
+<text x="626" y="1192">Numeric Literal Standard</text>
+<rect class="card" x="616" y="1216" width="298" height="48" rx="6"/>
+<text class="first" x="626" y="1236">EE-STD-0006</text>
+<text x="626" y="1252">Layered Architecture Standard</text>
+<rect class="card" x="286" y="1276" width="290" height="48" rx="6"/>
+<text class="first" x="296" y="1296">EE-STD-0004</text>
+<text x="296" y="1312">File Header Standard</text>
+</svg>

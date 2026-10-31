@@ -43,4 +43,10 @@ end
 
 write(Schema.REGISTRY_PATH, english)
 write(Schema.REGISTRY_KO_PATH, korean)
+if not fs.isDir(root .. "/" .. Schema.DIAGRAMS_FOLDER) then
+	fs.writeDir(root .. "/" .. Schema.DIAGRAMS_FOLDER)
+end
+for _, diagram in Registry.diagrams(index) do
+	write(diagram.path, diagram.content)
+end
 print(string.format("%d documents registered", #index.documents))

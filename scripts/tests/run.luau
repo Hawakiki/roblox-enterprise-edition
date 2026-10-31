@@ -28,6 +28,7 @@ local suites: { Assert.Suite } = {
 	require("./CommitMessage.spec"),
 	require("./ReleaseCalendar.spec"),
 	require("./ReleaseNotes.spec"),
+	require("./TreeDiagram.spec"),
 	require("./AdrFitness.spec"),
 	require("./roblox/Framework.spec"),
 	require("./roblox/Panel.spec"),

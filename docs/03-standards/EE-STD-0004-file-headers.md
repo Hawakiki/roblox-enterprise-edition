@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0004
 title: File Header Standard
-version: 1.0.0
+version: 1.1.0
 status: Approved
 classification: Internal
 owner: Legal Department
@@ -43,6 +43,7 @@ SPDX-FileCopyrightText: <year> Hawakiki and EnterpriseEdition contributors
 | TOML, `.gitignore`, `.gitattributes`, `.editorconfig` | `#` comments on the first lines |
 | Documents under `docs/` | YAML comments inside the frontmatter block (EE-POL-0001 §7) |
 | Other Markdown | HTML comments on the first lines |
+| SVG | XML comments on the first lines, before the root element |
 
 ## 5. Exemptions
 
@@ -66,10 +67,11 @@ Below its file header, a Luau module carries a header comment in both languages 
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | Submitted for review. | Legal Department |
 | 1.0.0 | 2026-10-30 | Approved. | Legal Department |
+| 1.1.0 | 2026-10-31 | §4: where the header of an SVG file goes (CR-0021). | Legal Department |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
-| Drafter | Legal Department | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Approved | 2026-10-30 |
+| Drafter | Legal Department | Submitted | 2026-10-31 |
+| Approver | Hawakiki | Approved | 2026-10-31 |

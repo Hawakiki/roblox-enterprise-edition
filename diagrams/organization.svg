@@ -1,0 +1,47 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!-- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors -->
+<!-- GENERATED FILE. DO NOT EDIT. Regenerate with: lune run scripts/gen_registry -->
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="560" viewBox="0 0 450 560" role="img">
+<title>Organization chart of EnterpriseEdition</title>
+<style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Noto Sans Mono CJK KR','Malgun Gothic',monospace;font-size:12px;fill:#1f2328}.first{font-weight:bold}.card{fill:#ffffff;stroke:#57606a;stroke-width:1}.dashed{stroke-dasharray:5 4}.bold{stroke-width:2.5}.edge{fill:none;stroke:#8c959f;stroke-width:1.2}</style>
+<rect width="450" height="560" fill="#ffffff"/>
+<path class="edge" d="M171 280H191V40H211"/>
+<path class="edge" d="M171 280H191V100H211"/>
+<path class="edge" d="M171 280H191V160H211"/>
+<path class="edge" d="M171 280H191V220H211"/>
+<path class="edge" d="M171 280H191V280H211"/>
+<path class="edge" d="M171 280H191V340H211"/>
+<path class="edge" d="M171 280H191V400H211"/>
+<path class="edge" d="M171 280H191V460H211"/>
+<path class="edge" d="M171 280H191V520H211"/>
+<rect class="card" x="16" y="256" width="155" height="48" rx="6"/>
+<text class="first" x="26" y="276">Board of Directors</text>
+<text x="26" y="292">Hawakiki</text>
+<rect class="card" x="211" y="16" width="223" height="48" rx="6"/>
+<text class="first" x="221" y="36">Architecture Review Board</text>
+<text x="221" y="52">Hawakiki</text>
+<rect class="card" x="211" y="76" width="223" height="48" rx="6"/>
+<text class="first" x="221" y="96">Change Advisory Board</text>
+<text x="221" y="112">Hawakiki</text>
+<rect class="card" x="211" y="136" width="223" height="48" rx="6"/>
+<text class="first" x="221" y="156">Compliance Engineering</text>
+<text x="221" y="172">Hawakiki</text>
+<rect class="card" x="211" y="196" width="223" height="48" rx="6"/>
+<text class="first" x="221" y="216">Document Control Office</text>
+<text x="221" y="232">Hawakiki</text>
+<rect class="card" x="211" y="256" width="223" height="48" rx="6"/>
+<text class="first" x="221" y="276">Human Resources</text>
+<text x="221" y="292">Hawakiki</text>
+<rect class="card" x="211" y="316" width="223" height="48" rx="6"/>
+<text class="first" x="221" y="336">Information Security Office</text>
+<text x="221" y="352">Hawakiki</text>
+<rect class="card" x="211" y="376" width="223" height="48" rx="6"/>
+<text class="first" x="221" y="396">Internal Audit</text>
+<text x="221" y="412">Hawakiki</text>
+<rect class="card" x="211" y="436" width="223" height="48" rx="6"/>
+<text class="first" x="221" y="456">Legal Department</text>
+<text x="221" y="472">Hawakiki</text>
+<rect class="card" x="211" y="496" width="223" height="48" rx="6"/>
+<text class="first" x="221" y="516">Release Engineering</text>
+<text x="221" y="532">Hawakiki</text>
+</svg>

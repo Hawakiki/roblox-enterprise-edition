@@ -1,0 +1,47 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!-- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors -->
+<!-- GENERATED FILE. DO NOT EDIT. Regenerate with: lune run scripts/gen_registry -->
+<svg xmlns="http://www.w3.org/2000/svg" width="322" height="560" viewBox="0 0 322 560" role="img">
+<title>EnterpriseEdition 조직도</title>
+<style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Noto Sans Mono CJK KR','Malgun Gothic',monospace;font-size:12px;fill:#1f2328}.first{font-weight:bold}.card{fill:#ffffff;stroke:#57606a;stroke-width:1}.dashed{stroke-dasharray:5 4}.bold{stroke-width:2.5}.edge{fill:none;stroke:#8c959f;stroke-width:1.2}</style>
+<rect width="322" height="560" fill="#ffffff"/>
+<path class="edge" d="M96 280H116V40H136"/>
+<path class="edge" d="M96 280H116V100H136"/>
+<path class="edge" d="M96 280H116V160H136"/>
+<path class="edge" d="M96 280H116V220H136"/>
+<path class="edge" d="M96 280H116V280H136"/>
+<path class="edge" d="M96 280H116V340H136"/>
+<path class="edge" d="M96 280H116V400H136"/>
+<path class="edge" d="M96 280H116V460H136"/>
+<path class="edge" d="M96 280H116V520H136"/>
+<rect class="card" x="16" y="256" width="80" height="48" rx="6"/>
+<text class="first" x="26" y="276">이사회</text>
+<text x="26" y="292">Hawakiki</text>
+<rect class="card" x="136" y="16" width="170" height="48" rx="6"/>
+<text class="first" x="146" y="36">아키텍처 검토 위원회</text>
+<text x="146" y="52">Hawakiki</text>
+<rect class="card" x="136" y="76" width="170" height="48" rx="6"/>
+<text class="first" x="146" y="96">변경 자문 위원회</text>
+<text x="146" y="112">Hawakiki</text>
+<rect class="card" x="136" y="136" width="170" height="48" rx="6"/>
+<text class="first" x="146" y="156">규정 준수 엔지니어링</text>
+<text x="146" y="172">Hawakiki</text>
+<rect class="card" x="136" y="196" width="170" height="48" rx="6"/>
+<text class="first" x="146" y="216">문서통제실</text>
+<text x="146" y="232">Hawakiki</text>
+<rect class="card" x="136" y="256" width="170" height="48" rx="6"/>
+<text class="first" x="146" y="276">인사팀</text>
+<text x="146" y="292">Hawakiki</text>
+<rect class="card" x="136" y="316" width="170" height="48" rx="6"/>
+<text class="first" x="146" y="336">정보보안실</text>
+<text x="146" y="352">Hawakiki</text>
+<rect class="card" x="136" y="376" width="170" height="48" rx="6"/>
+<text class="first" x="146" y="396">감사실</text>
+<text x="146" y="412">Hawakiki</text>
+<rect class="card" x="136" y="436" width="170" height="48" rx="6"/>
+<text class="first" x="146" y="456">법무팀</text>
+<text x="146" y="472">Hawakiki</text>
+<rect class="card" x="136" y="496" width="170" height="48" rx="6"/>
+<text class="first" x="146" y="516">릴리스 엔지니어링</text>
+<text x="146" y="532">Hawakiki</text>
+</svg>

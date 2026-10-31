@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0004
 title: 파일 헤더 표준
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 파일 헤더 표준
@@ -41,6 +41,7 @@ SPDX-FileCopyrightText: <year> Hawakiki and EnterpriseEdition contributors
 | TOML, `.gitignore`, `.gitattributes`, `.editorconfig` | 첫 줄들에 `#` 주석 |
 | `docs/` 아래의 문서 | frontmatter 블록 안의 YAML 주석(EE-POL-0001 §7) |
 | 그 밖의 Markdown | 첫 줄들에 HTML 주석 |
+| SVG | 첫 줄들에 XML 주석, 루트 요소보다 앞 |
 
 ## 5. 예외
 
@@ -64,10 +65,11 @@ Luau 모듈은 파일 헤더 아래에 두 언어로 쓴 머리 주석을 둔다
 |---|---|---|---|
 | 0.9.0 | 2026-10-30 | 검토 회부 | 법무팀 |
 | 1.0.0 | 2026-10-30 | 승인 | 법무팀 |
+| 1.1.0 | 2026-10-31 | §4: SVG 파일의 헤더 위치(CR-0021) | 법무팀 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
-| 기안 | 법무팀 | 상신 | 2026-10-30 |
-| 결재 | Hawakiki | 승인 | 2026-10-30 |
+| 기안 | 법무팀 | 상신 | 2026-10-31 |
+| 결재 | Hawakiki | 승인 | 2026-10-31 |
