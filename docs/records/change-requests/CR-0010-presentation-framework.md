@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0010
 title: Build the Presentation Framework
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -59,9 +59,13 @@ Players would see nothing again, which no player has complained about so far.
 |---|---|---|---|
 | Requester | Architecture Review Board | Submitted | 2026-10-31 |
 | Approver | Hawakiki | Approved before filing | 2026-10-31 |
+| Implementer | Architecture Review Board | Implemented | 2026-10-31 |
 
 ## 7. Implementation Record
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `7869710` | Filed this change request. |
+| `0dbd8c3` | Added `IInstanceFactory` and `RobloxInstanceFactory`, and registered a token for the factory. |
+| `89937e2` | Added `ElementFactory`, `IComponent`, `ComponentScope` and `ReconciliationOrchestrator`. |
+| `983536e` | Added `PolicyAcknowledgementComponent`, `InterfaceLayoutConstants`, four colours of the palette, `InterfaceMountService` and `PresentationTokenRegistry`, and registered them in the client composition root. |

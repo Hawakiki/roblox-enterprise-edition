@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0010
 title: 프레젠테이션 프레임워크 구축
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 프레젠테이션 프레임워크 구축
@@ -58,9 +58,13 @@ translation-of: 1.0.0
 |---|---|---|---|
 | 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-31 |
 | 결재 | Hawakiki | 제출 전 승인 | 2026-10-31 |
+| 시행 | 아키텍처 검토 위원회 | 시행 완료 | 2026-10-31 |
 
 ## 7. 시행 기록
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `7869710` | 본 변경 요청 등록 |
+| `0dbd8c3` | `IInstanceFactory` 와 `RobloxInstanceFactory` 추가, 팩토리 토큰 등록 |
+| `89937e2` | `ElementFactory`, `IComponent`, `ComponentScope`, `ReconciliationOrchestrator` 추가 |
+| `983536e` | `PolicyAcknowledgementComponent`, `InterfaceLayoutConstants`, 팔레트 색 4가지, `InterfaceMountService`, `PresentationTokenRegistry` 추가 및 클라이언트 조립 지점에 등록 |
