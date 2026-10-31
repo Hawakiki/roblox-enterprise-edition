@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0019
 title: Record the Contract Pattern as the First Architecture Decision
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Architecture Review Board
@@ -61,3 +61,12 @@ Revert the merge commit of this change. The decision stays in force, unrecorded,
 
 The request was filed before the record, as a request is filed on its own, and therefore names the record by its folder rather than by an identifier that did not yet exist.
 A merge with each of the other two branches due to reach `develop` on the same evening, simulated with `git merge-tree`, conflicts only in the generated registry.
+
+| Commit | Change |
+|---|---|
+| `238dcc6` | Marked this request as implemented. |
+| `930b926` | Accepted ADR-0001, on the approval of the Approver of record. |
+
+In the same review, the Approver of record asked how the cast through `any` could be made less dangerous.
+Fixtures showed that the new solver, with the cast or without it, holds a class only to the presence of its methods, and that four of the seventeen casts in `src/` stand outside the constructor pattern.
+The Approver of record decided that a checkpatch rule confining the cast to `return setmetatable(<state>, <class>) :: any` belongs to the request that changes the type solvers, and not to this one.

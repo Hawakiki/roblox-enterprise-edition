@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0019
 title: 계약 패턴을 첫 아키텍처 결정으로 기록
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 계약 패턴을 첫 아키텍처 결정으로 기록
@@ -60,3 +60,12 @@ translation-of: 1.1.0
 
 요청은 따로 등록하는 것이므로 기록보다 먼저 등록되었고, 그래서 아직 없던 식별자 대신 폴더로 기록을 가리킨다.
 같은 날 저녁 `develop` 에 들어올 나머지 두 브랜치 각각과의 머지를 `git merge-tree` 로 흉내 내니, 충돌은 자동 생성되는 문서 대장뿐이었다.
+
+| 커밋 | 변경 |
+|---|---|
+| `238dcc6` | 본 요청을 시행 완료로 표시 |
+| `930b926` | 기록상 결재권자의 승인에 따라 ADR-0001 을 Accepted 로 함 |
+
+같은 검토에서 기록상 결재권자는 `any` 캐스트를 덜 위험하게 할 방법을 물었다.
+예제로 확인하니, 새 솔버는 캐스트가 있든 없든 클래스에 대해 메서드가 있는지만 검사하였고, `src/` 의 캐스트 열일곱 개 가운데 네 개는 생성자 패턴 밖에 있었다.
+기록상 결재권자는 캐스트를 `return setmetatable(<state>, <class>) :: any` 로만 허용하는 checkpatch 규칙을 본 요청이 아니라 타입 솔버를 바꾸는 요청에 넣기로 결정하였다.
