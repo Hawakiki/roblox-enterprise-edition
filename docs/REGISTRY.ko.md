@@ -17,8 +17,9 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 정책 | 8 |
 | 표준 | 9 |
 | 양식 | 7 |
-| 변경 요청 | 18 |
-| **합계** | **43** |
+| 아키텍처 결정 기록 | 1 |
+| 변경 요청 | 19 |
+| **합계** | **45** |
 
 ## 헌장
 
@@ -65,6 +66,12 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [EE-TPL-0006](templates/EE-TPL-0006-statement-of-circumstances.ko.md) | 경위서 양식 | 1.0.1 | 승인 | 사내 한정 | Document Control Office | EE-POL-0001@1.1 |
 | [EE-TPL-0007](templates/EE-TPL-0007-meeting-minutes.ko.md) | 회의록 양식 | 1.0.1 | 승인 | 사내 한정 | Document Control Office | EE-POL-0001@1.1 |
 
+## 아키텍처 결정 기록
+
+| ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 |
+|---|---|---|---|---|---|
+| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.ko.md) | 생성자는 any 캐스트로 자기 계약을 반환한다 | 1.1.0 | 채택 | 사내 한정 | Architecture Review Board |
+
 ## 변경 요청
 
 | ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 |
@@ -87,3 +94,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0016](records/change-requests/CR-0016-release-engineering.ko.md) | 릴리스의 번호, 관문, 게시 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |
 | [CR-0017](records/change-requests/CR-0017-release-1-1-0.ko.md) | EnterpriseEdition 1.1.0 릴리스 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |
 | [CR-0018](records/change-requests/CR-0018-code-review-findings.ko.md) | 첫 코드 리뷰 지적 사항 정정 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
+| [CR-0019](records/change-requests/CR-0019-contract-decision-record.ko.md) | 계약 패턴을 첫 아키텍처 결정으로 기록 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
