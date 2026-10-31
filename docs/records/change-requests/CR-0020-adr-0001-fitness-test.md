@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0020
 title: Test the Facts That ADR-0001 Rests On
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -72,4 +72,13 @@ The files the test wrote under `build/` stay where they are, ignored, until some
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `b97e1a6` | Filed this change request. |
+| `f98c72e` | Added the fitness test of ADR-0001: four fixtures held as strings, and a test that writes them under `build/solver-fixtures/` and analyses each under both solvers. |
+| `9e99e06` | Recorded the mine of deliberately invalid Luau in `AGENTS.md`. |
+| `41bfb1a` | Wrote down in both READMEs how the Approver of record approves a deployment through `gh api`. |
+
+Before this request was marked as implemented, the test ran in a worktree without `build/`, which it created, and ran again over the files it had written, which it overwrote.
+It passed under `tools/check.ps1` and `tools/check.sh`, and all of `scripts/` stayed in the analysis of both solvers.
+In an edit that was never committed, the expectation that the new solver accepts the drifted class was reversed.
+The test failed with `ADR-0001: the new solver no longer reports drift in _implements (build/solver-fixtures/Drift.luau): revisit ADR-0001`, and passed again once the edit was undone.
+A second such edit expected two errors of the old solver in the drifted class, and the test failed, reporting three.

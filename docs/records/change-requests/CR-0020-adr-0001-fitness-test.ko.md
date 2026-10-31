@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0020
 title: ADR-0001 이 기대는 사실을 검사
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # ADR-0001 이 기대는 사실을 검사
@@ -71,4 +71,13 @@ Publish 는 달력을 한 번 더 확인한 뒤, 2026-10-31T12:22:38Z 에 52175 
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `b97e1a6` | 본 변경 요청 등록 |
+| `f98c72e` | ADR-0001 의 적합도 테스트 추가. 문자열로 둔 예제 네 개와, 그것을 `build/solver-fixtures/` 에 써서 두 솔버로 각각 분석하는 테스트 |
+| `9e99e06` | `AGENTS.md` 에 일부러 틀리게 쓴 Luau 의 지뢰를 기록함 |
+| `41bfb1a` | 기록상 결재권자가 `gh api` 로 배포를 승인하는 방법을 두 README 에 적음 |
+
+본 요청을 시행 완료로 표시하기 전에, `build/` 가 없는 작업 사본에서 테스트를 돌려 테스트가 그 폴더를 만들게 하였고, 이미 쓴 파일 위에서 한 번 더 돌려 덮어쓰게 하였다.
+`tools/check.ps1` 과 `tools/check.sh` 에서 모두 통과하였고, `scripts/` 전체가 두 솔버의 분석에 그대로 남았다.
+커밋하지 않은 수정으로, 새 솔버가 어긋난 클래스를 받아들인다는 기대를 뒤집었다.
+테스트는 `ADR-0001: the new solver no longer reports drift in _implements (build/solver-fixtures/Drift.luau): revisit ADR-0001` 로 실패하였고, 수정을 되돌리자 다시 통과하였다.
+두 번째 수정에서는 어긋난 클래스에 대해 옛 솔버의 오류를 두 건으로 기대하였고, 테스트는 세 건을 보고하며 실패하였다.
