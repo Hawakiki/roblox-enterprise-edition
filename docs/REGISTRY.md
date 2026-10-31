@@ -17,8 +17,8 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Policies | 8 |
 | Standards | 9 |
 | Templates | 7 |
-| Change Requests | 17 |
-| **Total** | **42** |
+| Change Requests | 18 |
+| **Total** | **43** |
 
 ## Charter
 
@@ -86,3 +86,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0015](records/change-requests/CR-0015-ci-hardening.md) | Harden the Continuous Integration | 1.2.0 | Implemented | Internal | Release Engineering |
 | [CR-0016](records/change-requests/CR-0016-release-engineering.md) | Number, Gate and Publish Releases | 1.2.0 | Implemented | Internal | Release Engineering |
 | [CR-0017](records/change-requests/CR-0017-release-1-1-0.md) | Release EnterpriseEdition 1.1.0 | 1.2.0 | Implemented | Internal | Release Engineering |
+| [CR-0018](records/change-requests/CR-0018-code-review-findings.md) | Correct the Findings of the First Code Review | 1.1.0 | Implemented | Internal | Architecture Review Board |

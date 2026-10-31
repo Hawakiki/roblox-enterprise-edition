@@ -65,4 +65,15 @@ case("the notes name the release and the one before it", function()
 	Assert.contains(ReleaseNotes.render("v1.0.0", nil, {}), "since the founding of the Company", "first release")
 end)
 
+-- Defect 5 of CR-0018: trailer keys are matched without regard to case (EE-STD-0007 §6.1).
+case("a trailer key is matched without regard to case", function()
+	local cited = ReleaseNotes.cited({
+		"fix(x): a\n\nchange-request: CR-0018\n",
+		"fix(x): b\n\nCHANGE-REQUEST:  CR-0019 \n",
+	})
+	Assert.equal(#cited, 2, "count")
+	Assert.equal(cited[1], "CR-0018", "lower case")
+	Assert.equal(cited[2], "CR-0019", "upper case")
+end)
+
 return { name = "ReleaseNotes", cases = cases } :: Assert.Suite

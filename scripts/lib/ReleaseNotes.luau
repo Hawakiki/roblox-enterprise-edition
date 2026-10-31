@@ -26,8 +26,9 @@ function ReleaseNotes.cited(messages: { string }): { string }
 	local ids = {}
 	for _, message in messages do
 		for line in string.gmatch(message, "[^\n]+") do
-			local id = string.match(line, "^Change%-Request:%s*(CR%-%d+)%s*$")
-			if id and not seen[id] then
+			-- Keys are matched without regard to case (EE-STD-0007 §6.1, CR-0018).
+			local key: string?, id: string? = string.match(line, "^([%w%-]+):%s*(CR%-%d+)%s*$")
+			if key and string.lower(key) == "change-request" and id and not seen[id] then
 				seen[id] = true
 				table.insert(ids, id)
 			end

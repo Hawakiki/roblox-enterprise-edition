@@ -28,6 +28,10 @@ local suites: { Assert.Suite } = {
 	require("./CommitMessage.spec"),
 	require("./ReleaseCalendar.spec"),
 	require("./ReleaseNotes.spec"),
+	require("./roblox/Framework.spec"),
+	require("./roblox/Panel.spec"),
+	require("./roblox/Coins.spec"),
+	require("./roblox/DataStore.spec"),
 }
 
 local passed, failed = 0, 0
