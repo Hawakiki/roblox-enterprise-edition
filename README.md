@@ -5,7 +5,30 @@
 
 English | [한국어](README.ko.md)
 
-<!-- The introduction is written by the Approver of record, in README.ko.md, and translated here. -->
+Welcome to EnterpriseEdition.\
+It is exactly what the name says: the enterprise edition.
+
+Projects these days...
+
+It's just that the ratio of config files to code is a little off.\
+Yes, very off.\
+Off as f\*\*\*.
+
+A startup that is already planning to survive a 3 Tbps DDoS sets up Docker, Redis, Kafka and Toxiproxy,\
+and catches NIH syndrome, so it builds everything itself.
+
+It sets up a mailing list, though it will have few contributors anyway.\
+Nobody is going to pull an xz-utils on it, either.\
+The rules are strict, and full of holes every single day.
+
+Of course, it's no different here.\
+Except that every rule is actually kept,\
+and anyone who tries to pull an xz-utils has their brain explode before they can, and runs.
+
+STOP READING\
+GET TO WORK
+
+(it's a joke, don't take it seriously fr fr)
 
 ## Development
 

@@ -5,9 +5,30 @@
 
 [English](README.md) | 한국어
 
-<!-- ▼ 소개문 자리: 이 주석 아래에 한국어로 써 주세요. 대충 써도 됩니다. 영어판은 README.md 로 옮깁니다. ▼ -->
+웰컴 투 enterprise edition\
+이름 그대로 엔터프라이즈 에디션입니다.
 
-<!-- ▲ 소개문 끝 ▲ -->
+요즘 프로젝트는...
+
+단지 설정 파일과 코드 비율이 이상한 것뿐입니다.\
+네, 많이 이상합니다\
+존X요
+
+스타트업인데 벌써 3Tbps DDoS를 막을 생각으로 Docker, Redis, Kafka, Toxiproxy를 세팅하고\
+NIH 증후군에 걸려서 모든 걸 자기가 만들며
+
+어차피 기여자는 적겠지만 메일링 리스트를 만들고\
+xz-utils마냥 공격도 안 할 테지만.\
+규칙은 엄격하지만 맨날 구멍이 뻥뻥 뚫리고
+
+물론 여기라고 다른 건 없습니다\
+단지 모든 게 지켜지고\
+xz-utils처럼 공격하려다가 뇌가 먼저 터져서 도망가는 겁니다.
+
+STOP READING\
+GET TO WORK
+
+(it's a joke, don't take it seriously fr fr)
 
 ## 개발
 
