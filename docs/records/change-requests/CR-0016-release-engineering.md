@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0016
 title: Number, Gate and Publish Releases
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Release Engineering
 ---
@@ -70,4 +70,11 @@ Tags stay, as the ruleset requires.
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `27c29b7` | Filed this change request. |
+| `aefdc8b` | Added the calendar of deployments and its gate, with tests past 2038 and 2106, and the generator of release notes, with tests. |
+| `0b6a3a9` | Added the release workflow, and kept the environment `production` as files. |
+| `86e1e72` | Wrote EE-STD-0008 and submitted it for review. |
+| `183ff5b` | Described releasing in both READMEs, and pointed `AGENTS.md` at EE-STD-0008 with three new mines. |
+
+Before this request was marked as implemented, the workflow was read back as YAML, the place was built with `rojo build`, and the notes of 1.0.0 were generated: fourteen change requests, CR-0001 to CR-0014.
+`scripts/release_gate` refused a deployment at the time, for it was Friday somewhere on Earth until 2026-10-31T12:00:00Z.
