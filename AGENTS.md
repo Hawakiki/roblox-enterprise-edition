@@ -135,5 +135,6 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Releasing before the standard its reservation promised | 1.0.0 shipped before EE-STD-0008 was written, on a Saturday in Seoul that was still Friday in parts of the Pacific. Run `scripts/release_gate` first | EE-STD-0008 §7, CR-0016 |
 | Writing to `io` in a Lune script | Lune has no `io`, and the script failed only when it ran. Write with `stdio.write` from `@lune/stdio` | CR-0016 |
 | Expecting the type checker to know that `process.exit` does not return | Both solvers still read the value as optional after the exit. `return` after it | CR-0016 |
+| Taking every commit since the previous tag as the commits of a release | The merge of `release/1.0.0` back into `develop` cites CR-0014 after `v1.0.0`, and 1.1.0 would have released it again. A request belongs to the first release that cites it | EE-STD-0008 §5, CR-0017 |
 
 When you step on a new one, add it here with its record (EE-POL-0006 §6).
