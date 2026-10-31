@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0016
 title: Number, Gate and Publish Releases
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Release Engineering
@@ -78,3 +78,12 @@ Tags stay, as the ruleset requires.
 
 Before this request was marked as implemented, the workflow was read back as YAML, the place was built with `rojo build`, and the notes of 1.0.0 were generated: fourteen change requests, CR-0001 to CR-0014.
 `scripts/release_gate` refused a deployment at the time, for it was Friday somewhere on Earth until 2026-10-31T12:00:00Z.
+
+| Commit | Change |
+|---|---|
+| `3480861` | Marked this request as implemented. |
+| `f6496bf` | Recorded the approval of EE-STD-0008, at 1.0.0. |
+
+On approval of the merge, on 2026-10-31, the environment `production` was applied to the repository on GitHub with `gh api`, as environment 25857438866, with tag policy 64990397.
+GitHub then reported Hawakiki as its one required reviewer, self-review allowed, and `v*` tags as the only refs it admits.
+The notes of 1.0.0 wait for the end of the freeze; the release request that follows records their publication.
