@@ -208,4 +208,96 @@ case("Dispose unmounts every tree, and nothing mounts after it", function()
 	end, "disposed", "mounting after Dispose")
 end)
 
+-- A parent that shows a child, and shows in turn what the child reports once it has mounted. With nagging set,
+-- the child reports on every render instead, which no parent can satisfy.
+local function reportingParent(record: any): any
+	local Child: any = {}
+	Child.__index = Child
+	function Child.new(scope: any): any
+		return setmetatable({ scope = scope }, Child)
+	end
+	function Child.Render(_: any, props: any): any
+		if record.nagging then
+			props.report()
+		end
+		return ElementFactory.CreateElement("TextLabel", { Text = "child" })
+	end
+	function Child.DidMount(_: any, props: any)
+		record.mounted += 1
+		props.report()
+	end
+	function Child.WillUnmount(_: any)
+		record.unmounted += 1
+	end
+
+	local Parent: any = {}
+	Parent.__index = Parent
+	function Parent.new(scope: any): any
+		record.parent = setmetatable({ scope = scope, showChild = record.showChildAtFirst, reported = false }, Parent)
+		return record.parent
+	end
+	function Parent.Render(self: any): any
+		local children: any = {
+			Status = ElementFactory.CreateElement("TextLabel", {
+				Text = if self.reported then "child mounted" else "waiting",
+			}),
+		}
+		if self.showChild then
+			children.Child = ElementFactory.CreateComponent(Child, {
+				report = function()
+					if record.nagging or not self.reported then
+						self.reported = true
+						self.scope:Invalidate()
+					end
+				end,
+			})
+		end
+		return ElementFactory.CreateElement("Frame", {}, children)
+	end
+	function Parent.DidMount(_: any) end
+	function Parent.WillUnmount(_: any) end
+	return Parent
+end
+
+local function newRecord(showChildAtFirst: boolean, nagging: boolean): any
+	return { mounted = 0, unmounted = 0, parent = nil, showChildAtFirst = showChildAtFirst, nagging = nagging }
+end
+
+-- Defect 4 of CR-0018: a component invalidated while it updated mounted its child twice.
+case("a parent that its child invalidates during the parent's update renders again after it", function()
+	local record = newRecord(false, false)
+	local orchestrator = newOrchestrator()
+	local playerGui = FakeRoblox.instance("PlayerGui")
+	local tree = orchestrator:Mount(ElementFactory.CreateComponent(reportingParent(record)), playerGui, "Panel")
+	local frame = FakeRoblox.child(playerGui, "Panel")
+	record.parent.showChild = true
+	record.parent.scope:Invalidate()
+	Assert.equal(#FakeRoblox.childrenNamed(frame, "Child"), 1, "the child is mounted once")
+	Assert.equal(record.mounted, 1, "and told so once")
+	Assert.equal(FakeRoblox.child(frame, "Status").Text, "child mounted", "the parent shows what the child reported")
+	orchestrator:Unmount(tree)
+	Assert.equal(record.unmounted, record.mounted, "every child that mounted unmounts")
+end)
+
+-- Defect 4 of CR-0018, during a mount, when the parent has rendered nothing yet.
+case("a parent that its child invalidates during the parent's mount renders again after it", function()
+	local record = newRecord(true, false)
+	local playerGui = FakeRoblox.instance("PlayerGui")
+	newOrchestrator():Mount(ElementFactory.CreateComponent(reportingParent(record)), playerGui, "Panel")
+	local frame = FakeRoblox.child(playerGui, "Panel")
+	Assert.equal(#FakeRoblox.childrenNamed(frame, "Child"), 1, "the child is mounted once")
+	Assert.equal(FakeRoblox.child(frame, "Status").Text, "child mounted", "the parent shows what the child reported")
+end)
+
+case("a component that its children invalidate on every render is refused, not rendered forever", function()
+	local record = newRecord(true, true)
+	Assert.raises(function()
+		newOrchestrator():Mount(
+			ElementFactory.CreateComponent(reportingParent(record)),
+			FakeRoblox.instance("PlayerGui"),
+			"Panel"
+		)
+	end, "kept asking to be rendered again", "a child that reports on every render")
+end)
+
 return { name = "Roblox: presentation framework", cases = cases } :: Assert.Suite
