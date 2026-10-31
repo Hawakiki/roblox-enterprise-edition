@@ -86,6 +86,32 @@ case("game:GetService is allowed only in the composition roots", function()
 	Assert.codes(check({ [SERVICE] = code('local P = game:FindService("Players")') }), { "PROHIBITED_API" })
 end)
 
+case("Random.new is allowed only in Infrastructure (CR-0022)", function()
+	local source = code("local generator = Random.new(seed)")
+	Assert.codes(check({ ["src/Shared/Infrastructure/RandomSourceAdapter.luau"] = source, [FACTORY] = source }), {})
+	Assert.codes(check({ [SERVICE] = source }), { "PROHIBITED_API" })
+	Assert.codes(check({ [ROOT] = source }), { "PROHIBITED_API" })
+end)
+
+case("the global random generator is prohibited everywhere, Infrastructure included (CR-0022)", function()
+	for _, body in
+		{
+			"local roll = math.random(1, 6)",
+			"math.randomseed(42)",
+			"local roll = math.random",
+			'local roll = math["random"](1, 6)',
+		}
+	do
+		Assert.codes(check({ [ROOT] = code(body) }), { "PROHIBITED_API" })
+		Assert.codes(
+			check({ ["src/Shared/Infrastructure/RandomSourceAdapter.luau"] = code(body) }),
+			{ "PROHIBITED_API" }
+		)
+	end
+	Assert.codes(check({ [SERVICE] = code("local n = math.floor(x)\nreturn generator:NextInteger(1, 6)") }), {})
+	Assert.codes(check({ [SERVICE] = code("return self.random:NextNumber()") }), {})
+end)
+
 case("deprecated and unsafe globals are prohibited everywhere", function()
 	for _, body in
 		{
