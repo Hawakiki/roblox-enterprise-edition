@@ -60,7 +60,8 @@ type Transform = (stored: any, keyInfo: any) -> any
 
 type RepositoryState = {
 	_dependencies: Dependencies,
-	_held: { [number]: boolean },
+	-- The wallet this server opened for each player, so that a wallet it did not open is never written (CR-0018).
+	_held: { [number]: CoinWalletEntity.CoinWalletEntity },
 }
 
 local DataStoreCoinWalletRepository = {}
@@ -153,7 +154,8 @@ end
 
 --[=[
 	Takes the lock on the wallet of a player and loads it. A lock that another server holds is waited for, and
-	one whose heartbeat has stopped is taken over.
+	one whose heartbeat has stopped is taken over. A wallet that this server holds already is not opened again,
+	and a record whose balance no wallet can hold is refused before any lock is taken.
 
 	@within DataStoreCoinWalletRepository
 	@method Load
@@ -166,6 +168,12 @@ function DataStoreCoinWalletRepository.Load(
 ): CoinWalletEntity.CoinWalletEntity
 	local dependencies = self._dependencies
 	for attempt = 1, DataStoreConstants.ACQUIRE_ATTEMPTS do
+		if self._held[userId] then
+			error(
+				string.format("the wallet of user %d is already open on this server", userId),
+				ErrorLevelConstants.CALLER
+			)
+		end
 		local acquired = false
 		local balance = CoinConstants.INITIAL_BALANCE
 		local refusal: string? = nil
@@ -173,6 +181,12 @@ function DataStoreCoinWalletRepository.Load(
 			-- UpdateAsync may call a transform more than once; only the last call counts.
 			acquired, refusal = false, nil
 			local record, problem = readRecord(stored)
+			-- The wallet itself judges the balance, before the lock is taken (CR-0018).
+			if
+				problem == nil and not pcall(CoinWalletEntity.new, userId, record.balance, dependencies.overflowPolicy)
+			then
+				problem = string.format("the record holds an impossible balance of %s", tostring(record.balance))
+			end
 			if problem then
 				refusal = problem
 				return nil
@@ -201,8 +215,9 @@ function DataStoreCoinWalletRepository.Load(
 			)
 		end
 		if acquired then
-			self._held[userId] = true
-			return CoinWalletEntity.new(userId, balance, dependencies.overflowPolicy)
+			local wallet = CoinWalletEntity.new(userId, balance, dependencies.overflowPolicy)
+			self._held[userId] = wallet
+			return wallet
 		end
 		if attempt < DataStoreConstants.ACQUIRE_ATTEMPTS then
 			dependencies.sleep(DataStoreConstants.ACQUIRE_RETRY_SECONDS)
@@ -213,19 +228,19 @@ end
 
 --[=[
 	Saves the balance of a wallet and renews its lock. A wallet whose lock has passed to another server is not
-	written, and is held no longer.
+	written, and is held no longer; nor is a wallet that this server did not open, or has released.
 
 	@within DataStoreCoinWalletRepository
 	@method Save
 	@param wallet CoinWalletEntity -- A wallet that Load returned.
-	@return boolean -- False once the wallet belongs to another server.
+	@return boolean -- False once this server no longer holds the wallet.
 ]=]
 function DataStoreCoinWalletRepository.Save(
 	self: DataStoreCoinWalletRepository,
 	wallet: CoinWalletEntity.CoinWalletEntity
 ): boolean
 	local userId = wallet:GetUserId()
-	if not self._held[userId] then
+	if self._held[userId] ~= wallet then
 		return false
 	end
 	local dependencies = self._dependencies
@@ -250,7 +265,7 @@ function DataStoreCoinWalletRepository.Save(
 	if refusal then
 		error(string.format("the wallet of user %d cannot be read: %s", userId, refusal), ErrorLevelConstants.CALLER)
 	end
-	if not held then
+	if not held and self._held[userId] == wallet then
 		self._held[userId] = nil
 	end
 	return held
@@ -258,7 +273,7 @@ end
 
 --[=[
 	Saves the balance of a wallet for the last time and gives up its lock. A wallet whose lock has passed to
-	another server is left as that server wrote it.
+	another server is left as that server wrote it, and a wallet that this server does not hold is not written.
 
 	@within DataStoreCoinWalletRepository
 	@method Release
@@ -269,7 +284,7 @@ function DataStoreCoinWalletRepository.Release(
 	wallet: CoinWalletEntity.CoinWalletEntity
 )
 	local userId = wallet:GetUserId()
-	if not self._held[userId] then
+	if self._held[userId] ~= wallet then
 		return
 	end
 	self._held[userId] = nil

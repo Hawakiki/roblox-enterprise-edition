@@ -214,4 +214,140 @@ case("the session service disconnects a player it cannot serve, and waits for re
 	Assert.equal(slowReleases, 1, "stopping waits for a release already under way")
 end)
 
+-- Defect 1 of CR-0018: a late load on the same server cleared the lock of the wallet that replaced it.
+case("a player who rejoins while an earlier load still waits keeps every coin", function()
+	local world = newWorld()
+	world.sleepGate = Fakes.gate()
+	world.store.records[keyOf(1)] =
+		{ schemaVersion = 1, balance = 10, lock = { sessionId = "server-A", heartbeat = world.now } }
+	local server = newSessionServer(world:server("server-B"))
+	local first = Fakes.player(1)
+	server.sessions:Join(first) -- the first load finds the lock of server A, and waits to try again
+	Fakes.settle()
+	world.store.records[keyOf(1)].lock = nil -- server A releases the wallet
+	server.sessions:Leave(first) -- the player leaves while the first load waits
+	server.sessions:Join(Fakes.player(1)) -- and joins again at once
+	Fakes.settle()
+	world.sleepGate:Open()
+	Fakes.settle()
+	local wallet = server.registry:Get(1)
+	Assert.truthy(wallet ~= nil, "the player who rejoined has a wallet")
+	for _ = 1, 5 do
+		wallet:Deposit(1)
+	end
+	server.service:_SaveAll()
+	Assert.equal(server.sessions:Kicked(1), false, "the player is not disconnected")
+	Assert.equal(world:record(1).balance, 15, "and keeps every coin")
+	Assert.equal(world:record(1).lock.sessionId, "server-B", "while the server still holds the wallet")
+	server.service:StopAsync()
+end)
+
+-- Defect 1 of CR-0018, at the level of the repository.
+case("a server opens a wallet once, and saves and releases only the wallet it opened", function()
+	local world = newWorld()
+	local a = world:server("server-A")
+	local wallet = a:Load(51)
+	Assert.raises(function()
+		a:Load(51)
+	end, "already open on this server", "a second load on the same server")
+	local impostor = CoinWalletEntity.new(51, 99, policy)
+	Assert.equal(a:Save(impostor), false, "a wallet the server did not open is not saved")
+	a:Release(impostor)
+	Assert.equal(world:record(51).lock.sessionId, "server-A", "nor released")
+	Assert.equal(world:record(51).balance, 0, "and writes nothing")
+	Assert.equal(a:Save(wallet), true, "the wallet it opened is still held")
+end)
+
+-- Defect 2 of CR-0018: stopping did not wait for loads under way.
+case("stopping waits for a load under way, and releases the wallet it loads", function()
+	local loadGate = Fakes.gate()
+	local released: { number } = {}
+	local repository = {
+		Load = function(_: any, userId: number): any
+			loadGate:Wait()
+			return CoinWalletEntity.new(userId, 0, policy)
+		end,
+		Save = function(_: any): boolean
+			return true
+		end,
+		Release = function(_: any, wallet: any)
+			local userId: number = wallet:GetUserId()
+			table.insert(released, userId)
+		end,
+	}
+	local server = newSessionServer(repository)
+	server.sessions:Join(Fakes.player(21))
+	local stopped = false
+	task.spawn(function()
+		server.service:StopAsync()
+		stopped = true
+	end)
+	Fakes.settle()
+	Assert.equal(stopped, false, "stopping waits for the load")
+	loadGate:Open()
+	Fakes.settle()
+	Assert.truthy(stopped, "and returns once it has finished")
+	Assert.equal(#released, 1, "the wallet loaded after the stop is released")
+	Assert.equal(server.registry:Get(21), nil, "and never registered")
+end)
+
+-- Defect 3 of CR-0018: an autosave disconnected a player who had rejoined during the pass.
+case("an autosave that reaches a wallet already released leaves the rejoined player alone", function()
+	local saveGate = Fakes.gate()
+	local held: { [number]: any } = {}
+	local firstSaved: number? = nil
+	local repository = {
+		Load = function(_: any, userId: number): any
+			local wallet = CoinWalletEntity.new(userId, 0, policy)
+			held[userId] = wallet
+			return wallet
+		end,
+		Save = function(_: any, wallet: any): boolean
+			if firstSaved == nil then
+				firstSaved = wallet:GetUserId()
+				saveGate:Wait()
+			end
+			return held[wallet:GetUserId()] == wallet
+		end,
+		Release = function(_: any, wallet: any)
+			if held[wallet:GetUserId()] == wallet then
+				held[wallet:GetUserId()] = nil
+			end
+		end,
+	}
+	local server = newSessionServer(repository)
+	local players = { [31] = Fakes.player(31), [32] = Fakes.player(32) }
+	server.sessions:Join(players[31])
+	server.sessions:Join(players[32])
+	Fakes.settle()
+	task.spawn(function()
+		server.service:_SaveAll()
+	end)
+	Fakes.settle()
+	-- The player whose wallet the pass reaches second leaves and joins again while the first is saved.
+	local later = if firstSaved == 31 then 32 else 31
+	server.sessions:Leave(players[later])
+	server.sessions:Join(Fakes.player(later))
+	Fakes.settle()
+	saveGate:Open()
+	Fakes.settle()
+	Assert.equal(server.sessions:Kicked(later), false, "the player who rejoined is not disconnected")
+	Assert.truthy(server.registry:Get(later) ~= nil, "and keeps the wallet")
+	server.service:StopAsync()
+end)
+
+-- Defect 7 of CR-0018: an impossible balance was read, and the load failed after it had taken the lock.
+case("a record with an impossible balance is refused before any lock is taken", function()
+	local world = newWorld()
+	local a = world:server("server-A")
+	local balances: { [number]: number } = { [41] = -3, [42] = 2.5, [43] = CoinConstants.MAXIMUM_BALANCE + 1 }
+	for userId, balance in balances do
+		world.store.records[keyOf(userId)] = { schemaVersion = 1, balance = balance }
+		Assert.raises(function()
+			a:Load(userId)
+		end, "impossible balance", "a balance of " .. tostring(balance))
+		Assert.equal(world:record(userId).lock, nil, "takes no lock: " .. tostring(balance))
+	end
+end)
+
 return { name = "Roblox: DataStore wallets", cases = cases } :: Assert.Suite
