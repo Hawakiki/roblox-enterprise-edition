@@ -50,6 +50,7 @@ rojo serve default.project.json        # sync src/ into Roblox Studio
 | Add any file | EE-STD-0004, EE-STD-0009 |
 | Add a checkpatch rule | EE-POL-0001 §14 |
 | Prepare a release | EE-STD-0008 |
+| Find who owns or approves something | EE-ORG-0001, EE-POL-0003 |
 | Approve something | Nothing. You do not approve, not even a deployment waiting in `production` (EE-POL-0006 §4). |
 
 Every rule, with the document that mandates it: `lune run scripts/checkpatch --list-rules`.

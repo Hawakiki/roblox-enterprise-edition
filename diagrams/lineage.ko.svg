@@ -1,19 +1,20 @@
 <!-- SPDX-License-Identifier: MIT -->
 <!-- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors -->
 <!-- GENERATED FILE. DO NOT EDIT. Regenerate with: lune run scripts/gen_registry -->
-<svg xmlns="http://www.w3.org/2000/svg" width="757" height="1280" viewBox="0 0 757 1280" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" width="757" height="1340" viewBox="0 0 757 1340" role="img">
 <title>통제 문서의 계보</title>
 <style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Noto Sans Mono CJK KR','Malgun Gothic',monospace;font-size:12px;fill:#1f2328}.first{font-weight:bold}.card{fill:#ffffff;stroke:#57606a;stroke-width:1}.dashed{stroke-dasharray:5 4}.bold{stroke-width:2.5}.edge{fill:none;stroke:#8c959f;stroke-width:1.2}</style>
-<rect width="757" height="1280" fill="#ffffff"/>
-<path class="edge" d="M201 760H221V280H241"/>
-<path class="edge" d="M201 760H221V580H241"/>
-<path class="edge" d="M201 760H221V670H241"/>
-<path class="edge" d="M201 760H221V760H241"/>
-<path class="edge" d="M201 760H221V820H241"/>
-<path class="edge" d="M201 760H221V880H241"/>
-<path class="edge" d="M201 760H221V940H241"/>
-<path class="edge" d="M201 760H221V1090H241"/>
-<path class="edge" d="M201 760H221V1240H241"/>
+<rect width="757" height="1340" fill="#ffffff"/>
+<path class="edge" d="M201 790H221V280H241"/>
+<path class="edge" d="M201 790H221V580H241"/>
+<path class="edge" d="M201 790H221V670H241"/>
+<path class="edge" d="M201 790H221V760H241"/>
+<path class="edge" d="M201 790H221V820H241"/>
+<path class="edge" d="M201 790H221V880H241"/>
+<path class="edge" d="M201 790H221V940H241"/>
+<path class="edge" d="M201 790H221V1000H241"/>
+<path class="edge" d="M201 790H221V1150H241"/>
+<path class="edge" d="M201 790H221V1300H241"/>
 <path class="edge" d="M464 280H484V40H504"/>
 <path class="edge" d="M464 280H484V100H504"/>
 <path class="edge" d="M464 280H484V160H504"/>
@@ -25,13 +26,13 @@
 <path class="edge" d="M464 280H484V520H504"/>
 <path class="edge" d="M464 670H484V640H504"/>
 <path class="edge" d="M464 670H484V700H504"/>
-<path class="edge" d="M464 1090H484V1000H504"/>
-<path class="edge" d="M464 1090H484V1060H504"/>
-<path class="edge" d="M464 1090H484V1120H504"/>
-<path class="edge" d="M464 1090H484V1180H504"/>
-<rect class="card" x="16" y="736" width="185" height="48" rx="6"/>
-<text class="first" x="26" y="756">EE-CHR-0001</text>
-<text x="26" y="772">EnterpriseEdition 헌장</text>
+<path class="edge" d="M464 1150H484V1060H504"/>
+<path class="edge" d="M464 1150H484V1120H504"/>
+<path class="edge" d="M464 1150H484V1180H504"/>
+<path class="edge" d="M464 1150H484V1240H504"/>
+<rect class="card" x="16" y="766" width="185" height="48" rx="6"/>
+<text class="first" x="26" y="786">EE-CHR-0001</text>
+<text x="26" y="802">EnterpriseEdition 헌장</text>
 <rect class="card" x="241" y="256" width="223" height="48" rx="6"/>
 <text class="first" x="251" y="276">EE-POL-0001</text>
 <text x="251" y="292">문서 체계 정책</text>
@@ -62,7 +63,7 @@
 <rect class="card" x="504" y="496" width="238" height="48" rx="6"/>
 <text class="first" x="514" y="516">EE-TPL-0007</text>
 <text x="514" y="532">회의록 양식</text>
-<rect class="card dashed" x="241" y="556" width="223" height="48" rx="6"/>
+<rect class="card bold" x="241" y="556" width="223" height="48" rx="6"/>
 <text class="first" x="251" y="576">EE-POL-0003</text>
 <text x="251" y="592">전결 규정</text>
 <rect class="card" x="241" y="646" width="223" height="48" rx="6"/>
@@ -86,22 +87,25 @@
 <rect class="card" x="241" y="916" width="223" height="48" rx="6"/>
 <text class="first" x="251" y="936">EE-POL-0008</text>
 <text x="251" y="952">외부 데이터 및 AI 학습 정책</text>
-<rect class="card" x="241" y="1066" width="223" height="48" rx="6"/>
-<text class="first" x="251" y="1086">EE-STD-0001</text>
-<text x="251" y="1102">Luau 코딩 표준</text>
-<rect class="card" x="504" y="976" width="238" height="48" rx="6"/>
-<text class="first" x="514" y="996">EE-STD-0002</text>
-<text x="514" y="1012">명명 규칙</text>
+<rect class="card bold" x="241" y="976" width="223" height="48" rx="6"/>
+<text class="first" x="251" y="996">EE-ORG-0001</text>
+<text x="251" y="1012">조직도</text>
+<rect class="card" x="241" y="1126" width="223" height="48" rx="6"/>
+<text class="first" x="251" y="1146">EE-STD-0001</text>
+<text x="251" y="1162">Luau 코딩 표준</text>
 <rect class="card" x="504" y="1036" width="238" height="48" rx="6"/>
-<text class="first" x="514" y="1056">EE-STD-0003</text>
-<text x="514" y="1072">금지 API 목록</text>
+<text class="first" x="514" y="1056">EE-STD-0002</text>
+<text x="514" y="1072">명명 규칙</text>
 <rect class="card" x="504" y="1096" width="238" height="48" rx="6"/>
-<text class="first" x="514" y="1116">EE-STD-0005</text>
-<text x="514" y="1132">숫자 리터럴 표준</text>
+<text class="first" x="514" y="1116">EE-STD-0003</text>
+<text x="514" y="1132">금지 API 목록</text>
 <rect class="card" x="504" y="1156" width="238" height="48" rx="6"/>
-<text class="first" x="514" y="1176">EE-STD-0006</text>
-<text x="514" y="1192">아키텍처 계층 표준</text>
-<rect class="card bold" x="241" y="1216" width="223" height="48" rx="6"/>
-<text class="first" x="251" y="1236">EE-STD-0004</text>
-<text x="251" y="1252">파일 헤더 표준</text>
+<text class="first" x="514" y="1176">EE-STD-0005</text>
+<text x="514" y="1192">숫자 리터럴 표준</text>
+<rect class="card" x="504" y="1216" width="238" height="48" rx="6"/>
+<text class="first" x="514" y="1236">EE-STD-0006</text>
+<text x="514" y="1252">아키텍처 계층 표준</text>
+<rect class="card bold" x="241" y="1276" width="223" height="48" rx="6"/>
+<text class="first" x="251" y="1296">EE-STD-0004</text>
+<text x="251" y="1312">파일 헤더 표준</text>
 </svg>

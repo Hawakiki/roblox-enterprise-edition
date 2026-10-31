@@ -80,6 +80,40 @@ case("the registry draws the lineage of the controlled documents, in both langua
 	Assert.equal(table.concat(paths, ","), "diagrams/lineage.svg,diagrams/lineage.ko.svg", "diagrams")
 end)
 
+case("the registry draws the organization chart from its table of units", function()
+	local files = Fixtures.repository()
+	files["docs/02-organization/EE-ORG-0001-chart.md"] = table.concat({
+		"---",
+		"id: EE-ORG-0001",
+		"title: Chart",
+		"version: 1.0.0",
+		"status: Approved",
+		"classification: Internal",
+		"owner: Board",
+		"parent: EE-CHR-0001@1.0",
+		"---",
+		"",
+		"# Chart",
+		"",
+		"| Unit | Korean | Reports to | Held by |",
+		"|---|---|---|---|",
+		"| Board | 이사회 | — | A |",
+		"| Office | 사무실 | Board | A |",
+		"",
+		"After the table.",
+		"",
+	}, "\n")
+	local byPath: { [string]: string } = {}
+	for _, diagram in Registry.diagrams(index(files)) do
+		byPath[diagram.path] = diagram.content
+	end
+	local english = byPath["diagrams/organization.svg"]
+	assert(english, "the English chart is drawn")
+	Assert.contains(english, ">Office</text>", "a unit")
+	Assert.equal(select(2, string.gsub(english, '<path class="edge"', "")), 1, "one reporting line")
+	Assert.contains(byPath["diagrams/organization.ko.svg"] or "", ">사무실</text>", "the Korean name")
+end)
+
 case("a missing or edited diagram is reported", function()
 	local files = generated()
 	files["diagrams/lineage.svg"] = files["diagrams/lineage.svg"] .. "<!-- edited -->\n"

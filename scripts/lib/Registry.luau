@@ -15,6 +15,7 @@ local Rule = require("./Rule")
 local Schema = require("./Schema")
 local Semver = require("./Semver")
 local Snapshot = require("./Snapshot")
+local Text = require("./Text")
 local TreeDiagram = require("./TreeDiagram")
 
 -- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
@@ -25,6 +26,14 @@ local RULES = {
 		"EE-POL-0001",
 		"The document registry must match the output of scripts/gen_registry.luau."
 	),
+}
+
+-- A unit of the organization chart, as a row of its table of units.
+type Unit = {
+	name: string,
+	korean: string,
+	reportsTo: string?,
+	heldBy: string,
 }
 
 type Language = {
@@ -50,6 +59,9 @@ type Language = {
 	textVersion: string,
 	reserved: string,
 	inReview: string,
+	organizationTitle: string,
+	organizationPath: string,
+	unitName: (unit: Unit) -> string,
 }
 
 type Group = {
@@ -135,6 +147,11 @@ local ENGLISH: Language = {
 	textVersion = "Text version",
 	reserved = "reserved",
 	inReview = "in review",
+	organizationTitle = "Organization chart of EnterpriseEdition",
+	organizationPath = Schema.ORGANIZATION_PATH,
+	unitName = function(unit: Unit): string
+		return unit.name
+	end,
 }
 
 local KOREAN: Language = {
@@ -175,7 +192,45 @@ local KOREAN: Language = {
 	textVersion = "텍스트판",
 	reserved = "예약",
 	inReview = "검토 중",
+	organizationTitle = "EnterpriseEdition 조직도",
+	organizationPath = Schema.ORGANIZATION_KO_PATH,
+	unitName = function(unit: Unit): string
+		return unit.korean
+	end,
 }
+
+-- The units of the first organization document, read from its table of units (CR-0021).
+local function units(index: Documents.Index): { Unit }
+	for _, document in index.documents do
+		if document.kind.code == "ORG" then
+			local found: { Unit } = {}
+			local inside = false
+			for _, line in document.body do
+				if line == Schema.UNIT_TABLE_HEADER then
+					inside = true
+				elseif inside then
+					if string.sub(line, 1, 1) ~= "|" then
+						break
+					end
+					local cells = string.split(line, "|")
+					local name = Text.trim(cells[2] or "")
+					-- The row of dashes under the header, or an empty cell, names no unit.
+					if not string.match(name, "^%-*$") then
+						local reportsTo = Text.trim(cells[4] or "")
+						table.insert(found, {
+							name = name,
+							korean = Text.trim(cells[3] or ""),
+							reportsTo = if reportsTo == "" or reportsTo == NONE then nil else reportsTo,
+							heldBy = Text.trim(cells[5] or ""),
+						})
+					end
+				end
+			end
+			return found
+		end
+	end
+	return {}
+end
 
 -- The header of every diagram, as the comment lines that precede its root element (EE-STD-0004).
 local DIAGRAM_HEADER = {
@@ -333,7 +388,8 @@ export type Diagram = {
 	content: string,
 }
 
--- The diagrams the registry draws beside itself, in English and in Korean (CR-0021).
+-- The diagrams the registry draws beside itself, in English and in Korean: the lineage of the controlled
+-- documents, and the organization chart drawn from its table of units (CR-0021).
 function Registry.diagrams(index: Documents.Index): { Diagram }
 	local diagrams: { Diagram } = {}
 	for _, language in { ENGLISH, KOREAN } do
@@ -342,6 +398,25 @@ function Registry.diagrams(index: Documents.Index): { Diagram }
 			table.insert(diagrams, {
 				path = language.lineagePath,
 				content = TreeDiagram.svg(nodes, { header = DIAGRAM_HEADER, title = language.lineageAlt }),
+			})
+		end
+	end
+	local organization = units(index)
+	if #organization > 0 then
+		for _, language in { ENGLISH, KOREAN } do
+			local nodes: { TreeDiagram.Node } = {}
+			for _, unit in organization do
+				local node: TreeDiagram.Node = {
+					id = unit.name,
+					lines = { language.unitName(unit), unit.heldBy },
+					parent = unit.reportsTo,
+					style = "solid",
+				}
+				table.insert(nodes, node)
+			end
+			table.insert(diagrams, {
+				path = language.organizationPath,
+				content = TreeDiagram.svg(nodes, { header = DIAGRAM_HEADER, title = language.organizationTitle }),
 			})
 		end
 	end

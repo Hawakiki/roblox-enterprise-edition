@@ -15,11 +15,12 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 |---|---:|
 | 헌장 | 1 |
 | 정책 | 8 |
+| 조직 | 1 |
 | 표준 | 9 |
 | 양식 | 7 |
 | 아키텍처 결정 기록 | 1 |
 | 변경 요청 | 21 |
-| **합계** | **47** |
+| **합계** | **48** |
 
 ## 계보
 
@@ -42,7 +43,7 @@ EE-CHR-0001 EnterpriseEdition 헌장
 │  ├─ EE-TPL-0005 품의서 양식
 │  ├─ EE-TPL-0006 경위서 양식
 │  └─ EE-TPL-0007 회의록 양식
-├─ EE-POL-0003 전결 규정 (예약)
+├─ EE-POL-0003 전결 규정 (검토 중)
 ├─ EE-POL-0004 변경 관리 정책
 │  ├─ EE-STD-0007 커밋 및 브랜치 표준
 │  └─ EE-STD-0008 엔터프라이즈 버전 표기 표준
@@ -50,6 +51,7 @@ EE-CHR-0001 EnterpriseEdition 헌장
 ├─ EE-POL-0006 AI 인력 운용 정책
 ├─ EE-POL-0007 지원 종료 정책 (예약)
 ├─ EE-POL-0008 외부 데이터 및 AI 학습 정책
+├─ EE-ORG-0001 조직도 (검토 중)
 ├─ EE-STD-0001 Luau 코딩 표준
 │  ├─ EE-STD-0002 명명 규칙
 │  ├─ EE-STD-0003 금지 API 목록
@@ -72,12 +74,18 @@ EE-CHR-0001 EnterpriseEdition 헌장
 |---|---|---|---|---|---|---|
 | [EE-POL-0001](01-governance/EE-POL-0001-document-governance.ko.md) | 문서 체계 정책 | 1.1.0 | 승인 | 사내 한정 | Document Control Office | EE-CHR-0001@1.0 |
 | [EE-POL-0002](01-governance/EE-POL-0002-bilingual-documentation.ko.md) | 이중 언어 정책 | 1.1.0 | 승인 | 사내 한정 | Document Control Office | EE-POL-0001@1.1 |
-| [EE-POL-0003](01-governance/EE-POL-0003-delegation-of-authority.ko.md) | 전결 규정 | 0.1.0 | 초안 | 사내 한정 | Board of Directors | EE-CHR-0001@1.0 |
+| [EE-POL-0003](01-governance/EE-POL-0003-delegation-of-authority.ko.md) | 전결 규정 | 0.9.0 | 검토 중 | 사내 한정 | Board of Directors | EE-CHR-0001@1.0 |
 | [EE-POL-0004](01-governance/EE-POL-0004-change-management.ko.md) | 변경 관리 정책 | 1.1.0 | 승인 | 사내 한정 | Change Advisory Board | EE-CHR-0001@1.0 |
 | [EE-POL-0005](01-governance/EE-POL-0005-information-classification.ko.md) | 정보 보안 등급 분류 정책 | 0.1.0 | 초안 | 사내 한정 | Information Security Office | EE-CHR-0001@1.0 |
 | [EE-POL-0006](01-governance/EE-POL-0006-ai-workforce.ko.md) | AI 인력 운용 정책 | 1.1.0 | 승인 | 사내 한정 | Human Resources | EE-CHR-0001@1.0 |
 | [EE-POL-0007](01-governance/EE-POL-0007-deprecation.ko.md) | 지원 종료 정책 | 0.1.0 | 초안 | 사내 한정 | Release Engineering | EE-CHR-0001@1.0 |
 | [EE-POL-0008](01-governance/EE-POL-0008-external-data-and-ai-training.ko.md) | 외부 데이터 및 AI 학습 정책 | 1.0.0 | 승인 | 사내 한정 | Legal Department | EE-CHR-0001@1.0 |
+
+## 조직
+
+| ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 | 상위 문서 |
+|---|---|---|---|---|---|---|
+| [EE-ORG-0001](02-organization/EE-ORG-0001-organization-chart.ko.md) | 조직도 | 0.9.0 | 검토 중 | 사내 한정 | Human Resources | EE-CHR-0001@1.0 |
 
 ## 표준
 
