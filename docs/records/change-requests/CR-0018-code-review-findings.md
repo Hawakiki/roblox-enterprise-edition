@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0018
 title: Correct the Findings of the First Code Review
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -71,4 +71,15 @@ Revert the merge commit of this change. The harness leaves with it, and the defe
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `68ef475` | Filed this change request. |
+| `4f79118` | Brought the harness into `scripts/tests/roblox/` under strict mode, its four suites rewritten as 24 independent cases, run by `scripts/tests/run`. |
+| `c16afc5` | Corrected defects 1, 2, 3 and 7: the loads and releases of one wallet take turns, the repository saves and releases only the wallet it opened, stopping waits for loads, an autosave passes over a wallet that left, and an impossible balance is refused before the lock. |
+| `66a58a7` | Corrected defect 4: an invalidation during a component's own update or mount waits until it has finished, and `ReconciliationConstants.MAXIMUM_RERENDERS` refuses a component invalidated on every update. |
+| `dbf9f81` | Corrected defects 5 and 6 in `release_notes` and checkpatch. |
+| `94578da` | Recorded the mine of the agent worktree in `AGENTS.md`. |
+| `3957aea` | Moved the case of defect 5 to the end of its suite, so that it merges cleanly with `release/1.1.0`. |
+
+Each of the eleven tests added for the seven defects was run against the code before its correction, and failed.
+Correcting defect 4 showed a second path to it: a child that invalidates its parent while the parent mounts made the reconciler index a rendered tree that did not exist yet. A test covers it.
+It also showed that holding an invalidation back could loop forever where the code had overflowed its stack, so a limit was added, with a test.
+A merge with `release/1.1.0`, simulated with `git merge-tree`, conflicts only in `docs/REGISTRY.md` and `docs/REGISTRY.ko.md`, which are regenerated when the two meet.
