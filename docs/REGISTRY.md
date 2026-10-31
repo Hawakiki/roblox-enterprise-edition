@@ -18,9 +18,9 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Organization | 1 |
 | Standards | 9 |
 | Templates | 7 |
-| Architecture Decision Records | 1 |
+| Architecture Decision Records | 2 |
 | Change Requests | 23 |
-| **Total** | **50** |
+| **Total** | **51** |
 
 ## Lineage
 
@@ -118,6 +118,7 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | ID | Title | Version | Status | Classification | Owner |
 |---|---|---|---|---|---|
 | [ADR-0001](adr/ADR-0001-constructors-return-their-contract.md) | Constructors Return Their Contract, Cast Through Any | 1.1.0 | Accepted | Internal | Architecture Review Board |
+| [ADR-0002](adr/ADR-0002-declare-each-method-through-a-wrapper.md) | Declare Each Method of a Contract Through a Wrapper | 1.0.0 | Proposed | Internal | Architecture Review Board |
 
 ## Change Requests
 
