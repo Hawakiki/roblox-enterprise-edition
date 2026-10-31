@@ -26,6 +26,19 @@ case("cited change requests come from trailers, each once, in order", function()
 	Assert.equal(cited[2], "CR-0012", "second")
 end)
 
+case("a request that an earlier release cites is left out, though a merge back into develop cites it again", function()
+	local cited = ReleaseNotes.newlyCited({
+		"Merge branch 'release/1.0.0' into develop\n\nChange-Request: CR-0014\nApproved-by: A <a@b>\n",
+		"feat(x): a\n\nChange-Request: CR-0015\n",
+	}, {
+		"feat(x): b\n\nChange-Request: CR-0013\n",
+		"docs(x): c\n\nChange-Request: CR-0014\n",
+	})
+	Assert.equal(#cited, 1, "count")
+	Assert.equal(cited[1], "CR-0015", "the new request")
+	Assert.equal(#ReleaseNotes.newlyCited({ "feat(x): a\n\nChange-Request: CR-0001\n" }, {}), 1, "the first release")
+end)
+
 case("a record gives its titles and the first section only", function()
 	local request = ReleaseNotes.describe({
 		["docs/records/change-requests/CR-0042-do-the-thing.md"] = RECORD,

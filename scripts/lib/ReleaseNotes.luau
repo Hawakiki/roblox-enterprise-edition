@@ -2,10 +2,11 @@
 -- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 --!strict
 --[[
-	The notes of a release (EE-STD-0008 §5): every change request that a commit of the release cites, with its
-	title in both languages and the summary of its English version. Generated from the records, never written.
-	릴리스 노트(EE-STD-0008 §5): 릴리스의 커밋이 인용하는 모든 변경 요청을, 두 언어의 제목과 영문판의 요약과
-	함께 싣는다. 기록에서 만들어지며, 손으로 쓰지 않는다.
+	The notes of a release (EE-STD-0008 §5): every change request that a commit of the release cites and no earlier
+	release does, with its title in both languages and the summary of its English version. Generated from the
+	records, never written.
+	릴리스 노트(EE-STD-0008 §5): 릴리스의 커밋이 인용하고 이전 릴리스는 인용하지 않는 모든 변경 요청을, 두 언어의
+	제목과 영문판의 요약과 함께 싣는다. 기록에서 만들어지며, 손으로 쓰지 않는다.
 ]]
 
 local RECORDS = "docs/records/change-requests/"
@@ -33,6 +34,23 @@ function ReleaseNotes.cited(messages: { string }): { string }
 		end
 	end
 	table.sort(ids)
+	return ids
+end
+
+-- The change requests that the messages of a release cite and the messages of the earlier releases do not. A
+-- request belongs to the first release that cites it: the merge of a release back into develop cites its request
+-- again, after its tag, where the next release would find it (CR-0017).
+function ReleaseNotes.newlyCited(messages: { string }, earlier: { string }): { string }
+	local released: { [string]: boolean } = {}
+	for _, id in ReleaseNotes.cited(earlier) do
+		released[id] = true
+	end
+	local ids = {}
+	for _, id in ReleaseNotes.cited(messages) do
+		if not released[id] then
+			table.insert(ids, id)
+		end
+	end
 	return ids
 end
 
