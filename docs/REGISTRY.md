@@ -54,7 +54,7 @@ EE-CHR-0001 Charter of EnterpriseEdition
 ├─ EE-ORG-0001 Organization Chart
 ├─ EE-STD-0001 Luau Coding Standard
 │  ├─ EE-STD-0002 Naming Convention
-│  ├─ EE-STD-0003 Prohibited API Registry (in review)
+│  ├─ EE-STD-0003 Prohibited API Registry
 │  ├─ EE-STD-0005 Numeric Literal Standard
 │  └─ EE-STD-0006 Layered Architecture Standard
 └─ EE-STD-0004 File Header Standard
@@ -93,7 +93,7 @@ EE-CHR-0001 Charter of EnterpriseEdition
 |---|---|---|---|---|---|---|
 | [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.md) | Luau Coding Standard | 1.1.0 | Approved | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
 | [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.1.0 | In Review | Internal | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.1.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.1.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
 | [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |

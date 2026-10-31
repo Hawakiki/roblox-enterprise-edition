@@ -96,7 +96,7 @@
 <rect class="card" x="504" y="1036" width="238" height="48" rx="6"/>
 <text class="first" x="514" y="1056">EE-STD-0002</text>
 <text x="514" y="1072">명명 규칙</text>
-<rect class="card bold" x="504" y="1096" width="238" height="48" rx="6"/>
+<rect class="card" x="504" y="1096" width="238" height="48" rx="6"/>
 <text class="first" x="514" y="1116">EE-STD-0003</text>
 <text x="514" y="1132">금지 API 목록</text>
 <rect class="card" x="504" y="1156" width="238" height="48" rx="6"/>

@@ -54,7 +54,7 @@ EE-CHR-0001 EnterpriseEdition 헌장
 ├─ EE-ORG-0001 조직도
 ├─ EE-STD-0001 Luau 코딩 표준
 │  ├─ EE-STD-0002 명명 규칙
-│  ├─ EE-STD-0003 금지 API 목록 (검토 중)
+│  ├─ EE-STD-0003 금지 API 목록
 │  ├─ EE-STD-0005 숫자 리터럴 표준
 │  └─ EE-STD-0006 아키텍처 계층 표준
 └─ EE-STD-0004 파일 헤더 표준
@@ -93,7 +93,7 @@ EE-CHR-0001 EnterpriseEdition 헌장
 |---|---|---|---|---|---|---|
 | [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.ko.md) | Luau 코딩 표준 | 1.1.0 | 승인 | 사내 한정 | Architecture Review Board | EE-CHR-0001@1.0 |
 | [EE-STD-0002](03-standards/EE-STD-0002-naming.ko.md) | 명명 규칙 | 1.0.1 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.ko.md) | 금지 API 목록 | 1.1.0 | 검토 중 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.ko.md) | 금지 API 목록 | 1.1.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0004](03-standards/EE-STD-0004-file-headers.ko.md) | 파일 헤더 표준 | 1.1.0 | 승인 | 사내 한정 | Legal Department | EE-CHR-0001@1.0 |
 | [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.ko.md) | 숫자 리터럴 표준 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.ko.md) | 아키텍처 계층 표준 | 1.0.1 | 승인 | 사내 한정 | Architecture Review Board | EE-STD-0001@1.1 |

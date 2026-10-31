@@ -4,7 +4,7 @@
 id: EE-STD-0003
 title: Prohibited API Registry
 version: 1.1.0
-status: In Review
+status: Approved
 classification: Internal
 owner: Architecture Review Board
 parent: EE-STD-0001@1.1
@@ -103,4 +103,4 @@ Annex A lists the rules mandated by this standard.
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Architecture Review Board | Submitted | 2026-10-31 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-31 |
