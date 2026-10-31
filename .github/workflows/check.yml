@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
+#
+# Runs every check of the repository, as tools/check.sh runs it on a machine, and checks every commit message,
+# as the commit-msg hook does (CR-0013).
+# 저장소의 모든 검사를 기계에서 tools/check.sh 를 돌리듯 실행하고, commit-msg 훅처럼 모든 커밋 메시지를
+# 검사한다(CR-0013).
+
+name: check
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the whole history
+        # Third-party actions are pinned by commit, not by tag / 외부 액션은 태그가 아니라 커밋으로 고정한다
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          # A pull request is checked at its own head, not at the merge commit GitHub makes for it.
+          # pull request 는 GitHub 이 만드는 머지 커밋이 아니라 그 자신의 head 에서 검사한다.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Install the pinned toolchain
+        # The action installs rokit.toml with --no-trust-check. This workflow, approved like any change,
+        # trusts the tools on behalf of the person who would trust them on a machine of their own.
+        # 이 액션은 rokit.toml 을 --no-trust-check 로 설치한다. 다른 변경처럼 승인을 받은 이 워크플로가,
+        # 자기 기계에서라면 도구를 신뢰했을 사람을 대신하여 신뢰한다.
+        uses: CompeyDev/setup-rokit@1d9390883f7ebce19d48f5b8d006e11d387c92ab # v0.2.1
+        with:
+          version: v1.2.0
+
+      - name: Run every check
+        run: tools/check.sh
+
+      - name: Check every commit message
+        run: lune run scripts/checkpatch --commits HEAD

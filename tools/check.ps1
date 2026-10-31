@@ -41,8 +41,11 @@ try {
 		if (Test-Path -LiteralPath $candidate) { $defs = $candidate; break }
 	}
 	if (-not $defs) {
+		# Those of the luau-lsp release that rokit.toml pins, so that a fresh checkout analyses as every other (CR-0013)
+		# rokit.toml 이 고정한 luau-lsp 릴리스의 것을 받아, 새로 받은 사본도 다른 사본과 똑같이 분석한다(CR-0013)
+		$luauLsp = [regex]::Match((Get-Content -Raw rokit.toml), '(?m)^luau-lsp = ".*@(.+)"').Groups[1].Value
 		$defs = './globalTypes.d.luau'
-		Invoke-WebRequest -UseBasicParsing -OutFile $defs 'https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/main/scripts/globalTypes.d.luau'
+		Invoke-WebRequest -UseBasicParsing -OutFile $defs "https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/$luauLsp/scripts/globalTypes.d.luau"
 	}
 
 	if ($Fix) {
