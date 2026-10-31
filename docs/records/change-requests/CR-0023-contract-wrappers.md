@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0023
 title: Declare Each Contract Method Through a Wrapper
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Architecture Review Board
@@ -78,3 +78,8 @@ Before the rules were committed, a method of `InMemoryCoinWalletRepository` was 
 The check skips the body of a wrapper by counting blocks, and an `if` that starts an expression opens none. A test proves that counting every `if` fails it.
 The fitness test now finds three errors under each solver for three drifts behind wrappers, the fact that ADR-0002 states.
 Roblox Studio checks scripts against type definitions of its own. Whether its editor accepts `Instance.new` with a class name typed as `string`, as luau-lsp does, is left to the person who checks Studio in the second request.
+
+| Commit | Change |
+|---|---|
+| `3c282c8` | Marked this request as implemented. |
+| `c445711` | Recorded the approval of EE-STD-0006 at 1.1.0 and the acceptance of ADR-0002 at 1.1.0, and set ADR-0001 to `Superseded` at 1.2.0. |

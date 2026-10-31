@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0023
 title: 계약 메서드마다 래퍼로 선언
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 계약 메서드마다 래퍼로 선언
@@ -77,3 +77,8 @@ checkpatch 규칙 두 개가 이 형태를 지키고, 생성자 밖에 있는 `a
 검사는 블록을 세어 래퍼 본문을 건너뛰며, 식으로 쓰인 `if` 는 블록을 열지 않는다. 모든 `if` 를 세면 테스트가 실패함을 확인하였다.
 이제 적합도 테스트는 래퍼 뒤의 어긋남 세 가지에 대해 각 솔버에서 오류 세 건을 찾는다. ADR-0002 가 밝힌 사실이다.
 로블록스 Studio 는 자체 타입 정의로 스크립트를 검사한다. Studio 편집기가 luau-lsp 처럼 `string` 타입의 클래스 이름을 받는 `Instance.new` 를 받아들이는지는, 두 번째 요청에서 Studio 를 확인하는 사람에게 맡긴다.
+
+| 커밋 | 변경 |
+|---|---|
+| `3c282c8` | 본 요청을 시행 완료로 표시 |
+| `c445711` | EE-STD-0006 의 승인을 1.1.0 으로, ADR-0002 의 수락을 1.1.0 으로 기록하고, ADR-0001 을 1.2.0 으로 `Superseded` 처리함 |
