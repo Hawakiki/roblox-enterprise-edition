@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: ADR-0001
 title: 생성자는 any 캐스트로 자기 계약을 반환한다
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 생성자는 any 캐스트로 자기 계약을 반환한다
@@ -53,4 +53,4 @@ luau-lsp 1.69.0 에서 옛 타입 솔버는 인스턴스를 계약으로 반환�
 | 관계 | 기록 |
 |---|---|
 | 대체하는 기록 | 없음 |
-| 대체한 기록 | 없음 |
+| 대체한 기록 | ADR-0002 |

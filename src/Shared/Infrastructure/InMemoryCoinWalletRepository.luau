@@ -89,11 +89,18 @@ function InMemoryCoinWalletRepository.Release(
 	self:Save(wallet)
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: ICoinWalletRepository.ICoinWalletRepository = {
-	Load = InMemoryCoinWalletRepository.Load,
-	Save = InMemoryCoinWalletRepository.Save,
-	Release = InMemoryCoinWalletRepository.Release,
+	Load = function(self: any, userId: number): CoinWalletEntity.CoinWalletEntity
+		return InMemoryCoinWalletRepository.Load(self, userId)
+	end,
+	Save = function(self: any, wallet: CoinWalletEntity.CoinWalletEntity): boolean
+		return InMemoryCoinWalletRepository.Save(self, wallet)
+	end,
+	Release = function(self: any, wallet: CoinWalletEntity.CoinWalletEntity)
+		InMemoryCoinWalletRepository.Release(self, wallet)
+	end,
 }
 
 return InMemoryCoinWalletRepository

@@ -2,10 +2,11 @@
 -- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 --!strict
 --[[
-	The fitness test of ADR-0001: holds the facts that the decision rests on to the luau-lsp that rokit.toml pins,
-	so that the record is revisited when a newer luau-lsp changes one of them, rather than left to rot (CR-0020).
-	ADR-0001 의 적합도 테스트: 그 결정이 기대는 사실을 rokit.toml 이 고정한 luau-lsp 에 대조하여, 새 luau-lsp 가
-	그중 하나를 바꾸면 기록을 내버려 두지 않고 다시 검토하게 한다(CR-0020).
+	The fitness test of ADR-0002, which superseded ADR-0001: holds the facts that the decision rests on to the
+	luau-lsp that rokit.toml pins, so that the record is revisited when a newer luau-lsp changes one of them, rather
+	than left to rot (CR-0020, CR-0023).
+	ADR-0001 을 대체한 ADR-0002 의 적합도 테스트: 그 결정이 기대는 사실을 rokit.toml 이 고정한 luau-lsp 에
+	대조하여, 새 luau-lsp 가 그중 하나를 바꾸면 기록을 내버려 두지 않고 다시 검토하게 한다(CR-0020, CR-0023).
 ]]
 
 local fs = require("@lune/fs")
@@ -32,7 +33,7 @@ type Fixture = {
 	source: string,
 	-- What a solver reports in the fixture, as in "the new solver now reports <subject>".
 	subject: string,
-	-- What a change in the fixture's result means for ADR-0001.
+	-- What a change in the fixture's result means for ADR-0002.
 	consequence: string,
 }
 
@@ -44,13 +45,19 @@ type Expectation = {
 	errors: number?,
 }
 
-local REVISIT = "revisit ADR-0001"
-local PROVES_NOTHING = "luau-lsp did not check the fixtures, and the fitness test of ADR-0001 proves nothing"
+local REVISIT = "revisit ADR-0002"
+local PROVES_NOTHING = "luau-lsp did not check the fixtures, and the fitness test of ADR-0002 proves nothing"
 
-local DRIFT: Fixture = {
-	name = "Drift",
-	source = AdrFitnessFixtures.Drift,
-	subject = "drift in _implements",
+local BARE_DRIFT: Fixture = {
+	name = "BareDrift",
+	source = AdrFitnessFixtures.BareDrift,
+	subject = "drift behind an entry of _implements that only names its method",
+	consequence = REVISIT,
+}
+local WRAPPED_DRIFT: Fixture = {
+	name = "WrappedDrift",
+	source = AdrFitnessFixtures.WrappedDrift,
+	subject = "drift behind a wrapper in _implements",
 	consequence = REVISIT,
 }
 local NO_CAST: Fixture = {
@@ -72,10 +79,13 @@ local BROKEN: Fixture = {
 	consequence = PROVES_NOTHING,
 }
 
--- The facts of ADR-0001 under luau-lsp 1.69.0. Drift has three drifted methods, and the old solver reports each.
+-- The facts of ADR-0002 under luau-lsp 1.69.0. Each drift fixture has three drifted methods: the old solver
+-- reports each of them however they are declared, and the new solver only behind a wrapper.
 local EXPECTATIONS: { Expectation } = {
-	{ fixture = DRIFT, solver = "old", reports = true, errors = 3 },
-	{ fixture = DRIFT, solver = "new", reports = false },
+	{ fixture = BARE_DRIFT, solver = "old", reports = true, errors = 3 },
+	{ fixture = BARE_DRIFT, solver = "new", reports = false },
+	{ fixture = WRAPPED_DRIFT, solver = "old", reports = true, errors = 3 },
+	{ fixture = WRAPPED_DRIFT, solver = "new", reports = true, errors = 3 },
 	{ fixture = NO_CAST, solver = "old", reports = true },
 	{ fixture = NO_CAST, solver = "new", reports = false },
 	{ fixture = CONFORMING, solver = "old", reports = false },
@@ -107,7 +117,7 @@ local function write(fixture: Fixture): string
 		fs.writeFile(root .. "/" .. path, fixture.source)
 	end)
 	if not written then
-		error(string.format("ADR-0001: %s could not be written (%s): %s", path, tostring(problem), PROVES_NOTHING), 0)
+		error(string.format("ADR-0002: %s could not be written (%s): %s", path, tostring(problem), PROVES_NOTHING), 0)
 	end
 	return path
 end
@@ -117,7 +127,7 @@ local function analyse(path: string, solver: Solver): Analysis
 		return process.exec("luau-lsp", { "analyze", "--platform=standard", FLAGS[solver], path }, { cwd = root })
 	end)
 	if not ran then
-		error(string.format("ADR-0001: luau-lsp could not be run (%s): %s", tostring(result), PROVES_NOTHING), 0)
+		error(string.format("ADR-0002: luau-lsp could not be run (%s): %s", tostring(result), PROVES_NOTHING), 0)
 	end
 	local output = result.stdout .. result.stderr
 	-- luau-lsp names the file as it was given: <path>(<line>,<column>): TypeError: <message>
@@ -146,7 +156,7 @@ for _, expectation in EXPECTATIONS do
 		local message: string? = nil
 		if not reported and not clean then
 			message = string.format(
-				"ADR-0001: luau-lsp exited with %d under the %s solver and named %d type errors in %s: %s",
+				"ADR-0002: luau-lsp exited with %d under the %s solver and named %d type errors in %s: %s",
 				analysis.code,
 				solver,
 				analysis.errors,
@@ -155,7 +165,7 @@ for _, expectation in EXPECTATIONS do
 			)
 		elseif reported and not expectation.reports then
 			message = string.format(
-				"ADR-0001: the %s solver now reports %s (%s): %s",
+				"ADR-0002: the %s solver now reports %s (%s): %s",
 				solver,
 				fixture.subject,
 				path,
@@ -163,7 +173,7 @@ for _, expectation in EXPECTATIONS do
 			)
 		elseif clean and expectation.reports then
 			message = string.format(
-				"ADR-0001: the %s solver no longer reports %s (%s): %s",
+				"ADR-0002: the %s solver no longer reports %s (%s): %s",
 				solver,
 				fixture.subject,
 				path,
@@ -171,7 +181,7 @@ for _, expectation in EXPECTATIONS do
 			)
 		elseif reported and expectation.errors and analysis.errors ~= expectation.errors then
 			message = string.format(
-				"ADR-0001: the %s solver reports %d errors, not %d, for %s (%s): %s",
+				"ADR-0002: the %s solver reports %d errors, not %d, for %s (%s): %s",
 				solver,
 				analysis.errors,
 				expectation.errors :: number,

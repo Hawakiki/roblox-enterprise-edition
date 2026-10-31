@@ -119,11 +119,18 @@ function LeaderstatsCoinProjection.Dispose(self: LeaderstatsCoinProjection)
 	end
 end
 
--- Declares the contracts this class implements; the type checker holds every method to them.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: ICoinProjection.ICoinProjection = {
-	Show = LeaderstatsCoinProjection.Show,
-	Update = LeaderstatsCoinProjection.Update,
-	Remove = LeaderstatsCoinProjection.Remove,
+	Show = function(self: any, player: Player, balance: number)
+		LeaderstatsCoinProjection.Show(self, player, balance)
+	end,
+	Update = function(self: any, player: Player, balance: number)
+		LeaderstatsCoinProjection.Update(self, player, balance)
+	end,
+	Remove = function(self: any, player: Player)
+		LeaderstatsCoinProjection.Remove(self, player)
+	end,
 }
 local _disposes: IDisposable.IDisposable = {
 	Dispose = LeaderstatsCoinProjection.Dispose,

@@ -18,9 +18,9 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Organization | 1 |
 | Standards | 9 |
 | Templates | 7 |
-| Architecture Decision Records | 1 |
-| Change Requests | 22 |
-| **Total** | **49** |
+| Architecture Decision Records | 2 |
+| Change Requests | 23 |
+| **Total** | **51** |
 
 ## Lineage
 
@@ -96,7 +96,7 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.1.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.1.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
 | [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.1.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.md) | Commit and Branch Standard | 1.0.1 | Approved | Internal | Compliance Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0008](03-standards/EE-STD-0008-versioning.md) | Enterprise Versioning Standard | 1.1.0 | Approved | Internal | Release Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0009](03-standards/EE-STD-0009-text-and-documentation.md) | Text File and Documentation Standard | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
@@ -117,7 +117,8 @@ EE-CHR-0001 Charter of EnterpriseEdition
 
 | ID | Title | Version | Status | Classification | Owner |
 |---|---|---|---|---|---|
-| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.md) | Constructors Return Their Contract, Cast Through Any | 1.1.0 | Accepted | Internal | Architecture Review Board |
+| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.md) | Constructors Return Their Contract, Cast Through Any | 1.2.0 | Superseded | Internal | Architecture Review Board |
+| [ADR-0002](adr/ADR-0002-declare-each-method-through-a-wrapper.md) | Declare Each Method of a Contract Through a Wrapper | 1.1.0 | Accepted | Internal | Architecture Review Board |
 
 ## Change Requests
 
@@ -145,3 +146,4 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | [CR-0020](records/change-requests/CR-0020-adr-0001-fitness-test.md) | Test the Facts That ADR-0001 Rests On | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0021](records/change-requests/CR-0021-company-map.md) | Draw the Map of the Company | 1.2.0 | Implemented | Internal | Document Control Office |
 | [CR-0022](records/change-requests/CR-0022-random-numbers.md) | Prohibit the Global Random Number Generator | 1.3.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0023](records/change-requests/CR-0023-contract-wrappers.md) | Declare Each Contract Method Through a Wrapper | 1.2.0 | Implemented | Internal | Architecture Review Board |

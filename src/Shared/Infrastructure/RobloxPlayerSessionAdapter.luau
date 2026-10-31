@@ -81,10 +81,15 @@ function RobloxPlayerSessionAdapter.Kick(self: RobloxPlayerSessionAdapter, userI
 	end
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: IPlayerSessionSource.IPlayerSessionSource = {
-	Subscribe = RobloxPlayerSessionAdapter.Subscribe,
-	Kick = RobloxPlayerSessionAdapter.Kick,
+	Subscribe = function(self: any, onJoined: (player: Player) -> (), onLeaving: (player: Player) -> ()): () -> ()
+		return RobloxPlayerSessionAdapter.Subscribe(self, onJoined, onLeaving)
+	end,
+	Kick = function(self: any, userId: number, message: string)
+		RobloxPlayerSessionAdapter.Kick(self, userId, message)
+	end,
 }
 
 return RobloxPlayerSessionAdapter

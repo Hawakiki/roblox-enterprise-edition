@@ -59,10 +59,15 @@ function RobloxOutputLoggerAdapter.Warning(self: RobloxOutputLoggerAdapter, mess
 	warn(string.format("[EnterpriseEdition][%s] %s", self._category, message))
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: ILogger.ILogger = {
-	Information = RobloxOutputLoggerAdapter.Information,
-	Warning = RobloxOutputLoggerAdapter.Warning,
+	Information = function(self: any, message: string)
+		RobloxOutputLoggerAdapter.Information(self, message)
+	end,
+	Warning = function(self: any, message: string)
+		RobloxOutputLoggerAdapter.Warning(self, message)
+	end,
 }
 
 return RobloxOutputLoggerAdapter

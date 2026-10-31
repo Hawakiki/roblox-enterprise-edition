@@ -89,10 +89,15 @@ function LeaderstatsCoinBalanceAdapter.Subscribe(self: LeaderstatsCoinBalanceAda
 	end
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: ICoinBalanceSource.ICoinBalanceSource = {
-	Get = LeaderstatsCoinBalanceAdapter.Get,
-	Subscribe = LeaderstatsCoinBalanceAdapter.Subscribe,
+	Get = function(self: any): number
+		return LeaderstatsCoinBalanceAdapter.Get(self)
+	end,
+	Subscribe = function(self: any, onChanged: () -> ()): () -> ()
+		return LeaderstatsCoinBalanceAdapter.Subscribe(self, onChanged)
+	end,
 }
 
 return LeaderstatsCoinBalanceAdapter

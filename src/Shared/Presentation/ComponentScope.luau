@@ -87,9 +87,12 @@ function ComponentScope.Dispose(self: ComponentScope)
 	self._resources:Dispose()
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: IDisposable.IDisposable = {
-	Dispose = ComponentScope.Dispose,
+	Dispose = function(self: any)
+		ComponentScope.Dispose(self)
+	end,
 }
 
 return ComponentScope
