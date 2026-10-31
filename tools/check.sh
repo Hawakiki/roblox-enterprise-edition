@@ -12,8 +12,17 @@ set -u
 cd "$(dirname "$0")/.."
 status=0
 
+# Every tool the checks run, so that a missing one fails the checks instead of passing them unseen (CR-0015)
+# 검사가 돌리는 모든 도구. 빠진 도구가 검사를 몰래 통과시키지 않고 실패시키게 한다(CR-0015)
+for tool in stylua rojo luau-lsp lune moonwave-extractor; do
+	if ! command -v "$tool" >/dev/null 2>&1; then
+		echo "missing tool: $tool; run rokit install"
+		exit 1
+	fi
+done
+
 # Lune type definitions, which scripts/.luaurc points luau-lsp at / scripts/.luaurc 가 가리키는 Lune 타입 정의
-lune setup >/dev/null
+lune setup >/dev/null || status=1
 
 # Roblox type definitions: shared by the workspace that holds the main checkout, then local, downloaded if
 # neither exists. git finds the main checkout, from an agent worktree too (CR-0009).
@@ -29,7 +38,8 @@ if [ -z "$DEFS" ]; then
 	# rokit.toml 이 고정한 luau-lsp 릴리스의 것을 받아, 새로 받은 사본도 다른 사본과 똑같이 분석한다(CR-0013)
 	LUAU_LSP=$(sed -n 's/^luau-lsp = ".*@\(.*\)"$/\1/p' rokit.toml)
 	DEFS=./globalTypes.d.luau
-	curl -sSfL -o "$DEFS" "https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/$LUAU_LSP/scripts/globalTypes.d.luau"
+	curl -sSfL -o "$DEFS" "https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/$LUAU_LSP/scripts/globalTypes.d.luau" ||
+		status=1
 fi
 
 if [ "${1:-}" = "--fix" ]; then
@@ -39,17 +49,26 @@ else
 	stylua --check scripts src || status=1
 fi
 
-rojo sourcemap default.project.json --include-non-scripts -o sourcemap.json >/dev/null
+rojo sourcemap default.project.json --include-non-scripts -o sourcemap.json >/dev/null || status=1
 
-# Runs both solvers over one target / 대상 하나에 두 솔버를 돌린다
+# Runs both solvers over one target, judging by the exit code: luau-lsp also exits 1 for a path that does not
+# exist or an argument it does not know, without writing the word Error (CR-0015)
+# 대상 하나에 두 솔버를 돌리고 종료 코드로 판정한다. luau-lsp 는 없는 경로나 모르는 인자에도 Error 라는
+# 단어 없이 1 로 끝나기 때문이다(CR-0015)
 analyze() {
 	local label=$1
 	shift
 	for solver in false true; do
-		out=$(luau-lsp analyze --flag:LuauSolverV2=$solver "$@" 2>&1 | grep -v '^\[')
+		raw=$(luau-lsp analyze --flag:LuauSolverV2=$solver "$@" 2>&1)
+		code=$?
+		out=$(printf '%s\n' "$raw" | grep -v '^\[')
 		count=$(printf '%s' "$out" | grep -c 'Error' || true)
 		echo "$label solverV2=$solver: $count errors"
-		if [ "$count" != "0" ]; then printf '%s\n' "$out" | head -60; status=1; fi
+		if [ "$code" -ne 0 ] || [ "$count" != "0" ]; then
+			echo "luau-lsp exited with $code"
+			printf '%s\n' "$out" | head -60
+			status=1
+		fi
 	done
 }
 analyze scripts --platform=standard scripts

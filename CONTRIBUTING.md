@@ -24,5 +24,8 @@ People and agents follow the same rules.
 ## Pull requests
 
 Open the pull request against `develop`.
-The continuous integration runs every check and checks every commit message.
+The continuous integration runs every check, on Linux and on Windows, and checks every commit message.
 The Approver of record merges an approved request with `--no-ff` and an `Approved-by` trailer; no one else merges.
+
+- Pull requests from Dependabot are notices. Dependabot signs off nothing, so they fail the commit check; a person carries the update out through a change request.
+- On GitHub, no one can force-push to `main` or `develop` or delete them, nor move or delete a release tag `v*`. The rulesets are kept in `.github/rulesets/`.

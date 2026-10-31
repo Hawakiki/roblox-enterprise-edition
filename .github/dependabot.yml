@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
+#
+# Watches the actions that the workflows pin by commit, and reports a newer release once a month, as a pull
+# request to develop (CR-0015). Dependabot signs off nothing, so the commit check fails its pull requests: they
+# are notices, which a person carries out through a change request.
+# 워크플로가 커밋으로 고정한 액션을 지켜보다가, 새 릴리스가 나오면 매달 develop 으로의 pull request 로 알린다
+# (CR-0015). Dependabot 은 아무것에도 서명하지 않으므로 커밋 검사가 그 pull request 를 실패시킨다. 이는
+# 알림이며, 사람이 변경 요청을 거쳐 시행한다.
+
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 2

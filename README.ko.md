@@ -57,7 +57,8 @@ tools/check.sh                         # Windows 에서는 tools/check.ps1. --fi
 
 반드시 0 errors 로 끝나야 한다.
 StyLua, 도구와 로블록스 코드에 대한 두 Luau 타입 솔버, 문서 주석에 대한 Moonwave 추출기, checkpatch 의 테스트, checkpatch 를 차례로 돌린다.
-지속적 통합은 모든 push 와 pull request 에서 같은 스크립트를 돌리며, commit-msg 훅처럼 모든 커밋 메시지를 검사한다.
+지속적 통합은 모든 push 와 pull request 에서 이를 Linux 에서는 Bash 로, Windows 에서는 PowerShell 7 과 5.1 로 돌리며, commit-msg 훅처럼 모든 커밋 메시지를 검사한다.
+도구가 없거나 그 밖의 이유로 실행할 수 없는 검사는 실패한다.
 
 ### 실행
 

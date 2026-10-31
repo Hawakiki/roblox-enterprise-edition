@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 #
-# Runs every check of the repository, as tools/check.sh runs it on a machine, and checks every commit message,
-# as the commit-msg hook does (CR-0013).
-# 저장소의 모든 검사를 기계에서 tools/check.sh 를 돌리듯 실행하고, commit-msg 훅처럼 모든 커밋 메시지를
-# 검사한다(CR-0013).
+# Runs every check of the repository on Linux with tools/check.sh and on Windows with tools/check.ps1, under both
+# PowerShells, and checks every commit message as the commit-msg hook does (CR-0013, CR-0015).
+# 저장소의 모든 검사를 Linux 에서는 tools/check.sh 로, Windows 에서는 두 PowerShell 로 tools/check.ps1 을 돌려
+# 실행하고, commit-msg 훅처럼 모든 커밋 메시지를 검사한다(CR-0013, CR-0015).
 
 name: check
 
@@ -17,8 +17,11 @@ permissions:
   contents: read
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
+  linux:
+    name: Linux, Bash
+    # Runner images are pinned, so that a commit is checked on the same system every time (CR-0015)
+    # 러너 이미지를 고정하여, 커밋이 매번 같은 시스템에서 검사되게 한다(CR-0015)
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out the whole history
         # Third-party actions are pinned by commit, not by tag / 외부 액션은 태그가 아니라 커밋으로 고정한다
@@ -37,9 +40,33 @@ jobs:
         uses: CompeyDev/setup-rokit@1d9390883f7ebce19d48f5b8d006e11d387c92ab # v0.2.1
         with:
           version: v1.2.0
+          cache: true
 
       - name: Run every check
         run: tools/check.sh
 
       - name: Check every commit message
         run: lune run scripts/checkpatch --commits HEAD
+
+  windows:
+    name: Windows, PowerShell 7 and 5.1
+    runs-on: windows-2025
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Install the pinned toolchain
+        uses: CompeyDev/setup-rokit@1d9390883f7ebce19d48f5b8d006e11d387c92ab # v0.2.1
+        with:
+          version: v1.2.0
+          cache: true
+
+      - name: Run every check under PowerShell 7
+        shell: pwsh
+        run: ./tools/check.ps1
+
+      - name: Run every check under Windows PowerShell 5.1
+        shell: powershell
+        run: ./tools/check.ps1
