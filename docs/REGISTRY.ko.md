@@ -18,8 +18,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 표준 | 9 |
 | 양식 | 7 |
 | 아키텍처 결정 기록 | 1 |
-| 변경 요청 | 19 |
-| **합계** | **45** |
+| 변경 요청 | 20 |
+| **합계** | **46** |
 
 ## 헌장
 
@@ -95,3 +95,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0017](records/change-requests/CR-0017-release-1-1-0.ko.md) | EnterpriseEdition 1.1.0 릴리스 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |
 | [CR-0018](records/change-requests/CR-0018-code-review-findings.ko.md) | 첫 코드 리뷰 지적 사항 정정 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0019](records/change-requests/CR-0019-contract-decision-record.ko.md) | 계약 패턴을 첫 아키텍처 결정으로 기록 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
+| [CR-0020](records/change-requests/CR-0020-adr-0001-fitness-test.ko.md) | ADR-0001 이 기대는 사실을 검사 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board |
