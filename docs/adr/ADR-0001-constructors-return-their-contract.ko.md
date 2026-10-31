@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: ADR-0001
 title: 생성자는 any 캐스트로 자기 계약을 반환한다
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 생성자는 any 캐스트로 자기 계약을 반환한다

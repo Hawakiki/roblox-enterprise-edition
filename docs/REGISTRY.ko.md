@@ -70,7 +70,7 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 
 | ID | 제목 | 버전 | 상태 | 보안 등급 | 소유 부서 |
 |---|---|---|---|---|---|
-| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.ko.md) | 생성자는 any 캐스트로 자기 계약을 반환한다 | 1.0.0 | 제안 | 사내 한정 | Architecture Review Board |
+| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.ko.md) | 생성자는 any 캐스트로 자기 계약을 반환한다 | 1.1.0 | 채택 | 사내 한정 | Architecture Review Board |
 
 ## 변경 요청
 

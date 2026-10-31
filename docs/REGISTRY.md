@@ -70,7 +70,7 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 
 | ID | Title | Version | Status | Classification | Owner |
 |---|---|---|---|---|---|
-| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.md) | Constructors Return Their Contract, Cast Through Any | 1.0.0 | Proposed | Internal | Architecture Review Board |
+| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.md) | Constructors Return Their Contract, Cast Through Any | 1.1.0 | Accepted | Internal | Architecture Review Board |
 
 ## Change Requests
 
