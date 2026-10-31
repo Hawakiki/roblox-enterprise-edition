@@ -79,4 +79,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0008](records/change-requests/CR-0008-law-of-the-code.ko.md) | 로블록스 코드의 규율 확립 | 1.3.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0009](records/change-requests/CR-0009-first-assignment-findings.ko.md) | 첫 실전 배치 지적 사항 정정 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0010](records/change-requests/CR-0010-presentation-framework.ko.md) | 프레젠테이션 프레임워크 구축 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
-| [CR-0011](records/change-requests/CR-0011-compliance-coins.ko.md) | 정책 확인에 대한 준법 코인 보상 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board |
+| [CR-0011](records/change-requests/CR-0011-compliance-coins.ko.md) | 정책 확인에 대한 준법 코인 보상 | 1.0.1 | 승인 | 사내 한정 | Architecture Review Board |

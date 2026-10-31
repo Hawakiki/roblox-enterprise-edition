@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0011
 title: Reward Policy Acknowledgement with Compliance Coins
-version: 1.0.0
+version: 1.0.1
 status: Approved
 classification: Internal
 owner: Architecture Review Board
@@ -14,7 +14,7 @@ owner: Architecture Review Board
 ## 1. Summary
 
 Every acknowledgement of the policies of the Company now earns the player one compliance coin, which the server records and the leaderboard shows.
-The coins live in a repository behind a contract; this request keeps them in memory, and CR-0012 is to keep them in a DataStore.
+The coins live in a repository behind a contract; this request keeps them in memory, and a later request is to keep them in a DataStore.
 
 ## 2. Background
 
@@ -27,7 +27,7 @@ The coins cross the network for the first time in the history of the Company, so
 - A player may acknowledge no faster than a minimum interval allows.
 - A balance stops at 2^53 - 1, the largest whole number a Luau number holds exactly, beyond which adding a coin would change nothing. At one acknowledgement every quarter of a second, a player reaches it in about seventy million years.
 
-Saving the coins in a DataStore, with a session lock, retries and saving on shutdown, is a change of its own and is left to CR-0012.
+Saving the coins in a DataStore, with a session lock, retries and saving on shutdown, is a change of its own and is left to a later request.
 
 ## 3. Scope
 
@@ -47,7 +47,7 @@ No controlled document is changed.
 |---|---|
 | Players | Agreeing to the policies of the Company is rewarded. The reward is a number. |
 | Network | One remote event, which carries no arguments that the server reads. |
-| Data | None is kept beyond the life of a server until CR-0012. |
+| Data | None is kept beyond the life of a server until that later request. |
 | Developer productivity | One coin takes four layers, five contracts and a remote event. This is intended. |
 | Documentation volume | Unchanged. |
 
