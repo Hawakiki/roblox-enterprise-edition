@@ -39,12 +39,15 @@ end
 ]=]
 function RobloxInstanceFactory.Create(self: RobloxInstanceFactory, className: string): Instance
 	-- An Infrastructure factory is where EE-STD-0003 §5 allows Instance.new.
-	return Instance.new(className :: any)
+	return Instance.new(className)
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: IInstanceFactory.IInstanceFactory = {
-	Create = RobloxInstanceFactory.Create,
+	Create = function(self: any, className: string): Instance
+		return RobloxInstanceFactory.Create(self, className)
+	end,
 }
 
 return RobloxInstanceFactory

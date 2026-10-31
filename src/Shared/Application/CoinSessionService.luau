@@ -238,10 +238,15 @@ function CoinSessionService.StopAsync(self: CoinSessionService)
 	end
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: IHostedService.IHostedService = {
-	StartAsync = CoinSessionService.StartAsync,
-	StopAsync = CoinSessionService.StopAsync,
+	StartAsync = function(self: any)
+		CoinSessionService.StartAsync(self)
+	end,
+	StopAsync = function(self: any)
+		CoinSessionService.StopAsync(self)
+	end,
 }
 
 return CoinSessionService

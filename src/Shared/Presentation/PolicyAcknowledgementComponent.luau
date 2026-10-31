@@ -44,6 +44,14 @@ PolicyAcknowledgementComponent.__index = PolicyAcknowledgementComponent
 
 export type PolicyAcknowledgementComponent = typeof(setmetatable({} :: ComponentState, PolicyAcknowledgementComponent))
 
+-- Reads the properties of the panel. Every property is any, so each is taken as the type the panel expects.
+local function panelProps(props: IComponent.Props): PolicyAcknowledgementProps
+	return {
+		CoinBalance = props.CoinBalance,
+		AcknowledgementGateway = props.AcknowledgementGateway,
+	}
+end
+
 -- The rounded corners of a panel or a button.
 local function corner(radius: UDim): IComponent.Element
 	return ElementFactory.CreateElement("UICorner", {
@@ -77,7 +85,7 @@ function PolicyAcknowledgementComponent.Render(
 	self: PolicyAcknowledgementComponent,
 	props: IComponent.Props
 ): IComponent.Element
-	local panel: PolicyAcknowledgementProps = props :: any
+	local panel = panelProps(props)
 	local coins = panel.CoinBalance:Get()
 	return ElementFactory.CreateElement("Frame", {
 		AnchorPoint = InterfaceLayoutConstants.PANEL_ANCHOR_POINT,
@@ -144,7 +152,7 @@ end
 	@param props Props -- A PolicyAcknowledgementProps.
 ]=]
 function PolicyAcknowledgementComponent.DidMount(self: PolicyAcknowledgementComponent, props: IComponent.Props)
-	local panel: PolicyAcknowledgementProps = props :: any
+	local panel = panelProps(props)
 	self._scope:Adopt(panel.CoinBalance:Subscribe(function()
 		self._scope:Invalidate()
 	end))
@@ -158,11 +166,18 @@ end
 ]=]
 function PolicyAcknowledgementComponent.WillUnmount(self: PolicyAcknowledgementComponent) end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: IComponent.IComponent = {
-	Render = PolicyAcknowledgementComponent.Render,
-	DidMount = PolicyAcknowledgementComponent.DidMount,
-	WillUnmount = PolicyAcknowledgementComponent.WillUnmount,
+	Render = function(self: any, props: IComponent.Props): IComponent.Element
+		return PolicyAcknowledgementComponent.Render(self, props)
+	end,
+	DidMount = function(self: any, props: IComponent.Props)
+		PolicyAcknowledgementComponent.DidMount(self, props)
+	end,
+	WillUnmount = function(self: any)
+		PolicyAcknowledgementComponent.WillUnmount(self)
+	end,
 }
 
 return PolicyAcknowledgementComponent

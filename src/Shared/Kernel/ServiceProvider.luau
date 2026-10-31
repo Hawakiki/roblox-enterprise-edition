@@ -12,6 +12,7 @@
 ]=]
 
 local ErrorLevelConstants = require(script.Parent.ErrorLevelConstants)
+local IDisposable = require(script.Parent.IDisposable)
 local ServiceToken = require(script.Parent.ServiceToken)
 
 --[=[
@@ -126,7 +127,8 @@ function ServiceProvider.Dispose(self: ServiceProvider)
 	for index = #self._creationOrder, 1, -1 do
 		local service: any = self._creationOrder[index]
 		if type(service) == "table" and type(service.Dispose) == "function" then
-			(service :: any):Dispose()
+			local disposable: IDisposable.IDisposable = service
+			disposable:Dispose()
 		end
 	end
 	table.clear(self._singletons)

@@ -301,11 +301,18 @@ function DataStoreCoinWalletRepository.Release(
 	end)
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: ICoinWalletRepository.ICoinWalletRepository = {
-	Load = DataStoreCoinWalletRepository.Load,
-	Save = DataStoreCoinWalletRepository.Save,
-	Release = DataStoreCoinWalletRepository.Release,
+	Load = function(self: any, userId: number): CoinWalletEntity.CoinWalletEntity
+		return DataStoreCoinWalletRepository.Load(self, userId)
+	end,
+	Save = function(self: any, wallet: CoinWalletEntity.CoinWalletEntity): boolean
+		return DataStoreCoinWalletRepository.Save(self, wallet)
+	end,
+	Release = function(self: any, wallet: CoinWalletEntity.CoinWalletEntity)
+		DataStoreCoinWalletRepository.Release(self, wallet)
+	end,
 }
 
 return DataStoreCoinWalletRepository
