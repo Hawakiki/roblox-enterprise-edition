@@ -79,4 +79,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0008](records/change-requests/CR-0008-law-of-the-code.md) | Lay Down the Law of the Roblox Code | 1.3.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0009](records/change-requests/CR-0009-first-assignment-findings.md) | Correct the Findings of the First Assignment | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0010](records/change-requests/CR-0010-presentation-framework.md) | Build the Presentation Framework | 1.1.0 | Implemented | Internal | Architecture Review Board |
-| [CR-0011](records/change-requests/CR-0011-compliance-coins.md) | Reward Policy Acknowledgement with Compliance Coins | 1.0.1 | Approved | Internal | Architecture Review Board |
+| [CR-0011](records/change-requests/CR-0011-compliance-coins.md) | Reward Policy Acknowledgement with Compliance Coins | 1.1.0 | Implemented | Internal | Architecture Review Board |

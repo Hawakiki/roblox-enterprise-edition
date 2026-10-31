@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0011
 title: 정책 확인에 대한 준법 코인 보상
-translation-of: 1.0.1
+translation-of: 1.1.0
 ---
 
 # 정책 확인에 대한 준법 코인 보상
@@ -61,9 +61,16 @@ translation-of: 1.0.1
 |---|---|---|---|
 | 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-31 |
 | 결재 | Hawakiki | 제출 전 승인 | 2026-10-31 |
+| 시행 | 아키텍처 검토 위원회 | 시행 완료 | 2026-10-31 |
 
 ## 7. 시행 기록
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `054b3d9` | 본 변경 요청 등록 |
+| `160c537` | 아직 존재하지 않는 요청의 인용 제거 |
+| `e6b90e0` | `CoinWalletEntity`, `CoinOverflowPolicy`, `AcknowledgementThrottlePolicy`, `CoinConstants` 추가 |
+| `e23861d` | 계약 다섯, `CoinWalletRegistry`, `CoinSessionService`, `AcknowledgementRewardUseCase`, `AcknowledgementRequestHandler` 와 그 토큰 추가 |
+| `99c03ed` | `InMemoryCoinWalletRepository`, `LeaderstatsCoinProjection`, `RobloxPlayerSessionAdapter`, `RemoteEventAcknowledgementGateway`, `LeaderstatsCoinBalanceAdapter`, `LeaderstatsConstants` 추가 |
+| `3791d90` | 패널에 코인을 보이고, 원격 이벤트를 두고, 두 조립 지점에 제도를 등록함 |
+| `4722335` | `AGENTS.md` 에 지뢰 다섯 가지 기록 |

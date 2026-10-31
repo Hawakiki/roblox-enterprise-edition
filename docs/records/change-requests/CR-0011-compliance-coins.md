@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0011
 title: Reward Policy Acknowledgement with Compliance Coins
-version: 1.0.1
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -62,9 +62,16 @@ Agreeing to the policies of the Company would again be its own reward.
 |---|---|---|---|
 | Requester | Architecture Review Board | Submitted | 2026-10-31 |
 | Approver | Hawakiki | Approved before filing | 2026-10-31 |
+| Implementer | Architecture Review Board | Implemented | 2026-10-31 |
 
 ## 7. Implementation Record
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `054b3d9` | Filed this change request. |
+| `160c537` | Stopped citing a request that does not exist yet. |
+| `e6b90e0` | Added `CoinWalletEntity`, `CoinOverflowPolicy`, `AcknowledgementThrottlePolicy` and `CoinConstants`. |
+| `e23861d` | Added the five contracts, `CoinWalletRegistry`, `CoinSessionService`, `AcknowledgementRewardUseCase`, `AcknowledgementRequestHandler` and their tokens. |
+| `99c03ed` | Added `InMemoryCoinWalletRepository`, `LeaderstatsCoinProjection`, `RobloxPlayerSessionAdapter`, `RemoteEventAcknowledgementGateway`, `LeaderstatsCoinBalanceAdapter` and `LeaderstatsConstants`. |
+| `3791d90` | Showed the coins on the panel, placed the remote event, and registered the programme in both composition roots. |
+| `4722335` | Recorded five mines in `AGENTS.md`. |
