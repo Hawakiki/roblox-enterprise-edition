@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0014
 title: EnterpriseEdition 1.0.0 릴리스
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # EnterpriseEdition 1.0.0 릴리스
@@ -53,9 +53,12 @@ translation-of: 1.0.0
 |---|---|---|---|
 | 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-31 |
 | 결재 | Hawakiki | 제출 전 승인 | 2026-10-31 |
+| 시행 | 아키텍처 검토 위원회 | 시행 완료 | 2026-10-31 |
 
 ## 7. 시행 기록
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `16aad14` | `release/1.0.0` 에 본 변경 요청 등록 |
+| `67d7ded` | `README.ko.md` 추가, 두 판의 README 연결 |
+| `a74a823` | 기록상 결재권자의 소개문과 그 영어 번역 추가 |
