@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0008
 title: Enterprise Versioning Standard
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Internal
 owner: Release Engineering
 parent: EE-POL-0004@1.1
@@ -88,10 +88,11 @@ This standard sets how a release of EnterpriseEdition is numbered, prepared, tag
 |---|---|---|---|
 | 0.1.0 | 2026-10-30 | Number reserved. | Release Engineering |
 | 0.9.0 | 2026-10-31 | Written, after the first release, and submitted for review (CR-0016). | Release Engineering |
+| 1.0.0 | 2026-10-31 | Approved. | Release Engineering |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Release Engineering | Submitted | 2026-10-31 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-31 |
