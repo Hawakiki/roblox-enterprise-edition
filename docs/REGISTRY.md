@@ -21,6 +21,45 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Change Requests | 21 |
 | **Total** | **47** |
 
+## Lineage
+
+Every controlled document, beside the document it cites as its parent. A dashed card is a reserved number, and a bold one a document in review.
+
+![Lineage of the controlled documents](../diagrams/lineage.svg)
+
+<details>
+<summary>Text version</summary>
+
+```text
+EE-CHR-0001 Charter of EnterpriseEdition
+├─ EE-POL-0001 Document Governance Policy
+│  ├─ EE-POL-0002 Bilingual Documentation Policy
+│  ├─ EE-STD-0009 Text File and Documentation Standard
+│  ├─ EE-TPL-0001 Controlled Document Template
+│  ├─ EE-TPL-0002 Change Request Template
+│  ├─ EE-TPL-0003 Request for Comments Template
+│  ├─ EE-TPL-0004 Architecture Decision Record Template
+│  ├─ EE-TPL-0005 Approval Request Template
+│  ├─ EE-TPL-0006 Statement of Circumstances Template
+│  └─ EE-TPL-0007 Meeting Minutes Template
+├─ EE-POL-0003 Delegation of Authority (reserved)
+├─ EE-POL-0004 Change Management Policy
+│  ├─ EE-STD-0007 Commit and Branch Standard
+│  └─ EE-STD-0008 Enterprise Versioning Standard
+├─ EE-POL-0005 Information Classification Policy (reserved)
+├─ EE-POL-0006 AI Workforce Policy
+├─ EE-POL-0007 Deprecation Policy (reserved)
+├─ EE-POL-0008 External Data and AI Training Policy
+├─ EE-STD-0001 Luau Coding Standard
+│  ├─ EE-STD-0002 Naming Convention
+│  ├─ EE-STD-0003 Prohibited API Registry
+│  ├─ EE-STD-0005 Numeric Literal Standard
+│  └─ EE-STD-0006 Layered Architecture Standard
+└─ EE-STD-0004 File Header Standard
+```
+
+</details>
+
 ## Charter
 
 | ID | Title | Version | Status | Classification | Owner | Parent |

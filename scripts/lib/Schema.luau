@@ -127,6 +127,12 @@ Schema.TRANSLATION_FIELDS = { "id", "title", "translation-of" }
 Schema.REGISTRY_PATH = "docs/REGISTRY.md"
 Schema.REGISTRY_KO_PATH = "docs/REGISTRY.ko.md"
 
+-- Images that the registry draws beside itself. They are not documents, so they live outside docs/ (CR-0021).
+-- 문서 대장이 함께 그리는 이미지. 문서가 아니므로 docs/ 밖에 둔다(CR-0021).
+Schema.DIAGRAMS_FOLDER = "diagrams"
+Schema.LINEAGE_PATH = "diagrams/lineage.svg"
+Schema.LINEAGE_KO_PATH = "diagrams/lineage.ko.svg"
+
 function Schema.kindOf(id: string): Kind?
 	local code = string.match(id, "^EE%-(%u%u%u)%-%d%d%d%d$")
 	if code then

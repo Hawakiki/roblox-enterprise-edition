@@ -2,10 +2,11 @@
 -- SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 --!strict
 --[[
-	The document registry: docs/REGISTRY.md and docs/REGISTRY.ko.md, rendered from document frontmatter.
+	The document registry: docs/REGISTRY.md and docs/REGISTRY.ko.md, rendered from document frontmatter, and the
+	diagrams it draws beside itself under diagrams/ (CR-0021).
 	No hand-maintained copy exists, so the registry cannot drift from the documents.
-	문서 대장: 문서 frontmatter 로부터 docs/REGISTRY.md 와 docs/REGISTRY.ko.md 를 만든다.
-	손으로 관리하는 사본이 없으므로 대장과 문서가 어긋날 수 없다.
+	문서 대장: 문서 frontmatter 로부터 docs/REGISTRY.md 와 docs/REGISTRY.ko.md 를 만들고, 함께 그리는 도식을
+	diagrams/ 아래에 만든다(CR-0021). 손으로 관리하는 사본이 없으므로 대장과 문서가 어긋날 수 없다.
 ]]
 
 local Documents = require("./Documents")
@@ -14,6 +15,7 @@ local Rule = require("./Rule")
 local Schema = require("./Schema")
 local Semver = require("./Semver")
 local Snapshot = require("./Snapshot")
+local TreeDiagram = require("./TreeDiagram")
 
 -- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
 local RULES = {
@@ -40,6 +42,14 @@ type Language = {
 	classification: (classification: string) -> string,
 	documentTitle: (document: Documents.Document) -> string,
 	link: (document: Documents.Document) -> string,
+	lineage: string,
+	lineageIntro: string,
+	lineageAlt: string,
+	lineageImage: string,
+	lineagePath: string,
+	textVersion: string,
+	reserved: string,
+	inReview: string,
 }
 
 type Group = {
@@ -117,6 +127,14 @@ local ENGLISH: Language = {
 	link = function(document: Documents.Document): string
 		return relative(document.path)
 	end,
+	lineage = "Lineage",
+	lineageIntro = "Every controlled document, beside the document it cites as its parent. A dashed card is a reserved number, and a bold one a document in review.",
+	lineageAlt = "Lineage of the controlled documents",
+	lineageImage = "../" .. Schema.LINEAGE_PATH,
+	lineagePath = Schema.LINEAGE_PATH,
+	textVersion = "Text version",
+	reserved = "reserved",
+	inReview = "in review",
 }
 
 local KOREAN: Language = {
@@ -149,7 +167,76 @@ local KOREAN: Language = {
 		local translation = document.translation
 		return relative(if translation then translation.path else document.path)
 	end,
+	lineage = "계보",
+	lineageIntro = "모든 통제 문서를, 그 문서가 상위 문서로 인용하는 문서 옆에 그린다. 점선 카드는 확보만 해 둔 번호이고, 굵은 카드는 검토 중인 문서이다.",
+	lineageAlt = "통제 문서의 계보",
+	lineageImage = "../" .. Schema.LINEAGE_KO_PATH,
+	lineagePath = Schema.LINEAGE_KO_PATH,
+	textVersion = "텍스트판",
+	reserved = "예약",
+	inReview = "검토 중",
 }
+
+-- The header of every diagram, as the comment lines that precede its root element (EE-STD-0004).
+local DIAGRAM_HEADER = {
+	"SPDX-License-Identifier: MIT",
+	"SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors",
+	"GENERATED FILE. DO NOT EDIT. Regenerate with: lune run scripts/gen_registry",
+}
+
+-- The controlled documents as a tree, each beside the parent it cites. A reserved number is dashed, and a
+-- document in review bold.
+local function lineageNodes(index: Documents.Index, language: Language): { TreeDiagram.Node }
+	local nodes: { TreeDiagram.Node } = {}
+	for _, document in index.documents do
+		if document.kind.controlled then
+			local style: TreeDiagram.Style = if document.status == "Draft"
+				then "dashed"
+				elseif document.status == "In Review" then "bold"
+				else "solid"
+			table.insert(nodes, {
+				id = document.id,
+				lines = { document.id, language.documentTitle(document) },
+				parent = document.parent,
+				style = style,
+			})
+		end
+	end
+	return nodes
+end
+
+local function lineageSection(index: Documents.Index, language: Language): { string }
+	local nodes = lineageNodes(index, language)
+	if #nodes == 0 then
+		return {}
+	end
+	local text = TreeDiagram.text(nodes, function(node: TreeDiagram.Node): string
+		local label = table.concat(node.lines, " ")
+		if node.style == "dashed" then
+			return label .. " (" .. language.reserved .. ")"
+		elseif node.style == "bold" then
+			return label .. " (" .. language.inReview .. ")"
+		end
+		return label
+	end)
+	return {
+		"",
+		"## " .. language.lineage,
+		"",
+		language.lineageIntro,
+		"",
+		string.format("![%s](%s)", language.lineageAlt, language.lineageImage),
+		"",
+		"<details>",
+		"<summary>" .. language.textVersion .. "</summary>",
+		"",
+		"```text",
+		(string.gsub(text, "\n$", "")),
+		"```",
+		"",
+		"</details>",
+	}
+end
 
 local function groupByKind(index: Documents.Index): { Group }
 	local groups: { Group } = {}
@@ -205,6 +292,9 @@ local function render(index: Documents.Index, language: Language): string
 		end
 		table.insert(lines, string.format("| **%s** | **%d** |", language.total, #index.documents))
 	end
+	for _, line in lineageSection(index, language) do
+		table.insert(lines, line)
+	end
 
 	for _, group in groups do
 		table.insert(lines, "")
@@ -238,8 +328,42 @@ function Registry.render(index: Documents.Index): (string, string)
 	return render(index, ENGLISH), render(index, KOREAN)
 end
 
+export type Diagram = {
+	path: string,
+	content: string,
+}
+
+-- The diagrams the registry draws beside itself, in English and in Korean (CR-0021).
+function Registry.diagrams(index: Documents.Index): { Diagram }
+	local diagrams: { Diagram } = {}
+	for _, language in { ENGLISH, KOREAN } do
+		local nodes = lineageNodes(index, language)
+		if #nodes > 0 then
+			table.insert(diagrams, {
+				path = language.lineagePath,
+				content = TreeDiagram.svg(nodes, { header = DIAGRAM_HEADER, title = language.lineageAlt }),
+			})
+		end
+	end
+	return diagrams
+end
+
 function Registry.check(snapshot: Snapshot.Snapshot, index: Documents.Index, report: Report.Report)
 	local english, korean = Registry.render(index)
+	for _, diagram in Registry.diagrams(index) do
+		local actual = snapshot.files[diagram.path]
+		if actual ~= diagram.content then
+			Report.add(
+				report,
+				RULES.REGISTRY_OUT_OF_DATE,
+				diagram.path,
+				nil,
+				if actual == nil
+					then "the diagram of the registry is missing; run lune run scripts/gen_registry"
+					else "the diagram of the registry does not match the documents; run lune run scripts/gen_registry"
+			)
+		end
+	end
 	local function compare(path: string, expected: string)
 		local actual = snapshot.files[path]
 		if actual == nil then
