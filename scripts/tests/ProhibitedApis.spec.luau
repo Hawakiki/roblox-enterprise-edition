@@ -116,6 +116,16 @@ case("fields, methods, keys, comments and strings are not the API", function()
 	Assert.codes(check({ [SERVICE] = code(body) }), {})
 end)
 
+case("a member named in brackets is still the member (CR-0009)", function()
+	for _, body in
+		{ 'game["GetService"](game, "Players")', "game['FindService'](game, 'Players')", 'Instance[ [[new]] ]("Part")' }
+	do
+		Assert.codes(check({ [SERVICE] = code(body) }), { "PROHIBITED_API" })
+	end
+	Assert.codes(check({ [SERVICE] = code('local x = game["Workspace"]') }), {})
+	Assert.codes(check({ [ROOT] = code('local P = game["GetService"](game, "Players")') }), {})
+end)
+
 case("the tooling may use the APIs", function()
 	Assert.codes(check({ [TOOL] = code('print("report")\nlocal t = tick()') }), {})
 end)

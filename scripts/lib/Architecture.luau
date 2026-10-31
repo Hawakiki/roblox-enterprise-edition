@@ -7,9 +7,27 @@
 	src/ 아래 로블록스 코드의 모양: 모든 모듈이 속하는 계층, 모듈이 require 할 수 있는 계층, 이름이 끝나야 하는 접미사.
 ]]
 
+local Lexer = require("./Lexer")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Snapshot = require("./Snapshot")
 local Text = require("./Text")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	LAYER_VIOLATION = Rule.new(
+		"LAYER_VIOLATION",
+		"ERROR",
+		"EE-STD-0006",
+		"Every module belongs to a layer and requires only the layers it may depend on."
+	),
+	MODULE_NAME_SUFFIX = Rule.new(
+		"MODULE_NAME_SUFFIX",
+		"ERROR",
+		"EE-STD-0002",
+		"A module is an interface named I..., or its name ends with an approved suffix."
+	),
+}
 
 local LAYERS = { "Kernel", "Domain", "Application", "Infrastructure", "Presentation" }
 
@@ -51,6 +69,8 @@ local SUFFIXES = {
 }
 
 local Architecture = {}
+
+Architecture.RULES = RULES
 
 Architecture.LAYERS = LAYERS
 Architecture.SUFFIXES = SUFFIXES
@@ -107,31 +127,42 @@ local function isApprovedName(name: string): boolean
 	return false
 end
 
--- Blanks out comments but keeps their line breaks, so that line numbers stay true.
-local function withoutComments(source: string): string
-	local function blank(comment: string): string
-		return string.rep("\n", select(2, string.gsub(comment, "\n", "")))
-	end
-	source = (string.gsub(source, "%-%-%[(=*)%[.-%]%1%]", blank))
-	return (string.gsub(source, "%-%-[^\n]*", ""))
+local function isSymbol(token: Lexer.Token?, text: string): boolean
+	return token ~= nil and token.kind == "symbol" and token.text == text
 end
 
-local function lineAt(source: string, position: number): number
-	return select(2, string.gsub(string.sub(source, 1, position), "\n", "")) + 1
+-- The layer that a token of a require path names, as a name or as a string in brackets: Parent["Kernel"].
+local function namedLayer(token: Lexer.Token): string?
+	local name = if token.kind == "name" then token.text else Lexer.stringValue(token)
+	return if name and Text.contains(LAYERS, name) then name else nil
 end
 
+-- Reads every require through the lexer, so that neither a comment nor a string can hide one or fake one.
 local function checkRequires(path: string, layer: string, content: string, report: Report.Report)
-	local source = withoutComments(Text.normalize(content))
-	-- Position captures are numbers at run time, though the type checker sees every capture as a string.
-	for position: any, argument: any in string.gmatch(source, "()require%s*(%b())") do
-		for token in string.gmatch(argument :: string, "[%w_]+") do
-			if Text.contains(LAYERS, token) and not Text.contains(ALLOWED[layer], token) then
+	local code = Lexer.code(Lexer.tokenize(content))
+	for index, token in code do
+		if token.kind ~= "name" or token.text ~= "require" or not isSymbol(code[index + 1], "(") then
+			continue
+		end
+		local depth = 0
+		for argument = index + 1, #code do
+			local part = code[argument]
+			if isSymbol(part, "(") then
+				depth += 1
+			elseif isSymbol(part, ")") then
+				depth -= 1
+				if depth == 0 then
+					break
+				end
+			end
+			local named = namedLayer(part)
+			if named and not Text.contains(ALLOWED[layer], named) then
 				Report.add(
 					report,
-					"LAYER_VIOLATION",
+					RULES.LAYER_VIOLATION,
 					path,
-					lineAt(source, tonumber(position) or 1),
-					string.format("the %s layer may not require the %s layer", layer, token)
+					token.line,
+					string.format("the %s layer may not require the %s layer", layer, named)
 				)
 			end
 		end
@@ -150,7 +181,7 @@ function Architecture.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 		else
 			Report.add(
 				report,
-				"LAYER_VIOLATION",
+				RULES.LAYER_VIOLATION,
 				path,
 				nil,
 				string.format("every module belongs to a layer: src/<side>/<%s>/", table.concat(LAYERS, "|"))
@@ -161,7 +192,7 @@ function Architecture.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 		if not isApprovedName(name) then
 			Report.add(
 				report,
-				"MODULE_NAME_SUFFIX",
+				RULES.MODULE_NAME_SUFFIX,
 				path,
 				nil,
 				string.format("'%s' is neither an interface (I...) nor a name ending in an approved suffix", name)

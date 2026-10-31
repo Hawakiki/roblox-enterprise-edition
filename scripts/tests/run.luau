@@ -21,6 +21,7 @@ local suites: { Assert.Suite } = {
 	require("./DocComments.spec"),
 	require("./Documents.spec"),
 	require("./Coverage.spec"),
+	require("./Catalog.spec"),
 	require("./Forms.spec"),
 	require("./Onboarding.spec"),
 	require("./Registry.spec"),

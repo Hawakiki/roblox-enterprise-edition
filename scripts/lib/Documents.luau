@@ -10,10 +10,135 @@
 
 local Frontmatter = require("./Frontmatter")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Schema = require("./Schema")
 local Semver = require("./Semver")
 local Snapshot = require("./Snapshot")
 local Text = require("./Text")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	MISSING_FRONTMATTER = Rule.new(
+		"MISSING_FRONTMATTER",
+		"ERROR",
+		"EE-POL-0001",
+		"Documents must start with a YAML frontmatter block."
+	),
+	INVALID_FRONTMATTER = Rule.new(
+		"INVALID_FRONTMATTER",
+		"ERROR",
+		"EE-POL-0001",
+		"Frontmatter must be a closed block containing a YAML mapping."
+	),
+	MISSING_FIELD = Rule.new("MISSING_FIELD", "ERROR", "EE-POL-0001", "Required frontmatter fields must be present."),
+	UNKNOWN_FIELD = Rule.new(
+		"UNKNOWN_FIELD",
+		"ERROR",
+		"EE-POL-0001",
+		"Frontmatter must not contain fields outside the schema."
+	),
+	INVALID_FIELD_VALUE = Rule.new(
+		"INVALID_FIELD_VALUE",
+		"ERROR",
+		"EE-POL-0001",
+		"Frontmatter values must match the schema."
+	),
+	UNKNOWN_DOCUMENT_TYPE = Rule.new(
+		"UNKNOWN_DOCUMENT_TYPE",
+		"ERROR",
+		"EE-POL-0001",
+		"Document identifiers must belong to a registered document kind."
+	),
+	DUPLICATE_DOCUMENT_ID = Rule.new(
+		"DUPLICATE_DOCUMENT_ID",
+		"ERROR",
+		"EE-POL-0001",
+		"Document identifiers must be unique."
+	),
+	MISPLACED_DOCUMENT = Rule.new(
+		"MISPLACED_DOCUMENT",
+		"ERROR",
+		"EE-POL-0001",
+		"Documents must live in the folder assigned to their kind."
+	),
+	FILENAME_MISMATCH = Rule.new("FILENAME_MISMATCH", "ERROR", "EE-POL-0001", "File names must be '<id>-<slug>.md'."),
+	TITLE_HEADING_MISMATCH = Rule.new(
+		"TITLE_HEADING_MISMATCH",
+		"ERROR",
+		"EE-POL-0001",
+		"The first heading must repeat the frontmatter title."
+	),
+	VERSION_STATUS_MISMATCH = Rule.new(
+		"VERSION_STATUS_MISMATCH",
+		"ERROR",
+		"EE-POL-0001",
+		"Drafts are versioned 0.x.y; approved, superseded and deprecated documents 1.0.0 or later."
+	),
+	MISSING_PARENT = Rule.new(
+		"MISSING_PARENT",
+		"ERROR",
+		"EE-POL-0001",
+		"Controlled documents must cite a parent document."
+	),
+	UNEXPECTED_PARENT = Rule.new(
+		"UNEXPECTED_PARENT",
+		"ERROR",
+		"EE-POL-0001",
+		"The charter and records must not cite a parent."
+	),
+	UNKNOWN_PARENT = Rule.new("UNKNOWN_PARENT", "ERROR", "EE-POL-0001", "Cited parent documents must exist."),
+	PARENT_HIERARCHY_VIOLATION = Rule.new(
+		"PARENT_HIERARCHY_VIOLATION",
+		"ERROR",
+		"EE-POL-0001",
+		"A parent must be a controlled document at the same or a higher level."
+	),
+	STALE_PARENT = Rule.new(
+		"STALE_PARENT",
+		"ERROR",
+		"EE-POL-0001",
+		"Parent citations must match the parent's current MAJOR.MINOR revision."
+	),
+	PARENT_CYCLE = Rule.new("PARENT_CYCLE", "ERROR", "EE-POL-0001", "Parent chains must not loop."),
+	DANGLING_REFERENCE = Rule.new("DANGLING_REFERENCE", "ERROR", "EE-POL-0001", "Referenced documents must exist."),
+	STRAY_FILE = Rule.new("STRAY_FILE", "WARNING", "EE-POL-0001", "Only Markdown documents belong under docs/."),
+	MISSING_TRANSLATION = Rule.new(
+		"MISSING_TRANSLATION",
+		"ERROR",
+		"EE-POL-0002",
+		"Every document must have a Korean translation."
+	),
+	ORPHAN_TRANSLATION = Rule.new(
+		"ORPHAN_TRANSLATION",
+		"ERROR",
+		"EE-POL-0002",
+		"Every translation must have an authoritative English document."
+	),
+	TRANSLATION_ID_MISMATCH = Rule.new(
+		"TRANSLATION_ID_MISMATCH",
+		"ERROR",
+		"EE-POL-0002",
+		"A translation must carry the id of its English document."
+	),
+	TRANSLATION_EXTRA_FIELD = Rule.new(
+		"TRANSLATION_EXTRA_FIELD",
+		"ERROR",
+		"EE-POL-0002",
+		"Translations carry only id, title and translation-of; metadata lives in the English document."
+	),
+	STALE_TRANSLATION = Rule.new(
+		"STALE_TRANSLATION",
+		"ERROR",
+		"EE-POL-0002",
+		"translation-of must match the version of the English document."
+	),
+	TRANSLATION_NOT_KOREAN = Rule.new(
+		"TRANSLATION_NOT_KOREAN",
+		"WARNING",
+		"EE-POL-0002",
+		"Korean translations should contain Korean text."
+	),
+}
 
 export type Translation = {
 	path: string,
@@ -70,10 +195,10 @@ end
 -- Reports a missing or broken frontmatter block. Returns true when the document cannot be read further.
 local function reportParseProblem(path: string, parsed: Frontmatter.Parsed, report: Report.Report): boolean
 	if parsed.problem == "missing" then
-		Report.add(report, "MISSING_FRONTMATTER", path, 1, parsed.message or "missing frontmatter")
+		Report.add(report, RULES.MISSING_FRONTMATTER, path, 1, parsed.message or "missing frontmatter")
 		return true
 	elseif parsed.problem ~= nil or parsed.fields == nil then
-		Report.add(report, "INVALID_FRONTMATTER", path, 1, parsed.message or "invalid frontmatter")
+		Report.add(report, RULES.INVALID_FRONTMATTER, path, 1, parsed.message or "invalid frontmatter")
 		return true
 	end
 	return false
@@ -86,7 +211,7 @@ local function checkHeading(path: string, body: { string }, bodyLine: number, ti
 			if line ~= expected then
 				Report.add(
 					report,
-					"TITLE_HEADING_MISMATCH",
+					RULES.TITLE_HEADING_MISMATCH,
 					path,
 					bodyLine + offset - 1,
 					string.format("the first heading must be '%s'", expected)
@@ -97,7 +222,7 @@ local function checkHeading(path: string, body: { string }, bodyLine: number, ti
 	end
 	Report.add(
 		report,
-		"TITLE_HEADING_MISMATCH",
+		RULES.TITLE_HEADING_MISMATCH,
 		path,
 		bodyLine,
 		string.format("the document has no body; the first heading must be '%s'", expected)
@@ -109,7 +234,7 @@ local function checkLocation(path: string, id: string, kind: Schema.Kind, report
 	if folder ~= kind.folder then
 		Report.add(
 			report,
-			"MISPLACED_DOCUMENT",
+			RULES.MISPLACED_DOCUMENT,
 			path,
 			nil,
 			string.format("%s documents belong in %s/", kind.code, kind.folder)
@@ -123,7 +248,7 @@ local function checkLocation(path: string, id: string, kind: Schema.Kind, report
 	if not isSlug(slug) then
 		Report.add(
 			report,
-			"FILENAME_MISMATCH",
+			RULES.FILENAME_MISMATCH,
 			path,
 			nil,
 			string.format("the file name must be '%s-<slug>.md' with a lowercase, hyphenated slug", id)
@@ -143,17 +268,17 @@ local function readDocument(path: string, content: string, report: Report.Report
 
 	local id = fields.id
 	if id == nil then
-		Report.add(report, "MISSING_FIELD", path, 1, "missing required field 'id'")
+		Report.add(report, RULES.MISSING_FIELD, path, 1, "missing required field 'id'")
 		return nil
 	elseif type(id) ~= "string" then
-		Report.add(report, "INVALID_FIELD_VALUE", path, lineOf("id"), "'id' must be a string")
+		Report.add(report, RULES.INVALID_FIELD_VALUE, path, lineOf("id"), "'id' must be a string")
 		return nil
 	end
 	local kind = Schema.kindOf(id)
 	if kind == nil then
 		Report.add(
 			report,
-			"UNKNOWN_DOCUMENT_TYPE",
+			RULES.UNKNOWN_DOCUMENT_TYPE,
 			path,
 			lineOf("id"),
 			string.format("'%s' does not match any registered document kind", id)
@@ -164,17 +289,17 @@ local function readDocument(path: string, content: string, report: Report.Report
 
 	for _, key in Text.sortedKeys(fields) do
 		if not Text.contains(Schema.FIELDS, key) then
-			Report.add(report, "UNKNOWN_FIELD", path, lineOf(key), string.format("unknown field '%s'", key))
+			Report.add(report, RULES.UNKNOWN_FIELD, path, lineOf(key), string.format("unknown field '%s'", key))
 		end
 	end
 	for _, key in Schema.REQUIRED_FIELDS do
 		local value = fields[key]
 		if value == nil then
-			Report.add(report, "MISSING_FIELD", path, 1, string.format("missing required field '%s'", key))
+			Report.add(report, RULES.MISSING_FIELD, path, 1, string.format("missing required field '%s'", key))
 		elseif nonEmptyString(value) == nil then
 			Report.add(
 				report,
-				"INVALID_FIELD_VALUE",
+				RULES.INVALID_FIELD_VALUE,
 				path,
 				lineOf(key),
 				string.format("'%s' must be a non-empty string; quote values YAML would read as numbers", key)
@@ -189,7 +314,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 		if version == nil then
 			Report.add(
 				report,
-				"INVALID_FIELD_VALUE",
+				RULES.INVALID_FIELD_VALUE,
 				path,
 				lineOf("version"),
 				string.format("version '%s' must be MAJOR.MINOR.PATCH", versionText)
@@ -201,7 +326,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 	if status and not Text.contains(kind.statuses, status) then
 		Report.add(
 			report,
-			"INVALID_FIELD_VALUE",
+			RULES.INVALID_FIELD_VALUE,
 			path,
 			lineOf("status"),
 			string.format(
@@ -218,7 +343,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 	if classification and not Text.contains(Schema.CLASSIFICATIONS, classification) then
 		Report.add(
 			report,
-			"INVALID_FIELD_VALUE",
+			RULES.INVALID_FIELD_VALUE,
 			path,
 			lineOf("classification"),
 			string.format(
@@ -235,7 +360,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 		if status == "Draft" and version.major ~= 0 then
 			Report.add(
 				report,
-				"VERSION_STATUS_MISMATCH",
+				RULES.VERSION_STATUS_MISMATCH,
 				path,
 				lineOf("version"),
 				string.format("%s documents must be versioned 0.x.y, not %s", status, Semver.format(version))
@@ -243,7 +368,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 		elseif status ~= "Draft" and version.major == 0 then
 			Report.add(
 				report,
-				"VERSION_STATUS_MISMATCH",
+				RULES.VERSION_STATUS_MISMATCH,
 				path,
 				lineOf("version"),
 				string.format("%s documents must be versioned 1.0.0 or later, not %s", status, Semver.format(version))
@@ -258,7 +383,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 		if not kind.controlled then
 			Report.add(
 				report,
-				"UNEXPECTED_PARENT",
+				RULES.UNEXPECTED_PARENT,
 				path,
 				lineOf("parent"),
 				"records sit outside the document hierarchy and take no parent"
@@ -266,7 +391,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 		elseif isRoot then
 			Report.add(
 				report,
-				"UNEXPECTED_PARENT",
+				RULES.UNEXPECTED_PARENT,
 				path,
 				lineOf("parent"),
 				"the charter is the root of the hierarchy and takes no parent"
@@ -283,7 +408,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 			else
 				Report.add(
 					report,
-					"INVALID_FIELD_VALUE",
+					RULES.INVALID_FIELD_VALUE,
 					path,
 					lineOf("parent"),
 					"'parent' must be '<document id>@<MAJOR.MINOR>'"
@@ -293,7 +418,7 @@ local function readDocument(path: string, content: string, report: Report.Report
 	elseif kind.controlled and not isRoot then
 		Report.add(
 			report,
-			"MISSING_PARENT",
+			RULES.MISSING_PARENT,
 			path,
 			1,
 			"controlled documents must cite a parent as 'parent: <document id>@<MAJOR.MINOR>'"
@@ -339,23 +464,23 @@ local function readTranslation(path: string, content: string, report: Report.Rep
 		elseif Text.contains(Schema.FIELDS, key) then
 			Report.add(
 				report,
-				"TRANSLATION_EXTRA_FIELD",
+				RULES.TRANSLATION_EXTRA_FIELD,
 				path,
 				lineOf(key),
 				string.format("'%s' belongs in the authoritative English document only", key)
 			)
 		else
-			Report.add(report, "UNKNOWN_FIELD", path, lineOf(key), string.format("unknown field '%s'", key))
+			Report.add(report, RULES.UNKNOWN_FIELD, path, lineOf(key), string.format("unknown field '%s'", key))
 		end
 	end
 	for _, key in Schema.TRANSLATION_FIELDS do
 		local value = fields[key]
 		if value == nil then
-			Report.add(report, "MISSING_FIELD", path, 1, string.format("missing required field '%s'", key))
+			Report.add(report, RULES.MISSING_FIELD, path, 1, string.format("missing required field '%s'", key))
 		elseif nonEmptyString(value) == nil then
 			Report.add(
 				report,
-				"INVALID_FIELD_VALUE",
+				RULES.INVALID_FIELD_VALUE,
 				path,
 				lineOf(key),
 				string.format("'%s' must be a non-empty string; quote values YAML would read as numbers", key)
@@ -370,7 +495,7 @@ local function readTranslation(path: string, content: string, report: Report.Rep
 		if translationOf == nil then
 			Report.add(
 				report,
-				"INVALID_FIELD_VALUE",
+				RULES.INVALID_FIELD_VALUE,
 				path,
 				lineOf("translation-of"),
 				string.format("translation-of '%s' must be MAJOR.MINOR.PATCH", translationOfText)
@@ -390,7 +515,13 @@ local function readTranslation(path: string, content: string, report: Report.Rep
 		end
 	end
 	if not Text.hasHangul(table.concat(prose, "\n")) then
-		Report.add(report, "TRANSLATION_NOT_KOREAN", path, parsed.bodyLine, "the translation contains no Korean text")
+		Report.add(
+			report,
+			RULES.TRANSLATION_NOT_KOREAN,
+			path,
+			parsed.bodyLine,
+			"the translation contains no Korean text"
+		)
 	end
 
 	return {
@@ -410,7 +541,7 @@ local function checkTranslation(document: Document, translation: Translation, re
 	if translationId and translationId ~= document.id then
 		Report.add(
 			report,
-			"TRANSLATION_ID_MISMATCH",
+			RULES.TRANSLATION_ID_MISMATCH,
 			translation.path,
 			translation.idLine,
 			string.format("the translation is labelled %s but translates %s", translationId, document.id)
@@ -420,7 +551,7 @@ local function checkTranslation(document: Document, translation: Translation, re
 	if version and translationOf and Semver.format(version) ~= Semver.format(translationOf) then
 		Report.add(
 			report,
-			"STALE_TRANSLATION",
+			RULES.STALE_TRANSLATION,
 			translation.path,
 			translation.translationOfLine,
 			string.format(
@@ -443,7 +574,7 @@ local function checkHierarchy(index: Index, report: Report.Report)
 		if parent == nil then
 			Report.add(
 				report,
-				"UNKNOWN_PARENT",
+				RULES.UNKNOWN_PARENT,
 				document.path,
 				document.parentLine,
 				string.format("parent %s does not exist", parentId)
@@ -453,7 +584,7 @@ local function checkHierarchy(index: Index, report: Report.Report)
 		if not parent.kind.controlled or parent.kind.level > document.kind.level then
 			Report.add(
 				report,
-				"PARENT_HIERARCHY_VIOLATION",
+				RULES.PARENT_HIERARCHY_VIOLATION,
 				document.path,
 				document.parentLine,
 				string.format(
@@ -467,7 +598,7 @@ local function checkHierarchy(index: Index, report: Report.Report)
 		if revision and version and not Semver.sameRevision(version, revision) then
 			Report.add(
 				report,
-				"STALE_PARENT",
+				RULES.STALE_PARENT,
 				document.path,
 				document.parentLine,
 				string.format(
@@ -494,7 +625,7 @@ local function checkHierarchy(index: Index, report: Report.Report)
 			if nextDocument == document then
 				Report.add(
 					report,
-					"PARENT_CYCLE",
+					RULES.PARENT_CYCLE,
 					document.path,
 					document.parentLine,
 					string.format("the parent chain of %s leads back to itself", document.id)
@@ -531,7 +662,7 @@ local function checkReferences(path: string, body: { string }, bodyLine: number,
 				reported[token] = true
 				Report.add(
 					report,
-					"DANGLING_REFERENCE",
+					RULES.DANGLING_REFERENCE,
 					path,
 					bodyLine + offset - 1,
 					string.format("%s does not exist", token)
@@ -542,6 +673,8 @@ local function checkReferences(path: string, body: { string }, bodyLine: number,
 end
 
 local Documents = {}
+
+Documents.RULES = RULES
 
 -- The identifiers of registered kinds that a line of prose mentions.
 Documents.referencesIn = referencesIn
@@ -573,7 +706,7 @@ function Documents.check(snapshot: Snapshot.Snapshot, report: Report.Report): In
 				if existing then
 					Report.add(
 						report,
-						"DUPLICATE_DOCUMENT_ID",
+						RULES.DUPLICATE_DOCUMENT_ID,
 						path,
 						nil,
 						string.format("%s is already used by %s", document.id, existing.path)
@@ -584,7 +717,7 @@ function Documents.check(snapshot: Snapshot.Snapshot, report: Report.Report): In
 				end
 			end
 		else
-			Report.add(report, "STRAY_FILE", path, nil, "only Markdown documents belong under docs/")
+			Report.add(report, RULES.STRAY_FILE, path, nil, "only Markdown documents belong under docs/")
 		end
 	end
 
@@ -592,7 +725,7 @@ function Documents.check(snapshot: Snapshot.Snapshot, report: Report.Report): In
 		if not englishPaths[englishPath] then
 			Report.add(
 				report,
-				"ORPHAN_TRANSLATION",
+				RULES.ORPHAN_TRANSLATION,
 				translationPaths[englishPath],
 				nil,
 				string.format("no authoritative English document at %s", englishPath)
@@ -604,7 +737,7 @@ function Documents.check(snapshot: Snapshot.Snapshot, report: Report.Report): In
 		if translationPath == nil then
 			Report.add(
 				report,
-				"MISSING_TRANSLATION",
+				RULES.MISSING_TRANSLATION,
 				document.path,
 				nil,
 				string.format(

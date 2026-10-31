@@ -204,6 +204,32 @@ function Lexer.code(tokens: { Token }): { Token }
 	return code
 end
 
+-- The text between the quotes or long brackets of a string, escapes left as written. Nil for anything else,
+-- an interpolated string with expressions included.
+function Lexer.stringValue(token: Token?): string?
+	if token == nil or token.kind ~= "string" then
+		return nil
+	end
+	local text = token.text
+	return string.match(text, '^"(.*)"$')
+		or string.match(text, "^'(.*)'$")
+		or string.match(text, "^`([^{]*)`$")
+		or string.match(text, "^%[=*%[(.-)%]=*%]$")
+end
+
+-- The member that the code tokens from index on name, as .new, :GetService and ["GetService"] do, or nil.
+function Lexer.memberAt(code: { Token }, index: number): string?
+	local first, second, third = code[index], code[index + 1], code[index + 2]
+	if first == nil or first.kind ~= "symbol" or second == nil then
+		return nil
+	elseif (first.text == "." or first.text == ":") and second.kind == "name" then
+		return second.text
+	elseif first.text == "[" and third ~= nil and third.kind == "symbol" and third.text == "]" then
+		return Lexer.stringValue(second)
+	end
+	return nil
+end
+
 -- The level of a block comment, as the number of equals signs in its bracket, or nil for a line comment.
 function Lexer.blockLevel(token: Token): number?
 	if token.kind ~= "comment" then

@@ -83,6 +83,22 @@ case("requires inside comments are ignored", function()
 	Assert.codes(check({ ["src/Shared/Application/GreetingService.luau"] = source }), {})
 end)
 
+case("a string can neither fake a require nor hide one (CR-0009)", function()
+	local faked = 'local s = "require(script.Parent.Parent.Infrastructure.X)"\nreturn s\n'
+	Assert.codes(check({ ["src/Shared/Application/GreetingService.luau"] = faked }), {})
+	local hidden = 'local s = "--" local x = require(script.Parent.Parent.Infrastructure.X)\nreturn x\n'
+	Assert.codes(check({ ["src/Shared/Application/GreetingService.luau"] = hidden }), { "LAYER_VIOLATION" })
+end)
+
+case("a layer named in brackets is still a layer (CR-0009)", function()
+	Assert.codes(
+		check({
+			["src/Shared/Application/GreetingService.luau"] = requiring('script.Parent.Parent["Infrastructure"].X'),
+		}),
+		{ "LAYER_VIOLATION" }
+	)
+end)
+
 case("a module outside every layer is reported", function()
 	Assert.codes(check({ ["src/Shared/Utilities/HelperService.luau"] = "return nil\n" }), { "LAYER_VIOLATION" })
 end)

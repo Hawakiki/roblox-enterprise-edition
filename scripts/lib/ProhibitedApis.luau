@@ -12,8 +12,25 @@ local Architecture = require("./Architecture")
 local Hygiene = require("./Hygiene")
 local Lexer = require("./Lexer")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Snapshot = require("./Snapshot")
 local Text = require("./Text")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	PROHIBITED_DIRECTIVE = Rule.new(
+		"PROHIBITED_DIRECTIVE",
+		"ERROR",
+		"EE-STD-0003",
+		"--!strict is the only directive a Luau file declares, and no function carries an attribute."
+	),
+	PROHIBITED_API = Rule.new(
+		"PROHIBITED_API",
+		"ERROR",
+		"EE-STD-0003",
+		"The Roblox code uses a prohibited API only where the Prohibited API Registry allows it."
+	),
+}
 
 -- The only directive allowed. Every other hot comment, and every attribute, is prohibited without waiver.
 local ALLOWED_DIRECTIVE = "--!strict"
@@ -108,11 +125,7 @@ local function matches(api: Api, code: { Lexer.Token }, index: number): boolean
 	end
 	local member = api.member
 	if member then
-		local name = code[index + 2]
-		return (isSymbol(after, ".") or isSymbol(after, ":"))
-			and name ~= nil
-			and name.kind == "name"
-			and name.text == member
+		return Lexer.memberAt(code, index + 1) == member
 	end
 	-- A key in a table constructor, as in { print = true }.
 	if (isSymbol(before, "{") or isSymbol(before, ",") or isSymbol(before, ";")) and isSymbol(after, "=") then
@@ -128,7 +141,7 @@ local function checkDirectives(path: string, tokens: { Lexer.Token }, report: Re
 			if directive ~= ALLOWED_DIRECTIVE then
 				Report.add(
 					report,
-					"PROHIBITED_DIRECTIVE",
+					RULES.PROHIBITED_DIRECTIVE,
 					path,
 					token.line,
 					string.format("%s is prohibited; %s is the only directive allowed", directive, ALLOWED_DIRECTIVE)
@@ -139,7 +152,7 @@ local function checkDirectives(path: string, tokens: { Lexer.Token }, report: Re
 			local attribute = "@" .. (if nextToken then nextToken.text else "")
 			Report.add(
 				report,
-				"PROHIBITED_DIRECTIVE",
+				RULES.PROHIBITED_DIRECTIVE,
 				path,
 				token.line,
 				string.format("the attribute %s is prohibited; no function carries an attribute", attribute)
@@ -155,7 +168,7 @@ local function checkApis(path: string, tokens: { Lexer.Token }, report: Report.R
 			if matches(api, code, index) and not isAllowed(api, path) then
 				Report.add(
 					report,
-					"PROHIBITED_API",
+					RULES.PROHIBITED_API,
 					path,
 					token.line,
 					string.format("%s is prohibited here: %s", api.name, PLACES[api.place])
@@ -166,6 +179,8 @@ local function checkApis(path: string, tokens: { Lexer.Token }, report: Report.R
 end
 
 local ProhibitedApis = {}
+
+ProhibitedApis.RULES = RULES
 
 function ProhibitedApis.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 	for _, path in Snapshot.paths(snapshot) do

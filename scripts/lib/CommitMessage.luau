@@ -10,7 +10,132 @@
 
 local Documents = require("./Documents")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Text = require("./Text")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	COMMIT_SUBJECT_FORMAT = Rule.new(
+		"COMMIT_SUBJECT_FORMAT",
+		"ERROR",
+		"EE-STD-0007",
+		"Subjects must be '<type>(<scope>): <description>'."
+	),
+	COMMIT_SUBJECT_TOO_LONG = Rule.new(
+		"COMMIT_SUBJECT_TOO_LONG",
+		"ERROR",
+		"EE-STD-0007",
+		"Subjects must fit in 72 columns."
+	),
+	COMMIT_SUBJECT_NOT_ENGLISH = Rule.new(
+		"COMMIT_SUBJECT_NOT_ENGLISH",
+		"ERROR",
+		"EE-STD-0007",
+		"Subjects must be written in English."
+	),
+	COMMIT_SUBJECT_STYLE = Rule.new(
+		"COMMIT_SUBJECT_STYLE",
+		"ERROR",
+		"EE-STD-0007",
+		"Descriptions are not in sentence case and do not end with a period."
+	),
+	COMMIT_MISSING_BLANK_LINE = Rule.new(
+		"COMMIT_MISSING_BLANK_LINE",
+		"ERROR",
+		"EE-STD-0007",
+		"The subject must be followed by a blank line."
+	),
+	COMMIT_MISSING_BODY_SECTION = Rule.new(
+		"COMMIT_MISSING_BODY_SECTION",
+		"ERROR",
+		"EE-STD-0007",
+		"Bodies must contain an [EN] section followed by a [KO] section."
+	),
+	COMMIT_SECTION_LANGUAGE = Rule.new(
+		"COMMIT_SECTION_LANGUAGE",
+		"ERROR",
+		"EE-STD-0007",
+		"The [KO] section must be written in Korean."
+	),
+	COMMIT_BODY_LINE_TOO_LONG = Rule.new(
+		"COMMIT_BODY_LINE_TOO_LONG",
+		"WARNING",
+		"EE-STD-0007",
+		"Body lines should fit in 72 columns."
+	),
+	COMMIT_UNKNOWN_TRAILER = Rule.new(
+		"COMMIT_UNKNOWN_TRAILER",
+		"ERROR",
+		"EE-STD-0007",
+		"Only registered trailers are allowed."
+	),
+	COMMIT_MALFORMED_TRAILER = Rule.new(
+		"COMMIT_MALFORMED_TRAILER",
+		"ERROR",
+		"EE-STD-0007",
+		"Trailer values must match their format."
+	),
+	COMMIT_MISSING_SIGNOFF = Rule.new(
+		"COMMIT_MISSING_SIGNOFF",
+		"ERROR",
+		"EE-STD-0007",
+		"Commits must carry a Signed-off-by trailer."
+	),
+	COMMIT_SIGNOFF_MISMATCH = Rule.new(
+		"COMMIT_SIGNOFF_MISMATCH",
+		"ERROR",
+		"EE-STD-0007",
+		"The commit author must sign off."
+	),
+	COMMIT_MISSING_CHANGE_REQUEST = Rule.new(
+		"COMMIT_MISSING_CHANGE_REQUEST",
+		"ERROR",
+		"EE-STD-0007",
+		"Commits must cite a change request."
+	),
+	COMMIT_UNKNOWN_CHANGE_REQUEST = Rule.new(
+		"COMMIT_UNKNOWN_CHANGE_REQUEST",
+		"ERROR",
+		"EE-STD-0007",
+		"Cited change requests must be filed."
+	),
+	COMMIT_CHANGE_REQUEST_CLOSED = Rule.new(
+		"COMMIT_CHANGE_REQUEST_CLOSED",
+		"ERROR",
+		"EE-STD-0007",
+		"Rejected or closed change requests accept no commits."
+	),
+	COMMIT_CHANGE_REQUEST_NOT_APPROVED = Rule.new(
+		"COMMIT_CHANGE_REQUEST_NOT_APPROVED",
+		"WARNING",
+		"EE-STD-0007",
+		"Commits should cite an approved change request."
+	),
+	COMMIT_MISSING_APPROVAL = Rule.new(
+		"COMMIT_MISSING_APPROVAL",
+		"ERROR",
+		"EE-STD-0007",
+		"Merge commits must carry an Approved-by trailer."
+	),
+	BRANCH_NAME_FORMAT = Rule.new(
+		"BRANCH_NAME_FORMAT",
+		"ERROR",
+		"EE-STD-0007",
+		"Branch names must follow git-flow naming."
+	),
+	BRANCH_CHANGE_REQUEST_MISMATCH = Rule.new(
+		"BRANCH_CHANGE_REQUEST_MISMATCH",
+		"ERROR",
+		"EE-STD-0007",
+		"Commits on a feature branch must cite the change request of the branch."
+	),
+	DIRECT_COMMIT_TO_PROTECTED_BRANCH = Rule.new(
+		"DIRECT_COMMIT_TO_PROTECTED_BRANCH",
+		"ERROR",
+		"EE-STD-0007",
+		"main and develop accept merge commits only."
+	),
+}
 
 export type Context = {
 	-- Where the message came from; used as the location in reports.
@@ -129,13 +254,13 @@ end
 local function checkSubject(subject: Line, context: Context, report: Report.Report)
 	local label, text, number = context.label, subject.text, subject.number
 	if not Text.isAscii(text) then
-		Report.add(report, "COMMIT_SUBJECT_NOT_ENGLISH", label, number, "the subject must be written in English")
+		Report.add(report, RULES.COMMIT_SUBJECT_NOT_ENGLISH, label, number, "the subject must be written in English")
 	end
 	local width = Text.displayWidth(text)
 	if width > SUBJECT_LIMIT then
 		Report.add(
 			report,
-			"COMMIT_SUBJECT_TOO_LONG",
+			RULES.COMMIT_SUBJECT_TOO_LONG,
 			label,
 			number,
 			string.format("the subject is %d columns; the limit is %d", width, SUBJECT_LIMIT)
@@ -146,7 +271,7 @@ local function checkSubject(subject: Line, context: Context, report: Report.Repo
 		if not string.match(text, "^Merge branch '[^']+'") then
 			Report.add(
 				report,
-				"COMMIT_SUBJECT_FORMAT",
+				RULES.COMMIT_SUBJECT_FORMAT,
 				label,
 				number,
 				"merge commit subjects must be \"Merge branch '<source>' into <target>\""
@@ -159,7 +284,7 @@ local function checkSubject(subject: Line, context: Context, report: Report.Repo
 	if not (kind and description) then
 		Report.add(
 			report,
-			"COMMIT_SUBJECT_FORMAT",
+			RULES.COMMIT_SUBJECT_FORMAT,
 			label,
 			number,
 			"the subject must be '<type>(<scope>): <description>' with a lowercase scope"
@@ -169,17 +294,17 @@ local function checkSubject(subject: Line, context: Context, report: Report.Repo
 	if not Text.contains(TYPES, kind) then
 		Report.add(
 			report,
-			"COMMIT_SUBJECT_FORMAT",
+			RULES.COMMIT_SUBJECT_FORMAT,
 			label,
 			number,
 			string.format("unknown type '%s'; allowed: %s", kind, table.concat(TYPES, ", "))
 		)
 	end
 	if string.match(description, "^%u%l") then
-		Report.add(report, "COMMIT_SUBJECT_STYLE", label, number, "the description must not start in sentence case")
+		Report.add(report, RULES.COMMIT_SUBJECT_STYLE, label, number, "the description must not start in sentence case")
 	end
 	if string.sub(description, -1) == "." then
-		Report.add(report, "COMMIT_SUBJECT_STYLE", label, number, "the description must not end with a period")
+		Report.add(report, RULES.COMMIT_SUBJECT_STYLE, label, number, "the description must not end with a period")
 	end
 end
 
@@ -190,7 +315,7 @@ local function checkBody(body: { Line }, fallbackLine: number, context: Context,
 		if width > BODY_LIMIT and not string.find(line.text, "://", 1, true) then
 			Report.add(
 				report,
-				"COMMIT_BODY_LINE_TOO_LONG",
+				RULES.COMMIT_BODY_LINE_TOO_LONG,
 				label,
 				line.number,
 				string.format("the line is %d columns; the limit is %d", width, BODY_LIMIT)
@@ -200,7 +325,7 @@ local function checkBody(body: { Line }, fallbackLine: number, context: Context,
 
 	if #body == 0 or body[1].text ~= "[EN]" then
 		local number = if #body > 0 then body[1].number else fallbackLine
-		Report.add(report, "COMMIT_MISSING_BODY_SECTION", label, number, "the body must open with an [EN] section")
+		Report.add(report, RULES.COMMIT_MISSING_BODY_SECTION, label, number, "the body must open with an [EN] section")
 		return
 	end
 	local korean: number? = nil
@@ -213,7 +338,7 @@ local function checkBody(body: { Line }, fallbackLine: number, context: Context,
 	if korean == nil then
 		Report.add(
 			report,
-			"COMMIT_MISSING_BODY_SECTION",
+			RULES.COMMIT_MISSING_BODY_SECTION,
 			label,
 			body[#body].number,
 			"the [EN] section must be followed by a [KO] section"
@@ -221,10 +346,10 @@ local function checkBody(body: { Line }, fallbackLine: number, context: Context,
 		return
 	end
 	if korean == 2 then
-		Report.add(report, "COMMIT_MISSING_BODY_SECTION", label, body[1].number, "the [EN] section is empty")
+		Report.add(report, RULES.COMMIT_MISSING_BODY_SECTION, label, body[1].number, "the [EN] section is empty")
 	end
 	if korean == #body then
-		Report.add(report, "COMMIT_MISSING_BODY_SECTION", label, body[korean].number, "the [KO] section is empty")
+		Report.add(report, RULES.COMMIT_MISSING_BODY_SECTION, label, body[korean].number, "the [KO] section is empty")
 		return
 	end
 	local text = {}
@@ -234,7 +359,7 @@ local function checkBody(body: { Line }, fallbackLine: number, context: Context,
 	if not Text.hasHangul(table.concat(text, "\n")) then
 		Report.add(
 			report,
-			"COMMIT_SECTION_LANGUAGE",
+			RULES.COMMIT_SECTION_LANGUAGE,
 			label,
 			body[korean + 1].number,
 			"the [KO] section must be written in Korean"
@@ -259,7 +384,7 @@ local function checkTrailers(
 		if name == nil then
 			Report.add(
 				report,
-				"COMMIT_UNKNOWN_TRAILER",
+				RULES.COMMIT_UNKNOWN_TRAILER,
 				label,
 				trailer.number,
 				string.format("unknown trailer '%s'; allowed: %s", trailer.key, allowedTrailers())
@@ -267,7 +392,7 @@ local function checkTrailers(
 		elseif IDENTITY_TRAILERS[name] and not string.match(trailer.value, IDENTITY) then
 			Report.add(
 				report,
-				"COMMIT_MALFORMED_TRAILER",
+				RULES.COMMIT_MALFORMED_TRAILER,
 				label,
 				trailer.number,
 				string.format("%s must be 'Name <email>'", name)
@@ -282,7 +407,7 @@ local function checkTrailers(
 			else
 				Report.add(
 					report,
-					"COMMIT_MALFORMED_TRAILER",
+					RULES.COMMIT_MALFORMED_TRAILER,
 					label,
 					trailer.number,
 					"Change-Request must be 'CR-NNNN'"
@@ -291,7 +416,7 @@ local function checkTrailers(
 		elseif name == "Jira" and not string.match(trailer.value, "^%u+%-%d+$") then
 			Report.add(
 				report,
-				"COMMIT_MALFORMED_TRAILER",
+				RULES.COMMIT_MALFORMED_TRAILER,
 				label,
 				trailer.number,
 				"Jira must be an issue key such as EE-1234"
@@ -303,7 +428,7 @@ local function checkTrailers(
 	if #signoffs == 0 then
 		Report.add(
 			report,
-			"COMMIT_MISSING_SIGNOFF",
+			RULES.COMMIT_MISSING_SIGNOFF,
 			label,
 			endLine,
 			"missing 'Signed-off-by: Name <email>'; commit with git commit -s"
@@ -311,7 +436,7 @@ local function checkTrailers(
 	elseif author and not Text.contains(signoffs, author) then
 		Report.add(
 			report,
-			"COMMIT_SIGNOFF_MISMATCH",
+			RULES.COMMIT_SIGNOFF_MISMATCH,
 			label,
 			endLine,
 			string.format("the author %s has not signed off", author)
@@ -321,7 +446,7 @@ local function checkTrailers(
 	if #changeRequests == 0 then
 		Report.add(
 			report,
-			"COMMIT_MISSING_CHANGE_REQUEST",
+			RULES.COMMIT_MISSING_CHANGE_REQUEST,
 			label,
 			endLine,
 			"cite the change request this commit implements: 'Change-Request: CR-NNNN'"
@@ -333,7 +458,7 @@ local function checkTrailers(
 		if document == nil then
 			Report.add(
 				report,
-				"COMMIT_UNKNOWN_CHANGE_REQUEST",
+				RULES.COMMIT_UNKNOWN_CHANGE_REQUEST,
 				label,
 				trailer.number,
 				string.format("%s is not filed under docs/records/change-requests/", trailer.value)
@@ -341,7 +466,7 @@ local function checkTrailers(
 		elseif status == "Rejected" or status == "Closed" then
 			Report.add(
 				report,
-				"COMMIT_CHANGE_REQUEST_CLOSED",
+				RULES.COMMIT_CHANGE_REQUEST_CLOSED,
 				label,
 				trailer.number,
 				string.format("%s is %s and accepts no further commits", trailer.value, status)
@@ -349,7 +474,7 @@ local function checkTrailers(
 		elseif status ~= "Approved" and status ~= "Implemented" then
 			Report.add(
 				report,
-				"COMMIT_CHANGE_REQUEST_NOT_APPROVED",
+				RULES.COMMIT_CHANGE_REQUEST_NOT_APPROVED,
 				label,
 				trailer.number,
 				string.format("%s is %s; commits should wait for its approval", trailer.value, tostring(status))
@@ -360,7 +485,7 @@ local function checkTrailers(
 	if context.isMerge and not approved then
 		Report.add(
 			report,
-			"COMMIT_MISSING_APPROVAL",
+			RULES.COMMIT_MISSING_APPROVAL,
 			label,
 			endLine,
 			"merge commits must carry 'Approved-by: Name <email>'"
@@ -380,7 +505,7 @@ local function checkBranch(changeRequests: { Trailer }, context: Context, report
 		if not context.isMerge then
 			Report.add(
 				report,
-				"DIRECT_COMMIT_TO_PROTECTED_BRANCH",
+				RULES.DIRECT_COMMIT_TO_PROTECTED_BRANCH,
 				label,
 				nil,
 				string.format(
@@ -401,7 +526,7 @@ local function checkBranch(changeRequests: { Trailer }, context: Context, report
 		end
 		Report.add(
 			report,
-			"BRANCH_CHANGE_REQUEST_MISMATCH",
+			RULES.BRANCH_CHANGE_REQUEST_MISMATCH,
 			label,
 			nil,
 			string.format("branch %s belongs to %s, which this commit does not cite", branch, changeRequest)
@@ -416,7 +541,7 @@ local function checkBranch(changeRequests: { Trailer }, context: Context, report
 	end
 	Report.add(
 		report,
-		"BRANCH_NAME_FORMAT",
+		RULES.BRANCH_NAME_FORMAT,
 		label,
 		nil,
 		string.format("branch '%s' must be feature/CR-NNNN-<slug>, release/<version> or hotfix/SEV<1-4>-<slug>", branch)
@@ -424,6 +549,8 @@ local function checkBranch(changeRequests: { Trailer }, context: Context, report
 end
 
 local CommitMessage = {}
+
+CommitMessage.RULES = RULES
 
 -- Commits made before EE-STD-0007 took effect. Exempt, and never to be rewritten.
 CommitMessage.GRANDFATHERED = {
@@ -433,7 +560,7 @@ CommitMessage.GRANDFATHERED = {
 function CommitMessage.check(message: string, context: Context, report: Report.Report)
 	local lines = clean(message)
 	if #lines == 0 then
-		Report.add(report, "COMMIT_SUBJECT_FORMAT", context.label, 1, "the commit message is empty")
+		Report.add(report, RULES.COMMIT_SUBJECT_FORMAT, context.label, 1, "the commit message is empty")
 		return
 	end
 	local blocks = paragraphs(lines)
@@ -443,7 +570,7 @@ function CommitMessage.check(message: string, context: Context, report: Report.R
 	if #subjectBlock > 1 then
 		Report.add(
 			report,
-			"COMMIT_MISSING_BLANK_LINE",
+			RULES.COMMIT_MISSING_BLANK_LINE,
 			context.label,
 			subjectBlock[2].number,
 			"the subject must be followed by a blank line"

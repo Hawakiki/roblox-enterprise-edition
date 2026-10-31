@@ -11,7 +11,24 @@
 local Architecture = require("./Architecture")
 local Lexer = require("./Lexer")
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Snapshot = require("./Snapshot")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	NUMERIC_LITERAL = Rule.new(
+		"NUMERIC_LITERAL",
+		"ERROR",
+		"EE-STD-0005",
+		"A numeric literal other than -1, 0, 1 and 2 appears only in a module whose name ends with Constants."
+	),
+	COLOR_OUTSIDE_PALETTE = Rule.new(
+		"COLOR_OUTSIDE_PALETTE",
+		"ERROR",
+		"EE-STD-0005",
+		"Every colour under src/ comes from the corporate colour palette."
+	),
+}
 
 local SUFFIX = "Constants"
 local PALETTE = "src/Shared/Kernel/CorporatePaletteConstants.luau"
@@ -75,7 +92,7 @@ local function checkNumbers(path: string, code: { Lexer.Token }, report: Report.
 		if not exempt then
 			Report.add(
 				report,
-				"NUMERIC_LITERAL",
+				RULES.NUMERIC_LITERAL,
 				path,
 				token.line,
 				string.format(
@@ -88,33 +105,66 @@ local function checkNumbers(path: string, code: { Lexer.Token }, report: Report.
 	end
 end
 
+-- Whether the = at index assigns a type, as in type Colour = Color3 or export type Colour<T> = Color3.
+local function assignsType(code: { Lexer.Token }, index: number): boolean
+	local cursor = index - 1
+	if isSymbol(code[cursor], ">") then
+		local depth = 0
+		while cursor > 1 do
+			if isSymbol(code[cursor], ">") then
+				depth += 1
+			elseif isSymbol(code[cursor], "<") then
+				depth -= 1
+				if depth == 0 then
+					break
+				end
+			end
+			cursor -= 1
+		end
+		cursor -= 1
+	end
+	local name, keyword = code[cursor], code[cursor - 1]
+	return name ~= nil and name.kind == "name" and keyword ~= nil and keyword.text == "type"
+end
+
+-- Whether the global at index is taken as a value of its own, as in local C = Color3 or return Color3.
+local function isAliased(code: { Lexer.Token }, index: number): boolean
+	local before = code[index - 1]
+	if isSymbol(before, "=") then
+		return not assignsType(code, index - 1)
+	end
+	return before ~= nil and before.kind == "name" and before.text == "return"
+end
+
 local function checkColors(path: string, code: { Lexer.Token }, report: Report.Report)
 	for index, token in code do
 		if token.kind ~= "name" or not table.find(COLOR_GLOBALS, token.text) then
 			continue
 		end
-		local before, after, member = code[index - 1], code[index + 1], code[index + 2]
+		local before = code[index - 1]
 		if isSymbol(before, ".") or isSymbol(before, ":") then
 			continue
 		end
-		if (isSymbol(after, ".") or isSymbol(after, ":")) and member and member.kind == "name" then
+		local member = Lexer.memberAt(code, index + 1)
+		local problem = if member
+			then string.format("%s.%s makes a colour", token.text, member)
+			elseif isAliased(code, index) then string.format("an alias of %s makes colours", token.text)
+			else nil
+		if problem then
 			Report.add(
 				report,
-				"COLOR_OUTSIDE_PALETTE",
+				RULES.COLOR_OUTSIDE_PALETTE,
 				path,
 				token.line,
-				string.format(
-					"%s.%s makes a colour outside the corporate colour palette, %s",
-					token.text,
-					member.text,
-					PALETTE
-				)
+				string.format("%s outside the corporate colour palette, %s", problem, PALETTE)
 			)
 		end
 	end
 end
 
 local NumericLiterals = {}
+
+NumericLiterals.RULES = RULES
 
 NumericLiterals.PALETTE = PALETTE
 

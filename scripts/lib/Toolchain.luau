@@ -9,7 +9,18 @@
 local serde = require("@lune/serde")
 
 local Report = require("./Report")
+local Rule = require("./Rule")
 local Snapshot = require("./Snapshot")
+
+-- The rules this check reports, declared beside it (CR-0009). / 이 검사가 보고하는 규칙. 검사 옆에 선언한다(CR-0009).
+local RULES = {
+	TOOLCHAIN_VERSION_MISMATCH = Rule.new(
+		"TOOLCHAIN_VERSION_MISMATCH",
+		"ERROR",
+		"EE-STD-0001",
+		"Tool versions referenced by configuration must match rokit.toml."
+	),
+}
 
 local ROKIT_PATH = "rokit.toml"
 local LUAURC_PATH = "scripts/.luaurc"
@@ -23,6 +34,8 @@ end
 
 local Toolchain = {}
 
+Toolchain.RULES = RULES
+
 function Toolchain.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 	local rokitSource = snapshot.files[ROKIT_PATH]
 	local luaurcSource = snapshot.files[LUAURC_PATH]
@@ -35,7 +48,7 @@ function Toolchain.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 	local lune = if type(tools) == "table" then tools.lune else nil
 	local version = if type(lune) == "string" then string.match(lune, "@([%w%.%-]+)$") else nil
 	if version == nil then
-		Report.add(report, "TOOLCHAIN_VERSION_MISMATCH", ROKIT_PATH, nil, "rokit.toml does not pin a lune version")
+		Report.add(report, RULES.TOOLCHAIN_VERSION_MISMATCH, ROKIT_PATH, nil, "rokit.toml does not pin a lune version")
 		return
 	end
 
@@ -46,7 +59,7 @@ function Toolchain.check(snapshot: Snapshot.Snapshot, report: Report.Report)
 	if alias ~= expected then
 		Report.add(
 			report,
-			"TOOLCHAIN_VERSION_MISMATCH",
+			RULES.TOOLCHAIN_VERSION_MISMATCH,
 			LUAURC_PATH,
 			nil,
 			string.format(

@@ -90,4 +90,15 @@ case("naming Color3 as a type, or a field that shares its name, is not making a 
 	Assert.codes(inService("local c: Color3 = Palette.GREY\nlocal d = part.Color3\nlocal e = c:Lerp(d, 0)"), {})
 end)
 
+case("an alias or a member in brackets still makes colours (CR-0009)", function()
+	Assert.codes(inService("local C = Color3\nlocal red = C.new(1, 0, 0)"), { "COLOR_OUTSIDE_PALETTE" })
+	Assert.codes(inService("local B\nB = BrickColor"), { "COLOR_OUTSIDE_PALETTE" })
+	Assert.codes(inService("return Color3"), { "COLOR_OUTSIDE_PALETTE" })
+	Assert.codes(inService('local red = Color3["new"](1, 0, 0)'), { "COLOR_OUTSIDE_PALETTE" })
+end)
+
+case("a type alias of Color3 is still a type (CR-0009)", function()
+	Assert.codes(inService("type Colour = Color3\nexport type Swatch<T> = Color3\nlocal c: Colour = Palette.GREY"), {})
+end)
+
 return { name = "NumericLiterals", cases = cases } :: Assert.Suite
