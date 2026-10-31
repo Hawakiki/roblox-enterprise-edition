@@ -19,8 +19,8 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Standards | 9 |
 | Templates | 7 |
 | Architecture Decision Records | 1 |
-| Change Requests | 21 |
-| **Total** | **48** |
+| Change Requests | 22 |
+| **Total** | **49** |
 
 ## Lineage
 
@@ -93,7 +93,7 @@ EE-CHR-0001 Charter of EnterpriseEdition
 |---|---|---|---|---|---|---|
 | [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.md) | Luau Coding Standard | 1.1.0 | Approved | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
 | [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.1.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.1.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
 | [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
@@ -144,3 +144,4 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | [CR-0019](records/change-requests/CR-0019-contract-decision-record.md) | Record the Contract Pattern as the First Architecture Decision | 1.2.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0020](records/change-requests/CR-0020-adr-0001-fitness-test.md) | Test the Facts That ADR-0001 Rests On | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0021](records/change-requests/CR-0021-company-map.md) | Draw the Map of the Company | 1.2.0 | Implemented | Internal | Document Control Office |
+| [CR-0022](records/change-requests/CR-0022-random-numbers.md) | Prohibit the Global Random Number Generator | 1.3.0 | Implemented | Internal | Architecture Review Board |
