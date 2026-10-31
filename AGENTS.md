@@ -119,6 +119,9 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Connecting a `(Player) -> ()` handler to `PlayerRemoving` | The new solver knows it also passes the reason for leaving. Wrap the handler | CR-0011 |
 | Passing `os.time` where a `() -> number` is expected | The new solver counts its optional argument. Wrap it in a function | CR-0012 |
 | Reading the fields of a value checked with `type(x) == "table"` | The new solver calls them `unknown`. Read them into annotated locals | CR-0012 |
+| Judging a tool by the words it writes | luau-lsp exits 1 without the word Error for a missing path, and a missing luau-lsp writes nothing; both passed as 0 errors. Judge a tool by its exit code | CR-0015 |
+| Running Windows PowerShell 5.1 under `$ErrorActionPreference = 'Stop'` | It stops at the first line a tool writes to standard error, as the PowerShell steps of GitHub would have. A script sets its own preference | CR-0015 |
+| A commit subject without a scope | `COMMIT_SUBJECT_FORMAT`. `ci:` needs one, as in `ci(workflow):` | EE-STD-0007 §4 |
 | Leaving `rojo serve` connected while the tree changes | Rojo can sync a second copy of a folder such as `EnterpriseEdition`. Stop the server when you are done, and reconnect after large changes | CR-0011 |
 | Committing without reading the checkpatch result | The commit-msg hook checks only the message, so a dangling reference was committed. Run checkpatch before every commit | CR-0011 |
 
