@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0022
 title: 전역 난수 생성기 금지
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 전역 난수 생성기 금지
@@ -55,4 +55,8 @@ EE-STD-0003 §5.4 는 그 표가 표준의 개정으로 늘어난다고 정한�
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `d164018` | 본 변경 요청 등록 |
+| `bdf46cb` | 두 행을 더해 EE-STD-0003 을 1.1.0 으로 `In Review` 개정하고, `scripts/lib/ProhibitedApis.luau` 의 대장 사본을 테스트와 함께 갱신함 |
+
+테스트를 먼저 작성하였고, 테스트는 행을 더하기 전까지 실패하였다.
+`bdf46cb` 의 메시지에는 `COMMIT_BODY_LINE_TOO_LONG` 경고가 있다. 한국어 본문의 한 줄이 73칸으로 제한을 1칸 넘었는데, 한글 한 음절을 2칸으로 세기 때문이다. 커밋은 만들어진 그대로 둔다(EE-POL-0004 §8).
