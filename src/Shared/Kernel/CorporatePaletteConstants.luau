@@ -17,9 +17,41 @@ local CorporatePaletteConstants = {}
 	@prop CORPORATE_GREY Color3
 	@within CorporatePaletteConstants
 	@readonly
-	The grey of the Baseplate, the only colour the Company has used so far.
+	The grey of the Baseplate, the first colour the Company used.
 	default.project.json states it again, because Rojo reads the place from JSON, which cannot require a module.
 ]=]
 CorporatePaletteConstants.CORPORATE_GREY = Color3.new(0.38, 0.37, 0.39)
+
+--[=[
+	@prop CORPORATE_NAVY Color3
+	@within CorporatePaletteConstants
+	@readonly
+	The navy of every panel the Company shows (CR-0010).
+]=]
+CorporatePaletteConstants.CORPORATE_NAVY = Color3.fromRGB(20, 33, 61)
+
+--[=[
+	@prop CORPORATE_WHITE Color3
+	@within CorporatePaletteConstants
+	@readonly
+	The white of headings and of text on a coloured background (CR-0010).
+]=]
+CorporatePaletteConstants.CORPORATE_WHITE = Color3.fromRGB(245, 247, 250)
+
+--[=[
+	@prop CORPORATE_SILVER Color3
+	@within CorporatePaletteConstants
+	@readonly
+	The silver of text that matters less than a heading (CR-0010).
+]=]
+CorporatePaletteConstants.CORPORATE_SILVER = Color3.fromRGB(176, 184, 197)
+
+--[=[
+	@prop APPROVAL_GREEN Color3
+	@within CorporatePaletteConstants
+	@readonly
+	The green of a button that agrees. The Company has no button that disagrees (CR-0010).
+]=]
+CorporatePaletteConstants.APPROVAL_GREEN = Color3.fromRGB(46, 160, 67)
 
 return table.freeze(CorporatePaletteConstants)
