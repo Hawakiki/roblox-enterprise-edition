@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0014
 title: EnterpriseEdition 1.0.0 릴리스
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # EnterpriseEdition 1.0.0 릴리스
@@ -62,3 +62,5 @@ translation-of: 1.1.0
 | `16aad14` | `release/1.0.0` 에 본 변경 요청 등록 |
 | `67d7ded` | `README.ko.md` 추가, 두 판의 README 연결 |
 | `a74a823` | 기록상 결재권자의 소개문과 그 영어 번역 추가 |
+| `6fda87c` | 본 요청을 시행 완료로 표시 |
+| `e623a7e` | 두 판의 README 맨 위에서 `--no-verify` 와 `eslint-disable-next-line` 에 답함 |

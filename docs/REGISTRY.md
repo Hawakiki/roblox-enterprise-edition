@@ -82,4 +82,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0011](records/change-requests/CR-0011-compliance-coins.md) | Reward Policy Acknowledgement with Compliance Coins | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0012](records/change-requests/CR-0012-datastore-wallets.md) | Keep Compliance Coins in a DataStore under a Session Lock | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0013](records/change-requests/CR-0013-publication.md) | Prepare the Company for Publication | 1.1.0 | Implemented | Internal | Architecture Review Board |
-| [CR-0014](records/change-requests/CR-0014-release-1-0-0.md) | Release EnterpriseEdition 1.0.0 | 1.1.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0014](records/change-requests/CR-0014-release-1-0-0.md) | Release EnterpriseEdition 1.0.0 | 1.2.0 | Implemented | Internal | Architecture Review Board |

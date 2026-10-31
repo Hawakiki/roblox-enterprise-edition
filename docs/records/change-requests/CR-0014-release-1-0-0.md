@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0014
 title: Release EnterpriseEdition 1.0.0
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Architecture Review Board
@@ -63,3 +63,5 @@ Delete the tag `v1.0.0`, and revert the merge commit on `main` and on `develop`.
 | `16aad14` | Filed this change request on `release/1.0.0`. |
 | `67d7ded` | Added `README.ko.md` and linked the two versions of the README. |
 | `a74a823` | Added the introduction of the Approver of record, and its English translation. |
+| `6fda87c` | Marked this request as implemented. |
+| `e623a7e` | Answered `--no-verify` and `eslint-disable-next-line` at the top of both versions of the README. |
