@@ -19,8 +19,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 표준 | 9 |
 | 양식 | 7 |
 | 아키텍처 결정 기록 | 1 |
-| 변경 요청 | 22 |
-| **합계** | **49** |
+| 변경 요청 | 23 |
+| **합계** | **50** |
 
 ## 계보
 
@@ -145,3 +145,4 @@ EE-CHR-0001 EnterpriseEdition 헌장
 | [CR-0020](records/change-requests/CR-0020-adr-0001-fitness-test.ko.md) | ADR-0001 이 기대는 사실을 검사 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0021](records/change-requests/CR-0021-company-map.ko.md) | 회사 지도 그리기 | 1.2.0 | 시행 | 사내 한정 | Document Control Office |
 | [CR-0022](records/change-requests/CR-0022-random-numbers.ko.md) | 전역 난수 생성기 금지 | 1.3.0 | 시행 | 사내 한정 | Architecture Review Board |
+| [CR-0023](records/change-requests/CR-0023-contract-wrappers.ko.md) | 계약 메서드마다 래퍼로 선언 | 1.0.0 | 승인 | 사내 한정 | Architecture Review Board |
