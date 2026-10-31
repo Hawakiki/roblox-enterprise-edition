@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0003
 title: Delegation of Authority
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Internal
 owner: Board of Directors
 parent: EE-CHR-0001@1.0
@@ -61,10 +61,11 @@ Each approval is recorded as the document that the table cites requires, and is 
 |---|---|---|---|
 | 0.1.0 | 2026-10-30 | Number reserved. | Board of Directors |
 | 0.9.0 | 2026-10-31 | Drafted with the Organization Chart, and submitted for review (CR-0021). | Board of Directors |
+| 1.0.0 | 2026-10-31 | Approved. | Board of Directors |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Board of Directors | Submitted | 2026-10-31 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-31 |

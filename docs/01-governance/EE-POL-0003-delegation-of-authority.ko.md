@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-POL-0003
 title: 전결 규정
-translation-of: 0.9.0
+translation-of: 1.0.0
 ---
 
 # 전결 규정
@@ -59,10 +59,11 @@ translation-of: 0.9.0
 |---|---|---|---|
 | 0.1.0 | 2026-10-30 | 번호 확보 | 이사회 |
 | 0.9.0 | 2026-10-31 | 조직도와 함께 작성, 검토 회부(CR-0021) | 이사회 |
+| 1.0.0 | 2026-10-31 | 승인 | 이사회 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
 | 기안 | 이사회 | 상신 | 2026-10-31 |
-| 결재 | Hawakiki | 대기 | — |
+| 결재 | Hawakiki | 승인 | 2026-10-31 |

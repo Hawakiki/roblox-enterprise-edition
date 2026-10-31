@@ -4,7 +4,7 @@
 id: EE-STD-0004
 title: File Header Standard
 version: 1.1.0
-status: In Review
+status: Approved
 classification: Internal
 owner: Legal Department
 parent: EE-CHR-0001@1.0
@@ -74,4 +74,4 @@ Below its file header, a Luau module carries a header comment in both languages 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Legal Department | Submitted | 2026-10-31 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-31 |

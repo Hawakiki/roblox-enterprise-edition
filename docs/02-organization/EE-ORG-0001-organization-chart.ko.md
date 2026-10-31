@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-ORG-0001
 title: 조직도
-translation-of: 0.9.0
+translation-of: 1.0.0
 ---
 
 # 조직도
@@ -68,10 +68,11 @@ translation-of: 0.9.0
 | 버전 | 일자 | 변경 내용 | 작성 |
 |---|---|---|---|
 | 0.9.0 | 2026-10-31 | 전결 규정과 함께 작성, 검토 회부(CR-0021) | 인사팀 |
+| 1.0.0 | 2026-10-31 | 승인 | 인사팀 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
 | 기안 | 인사팀 | 상신 | 2026-10-31 |
-| 결재 | Hawakiki | 대기 | — |
+| 결재 | Hawakiki | 승인 | 2026-10-31 |

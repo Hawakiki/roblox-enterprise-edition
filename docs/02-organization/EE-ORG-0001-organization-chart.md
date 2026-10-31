@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-ORG-0001
 title: Organization Chart
-version: 0.9.0
-status: In Review
+version: 1.0.0
+status: Approved
 classification: Internal
 owner: Human Resources
 parent: EE-CHR-0001@1.0
@@ -70,10 +70,11 @@ This chart mandates no checkpatch rule.
 | Version | Date | Change | Author |
 |---|---|---|---|
 | 0.9.0 | 2026-10-31 | Drawn up with the Delegation of Authority, and submitted for review (CR-0021). | Human Resources |
+| 1.0.0 | 2026-10-31 | Approved. | Human Resources |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Drafter | Human Resources | Submitted | 2026-10-31 |
-| Approver | Hawakiki | Pending | — |
+| Approver | Hawakiki | Approved | 2026-10-31 |

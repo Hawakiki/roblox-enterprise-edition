@@ -43,7 +43,7 @@ EE-CHR-0001 Charter of EnterpriseEdition
 │  ├─ EE-TPL-0005 Approval Request Template
 │  ├─ EE-TPL-0006 Statement of Circumstances Template
 │  └─ EE-TPL-0007 Meeting Minutes Template
-├─ EE-POL-0003 Delegation of Authority (in review)
+├─ EE-POL-0003 Delegation of Authority
 ├─ EE-POL-0004 Change Management Policy
 │  ├─ EE-STD-0007 Commit and Branch Standard
 │  └─ EE-STD-0008 Enterprise Versioning Standard
@@ -51,13 +51,13 @@ EE-CHR-0001 Charter of EnterpriseEdition
 ├─ EE-POL-0006 AI Workforce Policy
 ├─ EE-POL-0007 Deprecation Policy (reserved)
 ├─ EE-POL-0008 External Data and AI Training Policy
-├─ EE-ORG-0001 Organization Chart (in review)
+├─ EE-ORG-0001 Organization Chart
 ├─ EE-STD-0001 Luau Coding Standard
 │  ├─ EE-STD-0002 Naming Convention
 │  ├─ EE-STD-0003 Prohibited API Registry
 │  ├─ EE-STD-0005 Numeric Literal Standard
 │  └─ EE-STD-0006 Layered Architecture Standard
-└─ EE-STD-0004 File Header Standard (in review)
+└─ EE-STD-0004 File Header Standard
 ```
 
 </details>
@@ -74,7 +74,7 @@ EE-CHR-0001 Charter of EnterpriseEdition
 |---|---|---|---|---|---|---|
 | [EE-POL-0001](01-governance/EE-POL-0001-document-governance.md) | Document Governance Policy | 1.1.0 | Approved | Internal | Document Control Office | EE-CHR-0001@1.0 |
 | [EE-POL-0002](01-governance/EE-POL-0002-bilingual-documentation.md) | Bilingual Documentation Policy | 1.1.0 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
-| [EE-POL-0003](01-governance/EE-POL-0003-delegation-of-authority.md) | Delegation of Authority | 0.9.0 | In Review | Internal | Board of Directors | EE-CHR-0001@1.0 |
+| [EE-POL-0003](01-governance/EE-POL-0003-delegation-of-authority.md) | Delegation of Authority | 1.0.0 | Approved | Internal | Board of Directors | EE-CHR-0001@1.0 |
 | [EE-POL-0004](01-governance/EE-POL-0004-change-management.md) | Change Management Policy | 1.1.0 | Approved | Internal | Change Advisory Board | EE-CHR-0001@1.0 |
 | [EE-POL-0005](01-governance/EE-POL-0005-information-classification.md) | Information Classification Policy | 0.1.0 | Draft | Internal | Information Security Office | EE-CHR-0001@1.0 |
 | [EE-POL-0006](01-governance/EE-POL-0006-ai-workforce.md) | AI Workforce Policy | 1.1.0 | Approved | Internal | Human Resources | EE-CHR-0001@1.0 |
@@ -85,7 +85,7 @@ EE-CHR-0001 Charter of EnterpriseEdition
 
 | ID | Title | Version | Status | Classification | Owner | Parent |
 |---|---|---|---|---|---|---|
-| [EE-ORG-0001](02-organization/EE-ORG-0001-organization-chart.md) | Organization Chart | 0.9.0 | In Review | Internal | Human Resources | EE-CHR-0001@1.0 |
+| [EE-ORG-0001](02-organization/EE-ORG-0001-organization-chart.md) | Organization Chart | 1.0.0 | Approved | Internal | Human Resources | EE-CHR-0001@1.0 |
 
 ## Standards
 
@@ -94,7 +94,7 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.md) | Luau Coding Standard | 1.1.0 | Approved | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
 | [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.1.0 | In Review | Internal | Legal Department | EE-CHR-0001@1.0 |
+| [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.1.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
 | [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.md) | Commit and Branch Standard | 1.0.1 | Approved | Internal | Compliance Engineering | EE-POL-0004@1.1 |

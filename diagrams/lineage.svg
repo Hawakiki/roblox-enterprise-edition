@@ -63,7 +63,7 @@
 <rect class="card" x="616" y="496" width="298" height="48" rx="6"/>
 <text class="first" x="626" y="516">EE-TPL-0007</text>
 <text x="626" y="532">Meeting Minutes Template</text>
-<rect class="card bold" x="286" y="556" width="290" height="48" rx="6"/>
+<rect class="card" x="286" y="556" width="290" height="48" rx="6"/>
 <text class="first" x="296" y="576">EE-POL-0003</text>
 <text x="296" y="592">Delegation of Authority</text>
 <rect class="card" x="286" y="646" width="290" height="48" rx="6"/>
@@ -87,7 +87,7 @@
 <rect class="card" x="286" y="916" width="290" height="48" rx="6"/>
 <text class="first" x="296" y="936">EE-POL-0008</text>
 <text x="296" y="952">External Data and AI Training Policy</text>
-<rect class="card bold" x="286" y="976" width="290" height="48" rx="6"/>
+<rect class="card" x="286" y="976" width="290" height="48" rx="6"/>
 <text class="first" x="296" y="996">EE-ORG-0001</text>
 <text x="296" y="1012">Organization Chart</text>
 <rect class="card" x="286" y="1126" width="290" height="48" rx="6"/>
@@ -105,7 +105,7 @@
 <rect class="card" x="616" y="1216" width="298" height="48" rx="6"/>
 <text class="first" x="626" y="1236">EE-STD-0006</text>
 <text x="626" y="1252">Layered Architecture Standard</text>
-<rect class="card bold" x="286" y="1276" width="290" height="48" rx="6"/>
+<rect class="card" x="286" y="1276" width="290" height="48" rx="6"/>
 <text class="first" x="296" y="1296">EE-STD-0004</text>
 <text x="296" y="1312">File Header Standard</text>
 </svg>
