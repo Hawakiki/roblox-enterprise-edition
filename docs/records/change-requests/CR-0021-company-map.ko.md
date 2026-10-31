@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0021
 title: 회사 지도 그리기
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 회사 지도 그리기
@@ -64,4 +64,11 @@ Mermaid 도식은 Markdown 을 보여 주는 쪽이 그리며, 모든 렌더러�
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `413000c` | 본 변경 요청 등록 |
+| `c3f207e` | 나무를 SVG 와 텍스트로 그리는 `scripts/lib/TreeDiagram.luau` 와 테스트 추가 |
+| `65f29b2` | 통제 문서의 계보를 `diagrams/` 에 그리고, 문서 대장에 텍스트판과 함께 싣고, 이미지를 `REGISTRY_OUT_OF_DATE` 로 검사함 |
+| `7090f87` | SVG 의 위치 행을 더해 EE-STD-0004 를 1.1.0 으로 `In Review` 개정 |
+| `28ff611` | EE-ORG-0001 과 EE-POL-0003 을 0.9.0 으로 `In Review` 작성하고, 조직 단위 표에서 조직도를 그리며, `AGENTS.md` 가 둘을 가리키게 함 |
+
+처음 계획은 별도 문서를 두면 문서 종류를 추가하는 셈이라고 여겨 조직도를 EE-POL-0003 의 부속서에 넣으려 하였다. EE-POL-0001 §4 가 처음부터 조직 문서 종류를 등록해 두었으므로 조직도는 EE-ORG-0001 이 되었고, EE-POL-0003 은 예약 문서가 말한 대로 그 옆에 작성되었다.
+각 도식은 커밋하기 전에 영문과 한국어 모두 브라우저로 렌더링하여, 배치와 넓은 문자의 폭을 확인하였다.

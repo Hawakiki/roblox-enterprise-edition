@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0021
 title: Draw the Map of the Company
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Document Control Office
 ---
@@ -65,4 +65,11 @@ Revert the merge commit of this change. The units go back to being names in `own
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `413000c` | Filed this change request. |
+| `c3f207e` | Added `scripts/lib/TreeDiagram.luau`, which draws a tree as SVG and as text, with tests. |
+| `65f29b2` | Drew the lineage of the controlled documents into `diagrams/`, showed it in the registry with a text version, and held the images to `REGISTRY_OUT_OF_DATE`. |
+| `7090f87` | Revised EE-STD-0004 with a placement row for SVG, `In Review` at 1.1.0. |
+| `28ff611` | Wrote EE-ORG-0001 and EE-POL-0003, `In Review` at 0.9.0, drew the organization chart from the table of units, and pointed `AGENTS.md` at both. |
+
+The first plan put the chart in an annex of EE-POL-0003, on the belief that a document of its own would add a kind of document. EE-POL-0001 §4 had registered the organization kind from the start, so the chart became EE-ORG-0001, and EE-POL-0003 was written beside it, as its reservation said.
+Each diagram was rendered by a browser before it was committed, in English and in Korean, to check the layout and the width of wide characters.
