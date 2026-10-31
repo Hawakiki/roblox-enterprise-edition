@@ -5,6 +5,9 @@
 
 [English](README.md) | 한국어
 
+> **`git commit --no-verify`?** 그러세요. 어차피 CI 가 이력의 모든 커밋 메시지를 검사합니다.\
+> **`// eslint-disable-next-line`?** 여기엔 없습니다. checkpatch 에게 눈감아 달라고 할 방법은 없고, `--!nolint` 는 금지된 지시문입니다(EE-STD-0003).
+
 웰컴 투 enterprise edition\
 이름 그대로 엔터프라이즈 에디션입니다.
 

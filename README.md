@@ -5,6 +5,9 @@
 
 English | [한국어](README.ko.md)
 
+> **`git commit --no-verify`?** Go ahead. The CI checks every commit message in the history anyway.\
+> **`// eslint-disable-next-line`?** Not here. checkpatch cannot be asked to look away, and `--!nolint` is a prohibited directive (EE-STD-0003).
+
 Welcome to EnterpriseEdition.\
 It is exactly what the name says: the enterprise edition.
 
