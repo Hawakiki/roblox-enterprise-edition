@@ -18,8 +18,8 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Standards | 9 |
 | Templates | 7 |
 | Architecture Decision Records | 1 |
-| Change Requests | 19 |
-| **Total** | **45** |
+| Change Requests | 20 |
+| **Total** | **46** |
 
 ## Charter
 
@@ -95,3 +95,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0017](records/change-requests/CR-0017-release-1-1-0.md) | Release EnterpriseEdition 1.1.0 | 1.2.0 | Implemented | Internal | Release Engineering |
 | [CR-0018](records/change-requests/CR-0018-code-review-findings.md) | Correct the Findings of the First Code Review | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0019](records/change-requests/CR-0019-contract-decision-record.md) | Record the Contract Pattern as the First Architecture Decision | 1.2.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0020](records/change-requests/CR-0020-adr-0001-fitness-test.md) | Test the Facts That ADR-0001 Rests On | 1.1.0 | Implemented | Internal | Architecture Review Board |

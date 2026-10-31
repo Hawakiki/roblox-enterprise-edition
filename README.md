@@ -82,6 +82,7 @@ lune run scripts/release_notes v1.0.0  # the notes of a release, generated from 
 
 A release is prepared on `release/<version>` and tagged `v<version>` on `main` (EE-STD-0008).
 Pushing the tag runs the release workflow, which checks, builds the place and writes the notes, then waits for the approval of the Approver of record in the environment `production` before it publishes.
+When the Review deployments dialog of GitHub does not respond, the Approver of record, and only they, can approve with `gh api -X POST repos/Hawakiki/roblox-enterprise-edition/actions/runs/<run>/pending_deployments -F "environment_ids[]=25857438866" -f state=approved`.
 No release is deployed while it is Friday anywhere on Earth, nor while it is 19 January 2038 anywhere on Earth.
 
 ### Changing anything

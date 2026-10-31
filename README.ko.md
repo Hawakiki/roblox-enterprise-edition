@@ -82,6 +82,7 @@ lune run scripts/release_notes v1.0.0  # 변경 요청에서 만든 릴리스 �
 
 릴리스는 `release/<version>` 에서 준비하고 `main` 에 `v<version>` 태그를 단다(EE-STD-0008).
 태그를 push 하면 릴리스 워크플로가 검사하고 플레이스를 빌드하고 릴리스 노트를 만든 다음, `production` 환경에서 기록상 결재권자의 승인을 기다렸다가 게시한다.
+GitHub 의 Review deployments 대화상자가 응답하지 않으면, 기록상 결재권자가, 그리고 그 사람만이 `gh api -X POST repos/Hawakiki/roblox-enterprise-edition/actions/runs/<run>/pending_deployments -F "environment_ids[]=25857438866" -f state=approved` 로 승인할 수 있다.
 지구 어딘가가 금요일이거나 2038년 1월 19일인 동안은 어떤 릴리스도 배포하지 않는다.
 
 ### 무언가를 바꾸려면
