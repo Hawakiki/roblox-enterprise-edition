@@ -9,6 +9,7 @@
 
 local Architecture = require("./Architecture")
 local CommitMessage = require("./CommitMessage")
+local Contracts = require("./Contracts")
 local Coverage = require("./Coverage")
 local DocComments = require("./DocComments")
 local Documents = require("./Documents")
@@ -29,6 +30,7 @@ local CHECKS: { { name: string, rules: any } } = {
 	{ name = "Headers", rules = Headers.RULES },
 	{ name = "Architecture", rules = Architecture.RULES },
 	{ name = "ProhibitedApis", rules = ProhibitedApis.RULES },
+	{ name = "Contracts", rules = Contracts.RULES },
 	{ name = "NumericLiterals", rules = NumericLiterals.RULES },
 	{ name = "DocComments", rules = DocComments.RULES },
 	{ name = "Documents", rules = Documents.RULES },
