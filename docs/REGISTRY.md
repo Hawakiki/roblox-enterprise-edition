@@ -17,8 +17,9 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Policies | 8 |
 | Standards | 9 |
 | Templates | 7 |
+| Architecture Decision Records | 1 |
 | Change Requests | 17 |
-| **Total** | **42** |
+| **Total** | **43** |
 
 ## Charter
 
@@ -64,6 +65,12 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [EE-TPL-0005](templates/EE-TPL-0005-approval-request.md) | Approval Request Template | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
 | [EE-TPL-0006](templates/EE-TPL-0006-statement-of-circumstances.md) | Statement of Circumstances Template | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
 | [EE-TPL-0007](templates/EE-TPL-0007-meeting-minutes.md) | Meeting Minutes Template | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
+
+## Architecture Decision Records
+
+| ID | Title | Version | Status | Classification | Owner |
+|---|---|---|---|---|---|
+| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.md) | Constructors Return Their Contract, Cast Through Any | 1.0.0 | Proposed | Internal | Architecture Review Board |
 
 ## Change Requests
 
