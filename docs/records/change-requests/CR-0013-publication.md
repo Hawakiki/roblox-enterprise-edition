@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0013
 title: Prepare the Company for Publication
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -52,9 +52,11 @@ The repository would be published without instructions, as most repositories are
 |---|---|---|---|
 | Requester | Architecture Review Board | Submitted | 2026-10-31 |
 | Approver | Hawakiki | Approved before filing | 2026-10-31 |
+| Implementer | Architecture Review Board | Implemented | 2026-10-31 |
 
 ## 7. Implementation Record
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `61b414b` | Filed this change request. |
+| `db32562` | Added `README.md`, `CONTRIBUTING.md` and the `check` workflow, and made a checkout without the shared Roblox definitions download those of the pinned luau-lsp release. |

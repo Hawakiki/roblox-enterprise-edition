@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0013
 title: 회사 공개 준비
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 회사 공개 준비
@@ -51,9 +51,11 @@ translation-of: 1.0.0
 |---|---|---|---|
 | 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-31 |
 | 결재 | Hawakiki | 제출 전 승인 | 2026-10-31 |
+| 시행 | 아키텍처 검토 위원회 | 시행 완료 | 2026-10-31 |
 
 ## 7. 시행 기록
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `61b414b` | 본 변경 요청 등록 |
+| `db32562` | `README.md`, `CONTRIBUTING.md`, `check` 워크플로 추가, 공용 Roblox 타입 정의가 없는 사본이 고정된 luau-lsp 릴리스의 정의를 받게 함 |

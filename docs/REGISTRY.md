@@ -81,4 +81,4 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0010](records/change-requests/CR-0010-presentation-framework.md) | Build the Presentation Framework | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0011](records/change-requests/CR-0011-compliance-coins.md) | Reward Policy Acknowledgement with Compliance Coins | 1.1.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0012](records/change-requests/CR-0012-datastore-wallets.md) | Keep Compliance Coins in a DataStore under a Session Lock | 1.1.0 | Implemented | Internal | Architecture Review Board |
-| [CR-0013](records/change-requests/CR-0013-publication.md) | Prepare the Company for Publication | 1.0.0 | Approved | Internal | Architecture Review Board |
+| [CR-0013](records/change-requests/CR-0013-publication.md) | Prepare the Company for Publication | 1.1.0 | Implemented | Internal | Architecture Review Board |
