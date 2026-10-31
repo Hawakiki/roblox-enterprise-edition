@@ -17,8 +17,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 정책 | 8 |
 | 표준 | 9 |
 | 양식 | 7 |
-| 변경 요청 | 13 |
-| **합계** | **38** |
+| 변경 요청 | 14 |
+| **합계** | **39** |
 
 ## 헌장
 
@@ -82,3 +82,4 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | [CR-0011](records/change-requests/CR-0011-compliance-coins.ko.md) | 정책 확인에 대한 준법 코인 보상 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0012](records/change-requests/CR-0012-datastore-wallets.ko.md) | 세션 락 아래 DataStore 에 준법 코인 보관 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0013](records/change-requests/CR-0013-publication.ko.md) | 회사 공개 준비 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
+| [CR-0014](records/change-requests/CR-0014-release-1-0-0.ko.md) | EnterpriseEdition 1.0.0 릴리스 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
