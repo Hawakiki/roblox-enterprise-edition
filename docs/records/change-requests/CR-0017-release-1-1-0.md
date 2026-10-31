@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0017
 title: Release EnterpriseEdition 1.1.0
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Release Engineering
 ---
@@ -68,4 +68,11 @@ The tags stay, as the ruleset requires. A correction is released as 1.1.1 (EE-ST
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `3781e59` | Filed this change request on `release/1.1.0`. |
+| `4cc1f31` | Left out of the notes every change request that the history of the previous release cites, with a test; revised EE-STD-0008 §5.3, `In Review` at 1.1.0; recorded the mine in `AGENTS.md`. |
+
+Before this request was marked as implemented, the release was rehearsed in a new clone, which was never pushed.
+There, `release/1.1.0` was merged into `main` and the merge commit tagged `v1.1.0`, and the tag was checked out detached, as the workflow checks it out.
+`tools/check.sh` passed, with the Roblox definitions downloaded afresh, and `rojo build` built the place.
+The notes of 1.1.0 listed CR-0015, CR-0016 and CR-0017, and those of 1.0.0 listed CR-0001 to CR-0014.
+The calendar refused a deployment, for it was Friday somewhere on Earth until 2026-10-31T12:00:00Z.

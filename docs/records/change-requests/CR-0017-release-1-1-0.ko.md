@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0017
 title: EnterpriseEdition 1.1.0 릴리스
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # EnterpriseEdition 1.1.0 릴리스
@@ -67,4 +67,11 @@ CR-0016 은 1.0.0 릴리스 노트의 게시를 뒤따르는 릴리스 요청에
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `3781e59` | `release/1.1.0` 에 본 변경 요청 등록 |
+| `4cc1f31` | 이전 릴리스의 이력이 인용하는 변경 요청을 모두 릴리스 노트에서 빼고 테스트를 추가함. EE-STD-0008 §5.3 을 개정하여 1.1.0 으로 `In Review`. `AGENTS.md` 에 지뢰를 기록함 |
+
+본 요청을 시행 완료로 표시하기 전에, push 하지 않는 새 clone 에서 릴리스를 리허설하였다.
+그 안에서 `release/1.1.0` 을 `main` 에 머지하고 머지 커밋에 `v1.1.0` 태그를 달았으며, 워크플로가 체크아웃하는 대로 태그를 detached 상태로 체크아웃하였다.
+Roblox 정의를 새로 받은 상태에서 `tools/check.sh` 가 통과하였고, `rojo build` 가 플레이스를 빌드하였다.
+1.1.0 의 릴리스 노트에는 CR-0015, CR-0016, CR-0017 이, 1.0.0 의 릴리스 노트에는 CR-0001 부터 CR-0014 까지가 실렸다.
+2026-10-31T12:00:00Z 까지 지구 어딘가가 금요일이었으므로 달력은 배포를 거부하였다.
