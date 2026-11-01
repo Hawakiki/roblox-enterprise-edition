@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0024
 title: EnterpriseEdition 1.2.0 릴리스
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # EnterpriseEdition 1.2.0 릴리스
@@ -59,4 +59,11 @@ translation-of: 1.0.0
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `faca30a` | `release/1.2.0` 에 본 변경 요청 등록 |
+
+본 요청을 시행 완료로 표시하기 전에, push 하지 않는 새 clone 에서 릴리스를 예행연습하였다.
+그곳에서 `release/1.2.0` 을 `main` 에 머지하고 그 머지 커밋에 `v1.2.0` 태그를 달았으며, 워크플로처럼 태그를 detached 로 체크아웃하였다. 그 트리는 `release/1.2.0` 의 트리와 같았다.
+로블록스 정의를 새로 내려받은 상태에서 `tools/check.sh` 가 통과하였고, `rojo build` 가 54824 바이트의 플레이스를 빌드하였다.
+1.2.0 의 노트는 CR-0018 부터 CR-0024 까지를 담았고, `release/1.1.0` 을 `develop` 에 다시 머지한 커밋이 또 인용하는 CR-0017 은 뺐다.
+달력은 2026-11-01T01:09:17Z 에 배포를 허용하였다.
+예행연습에서 결함이 나오지 않았으므로, 릴리스 브랜치가 바꾸는 것은 이 기록뿐이다.
