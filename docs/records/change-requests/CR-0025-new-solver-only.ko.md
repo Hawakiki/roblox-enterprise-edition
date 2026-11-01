@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0025
 title: 새 타입 솔버 하나로 검사
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 새 타입 솔버 하나로 검사
@@ -90,3 +90,8 @@ CR-0024 는 1.2.0 을 어떻게 배포했는지의 기록을 다음 요청에 �
 2026-11-01 에 기록상 결재권자가 `0f4ab95` 에서 빌드한 54841 바이트의 플레이스를 로블록스 Studio 에서 열었다.
 `Workspace.UseNewLuauTypeSolver` 는 `Enabled` 였고, 코드의 스크립트 분석에는 오류도 경고도 없었으며, 플레이 테스트에서 패널은 전처럼 준법 코인을 주었다.
 이로써 CR-0023 이 본 요청에 맡긴 것이 확인되었다. Studio 편집기는 `string` 타입의 클래스 이름을 받는 `Instance.new` 를 받아들인다.
+
+| 커밋 | 변경 |
+|---|---|
+| `b9d3eab` | 본 요청을 시행 완료로 표시 |
+| `6d8de4a` | EE-STD-0001 과 EE-STD-0006 의 승인을 2.0.0 으로, EE-STD-0002 를 1.0.2, EE-STD-0003 을 1.1.1, EE-STD-0005 를 1.0.1 로 기록하고, ADR-0003 의 수락을 1.1.0 으로 기록하며, ADR-0002 를 1.2.0 으로 `Superseded` 처리함 |

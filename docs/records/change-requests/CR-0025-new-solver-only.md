@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0025
 title: Check With the New Type Solver Alone
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Architecture Review Board
@@ -91,3 +91,8 @@ The test that `CAST_THROUGH_ANY` reports the cast of a constructor first passed 
 On 2026-11-01 the Approver of record opened in Roblox Studio the place built from `0f4ab95`, 54841 bytes.
 `Workspace.UseNewLuauTypeSolver` read `Enabled`, the script analysis of the code showed no error and no warning, and in a play test the panel paid compliance coins as before.
 This settles what CR-0023 left to this request: the editor of Studio accepts `Instance.new` with a class name typed as `string`.
+
+| Commit | Change |
+|---|---|
+| `b9d3eab` | Marked this request as implemented. |
+| `6d8de4a` | Recorded the approval of EE-STD-0001 and EE-STD-0006 at 2.0.0, of EE-STD-0002 at 1.0.2, of EE-STD-0003 at 1.1.1 and of EE-STD-0005 at 1.0.1, and the acceptance of ADR-0003 at 1.1.0; set ADR-0002 to `Superseded` at 1.2.0. |

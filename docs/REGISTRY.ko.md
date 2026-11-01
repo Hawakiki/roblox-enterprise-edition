@@ -149,4 +149,4 @@ EE-CHR-0001 EnterpriseEdition 헌장
 | [CR-0022](records/change-requests/CR-0022-random-numbers.ko.md) | 전역 난수 생성기 금지 | 1.3.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0023](records/change-requests/CR-0023-contract-wrappers.ko.md) | 계약 메서드마다 래퍼로 선언 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0024](records/change-requests/CR-0024-release-1-2-0.ko.md) | EnterpriseEdition 1.2.0 릴리스 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |
-| [CR-0025](records/change-requests/CR-0025-new-solver-only.ko.md) | 새 타입 솔버 하나로 검사 | 1.1.0 | 시행 | 사내 한정 | Architecture Review Board |
+| [CR-0025](records/change-requests/CR-0025-new-solver-only.ko.md) | 새 타입 솔버 하나로 검사 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
