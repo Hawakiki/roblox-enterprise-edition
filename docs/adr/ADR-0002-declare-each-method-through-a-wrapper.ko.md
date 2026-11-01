@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: ADR-0002
 title: 계약의 각 메서드를 래퍼로 선언한다
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # 계약의 각 메서드를 래퍼로 선언한다
@@ -55,4 +55,4 @@ checkpatch 가 `CAST_THROUGH_ANY` 와 `IMPLEMENTS_NOT_WRAPPED` 로 두 부분을
 | 관계 | 기록 |
 |---|---|
 | 대체하는 기록 | ADR-0001 |
-| 대체한 기록 | 없음 |
+| 대체한 기록 | ADR-0003 |

@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: ADR-0002
 title: Declare Each Method of a Contract Through a Wrapper
-version: 1.1.0
-status: Accepted
+version: 1.2.0
+status: Superseded
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -56,4 +56,4 @@ Which solvers check the code is left to EE-STD-0001 §4: this decision holds und
 | Relation | Record |
 |---|---|
 | Supersedes | ADR-0001 |
-| Superseded by | none |
+| Superseded by | ADR-0003 |

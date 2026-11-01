@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: ADR-0003
 title: 새 타입 솔버 하나로 검사하고, 인스턴스를 캐스트 없이 반환한다
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 새 타입 솔버 하나로 검사하고, 인스턴스를 캐스트 없이 반환한다
