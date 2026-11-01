@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0024
 title: Release EnterpriseEdition 1.2.0
-version: 1.1.0
+version: 1.2.0
 status: Implemented
 classification: Internal
 owner: Release Engineering
@@ -68,3 +68,10 @@ There, `release/1.2.0` was merged into `main` and the merge commit tagged `v1.2.
 The notes of 1.2.0 listed CR-0018 to CR-0024, and left out CR-0017, which the merge of `release/1.1.0` back into `develop` cites again.
 The calendar admitted a deployment at 2026-11-01T01:09:17Z.
 The rehearsal found no defect, so the release branch changes nothing but this record.
+
+| Commit | Change |
+|---|---|
+| `22af317` | Marked this request as implemented. |
+
+The Approver of record approved the merge on 2026-11-01, and the calendar admitted a deployment at 2026-11-01T01:30:35Z.
+The merge into `main`, the tag `v1.2.0` and the merge back into `develop` follow this record.
