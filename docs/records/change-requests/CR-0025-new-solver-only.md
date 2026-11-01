@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0025
 title: Check With the New Type Solver Alone
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Architecture Review Board
 ---
@@ -78,4 +78,16 @@ Revert the merge commit of this change. The old solver returns to `tools/check` 
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `525c0d3` | Filed this change request. |
+| `4fb56c8` | Analysed every target with the new solver alone in both check scripts, and set `Workspace.UseNewLuauTypeSolver` to `Enabled`, which Rojo writes as the token 2. |
+| `bd9a42b` | Returned the instance from the thirteen constructors without a cast, and made `CAST_THROUGH_ANY` report every cast through `any`, with tests. |
+| `0f4ab95` | Revised EE-STD-0001 and EE-STD-0006 to 2.0.0, reviewed EE-STD-0002, EE-STD-0003 and EE-STD-0005 against them, proposed ADR-0003, turned the fitness test to it, and pointed `AGENTS.md` and the README at the new state. |
+
+Before the casts were committed, a method of `InMemoryCoinWalletRepository` was renamed in the real code, with its wrapper following it. The new solver reported the constructor, and the change was undone.
+Without the casts, a fixture whose entries only name drifted methods still drew no error from the new solver, so the wrappers are kept. The new fixture of the generic loss draws five errors from the old solver, its witness, and none from the new.
+The test that `CAST_THROUGH_ANY` reports the cast of a constructor first passed without the change it was meant to prove, because its fixture followed the cast with a second return. It was rewritten as a whole constructor, and failed until the check was changed.
+`tools/check.sh` and `tools/check.ps1` both passed.
+
+On 2026-11-01 the Approver of record opened in Roblox Studio the place built from `0f4ab95`, 54841 bytes.
+`Workspace.UseNewLuauTypeSolver` read `Enabled`, the script analysis of the code showed no error and no warning, and in a play test the panel paid compliance coins as before.
+This settles what CR-0023 left to this request: the editor of Studio accepts `Instance.new` with a class name typed as `string`.

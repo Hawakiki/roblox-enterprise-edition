@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0025
 title: 새 타입 솔버 하나로 검사
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 새 타입 솔버 하나로 검사
@@ -77,4 +77,16 @@ CR-0024 는 1.2.0 을 어떻게 배포했는지의 기록을 다음 요청에 �
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `525c0d3` | 본 변경 요청 등록 |
+| `4fb56c8` | 두 검사 스크립트가 모든 대상을 새 솔버 하나로 분석하게 하고, Rojo 가 토큰 2 로 쓰는 `Workspace.UseNewLuauTypeSolver` 를 `Enabled` 로 둠 |
+| `bd9a42b` | 생성자 열세 개가 캐스트 없이 인스턴스를 반환하게 하고, `CAST_THROUGH_ANY` 가 모든 `any` 캐스트를 보고하게 함. 테스트 포함 |
+| `0f4ab95` | EE-STD-0001 과 EE-STD-0006 을 2.0.0 으로 개정하고, EE-STD-0002, EE-STD-0003, EE-STD-0005 를 이에 맞춰 재검토하며, ADR-0003 을 제안하고, 적합도 테스트가 이를 따르게 하고, `AGENTS.md` 와 README 를 고침 |
+
+캐스트를 커밋하기 전에, 실제 코드에서 `InMemoryCoinWalletRepository` 의 메서드 이름을 바꾸고 래퍼도 이를 따르게 하였다. 새 솔버가 생성자를 보고하였고, 그 뒤 변경을 되돌렸다.
+캐스트가 없어도, 어긋난 메서드를 이름으로만 가리키는 항목의 예제에서 새 솔버는 오류를 내지 않았으므로 래퍼를 유지한다. 제네릭 손실의 새 예제에서는 증인인 옛 솔버가 오류 다섯 건을, 새 솔버가 0 건을 낸다.
+`CAST_THROUGH_ANY` 가 생성자의 캐스트를 보고하는지 보는 테스트는, 예제가 캐스트 뒤에 두 번째 return 을 두는 바람에 확인하려던 변경 없이도 처음에 통과하였다. 생성자 전체로 다시 써서, 검사를 바꾸기 전까지 실패하게 하였다.
+`tools/check.sh` 와 `tools/check.ps1` 이 모두 통과하였다.
+
+2026-11-01 에 기록상 결재권자가 `0f4ab95` 에서 빌드한 54841 바이트의 플레이스를 로블록스 Studio 에서 열었다.
+`Workspace.UseNewLuauTypeSolver` 는 `Enabled` 였고, 코드의 스크립트 분석에는 오류도 경고도 없었으며, 플레이 테스트에서 패널은 전처럼 준법 코인을 주었다.
+이로써 CR-0023 이 본 요청에 맡긴 것이 확인되었다. Studio 편집기는 `string` 타입의 클래스 이름을 받는 `Instance.new` 를 받아들인다.
