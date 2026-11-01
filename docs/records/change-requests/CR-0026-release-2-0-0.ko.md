@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0026
 title: EnterpriseEdition 2.0.0 릴리스
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # EnterpriseEdition 2.0.0 릴리스
@@ -60,4 +60,11 @@ CR-0025 는 모든 Luau 파일을 옛 솔버로도 검사하라는 EE-STD-0001 �
 
 | 커밋 | 변경 |
 |---|---|
-| — | 요청이 시행되면 채운다. |
+| `5e61b48` | `release/2.0.0` 에 본 변경 요청 등록 |
+
+본 요청을 시행 완료로 표시하기 전에, push 하지 않는 새 clone 에서 릴리스를 예행연습하였다.
+그곳에서 `release/2.0.0` 을 `main` 에 머지하고 그 머지 커밋에 `v2.0.0` 태그를 달았으며, 워크플로처럼 태그를 detached 로 체크아웃하였다. 그 트리는 `release/2.0.0` 의 트리와 같았다.
+새 솔버 하나와 새로 내려받은 로블록스 정의로 `tools/check.sh` 가 통과하였고, `rojo build` 가 CR-0025 에서 Roblox Studio 로 확인한 플레이스와 같은 크기인 54841 바이트의 플레이스를 빌드하였다.
+2.0.0 의 노트는 CR-0025 와 CR-0026 을 담았고, CR-0024 는 뺐다.
+달력은 2026-11-01T02:21:14Z 에 배포를 허용하였다.
+예행연습에서 결함이 나오지 않았으므로, 릴리스 브랜치가 바꾸는 것은 이 기록뿐이다.

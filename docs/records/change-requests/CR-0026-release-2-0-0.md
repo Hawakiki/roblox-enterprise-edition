@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0026
 title: Release EnterpriseEdition 2.0.0
-version: 1.0.0
-status: Approved
+version: 1.1.0
+status: Implemented
 classification: Internal
 owner: Release Engineering
 ---
@@ -61,4 +61,11 @@ The tag stays, as the ruleset requires. A correction is released as 2.0.1 (EE-ST
 
 | Commit | Change |
 |---|---|
-| — | To be filled in when the request is implemented. |
+| `5e61b48` | Filed this change request on `release/2.0.0`. |
+
+Before this request was marked as implemented, the release was rehearsed in a new clone, which was never pushed.
+There, `release/2.0.0` was merged into `main` and the merge commit tagged `v2.0.0`, and the tag was checked out detached, as the workflow checks it out. Its tree was the tree of `release/2.0.0`.
+`tools/check.sh` passed with the new solver alone and the Roblox definitions downloaded afresh, and `rojo build` built the place, 54841 bytes, the size of the place checked in Roblox Studio under CR-0025.
+The notes of 2.0.0 listed CR-0025 and CR-0026, and left out CR-0024.
+The calendar admitted a deployment at 2026-11-01T02:21:14Z.
+The rehearsal found no defect, so the release branch changes nothing but this record.
