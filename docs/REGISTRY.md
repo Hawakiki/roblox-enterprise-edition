@@ -19,8 +19,8 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Standards | 9 |
 | Templates | 7 |
 | Architecture Decision Records | 2 |
-| Change Requests | 24 |
-| **Total** | **52** |
+| Change Requests | 25 |
+| **Total** | **53** |
 
 ## Lineage
 
@@ -148,3 +148,4 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | [CR-0022](records/change-requests/CR-0022-random-numbers.md) | Prohibit the Global Random Number Generator | 1.3.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0023](records/change-requests/CR-0023-contract-wrappers.md) | Declare Each Contract Method Through a Wrapper | 1.2.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0024](records/change-requests/CR-0024-release-1-2-0.md) | Release EnterpriseEdition 1.2.0 | 1.2.0 | Implemented | Internal | Release Engineering |
+| [CR-0025](records/change-requests/CR-0025-new-solver-only.md) | Check With the New Type Solver Alone | 1.0.0 | Approved | Internal | Architecture Review Board |
