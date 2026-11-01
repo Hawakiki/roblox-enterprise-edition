@@ -19,8 +19,8 @@ EnterpriseEdition 의 모든 통제 문서와 기록. `scripts/gen_registry.luau
 | 표준 | 9 |
 | 양식 | 7 |
 | 아키텍처 결정 기록 | 3 |
-| 변경 요청 | 25 |
-| **합계** | **54** |
+| 변경 요청 | 26 |
+| **합계** | **55** |
 
 ## 계보
 
@@ -150,3 +150,4 @@ EE-CHR-0001 EnterpriseEdition 헌장
 | [CR-0023](records/change-requests/CR-0023-contract-wrappers.ko.md) | 계약 메서드마다 래퍼로 선언 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
 | [CR-0024](records/change-requests/CR-0024-release-1-2-0.ko.md) | EnterpriseEdition 1.2.0 릴리스 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |
 | [CR-0025](records/change-requests/CR-0025-new-solver-only.ko.md) | 새 타입 솔버 하나로 검사 | 1.2.0 | 시행 | 사내 한정 | Architecture Review Board |
+| [CR-0026](records/change-requests/CR-0026-release-2-0-0.ko.md) | EnterpriseEdition 2.0.0 릴리스 | 1.2.0 | 시행 | 사내 한정 | Release Engineering |
