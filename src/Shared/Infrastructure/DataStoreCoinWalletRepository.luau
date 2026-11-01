@@ -109,7 +109,7 @@ function DataStoreCoinWalletRepository.new(dependencies: Dependencies): ICoinWal
 		_dependencies = dependencies,
 		_held = {},
 	}
-	return setmetatable(state, DataStoreCoinWalletRepository) :: any
+	return setmetatable(state, DataStoreCoinWalletRepository)
 end
 
 -- Waits until UpdateAsync has budget, but not forever: past the limit, Roblox queues the request itself.
@@ -302,7 +302,7 @@ function DataStoreCoinWalletRepository.Release(
 end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: ICoinWalletRepository.ICoinWalletRepository = {
 	Load = function(self: any, userId: number): CoinWalletEntity.CoinWalletEntity
 		return DataStoreCoinWalletRepository.Load(self, userId)

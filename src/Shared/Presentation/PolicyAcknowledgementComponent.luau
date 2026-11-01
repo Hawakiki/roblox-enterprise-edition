@@ -70,7 +70,7 @@ function PolicyAcknowledgementComponent.new(scope: ComponentScope.ComponentScope
 	local state: ComponentState = {
 		_scope = scope,
 	}
-	return setmetatable(state, PolicyAcknowledgementComponent) :: any
+	return setmetatable(state, PolicyAcknowledgementComponent)
 end
 
 --[=[
@@ -167,7 +167,7 @@ end
 function PolicyAcknowledgementComponent.WillUnmount(self: PolicyAcknowledgementComponent) end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: IComponent.IComponent = {
 	Render = function(self: any, props: IComponent.Props): IComponent.Element
 		return PolicyAcknowledgementComponent.Render(self, props)

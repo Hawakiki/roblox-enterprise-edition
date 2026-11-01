@@ -81,7 +81,7 @@ function CoinSessionService.new(
 		_loading = 0,
 		_stopped = false,
 	}
-	return setmetatable(state, CoinSessionService) :: any
+	return setmetatable(state, CoinSessionService)
 end
 
 -- Waits until no load or release of the player's wallet is under way, then takes the player's turn.
@@ -239,7 +239,7 @@ function CoinSessionService.StopAsync(self: CoinSessionService)
 end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: IHostedService.IHostedService = {
 	StartAsync = function(self: any)
 		CoinSessionService.StartAsync(self)

@@ -35,7 +35,7 @@ function StartupAnnouncementService.new(logger: ILogger.ILogger, side: string): 
 		_logger = logger,
 		_side = side,
 	}
-	return setmetatable(state, StartupAnnouncementService) :: any
+	return setmetatable(state, StartupAnnouncementService)
 end
 
 --[=[
@@ -59,7 +59,7 @@ function StartupAnnouncementService.StopAsync(self: StartupAnnouncementService)
 end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: IHostedService.IHostedService = {
 	StartAsync = function(self: any)
 		StartupAnnouncementService.StartAsync(self)
