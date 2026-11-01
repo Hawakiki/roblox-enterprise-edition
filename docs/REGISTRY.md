@@ -150,4 +150,4 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | [CR-0023](records/change-requests/CR-0023-contract-wrappers.md) | Declare Each Contract Method Through a Wrapper | 1.2.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0024](records/change-requests/CR-0024-release-1-2-0.md) | Release EnterpriseEdition 1.2.0 | 1.2.0 | Implemented | Internal | Release Engineering |
 | [CR-0025](records/change-requests/CR-0025-new-solver-only.md) | Check With the New Type Solver Alone | 1.2.0 | Implemented | Internal | Architecture Review Board |
-| [CR-0026](records/change-requests/CR-0026-release-2-0-0.md) | Release EnterpriseEdition 2.0.0 | 1.1.0 | Implemented | Internal | Release Engineering |
+| [CR-0026](records/change-requests/CR-0026-release-2-0-0.md) | Release EnterpriseEdition 2.0.0 | 1.2.0 | Implemented | Internal | Release Engineering |

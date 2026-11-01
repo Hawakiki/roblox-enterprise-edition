@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: CR-0026
 title: EnterpriseEdition 2.0.0 릴리스
-translation-of: 1.1.0
+translation-of: 1.2.0
 ---
 
 # EnterpriseEdition 2.0.0 릴리스
@@ -68,3 +68,10 @@ CR-0025 는 모든 Luau 파일을 옛 솔버로도 검사하라는 EE-STD-0001 �
 2.0.0 의 노트는 CR-0025 와 CR-0026 을 담았고, CR-0024 는 뺐다.
 달력은 2026-11-01T02:21:14Z 에 배포를 허용하였다.
 예행연습에서 결함이 나오지 않았으므로, 릴리스 브랜치가 바꾸는 것은 이 기록뿐이다.
+
+| 커밋 | 변경 |
+|---|---|
+| `d4e9b0c` | 본 요청을 시행 완료로 표시 |
+
+기록상 결재권자가 2026-11-01 에 머지를 승인하였고, 달력은 2026-11-01T02:44:25Z 에 배포를 허용하였다.
+`main` 머지, `v2.0.0` 태그, `develop` 역머지는 이 기록 뒤에 이어진다.
