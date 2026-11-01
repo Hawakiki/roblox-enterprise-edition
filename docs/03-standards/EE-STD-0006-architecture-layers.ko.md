@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0006
 title: 아키텍처 계층 표준
-translation-of: 1.1.0
+translation-of: 2.0.0
 ---
 
 # 아키텍처 계층 표준
@@ -54,11 +54,11 @@ translation-of: 1.1.0
 
 1. 계약은 `I<이름>` 모듈 안의 테이블 타입이며, 그 메서드는 `self: any` 를 받는다.
 2. 생성자는 자기 클래스가 아니라 자신이 구현하는 계약을 반환한다. `RobloxOutputLoggerAdapter.new` 는 `ILogger` 를 반환한다.
-   이를 위해 로블록스 코드가 하는 유일한 `any` 캐스트인 `return setmetatable(state, Class) :: any` 를 거친다. `state` 는 인스턴스의 필드를 담은 지역 변수이다(`CAST_THROUGH_ANY`).
-   그 밖의 모든 값은 자기 타입을 지킨다. `any` 로 들어온 값은 있어야 할 타입의 지역 변수나 필드에 대입한다.
+   생성자는 인스턴스를 `return setmetatable(state, Class)` 처럼 그대로 반환하며, 타입 검사기는 인스턴스에 계약의 모든 메서드가 있는지 대조한다. `state` 는 인스턴스의 필드를 담은 지역 변수이다.
+   로블록스 코드는 `any` 캐스트를 하지 않는다(`CAST_THROUGH_ANY`). `any` 로 들어온 값은 있어야 할 타입의 지역 변수나 필드에 대입한다.
 3. 모든 구현은 자신이 구현하는 계약을, 타입이 그 계약인 `_implements` 라는 테이블로 선언한다.
 4. `_implements` 의 각 항목은 계약의 시그니처로 쓴 함수이며, 클래스의 메서드를 부르고 그 반환값을 그대로 반환한다. 예를 들면 `Information = function(self: any, message: string) RobloxOutputLoggerAdapter.Information(self, message) end` 이다(`IMPLEMENTS_NOT_WRAPPED`).
-   그러면 두 타입 솔버 모두 그 호출 지점에서 메서드를 계약에 대조한다. `Information = RobloxOutputLoggerAdapter.Information` 처럼 메서드를 가리키기만 하는 항목은, 새 솔버가 메서드가 있는지만 대조하고 그 이상은 대조하지 않는다.
+   그러면 타입 검사기가 그 호출 지점에서 메서드를 계약에 대조한다. `Information = RobloxOutputLoggerAdapter.Information` 처럼 메서드를 가리키기만 하는 항목은, 메서드가 있는지만 대조되고 그 이상은 대조되지 않는다.
 
 ## 7. 조립
 
@@ -89,10 +89,11 @@ translation-of: 1.1.0
 | 1.0.0 | 2026-10-30 | 승인 | 아키텍처 검토 위원회 |
 | 1.0.1 | 2026-10-30 | EE-STD-0001 1.1 기준 재검토, 인용 갱신 | 아키텍처 검토 위원회 |
 | 1.1.0 | 2026-10-31 | §6: `_implements` 의 각 항목이 메서드를 감싸고, `any` 캐스트는 생성자가 인스턴스를 반환하는 자리에만 둠(CR-0023) | 아키텍처 검토 위원회 |
+| 2.0.0 | 2026-11-01 | §6: 생성자는 캐스트 없이 인스턴스를 반환하고, 로블록스 코드는 `any` 캐스트를 하지 않음. EE-STD-0001 2.0 기준 재검토(CR-0025) | 아키텍처 검토 위원회 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
-| 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-31 |
-| 결재 | Hawakiki | 승인 | 2026-10-31 |
+| 기안 | 아키텍처 검토 위원회 | 상신 | 2026-11-01 |
+| 결재 | Hawakiki | 대기 | — |

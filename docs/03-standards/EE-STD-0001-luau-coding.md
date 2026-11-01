@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0001
 title: Luau Coding Standard
-version: 1.1.0
-status: Approved
+version: 2.0.0
+status: In Review
 classification: Internal
 owner: Architecture Review Board
 parent: EE-CHR-0001@1.0
@@ -31,10 +31,10 @@ This standard sets the rules that every Luau file in the repository follows, wha
 
 ## 4. Type Checking
 
-1. Every Luau file type-checks without errors under both the old and the new type solver, that is with `LuauSolverV2` off and on.
-   Roblox Studio uses the new solver; the old one still catches what the new one misses.
+1. Every Luau file type-checks without errors under the new type solver, that is with `LuauSolverV2` on, as Roblox Studio checks it.
 2. Tooling under `scripts/` is checked against the standard platform and the Lune type definitions; Roblox code against the Roblox platform and a sourcemap.
-3. `tools/check` runs both solvers.
+3. `tools/check` runs the new solver alone.
+   The old solver is not run. What it alone reported, a mistake that involves the type parameter inside the body of a generic function, is accepted as lost (ADR-0003).
 
 ## 5. Formatting
 
@@ -101,10 +101,11 @@ Tooling is exempt from the naming standard.
 | 0.9.0 | 2026-10-30 | Submitted for review. | Architecture Review Board |
 | 1.0.0 | 2026-10-30 | Approved. | Architecture Review Board |
 | 1.1.0 | 2026-10-30 | Moonwave doc comments for the Roblox code; `--!strict` as the only directive (CR-0008). | Architecture Review Board |
+| 2.0.0 | 2026-11-01 | §4: the new type solver alone; the old one is no longer required (CR-0025). | Architecture Review Board |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
-| Drafter | Architecture Review Board | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Approved | 2026-10-30 |
+| Drafter | Architecture Review Board | Submitted | 2026-11-01 |
+| Approver | Hawakiki | Pending | — |

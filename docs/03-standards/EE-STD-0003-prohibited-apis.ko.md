@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0003
 title: 금지 API 목록
-translation-of: 1.1.0
+translation-of: 1.1.1
 ---
 
 # 금지 API 목록
@@ -95,10 +95,11 @@ checkpatch 가 §4 부터 §6 까지를 강제한다.
 | 0.9.0 | 2026-10-30 | 로블록스 코드의 규율과 함께 작성(CR-0008) | 아키텍처 검토 위원회 |
 | 1.0.0 | 2026-10-30 | 승인 | 아키텍처 검토 위원회 |
 | 1.1.0 | 2026-10-31 | §5: `Random.new` 는 Infrastructure 에서만 허용하고, `math.random` 과 `math.randomseed` 를 금지함(CR-0022) | 아키텍처 검토 위원회 |
+| 1.1.1 | 2026-11-01 | EE-STD-0001 2.0 기준 재검토, 인용 갱신(CR-0025) | 아키텍처 검토 위원회 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
-| 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-31 |
-| 결재 | Hawakiki | 승인 | 2026-10-31 |
+| 기안 | 아키텍처 검토 위원회 | 상신 | 2026-11-01 |
+| 결재 | Hawakiki | 대기 | — |
