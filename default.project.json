@@ -27,7 +27,8 @@
     },
     "Workspace": {
       "$properties": {
-        "FilteringEnabled": true
+        "FilteringEnabled": true,
+        "UseNewLuauTypeSolver": "Enabled"
       },
       "Baseplate": {
         "$className": "Part",
