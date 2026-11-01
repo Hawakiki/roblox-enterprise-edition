@@ -58,10 +58,15 @@ function StartupAnnouncementService.StopAsync(self: StartupAnnouncementService)
 	self._logger:Information(string.format("EnterpriseEdition is stopping on the %s.", self._side))
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: IHostedService.IHostedService = {
-	StartAsync = StartupAnnouncementService.StartAsync,
-	StopAsync = StartupAnnouncementService.StopAsync,
+	StartAsync = function(self: any)
+		StartupAnnouncementService.StartAsync(self)
+	end,
+	StopAsync = function(self: any)
+		StartupAnnouncementService.StopAsync(self)
+	end,
 }
 
 return StartupAnnouncementService

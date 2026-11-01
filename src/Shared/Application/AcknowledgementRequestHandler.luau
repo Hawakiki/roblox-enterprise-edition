@@ -74,10 +74,15 @@ function AcknowledgementRequestHandler.StopAsync(self: AcknowledgementRequestHan
 	end
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: IHostedService.IHostedService = {
-	StartAsync = AcknowledgementRequestHandler.StartAsync,
-	StopAsync = AcknowledgementRequestHandler.StopAsync,
+	StartAsync = function(self: any)
+		AcknowledgementRequestHandler.StartAsync(self)
+	end,
+	StopAsync = function(self: any)
+		AcknowledgementRequestHandler.StopAsync(self)
+	end,
 }
 
 return AcknowledgementRequestHandler

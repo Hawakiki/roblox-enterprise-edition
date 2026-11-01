@@ -131,6 +131,24 @@ case("a declared return type needs @return", function()
 	Assert.codes(check({ [PATH] = module(functionDoc({ "@within CoinService" }) .. nothing) }), {})
 end)
 
+-- Defect 6 of CR-0018: a return type that begins with () was read as returning nothing.
+case("a function that returns a function needs @return", function()
+	local maker = "function CoinService.Make(): () -> number\n\treturn function()\n\t\treturn 0\n\tend\nend\n"
+	Assert.codes(
+		check({ [PATH] = module(functionDoc({ "@within CoinService" }) .. maker) }),
+		{ "INCOMPLETE_DOC_COMMENT" }
+	)
+	local documented = functionDoc({ "@within CoinService", "@return () -> number" })
+	Assert.codes(check({ [PATH] = module(documented .. maker) }), {})
+end)
+
+-- Defect 6 of CR-0018: a module that did not end with return <name> was not checked at all.
+case("a module that returns its table frozen or cast is checked all the same", function()
+	local start = HEADER .. classDoc("CoinService") .. "\nlocal CoinService = {}\n\n" .. ADD
+	Assert.codes(check({ [PATH] = start .. "\nreturn table.freeze(CoinService)\n" }), { "MISSING_FUNCTION_DOC" })
+	Assert.codes(check({ [PATH] = start .. "\nreturn CoinService :: any\n" }), { "MISSING_FUNCTION_DOC" })
+end)
+
 case("function types and generics in a signature are read", function()
 	local generic = "function CoinService.Map<T, R>(items: { T }, map: (T, number) -> R): { R }\n\treturn {}\nend\n"
 	local doc =

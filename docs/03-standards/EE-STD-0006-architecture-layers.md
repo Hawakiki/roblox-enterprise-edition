@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0006
 title: Layered Architecture Standard
-version: 1.0.1
+version: 1.1.0
 status: Approved
 classification: Internal
 owner: Architecture Review Board
@@ -56,8 +56,11 @@ This standard applies to every module under `src/`.
 
 1. A contract is a table type in a module named `I<Name>`, whose methods take `self: any`.
 2. A constructor returns the contract it implements, not its own class: `RobloxOutputLoggerAdapter.new` returns `ILogger`.
-3. Every implementation declares the contract it implements, in a table named `_implements`.
-   The old type solver holds every method to the signature in the contract, and the new one holds the contract to the presence of every method; `tools/check` runs both.
+   It gets there through the one cast through `any` that the Roblox code makes, `return setmetatable(state, Class) :: any`, where `state` is a local that holds the fields of the instance (`CAST_THROUGH_ANY`).
+   Every other value keeps its type: a value that arrives as `any` is assigned to a local or a field of the type it should have.
+3. Every implementation declares the contract it implements, in a table named `_implements` whose type is the contract.
+4. Each entry of `_implements` is a function written with the signature of the contract, which calls the method of the class and returns what it returns, as in `Information = function(self: any, message: string) RobloxOutputLoggerAdapter.Information(self, message) end` (`IMPLEMENTS_NOT_WRAPPED`).
+   Both type solvers then hold the method to the contract at that call. An entry that only names the method, as in `Information = RobloxOutputLoggerAdapter.Information`, is held by the new solver to the presence of the method and to nothing more.
 
 ## 7. Composition
 
@@ -76,6 +79,8 @@ This standard applies to every module under `src/`.
 | Rule | Severity | Section |
 |---|---|---|
 | `LAYER_VIOLATION` | Error | §4 |
+| `CAST_THROUGH_ANY` | Error | §6 |
+| `IMPLEMENTS_NOT_WRAPPED` | Error | §6 |
 
 ## Revision History
 
@@ -85,10 +90,11 @@ This standard applies to every module under `src/`.
 | 0.9.0 | 2026-10-30 | Drafted with the application framework (CR-0007). | Architecture Review Board |
 | 1.0.0 | 2026-10-30 | Approved. | Architecture Review Board |
 | 1.0.1 | 2026-10-30 | Reviewed against EE-STD-0001 1.1; citation updated. | Architecture Review Board |
+| 1.1.0 | 2026-10-31 | §6: each entry of `_implements` wraps its method, and a cast through `any` stands only where a constructor returns its instance (CR-0023). | Architecture Review Board |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
-| Drafter | Architecture Review Board | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Approved | 2026-10-30 |
+| Drafter | Architecture Review Board | Submitted | 2026-10-31 |
+| Approver | Hawakiki | Approved | 2026-10-31 |

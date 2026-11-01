@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0003
 title: Prohibited API Registry
-version: 1.0.0
+version: 1.1.0
 status: Approved
 classification: Internal
 owner: Architecture Review Board
@@ -52,8 +52,10 @@ This standard lists the directives that no Luau file declares, and the Roblox an
 | `print`, `warn` | The sanctioned exceptions of §6 | The output window is an external system, and one adapter implements `ILogger` on it (EE-STD-0006 §6). | `ILogger`, resolved from the container |
 | `Instance.new` | Infrastructure modules whose names end with `Factory` | Instances belong to Roblox, which only Infrastructure knows (EE-STD-0006 §4), and creating objects is what a factory does (EE-STD-0002 §3). The caller adopts what it receives into a `ResourceScope` (EE-STD-0006 §8). | A factory, through a contract that Application declares |
 | `game:GetService`, `game:FindService` | The composition roots | A static require path starts from a service (EE-STD-0001 §7), and a root has no container to resolve a service from until it has required one. The roots already know every implementation (EE-STD-0006 §4), so knowing every service adds nothing. | The constructor: the composition root passes each module the services it needs |
+| `Random.new` | Infrastructure modules | Chance comes from outside the code, as the time does, and the code receives it rather than drawing it. Infrastructure implements on a generator a contract that Application declares (EE-STD-0006 §4), and a test gives the code a fake that is not random at all. | A source of chance, through a contract that Application declares |
 | `wait`, `delay`, `spawn` | Nowhere | Deprecated: the task library replaces them, and they resume late, at the pace of a throttled scheduler. | `task.wait`, `task.delay`, `task.spawn` |
 | `tick` | Nowhere | Discouraged by Roblox: its result depends on the clock and the time zone of the machine that runs it. | `os.clock`, `os.time`, `DateTime` |
+| `math.random`, `math.randomseed` | Nowhere | Global state: they share one generator, hidden in the math library outside the container (EE-STD-0006 §7), which any code may reseed and whose numbers no test can fix. | `Random.new`, in Infrastructure, behind a contract that Application declares |
 | `loadstring` | Nowhere | Unsafe: it runs code that the type checker, checkpatch and the Approver of record never see. | A module, required by a static path |
 | `getfenv`, `setfenv` | Nowhere | Deprecated by Luau, and unsafe: they read and replace the environment of other functions, hiding globals from the type checker and from this registry. | Requires and parameters |
 | `_G`, `shared` | Nowhere | Unsafe: they hold global state outside the container, found by name, which EE-STD-0006 §7 forbids. | A service, resolved by its token |
@@ -94,10 +96,11 @@ Annex A lists the rules mandated by this standard.
 | 0.1.0 | 2026-10-30 | Number reserved. | Architecture Review Board |
 | 0.9.0 | 2026-10-30 | Drafted with the law of the Roblox code (CR-0008). | Architecture Review Board |
 | 1.0.0 | 2026-10-30 | Approved. | Architecture Review Board |
+| 1.1.0 | 2026-10-31 | §5: `Random.new` allowed only in Infrastructure, and `math.random` and `math.randomseed` prohibited (CR-0022). | Architecture Review Board |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
-| Drafter | Architecture Review Board | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Approved | 2026-10-30 |
+| Drafter | Architecture Review Board | Submitted | 2026-10-31 |
+| Approver | Hawakiki | Approved | 2026-10-31 |

@@ -15,10 +15,52 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 |---|---:|
 | Charter | 1 |
 | Policies | 8 |
+| Organization | 1 |
 | Standards | 9 |
 | Templates | 7 |
-| Change Requests | 17 |
-| **Total** | **42** |
+| Architecture Decision Records | 2 |
+| Change Requests | 24 |
+| **Total** | **52** |
+
+## Lineage
+
+Every controlled document, beside the document it cites as its parent. A dashed card is a reserved number, and a bold one a document in review.
+
+![Lineage of the controlled documents](../diagrams/lineage.svg)
+
+<details>
+<summary>Text version</summary>
+
+```text
+EE-CHR-0001 Charter of EnterpriseEdition
+├─ EE-POL-0001 Document Governance Policy
+│  ├─ EE-POL-0002 Bilingual Documentation Policy
+│  ├─ EE-STD-0009 Text File and Documentation Standard
+│  ├─ EE-TPL-0001 Controlled Document Template
+│  ├─ EE-TPL-0002 Change Request Template
+│  ├─ EE-TPL-0003 Request for Comments Template
+│  ├─ EE-TPL-0004 Architecture Decision Record Template
+│  ├─ EE-TPL-0005 Approval Request Template
+│  ├─ EE-TPL-0006 Statement of Circumstances Template
+│  └─ EE-TPL-0007 Meeting Minutes Template
+├─ EE-POL-0003 Delegation of Authority
+├─ EE-POL-0004 Change Management Policy
+│  ├─ EE-STD-0007 Commit and Branch Standard
+│  └─ EE-STD-0008 Enterprise Versioning Standard
+├─ EE-POL-0005 Information Classification Policy (reserved)
+├─ EE-POL-0006 AI Workforce Policy
+├─ EE-POL-0007 Deprecation Policy (reserved)
+├─ EE-POL-0008 External Data and AI Training Policy
+├─ EE-ORG-0001 Organization Chart
+├─ EE-STD-0001 Luau Coding Standard
+│  ├─ EE-STD-0002 Naming Convention
+│  ├─ EE-STD-0003 Prohibited API Registry
+│  ├─ EE-STD-0005 Numeric Literal Standard
+│  └─ EE-STD-0006 Layered Architecture Standard
+└─ EE-STD-0004 File Header Standard
+```
+
+</details>
 
 ## Charter
 
@@ -32,12 +74,18 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 |---|---|---|---|---|---|---|
 | [EE-POL-0001](01-governance/EE-POL-0001-document-governance.md) | Document Governance Policy | 1.1.0 | Approved | Internal | Document Control Office | EE-CHR-0001@1.0 |
 | [EE-POL-0002](01-governance/EE-POL-0002-bilingual-documentation.md) | Bilingual Documentation Policy | 1.1.0 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
-| [EE-POL-0003](01-governance/EE-POL-0003-delegation-of-authority.md) | Delegation of Authority | 0.1.0 | Draft | Internal | Board of Directors | EE-CHR-0001@1.0 |
+| [EE-POL-0003](01-governance/EE-POL-0003-delegation-of-authority.md) | Delegation of Authority | 1.0.0 | Approved | Internal | Board of Directors | EE-CHR-0001@1.0 |
 | [EE-POL-0004](01-governance/EE-POL-0004-change-management.md) | Change Management Policy | 1.1.0 | Approved | Internal | Change Advisory Board | EE-CHR-0001@1.0 |
 | [EE-POL-0005](01-governance/EE-POL-0005-information-classification.md) | Information Classification Policy | 0.1.0 | Draft | Internal | Information Security Office | EE-CHR-0001@1.0 |
 | [EE-POL-0006](01-governance/EE-POL-0006-ai-workforce.md) | AI Workforce Policy | 1.1.0 | Approved | Internal | Human Resources | EE-CHR-0001@1.0 |
 | [EE-POL-0007](01-governance/EE-POL-0007-deprecation.md) | Deprecation Policy | 0.1.0 | Draft | Internal | Release Engineering | EE-CHR-0001@1.0 |
 | [EE-POL-0008](01-governance/EE-POL-0008-external-data-and-ai-training.md) | External Data and AI Training Policy | 1.0.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
+
+## Organization
+
+| ID | Title | Version | Status | Classification | Owner | Parent |
+|---|---|---|---|---|---|---|
+| [EE-ORG-0001](02-organization/EE-ORG-0001-organization-chart.md) | Organization Chart | 1.0.0 | Approved | Internal | Human Resources | EE-CHR-0001@1.0 |
 
 ## Standards
 
@@ -45,10 +93,10 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 |---|---|---|---|---|---|---|
 | [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.md) | Luau Coding Standard | 1.1.0 | Approved | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
 | [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.0.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
+| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.1.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.1.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
 | [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.1.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
 | [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.md) | Commit and Branch Standard | 1.0.1 | Approved | Internal | Compliance Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0008](03-standards/EE-STD-0008-versioning.md) | Enterprise Versioning Standard | 1.1.0 | Approved | Internal | Release Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0009](03-standards/EE-STD-0009-text-and-documentation.md) | Text File and Documentation Standard | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
@@ -64,6 +112,13 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [EE-TPL-0005](templates/EE-TPL-0005-approval-request.md) | Approval Request Template | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
 | [EE-TPL-0006](templates/EE-TPL-0006-statement-of-circumstances.md) | Statement of Circumstances Template | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
 | [EE-TPL-0007](templates/EE-TPL-0007-meeting-minutes.md) | Meeting Minutes Template | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
+
+## Architecture Decision Records
+
+| ID | Title | Version | Status | Classification | Owner |
+|---|---|---|---|---|---|
+| [ADR-0001](adr/ADR-0001-constructors-return-their-contract.md) | Constructors Return Their Contract, Cast Through Any | 1.2.0 | Superseded | Internal | Architecture Review Board |
+| [ADR-0002](adr/ADR-0002-declare-each-method-through-a-wrapper.md) | Declare Each Method of a Contract Through a Wrapper | 1.1.0 | Accepted | Internal | Architecture Review Board |
 
 ## Change Requests
 
@@ -86,3 +141,10 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | [CR-0015](records/change-requests/CR-0015-ci-hardening.md) | Harden the Continuous Integration | 1.2.0 | Implemented | Internal | Release Engineering |
 | [CR-0016](records/change-requests/CR-0016-release-engineering.md) | Number, Gate and Publish Releases | 1.2.0 | Implemented | Internal | Release Engineering |
 | [CR-0017](records/change-requests/CR-0017-release-1-1-0.md) | Release EnterpriseEdition 1.1.0 | 1.2.0 | Implemented | Internal | Release Engineering |
+| [CR-0018](records/change-requests/CR-0018-code-review-findings.md) | Correct the Findings of the First Code Review | 1.1.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0019](records/change-requests/CR-0019-contract-decision-record.md) | Record the Contract Pattern as the First Architecture Decision | 1.2.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0020](records/change-requests/CR-0020-adr-0001-fitness-test.md) | Test the Facts That ADR-0001 Rests On | 1.1.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0021](records/change-requests/CR-0021-company-map.md) | Draw the Map of the Company | 1.2.0 | Implemented | Internal | Document Control Office |
+| [CR-0022](records/change-requests/CR-0022-random-numbers.md) | Prohibit the Global Random Number Generator | 1.3.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0023](records/change-requests/CR-0023-contract-wrappers.md) | Declare Each Contract Method Through a Wrapper | 1.2.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0024](records/change-requests/CR-0024-release-1-2-0.md) | Release EnterpriseEdition 1.2.0 | 1.2.0 | Implemented | Internal | Release Engineering |

@@ -69,10 +69,15 @@ function RemoteEventAcknowledgementGateway.Subscribe(
 	end
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: IAcknowledgementGateway.IAcknowledgementGateway = {
-	Send = RemoteEventAcknowledgementGateway.Send,
-	Subscribe = RemoteEventAcknowledgementGateway.Subscribe,
+	Send = function(self: any)
+		RemoteEventAcknowledgementGateway.Send(self)
+	end,
+	Subscribe = function(self: any, onAcknowledged: (player: Player) -> ()): () -> ()
+		return RemoteEventAcknowledgementGateway.Subscribe(self, onAcknowledged)
+	end,
 }
 
 return RemoteEventAcknowledgementGateway

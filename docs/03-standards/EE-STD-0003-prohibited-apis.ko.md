@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0003
 title: 금지 API 목록
-translation-of: 1.0.0
+translation-of: 1.1.0
 ---
 
 # 금지 API 목록
@@ -50,8 +50,10 @@ translation-of: 1.0.0
 | `print`, `warn` | §6 의 인가된 예외 | 출력 창은 외부 시스템이며, 어댑터 하나가 그 위에 `ILogger` 를 구현한다(EE-STD-0006 §6). | 컨테이너에서 꺼낸 `ILogger` |
 | `Instance.new` | 이름이 `Factory` 로 끝나는 Infrastructure 모듈 | 인스턴스는 로블록스의 것이며 로블록스를 아는 것은 Infrastructure 뿐이고(EE-STD-0006 §4), 객체를 만드는 것은 팩토리의 일이다(EE-STD-0002 §3). 호출한 쪽은 받은 것을 `ResourceScope` 에 맡긴다(EE-STD-0006 §8). | Application 이 선언한 계약을 거친 팩토리 |
 | `game:GetService`, `game:FindService` | 조립 지점 | 정적 require 경로는 서비스에서 시작하며(EE-STD-0001 §7), 조립 지점은 컨테이너를 require 하기 전까지 서비스를 꺼낼 컨테이너가 없다. 조립 지점은 이미 모든 구현을 알고 있으므로(EE-STD-0006 §4), 모든 서비스를 안다고 해서 더해지는 것은 없다. | 생성자. 조립 지점이 각 모듈에 필요한 서비스를 넘긴다. |
+| `Random.new` | Infrastructure 모듈 | 우연은 시각처럼 코드 바깥에서 오며, 코드는 우연을 직접 뽑지 않고 받는다. Infrastructure 는 Application 이 선언한 계약을 생성기 위에 구현하고(EE-STD-0006 §4), 테스트는 코드에 전혀 무작위가 아닌 가짜를 준다. | Application 이 선언한 계약을 거친 난수원 |
 | `wait`, `delay`, `spawn` | 없음 | 폐지됨. task 라이브러리가 이를 대체하며, 이들은 속도가 제한된 스케줄러의 보폭에 맞춰 늦게 재개된다. | `task.wait`, `task.delay`, `task.spawn` |
 | `tick` | 없음 | 로블록스가 권하지 않음. 결과가 실행하는 기기의 시계와 시간대에 따라 달라진다. | `os.clock`, `os.time`, `DateTime` |
+| `math.random`, `math.randomseed` | 없음 | 전역 상태. 둘은 컨테이너 밖 math 라이브러리 속에 숨은 생성기 하나를 함께 쓰며(EE-STD-0006 §7), 어떤 코드든 그 시드를 바꿀 수 있고 어떤 테스트도 그 수를 고정할 수 없다. | Application 이 선언한 계약 뒤의, Infrastructure 에서 만든 `Random.new` |
 | `loadstring` | 없음 | 위험함. 타입 검사기도, checkpatch 도, 기록상 결재권자도 보지 못하는 코드를 실행한다. | 정적 경로로 require 한 모듈 |
 | `getfenv`, `setfenv` | 없음 | Luau 에서 폐지되었고 위험함. 다른 함수의 환경을 읽고 바꾸어, 타입 검사기와 본 목록으로부터 전역 이름을 가린다. | require 와 매개변수 |
 | `_G`, `shared` | 없음 | 위험함. 컨테이너 밖에서 이름으로 찾는 전역 상태를 담으며, 이는 EE-STD-0006 §7 이 금한다. | 토큰으로 꺼낸 서비스 |
@@ -92,10 +94,11 @@ checkpatch 가 §4 부터 §6 까지를 강제한다.
 | 0.1.0 | 2026-10-30 | 번호 확보 | 아키텍처 검토 위원회 |
 | 0.9.0 | 2026-10-30 | 로블록스 코드의 규율과 함께 작성(CR-0008) | 아키텍처 검토 위원회 |
 | 1.0.0 | 2026-10-30 | 승인 | 아키텍처 검토 위원회 |
+| 1.1.0 | 2026-10-31 | §5: `Random.new` 는 Infrastructure 에서만 허용하고, `math.random` 과 `math.randomseed` 를 금지함(CR-0022) | 아키텍처 검토 위원회 |
 
 ## 결재
 
 | 구분 | 이름 | 결정 | 일자 |
 |---|---|---|---|
-| 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-30 |
-| 결재 | Hawakiki | 승인 | 2026-10-30 |
+| 기안 | 아키텍처 검토 위원회 | 상신 | 2026-10-31 |
+| 결재 | Hawakiki | 승인 | 2026-10-31 |

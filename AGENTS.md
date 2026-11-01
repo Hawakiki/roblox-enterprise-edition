@@ -46,10 +46,11 @@ rojo serve default.project.json        # sync src/ into Roblox Studio
 | File a change request | EE-TPL-0002 |
 | Write a new controlled document | EE-TPL-0001 |
 | Write Luau | EE-STD-0001 |
-| Write Roblox code under `src/` | EE-STD-0006, EE-STD-0002, EE-STD-0003, EE-STD-0005, EE-STD-0001 §6 |
+| Write Roblox code under `src/` | EE-STD-0006, EE-STD-0002, EE-STD-0003, EE-STD-0005, EE-STD-0001 §6, ADR-0002 |
 | Add any file | EE-STD-0004, EE-STD-0009 |
 | Add a checkpatch rule | EE-POL-0001 §14 |
 | Prepare a release | EE-STD-0008 |
+| Find who owns or approves something | EE-ORG-0001, EE-POL-0003 |
 | Approve something | Nothing. You do not approve, not even a deployment waiting in `production` (EE-POL-0006 §4). |
 
 Every rule, with the document that mandates it: `lune run scripts/checkpatch --list-rules`.
@@ -115,8 +116,11 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Revising an approved document | Impossible until CR-0006. Now it goes `In Review` at its new version | EE-POL-0001 §9, CR-0006 |
 | Filing a record without a section of its form | `TEMPLATE_SECTION_MISSING` | EE-POL-0001 §8, CR-0006 |
 | Working on the branch an agent worktree starts on | `BRANCH_NAME_FORMAT`. Create `feature/CR-NNNN-<slug>` first | CR-0006 |
+| Expecting an agent worktree to start from your branch | It starts from `main`. The first code review found the release tools missing there, and had to read them from the release branch | CR-0018 |
 | Translating a branch name, rule code or field value | Code identifiers stay as they are, in backticks | EE-POL-0002 §6 |
-| Using a class instance where its contract type is expected | Both solvers reject it. Constructors return the contract, and `_implements` declares it | EE-STD-0006 §6 |
+| Using a class instance where its contract type is expected | The old solver rejects it, and the new one accepts it. Constructors return the contract through `:: any`, and `_implements` declares each method through a wrapper | EE-STD-0006 §6, ADR-0002 |
+| Declaring a method in `_implements` by its name alone | The new solver checked only that the method existed, and a method that had drifted from its contract passed. Wrap it in a function with the signature of the contract | EE-STD-0006 §6, ADR-0002, CR-0023 |
+| Keeping deliberately invalid Luau in the repository | EE-STD-0001 §4.1 holds every `.luau` file to both solvers, and excluding a folder from `tools/check` only switches the standard off there. Keep such code in strings, and write it under the ignored `build/` when the test runs | EE-STD-0001 §4, CR-0020 |
 | A doc comment inside a table constructor | Moonwave drops it without a word. Assign each documented value in a statement of its own | EE-STD-0001 §6, CR-0008 |
 | Running `tools/check` in an agent worktree | `../.luau/globalTypes.d.luau` pointed into `.claude/worktrees/`, so the Roblox definitions were downloaded or missing. `tools/check` now asks git for the main checkout | CR-0008, CR-0009 |
 | Implementing a `Submitted` request | CR-0008 was implemented before it was approved. Wait for approval in words | EE-POL-0004 §4, CR-0009 |
@@ -136,5 +140,6 @@ You write `Signed-off-by` only for the person you work for, in their git identit
 | Writing to `io` in a Lune script | Lune has no `io`, and the script failed only when it ran. Write with `stdio.write` from `@lune/stdio` | CR-0016 |
 | Expecting the type checker to know that `process.exit` does not return | Both solvers still read the value as optional after the exit. `return` after it | CR-0016 |
 | Taking every commit since the previous tag as the commits of a release | The merge of `release/1.0.0` back into `develop` cites CR-0014 after `v1.0.0`, and 1.1.0 would have released it again. A request belongs to the first release that cites it | EE-STD-0008 §5, CR-0017 |
+| Wrapping a Korean line by eye at 72 columns | Each Korean syllable counts as two columns, and a line one column over was committed with a warning. Keep Korean lines well short of the limit | EE-STD-0007 §5, CR-0022 |
 
 When you step on a new one, add it here with its record (EE-POL-0006 §6).

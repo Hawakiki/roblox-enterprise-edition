@@ -55,4 +55,32 @@ function Assert.equal(actual: any, expected: any, what: string)
 	end
 end
 
+function Assert.truthy(value: any, what: string)
+	if not value then
+		error(string.format("%s: expected a true value, got %s", what, tostring(value)), 0)
+	end
+end
+
+-- The function must raise an error, whose message contains the needle when one is given.
+function Assert.raises(run: () -> (), needle: string?, what: string)
+	local ok, problem = pcall(function(): any
+		run()
+		return nil
+	end)
+	if ok then
+		error(string.format("%s: expected an error, but none was raised", what), 0)
+	end
+	if needle ~= nil and string.find(tostring(problem), needle, 1, true) == nil then
+		error(
+			string.format(
+				"%s: expected an error containing\n      %s\n    but got\n      %s",
+				what,
+				needle,
+				tostring(problem)
+			),
+			0
+		)
+	end
+end
+
 return Assert

@@ -18,6 +18,7 @@ local ErrorLevelConstants = require(script.Parent.Parent.Kernel.ErrorLevelConsta
 local IComponent = require(script.Parent.IComponent)
 local IDisposable = require(script.Parent.Parent.Kernel.IDisposable)
 local IInstanceFactory = require(script.Parent.Parent.Application.IInstanceFactory)
+local ReconciliationConstants = require(script.Parent.ReconciliationConstants)
 local ResourceScope = require(script.Parent.Parent.Kernel.ResourceScope)
 
 -- A property named On followed by the name of an event, as in OnActivated, whose value is a function.
@@ -38,6 +39,9 @@ type Node = {
 	scope: ComponentScope.ComponentScope?,
 	rendered: Node?,
 	rendering: boolean,
+	-- Whether the component is mounting or updating what it rendered, and has been invalidated meanwhile (CR-0018).
+	updating: boolean,
+	pending: boolean,
 }
 
 --[=[
@@ -86,6 +90,8 @@ local function newNode(element: IComponent.Element, parent: Instance, key: strin
 		scope = nil,
 		rendered = nil,
 		rendering = false,
+		updating = false,
+		pending = false,
 	}
 end
 
@@ -126,12 +132,34 @@ local function renderComponent(node: Node): IComponent.Element
 	return result
 end
 
+-- Renders a component again. One invalidated while it mounts or updates what it rendered, as by a child that it
+-- is mounting, renders again once that has finished rather than in the middle of it, as React batches updates.
 local function rerender(self: ReconciliationOrchestrator, node: Node)
 	if node.rendering then
 		error("a component cannot ask to be rendered again while it renders", ErrorLevelConstants.CALLER)
 	end
-	local rendered = renderComponent(node)
-	node.rendered = updateNode(self, node.rendered :: Node, rendered)
+	if node.updating then
+		node.pending = true
+		return
+	end
+	node.updating = true
+	local ok, problem = pcall(function(): any
+		local renders = 0
+		repeat
+			renders += 1
+			if renders > ReconciliationConstants.MAXIMUM_RERENDERS then
+				error("a component kept asking to be rendered again while it updated", ErrorLevelConstants.CALLER)
+			end
+			node.pending = false
+			local rendered = renderComponent(node)
+			node.rendered = updateNode(self, node.rendered :: Node, rendered)
+		until not node.pending
+		return nil
+	end)
+	node.updating = false
+	if not ok then
+		error(problem, ErrorLevelConstants.WITHOUT_POSITION)
+	end
 end
 
 local function replaceNode(self: ReconciliationOrchestrator, node: Node, element: IComponent.Element): Node
@@ -177,8 +205,13 @@ local function mountComponent(
 	local component = class.new(scope)
 	node.scope = scope
 	node.component = component
+	node.updating = true
 	node.rendered = mountNode(self, renderComponent(node), parent, key)
+	node.updating = false
 	component:DidMount(element.props)
+	if node.pending then
+		rerender(self, node)
+	end
 	return node
 end
 
@@ -359,9 +392,12 @@ function ReconciliationOrchestrator.Dispose(self: ReconciliationOrchestrator)
 	end
 end
 
--- Declares the contract this class implements; the type checker holds every method to it.
+-- Declares the contract this class implements. Each entry is written with the signature of the contract and
+-- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
 local _implements: IDisposable.IDisposable = {
-	Dispose = ReconciliationOrchestrator.Dispose,
+	Dispose = function(self: any)
+		ReconciliationOrchestrator.Dispose(self)
+	end,
 }
 
 return ReconciliationOrchestrator

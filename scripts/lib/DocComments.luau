@@ -129,21 +129,47 @@ local function hasHangul(doc: DocComment): boolean
 	return false
 end
 
--- The name of the table that the module returns, if its last statement returns a name.
-local function returnedName(code: { Lexer.Token }): string?
-	local last, before = code[#code], code[#code - 1]
-	if last and before and last.kind == "name" and before.kind == "name" and before.text == "return" then
-		return last.text
-	end
-	return nil
-end
-
 local function isSymbol(token: Lexer.Token?, text: string): boolean
 	return token ~= nil and token.kind == "symbol" and token.text == text
 end
 
 local function isName(token: Lexer.Token?, text: string?): boolean
 	return token ~= nil and token.kind == "name" and (text == nil or token.text == text)
+end
+
+-- The name of the table that the module returns, if its last statement returns a name, as in return Module,
+-- return Module :: Type or return table.freeze(Module) (CR-0018).
+local function returnedName(code: { Lexer.Token }): string?
+	local index = #code
+	while index > 0 and not isName(code[index], "return") do
+		index -= 1
+	end
+	local first = code[index + 1]
+	if index == 0 or not isName(first) then
+		return nil
+	end
+	for later = index + 1, #code do
+		if isName(code[later], "end") then
+			return nil
+		end
+	end
+	local after = code[index + 2]
+	if after == nil or isSymbol(after, "::") then
+		return first.text
+	end
+	local frozen = code[index + 5]
+	if
+		first.text == "table"
+		and isSymbol(after, ".")
+		and isName(code[index + 3], "freeze")
+		and isSymbol(code[index + 4], "(")
+		and isName(frozen)
+		and isSymbol(code[index + 6], ")")
+		and code[index + 7] == nil
+	then
+		return frozen.text
+	end
+	return nil
 end
 
 local OPENERS = { ["("] = true, ["{"] = true, ["["] = true, ["<"] = true }
@@ -175,8 +201,10 @@ local function signature(code: { Lexer.Token }, open: number): ({ string }, bool
 		end
 		index += 1
 	end
-	local colon, after, afterThat = code[index + 1], code[index + 2], code[index + 3]
-	local returnsValue = isSymbol(colon, ":") and not (isSymbol(after, "(") and isSymbol(afterThat, ")"))
+	local colon, after, afterThat, beyond = code[index + 1], code[index + 2], code[index + 3], code[index + 4]
+	-- A return type of exactly (), not a function type such as () -> number that begins with it (CR-0018).
+	local returnsNothing = isSymbol(after, "(") and isSymbol(afterThat, ")") and not isSymbol(beyond, "->")
+	local returnsValue = isSymbol(colon, ":") and not returnsNothing
 	return parameters, returnsValue
 end
 

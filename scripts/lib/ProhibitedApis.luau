@@ -35,7 +35,7 @@ local RULES = {
 -- The only directive allowed. Every other hot comment, and every attribute, is prohibited without waiver.
 local ALLOWED_DIRECTIVE = "--!strict"
 
-type Place = "Nowhere" | "SanctionedExceptions" | "CompositionRoots" | "InfrastructureFactories"
+type Place = "Nowhere" | "SanctionedExceptions" | "CompositionRoots" | "InfrastructureFactories" | "Infrastructure"
 
 type Api = {
 	-- The API as the registry writes it.
@@ -68,10 +68,13 @@ local APIS: { Api } = {
 		callsOnly = false,
 		place = "CompositionRoots",
 	},
+	{ name = "Random.new", global = "Random", member = "new", callsOnly = false, place = "Infrastructure" },
 	{ name = "wait", global = "wait", callsOnly = true, place = "Nowhere" },
 	{ name = "delay", global = "delay", callsOnly = true, place = "Nowhere" },
 	{ name = "spawn", global = "spawn", callsOnly = true, place = "Nowhere" },
 	{ name = "tick", global = "tick", callsOnly = true, place = "Nowhere" },
+	{ name = "math.random", global = "math", member = "random", callsOnly = false, place = "Nowhere" },
+	{ name = "math.randomseed", global = "math", member = "randomseed", callsOnly = false, place = "Nowhere" },
 	{ name = "loadstring", global = "loadstring", callsOnly = false, place = "Nowhere" },
 	{ name = "getfenv", global = "getfenv", callsOnly = false, place = "Nowhere" },
 	{ name = "setfenv", global = "setfenv", callsOnly = false, place = "Nowhere" },
@@ -89,6 +92,7 @@ local PLACES: { [Place]: string } = {
 	SanctionedExceptions = "it is allowed only in a sanctioned exception",
 	CompositionRoots = "it is allowed only in the composition roots",
 	InfrastructureFactories = "it is allowed only in Infrastructure modules whose names end with Factory",
+	Infrastructure = "it is allowed only in Infrastructure modules",
 }
 
 local function isAllowed(api: Api, path: string): boolean
@@ -100,6 +104,8 @@ local function isAllowed(api: Api, path: string): boolean
 	elseif api.place == "InfrastructureFactories" then
 		return Architecture.layerOf(path) == "Infrastructure"
 			and string.sub(Architecture.moduleName(path), -#"Factory") == "Factory"
+	elseif api.place == "Infrastructure" then
+		return Architecture.layerOf(path) == "Infrastructure"
 	end
 	return false
 end
