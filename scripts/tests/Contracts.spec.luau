@@ -101,25 +101,25 @@ end)
 
 -- Casts through any / any 캐스트
 
-case("a constructor may return its instance as its contract", function()
+case("a constructor returns its instance as its contract without a cast (CR-0025)", function()
 	Assert.codes(
 		check({
 			[MODULE] = code(
-				"function Class.new(): IContract.IContract\n\tlocal state: State = {}\n\treturn setmetatable(state, Class) :: any\nend"
+				"function Class.new(): IContract.IContract\n\tlocal state: State = {}\n\treturn setmetatable(state, Class)\nend"
 			),
 		}),
 		{}
 	)
 end)
 
-case("every other cast through any is reported", function()
+case("every cast through any is reported, a constructor's included (CR-0025)", function()
 	for _, body in
 		{
+			"function Class.new(): IContract.IContract\n\tlocal state: State = {}\n\treturn setmetatable(state, Class) :: any\nend",
 			"local panel: Props = props :: any",
 			"(service :: any):Dispose()",
 			"return Instance.new(className :: any)",
 			"return setmetatable(state, Class) :: any :: IContract",
-			"return setmetatable({}, Class) :: any",
 			"local instance = setmetatable(state, Class) :: any",
 		}
 	do

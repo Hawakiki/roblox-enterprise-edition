@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 #
-# Every check in one place: formatting, both type solvers on the tooling and on the Roblox code,
+# Every check in one place: formatting, the new type solver on the tooling and on the Roblox code,
 # Moonwave on the doc comments, checkpatch's own tests, then checkpatch.
-# 모든 검사를 한곳에서: 포맷, 도구와 로블록스 코드에 대한 두 타입 솔버, 문서 주석에 대한 Moonwave,
+# 모든 검사를 한곳에서: 포맷, 도구와 로블록스 코드에 대한 새 타입 솔버, 문서 주석에 대한 Moonwave,
 # checkpatch 자체 테스트, 그리고 checkpatch.
 #   tools/check.sh          # check / 검사
 #   tools/check.sh --fix    # also format and regenerate the registry / 포맷과 문서 대장 재생성까지
@@ -51,25 +51,24 @@ fi
 
 rojo sourcemap default.project.json --include-non-scripts -o sourcemap.json >/dev/null || status=1
 
-# Runs both solvers over one target, judging by the exit code: luau-lsp also exits 1 for a path that does not
-# exist or an argument it does not know, without writing the word Error (CR-0015)
-# 대상 하나에 두 솔버를 돌리고 종료 코드로 판정한다. luau-lsp 는 없는 경로나 모르는 인자에도 Error 라는
-# 단어 없이 1 로 끝나기 때문이다(CR-0015)
+# Runs the new type solver over one target, as Roblox Studio checks it (EE-STD-0001 §4, CR-0025), judging by the
+# exit code: luau-lsp also exits 1 for a path that does not exist or an argument it does not know, without
+# writing the word Error (CR-0015)
+# 대상 하나에 Roblox Studio 처럼 새 타입 솔버를 돌리고(EE-STD-0001 §4, CR-0025) 종료 코드로 판정한다.
+# luau-lsp 는 없는 경로나 모르는 인자에도 Error 라는 단어 없이 1 로 끝나기 때문이다(CR-0015)
 analyze() {
 	local label=$1
 	shift
-	for solver in false true; do
-		raw=$(luau-lsp analyze --flag:LuauSolverV2=$solver "$@" 2>&1)
-		code=$?
-		out=$(printf '%s\n' "$raw" | grep -v '^\[')
-		count=$(printf '%s' "$out" | grep -c 'Error' || true)
-		echo "$label solverV2=$solver: $count errors"
-		if [ "$code" -ne 0 ] || [ "$count" != "0" ]; then
-			echo "luau-lsp exited with $code"
-			printf '%s\n' "$out" | head -60
-			status=1
-		fi
-	done
+	raw=$(luau-lsp analyze --flag:LuauSolverV2=true "$@" 2>&1)
+	code=$?
+	out=$(printf '%s\n' "$raw" | grep -v '^\[')
+	count=$(printf '%s' "$out" | grep -c 'Error' || true)
+	echo "$label solverV2=true: $count errors"
+	if [ "$code" -ne 0 ] || [ "$count" != "0" ]; then
+		echo "luau-lsp exited with $code"
+		printf '%s\n' "$out" | head -60
+		status=1
+	fi
 }
 analyze scripts --platform=standard scripts
 analyze src --platform=roblox --sourcemap=sourcemap.json "--definitions=$DEFS" src

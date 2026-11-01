@@ -3,10 +3,10 @@
 --!strict
 --[[
 	How the Roblox code declares its contracts: every entry of _implements is a wrapper written with the
-	signature of the contract, and a cast through any stands only where a constructor returns its instance as
-	its contract (EE-STD-0006 §6, CR-0023).
-	로블록스 코드가 계약을 선언하는 방식: _implements 의 모든 항목은 계약의 시그니처로 쓴 래퍼이고, any
-	캐스트는 생성자가 인스턴스를 계약으로 반환하는 자리에만 있다(EE-STD-0006 §6, CR-0023).
+	signature of the contract (CR-0023), and the code makes no cast through any, not even where a constructor
+	returns its instance as its contract (EE-STD-0006 §6, CR-0025).
+	로블록스 코드가 계약을 선언하는 방식: _implements 의 모든 항목은 계약의 시그니처로 쓴 래퍼이고(CR-0023),
+	코드는 생성자가 인스턴스를 계약으로 반환하는 자리에서도 any 로 캐스트하지 않는다(EE-STD-0006 §6, CR-0025).
 ]]
 
 local Architecture = require("./Architecture")
@@ -27,7 +27,7 @@ local RULES = {
 		"CAST_THROUGH_ANY",
 		"ERROR",
 		"EE-STD-0006",
-		"A cast through any stands only in return setmetatable(state, Class) :: any."
+		"The Roblox code makes no cast through any."
 	),
 }
 
@@ -70,9 +70,6 @@ local EXPRESSION_BEFORE = {
 	"or",
 	"not",
 }
-
--- The tokens that may follow the value of a return, which is the last statement of its block.
-local AFTER_RETURN = { "end", "else", "elseif", "until", ";" }
 
 local function isSymbol(token: Lexer.Token?, text: string): boolean
 	return token ~= nil and token.kind == "symbol" and token.text == text
@@ -192,29 +189,16 @@ local function checkImplements(path: string, code: { Lexer.Token }, report: Repo
 	end
 end
 
--- Whether the cast at index is the one a constructor makes: return setmetatable(state, Class) :: any.
-local function isConstructorReturn(code: { Lexer.Token }, index: number): boolean
-	local after = code[index + 2]
-	return isName(code[index - 7], "return")
-		and isName(code[index - 6], "setmetatable")
-		and isSymbol(code[index - 5], "(")
-		and isName(code[index - 4])
-		and isSymbol(code[index - 3], ",")
-		and isName(code[index - 2])
-		and isSymbol(code[index - 1], ")")
-		and (after == nil or table.find(AFTER_RETURN, after.text) ~= nil)
-end
-
 local function checkCasts(path: string, code: { Lexer.Token }, report: Report.Report)
 	for index, token in code do
-		if isSymbol(token, "::") and isName(code[index + 1], "any") and not isConstructorReturn(code, index) then
+		if isSymbol(token, "::") and isName(code[index + 1], "any") then
 			Report.add(
 				report,
 				RULES.CAST_THROUGH_ANY,
 				path,
 				token.line,
-				"a cast through any stands only where a constructor returns its instance: "
-					.. "return setmetatable(state, Class) :: any"
+				"the Roblox code makes no cast through any: a constructor returns its instance as it is, and a value "
+					.. "that arrives as any is assigned to a local of the type it should have"
 			)
 		end
 	end

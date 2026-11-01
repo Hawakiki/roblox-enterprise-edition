@@ -18,9 +18,9 @@ Editing this file by hand violates EE-POL-0001, and checkpatch will notice.
 | Organization | 1 |
 | Standards | 9 |
 | Templates | 7 |
-| Architecture Decision Records | 2 |
-| Change Requests | 24 |
-| **Total** | **52** |
+| Architecture Decision Records | 3 |
+| Change Requests | 26 |
+| **Total** | **55** |
 
 ## Lineage
 
@@ -91,12 +91,12 @@ EE-CHR-0001 Charter of EnterpriseEdition
 
 | ID | Title | Version | Status | Classification | Owner | Parent |
 |---|---|---|---|---|---|---|
-| [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.md) | Luau Coding Standard | 1.1.0 | Approved | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
-| [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.1.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0001](03-standards/EE-STD-0001-luau-coding.md) | Luau Coding Standard | 2.0.0 | Approved | Internal | Architecture Review Board | EE-CHR-0001@1.0 |
+| [EE-STD-0002](03-standards/EE-STD-0002-naming.md) | Naming Convention | 1.0.2 | Approved | Internal | Architecture Review Board | EE-STD-0001@2.0 |
+| [EE-STD-0003](03-standards/EE-STD-0003-prohibited-apis.md) | Prohibited API Registry | 1.1.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@2.0 |
 | [EE-STD-0004](03-standards/EE-STD-0004-file-headers.md) | File Header Standard | 1.1.0 | Approved | Internal | Legal Department | EE-CHR-0001@1.0 |
-| [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 1.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
-| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 1.1.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@1.1 |
+| [EE-STD-0005](03-standards/EE-STD-0005-numeric-literals.md) | Numeric Literal Standard | 1.0.1 | Approved | Internal | Architecture Review Board | EE-STD-0001@2.0 |
+| [EE-STD-0006](03-standards/EE-STD-0006-architecture-layers.md) | Layered Architecture Standard | 2.0.0 | Approved | Internal | Architecture Review Board | EE-STD-0001@2.0 |
 | [EE-STD-0007](03-standards/EE-STD-0007-commits-and-branches.md) | Commit and Branch Standard | 1.0.1 | Approved | Internal | Compliance Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0008](03-standards/EE-STD-0008-versioning.md) | Enterprise Versioning Standard | 1.1.0 | Approved | Internal | Release Engineering | EE-POL-0004@1.1 |
 | [EE-STD-0009](03-standards/EE-STD-0009-text-and-documentation.md) | Text File and Documentation Standard | 1.0.1 | Approved | Internal | Document Control Office | EE-POL-0001@1.1 |
@@ -118,7 +118,8 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | ID | Title | Version | Status | Classification | Owner |
 |---|---|---|---|---|---|
 | [ADR-0001](adr/ADR-0001-constructors-return-their-contract.md) | Constructors Return Their Contract, Cast Through Any | 1.2.0 | Superseded | Internal | Architecture Review Board |
-| [ADR-0002](adr/ADR-0002-declare-each-method-through-a-wrapper.md) | Declare Each Method of a Contract Through a Wrapper | 1.1.0 | Accepted | Internal | Architecture Review Board |
+| [ADR-0002](adr/ADR-0002-declare-each-method-through-a-wrapper.md) | Declare Each Method of a Contract Through a Wrapper | 1.2.0 | Superseded | Internal | Architecture Review Board |
+| [ADR-0003](adr/ADR-0003-check-with-the-new-solver-alone.md) | Check With the New Type Solver Alone, and Return Each Instance Without a Cast | 1.1.0 | Accepted | Internal | Architecture Review Board |
 
 ## Change Requests
 
@@ -148,3 +149,5 @@ EE-CHR-0001 Charter of EnterpriseEdition
 | [CR-0022](records/change-requests/CR-0022-random-numbers.md) | Prohibit the Global Random Number Generator | 1.3.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0023](records/change-requests/CR-0023-contract-wrappers.md) | Declare Each Contract Method Through a Wrapper | 1.2.0 | Implemented | Internal | Architecture Review Board |
 | [CR-0024](records/change-requests/CR-0024-release-1-2-0.md) | Release EnterpriseEdition 1.2.0 | 1.2.0 | Implemented | Internal | Release Engineering |
+| [CR-0025](records/change-requests/CR-0025-new-solver-only.md) | Check With the New Type Solver Alone | 1.2.0 | Implemented | Internal | Architecture Review Board |
+| [CR-0026](records/change-requests/CR-0026-release-2-0-0.md) | Release EnterpriseEdition 2.0.0 | 1.2.0 | Implemented | Internal | Release Engineering |

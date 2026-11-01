@@ -47,7 +47,7 @@ function LeaderstatsCoinProjection.new(
 		_instanceFactory = instanceFactory,
 		_shown = {},
 	}
-	return setmetatable(state, LeaderstatsCoinProjection) :: any
+	return setmetatable(state, LeaderstatsCoinProjection)
 end
 
 --[=[
@@ -120,7 +120,7 @@ function LeaderstatsCoinProjection.Dispose(self: LeaderstatsCoinProjection)
 end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: ICoinProjection.ICoinProjection = {
 	Show = function(self: any, player: Player, balance: number)
 		LeaderstatsCoinProjection.Show(self, player, balance)

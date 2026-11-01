@@ -69,7 +69,7 @@ function InterfaceMountService.new(
 		_acknowledgementGateway = acknowledgementGateway,
 		_tree = nil,
 	}
-	return setmetatable(state, InterfaceMountService) :: any
+	return setmetatable(state, InterfaceMountService)
 end
 
 --[=[
@@ -97,7 +97,7 @@ function InterfaceMountService.StopAsync(self: InterfaceMountService)
 end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: IHostedService.IHostedService = {
 	StartAsync = function(self: any)
 		InterfaceMountService.StartAsync(self)

@@ -36,7 +36,7 @@ function RemoteEventAcknowledgementGateway.new(remote: RemoteEvent): IAcknowledg
 	local state: GatewayState = {
 		_remote = remote,
 	}
-	return setmetatable(state, RemoteEventAcknowledgementGateway) :: any
+	return setmetatable(state, RemoteEventAcknowledgementGateway)
 end
 
 --[=[
@@ -70,7 +70,7 @@ function RemoteEventAcknowledgementGateway.Subscribe(
 end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: IAcknowledgementGateway.IAcknowledgementGateway = {
 	Send = function(self: any)
 		RemoteEventAcknowledgementGateway.Send(self)

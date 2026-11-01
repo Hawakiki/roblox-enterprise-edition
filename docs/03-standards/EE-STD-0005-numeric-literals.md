@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0005
 title: Numeric Literal Standard
-version: 1.0.0
+version: 1.0.1
 status: Approved
 classification: Internal
 owner: Architecture Review Board
-parent: EE-STD-0001@1.1
+parent: EE-STD-0001@2.0
 ---
 
 # Numeric Literal Standard
@@ -71,10 +71,11 @@ Annex A lists the rules mandated by this standard.
 | 0.1.0 | 2026-10-30 | Number reserved. | Architecture Review Board |
 | 0.9.0 | 2026-10-30 | Drafted with the law of the Roblox code, as relaxed during its drafting (CR-0008). | Architecture Review Board |
 | 1.0.0 | 2026-10-30 | Approved. | Architecture Review Board |
+| 1.0.1 | 2026-11-01 | Reviewed against EE-STD-0001 2.0; citation updated (CR-0025). | Architecture Review Board |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
-| Drafter | Architecture Review Board | Submitted | 2026-10-30 |
-| Approver | Hawakiki | Approved | 2026-10-30 |
+| Drafter | Architecture Review Board | Submitted | 2026-11-01 |
+| Approver | Hawakiki | Approved | 2026-11-01 |

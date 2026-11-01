@@ -32,7 +32,7 @@ function RobloxOutputLoggerAdapter.new(category: string): ILogger.ILogger
 	local state: AdapterState = {
 		_category = category,
 	}
-	return setmetatable(state, RobloxOutputLoggerAdapter) :: any
+	return setmetatable(state, RobloxOutputLoggerAdapter)
 end
 
 --[=[
@@ -60,7 +60,7 @@ function RobloxOutputLoggerAdapter.Warning(self: RobloxOutputLoggerAdapter, mess
 end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: ILogger.ILogger = {
 	Information = function(self: any, message: string)
 		RobloxOutputLoggerAdapter.Information(self, message)

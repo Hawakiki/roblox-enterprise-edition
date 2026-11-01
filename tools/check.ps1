@@ -25,23 +25,22 @@ foreach ($tool in 'stylua', 'rojo', 'luau-lsp', 'lune', 'moonwave-extractor') {
 	}
 }
 
-# Runs both solvers over one target, judging by the exit code: luau-lsp also exits 1 for a path that does not
-# exist or an argument it does not know, without writing the word Error (CR-0015)
-# 대상 하나에 두 솔버를 돌리고 종료 코드로 판정한다. luau-lsp 는 없는 경로나 모르는 인자에도 Error 라는
-# 단어 없이 1 로 끝나기 때문이다(CR-0015)
+# Runs the new type solver over one target, as Roblox Studio checks it (EE-STD-0001 §4, CR-0025), judging by the
+# exit code: luau-lsp also exits 1 for a path that does not exist or an argument it does not know, without
+# writing the word Error (CR-0015)
+# 대상 하나에 Roblox Studio 처럼 새 타입 솔버를 돌리고(EE-STD-0001 §4, CR-0025) 종료 코드로 판정한다.
+# luau-lsp 는 없는 경로나 모르는 인자에도 Error 라는 단어 없이 1 로 끝나기 때문이다(CR-0015)
 function Invoke-Analysis([string]$Label, [string[]]$Arguments) {
-	foreach ($solver in 'false', 'true') {
-		# stderr lines captured with 2>&1 are ErrorRecords on 5.1 / 5.1 에서 2>&1 로 받은 stderr 줄은 ErrorRecord 라 문자열로 바꾼다
-		$out = @(& luau-lsp analyze "--flag:LuauSolverV2=$solver" @Arguments 2>&1 |
-				ForEach-Object { "$_" } | Where-Object { $_ -notmatch '^\[' })
-		$code = $LASTEXITCODE
-		$count = @($out | Where-Object { $_ -cmatch 'Error' }).Count
-		Write-Output "$Label solverV2=${solver}: $count errors"
-		if ($code -ne 0 -or $count -ne 0) {
-			Write-Output "luau-lsp exited with $code"
-			$out | Select-Object -First 60
-			$script:status = 1
-		}
+	# stderr lines captured with 2>&1 are ErrorRecords on 5.1 / 5.1 에서 2>&1 로 받은 stderr 줄은 ErrorRecord 라 문자열로 바꾼다
+	$out = @(& luau-lsp analyze '--flag:LuauSolverV2=true' @Arguments 2>&1 |
+			ForEach-Object { "$_" } | Where-Object { $_ -notmatch '^\[' })
+	$code = $LASTEXITCODE
+	$count = @($out | Where-Object { $_ -cmatch 'Error' }).Count
+	Write-Output "$Label solverV2=true: $count errors"
+	if ($code -ne 0 -or $count -ne 0) {
+		Write-Output "luau-lsp exited with $code"
+		$out | Select-Object -First 60
+		$script:status = 1
 	}
 }
 

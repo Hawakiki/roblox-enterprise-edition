@@ -43,7 +43,7 @@ function AcknowledgementRequestHandler.new(
 		_useCase = useCase,
 		_scope = nil,
 	}
-	return setmetatable(state, AcknowledgementRequestHandler) :: any
+	return setmetatable(state, AcknowledgementRequestHandler)
 end
 
 --[=[
@@ -75,7 +75,7 @@ function AcknowledgementRequestHandler.StopAsync(self: AcknowledgementRequestHan
 end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: IHostedService.IHostedService = {
 	StartAsync = function(self: any)
 		AcknowledgementRequestHandler.StartAsync(self)
