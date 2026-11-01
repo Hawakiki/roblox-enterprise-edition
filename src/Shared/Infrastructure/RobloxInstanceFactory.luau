@@ -26,7 +26,7 @@ export type RobloxInstanceFactory = typeof(setmetatable({} :: FactoryState, Robl
 ]=]
 function RobloxInstanceFactory.new(): IInstanceFactory.IInstanceFactory
 	local state: FactoryState = {}
-	return setmetatable(state, RobloxInstanceFactory) :: any
+	return setmetatable(state, RobloxInstanceFactory)
 end
 
 --[=[
@@ -43,7 +43,7 @@ function RobloxInstanceFactory.Create(self: RobloxInstanceFactory, className: st
 end
 
 -- Declares the contract this class implements. Each entry is written with the signature of the contract and
--- calls the method, so that both type solvers hold the method to it (EE-STD-0006 §6).
+-- calls the method, so that the type checker holds the method to it (EE-STD-0006 §6).
 local _implements: IInstanceFactory.IInstanceFactory = {
 	Create = function(self: any, className: string): Instance
 		return RobloxInstanceFactory.Create(self, className)

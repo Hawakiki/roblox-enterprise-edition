@@ -3,11 +3,11 @@
 # SPDX-FileCopyrightText: 2026 Hawakiki and EnterpriseEdition contributors
 id: EE-STD-0003
 title: Prohibited API Registry
-version: 1.1.0
+version: 1.1.1
 status: Approved
 classification: Internal
 owner: Architecture Review Board
-parent: EE-STD-0001@1.1
+parent: EE-STD-0001@2.0
 ---
 
 # Prohibited API Registry
@@ -97,10 +97,11 @@ Annex A lists the rules mandated by this standard.
 | 0.9.0 | 2026-10-30 | Drafted with the law of the Roblox code (CR-0008). | Architecture Review Board |
 | 1.0.0 | 2026-10-30 | Approved. | Architecture Review Board |
 | 1.1.0 | 2026-10-31 | §5: `Random.new` allowed only in Infrastructure, and `math.random` and `math.randomseed` prohibited (CR-0022). | Architecture Review Board |
+| 1.1.1 | 2026-11-01 | Reviewed against EE-STD-0001 2.0; citation updated (CR-0025). | Architecture Review Board |
 
 ## Approval
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
-| Drafter | Architecture Review Board | Submitted | 2026-10-31 |
-| Approver | Hawakiki | Approved | 2026-10-31 |
+| Drafter | Architecture Review Board | Submitted | 2026-11-01 |
+| Approver | Hawakiki | Approved | 2026-11-01 |

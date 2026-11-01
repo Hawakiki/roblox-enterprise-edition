@@ -56,7 +56,7 @@ tools/check.sh                         # or tools/check.ps1 on Windows; add --fi
 ```
 
 It must end with 0 errors.
-In order, it runs StyLua, both Luau type solvers over the tooling and over the Roblox code, the Moonwave extractor over the doc comments, the tests of checkpatch, and checkpatch.
+In order, it runs StyLua, the new Luau type solver over the tooling and over the Roblox code, the Moonwave extractor over the doc comments, the tests of checkpatch, and checkpatch.
 The continuous integration runs it on every push and pull request, on Linux with Bash and on Windows under PowerShell 7 and 5.1, and checks every commit message as the commit-msg hook does.
 A check that cannot run, for want of a tool or otherwise, fails.
 
